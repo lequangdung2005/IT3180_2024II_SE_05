@@ -1,26 +1,43 @@
-.tab-pane {
-    /* -fx-tab-min-width: 100px; /* Set the minimum width of tabs */ */
-    /* -fx-tab-max-width: 200px; /* Set the maximum width of tabs */ */
-    /* -fx-tab-min-height: 10px; */
-    /* -fx-tab-max-height: 10px; */
+.root {
+    /* -fx-font-family: "Noto Sans"; */
+    -fx-font-family: "Montserrat";
 }
 
-.tab .tab-label { 
- 	-fx-alignment: CENTER;
-	/* -fx-text-fill: white; */
-	/* -fx-font-weight: bold; */
-	-fx-padding: 0 10 0 10;
+#greetinglabel {
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #FFFFFF;
 }
-.tab-pane:top *.tab-header-area {
-	-fx-padding: 0 0 0 30;
-}
-.tab-pane {
-	/* -fx-background-color: transparent; */
-	-fx-tab-min-width: 100px;
-	-fx-tab-min-height: 30px;
-	-fx-tab-max-height: 66px;
+#desclabel {
+    -fx-text-fill: #FFFFFF;
 }
 
-#clientMenuLabel {
-    -fx-font-weight: bold;
+/* .clienthomesidebar { */
+/*     -fx-padding: 18 0 16 0; */
+/*     -fx-background-color: #CCCCCC; */
+/*     -fx-background-radius: 8, 0; */
+/* } */
+
+.graywrapper {
+    -fx-hgap: 5px;
+
+    -fx-background-color: #DDE1E4;
+    -fx-background-radius: 35px;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.updownpadding {
+    -fx-padding: 16 0 16 0;
+}
+
+.leftrightpadding {
+    -fx-padding: 0 16 0 16;
+}
+
+.fullpadding {
+    -fx-padding: 16 16 16 16;
+}
+
+.gradientbackground {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4a4a4a, #2a2a2a);
 }

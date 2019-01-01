@@ -5,6 +5,12 @@ import com.hust.ittnk68.cnpm.model.SceneModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
+import atlantafx.base.controls.Notification;
+import atlantafx.base.theme.Styles;
+import atlantafx.base.util.Animations;
+
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
 import org.springframework.web.client.RestClient;
 
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
@@ -12,26 +18,53 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+
+import javafx.animation.Timeline;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class ClientSceneController {
     private Stage stage;
+    private StackPane stackPane;
     private SceneModel sceneModel;
     private RestClient restClient;
 
     public ClientSceneController() {
         stage = null;
+        stackPane = new StackPane ();
         sceneModel = new SceneModel();
         restClient = RestClient.create();
     }
 
     public void start(Stage stage, String title, double width, double height) {
+
+        // window shape
+        Rectangle rect = new Rectangle (width, height);
+        rect.setArcHeight (60.0);
+        rect.setArcWidth (60.0);
+
         this.stage = stage;
         stage.setTitle(title);
-        Scene scene = new Scene(new LoginController(this).getView(), width, height);
+        stage.initStyle (StageStyle.TRANSPARENT);
+
+        Scene scene = new Scene(this.stackPane, width, height);
+        scene.setFill (Color.TRANSPARENT);
+        scene.getStylesheets().add(getClass().getResource("/css/client.css").toExternalForm());
         stage.setScene(scene);
+
+        this.stackPane.setClip (rect);
+        this.stackPane.getChildren ().add (new LoginController (this).getView ());
+
 	stage.show(); 
     }
 
@@ -49,7 +82,7 @@ public class ClientSceneController {
         }
         catch (Exception e)
         {
-            return new ServerResponseStartSession (ResponseStatus.NOT_OK, "can't connect to server", "", AccountType.UNVALID);
+            return new ServerResponseStartSession (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server", "", AccountType.UNVALID);
         }
         // stop loading screen ...
         return res;
@@ -70,6 +103,50 @@ public class ClientSceneController {
         }
     }
 
+    public void openSubStage (Region rg, int W, int H)
+    {
+        final Stage dialog = new Stage ();
+        dialog.initModality (Modality.APPLICATION_MODAL);
+        dialog.initOwner (this.stage);
+        Scene dialogScene = new Scene (rg, W, H);
+        dialog.setScene (dialogScene);
+        dialog.show ();
+    }
+
+    public void openWarningNoti (String str, FontIcon icon)
+    {
+        final Notification msg = new Notification (
+            str,
+            icon
+        ); 
+        msg.getStyleClass ().addAll (
+            Styles.WARNING, Styles.ELEVATED_1
+        );
+        msg.setPrefWidth (300);
+        msg.setPrefHeight (80);
+        msg.setMaxHeight (80);
+
+        StackPane.setAlignment (msg, Pos.TOP_RIGHT);
+        StackPane.setMargin (msg, new Insets (10, 10, 0, 0));
+
+        msg.setOnClose (e -> {
+            Timeline out = Animations.slideOutUp (msg, Duration.millis (250));
+            out.setOnFinished (f -> getStackPane().getChildren ().remove (msg));
+            out.playFromStart ();
+        });
+
+        Timeline in = Animations.slideInDown (msg, Duration.millis (250));
+        if (!getStackPane().getChildren().contains (msg)) {
+            getStackPane().getChildren ().add (msg);
+        }
+        in.playFromStart ();
+    }
+
+    public StackPane getStackPane ()
+    {
+        return stackPane;
+    }
+
     public Scene getView() {
         return stage.getScene();
     }
@@ -77,7 +154,9 @@ public class ClientSceneController {
         stage.setTitle(s);
     }
     public void setRoot(Parent n) {
-        this.getView().setRoot(n);
+        // this.getView().setRoot(n);
+        this.getStackPane ().getChildren ().clear ();
+        this.getStackPane ().getChildren ().add (n);
     }
 
     public void setUriBase(String url) {

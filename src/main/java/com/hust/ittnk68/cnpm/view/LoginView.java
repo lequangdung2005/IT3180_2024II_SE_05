@@ -6,6 +6,7 @@ import org.kordamp.ikonli.material2.Material2AL;
 import com.hust.ittnk68.cnpm.model.LoginModel;
 import com.hust.ittnk68.cnpm.view.LoginView;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.interactor.LoginInteractor;
 
 import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Spacer;
@@ -38,24 +39,26 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class LoginView extends BorderPane {
-    public LoginView(ClientSceneController sceneController, LoginModel model,
-	    Runnable loginButtonHandler,
-	    Runnable forgetPasswordButtonHandler)
+    public LoginView(ClientSceneController sceneController, LoginModel model, LoginInteractor interactor)
     {
 	super();
 
+	this.getStyleClass().add("gradientbackground");
+
 	TextField usernameTextField = new TextField();
 	usernameTextField.setPromptText("Tên đăng nhập");
+	usernameTextField.getStyleClass ().addAll (Styles.ROUNDED);
 	model.getUsernameProperty().bind(usernameTextField.textProperty());
 
 	PasswordField passwordField = new PasswordField();
 	passwordField.setPromptText("Nhập mật khẩu");
+	passwordField.getStyleClass ().addAll (Styles.ROUNDED);
 	model.getPasswordProperty().bind(passwordField.textProperty());
 
 	Button forgetPasswordButton = new Button("Quên mật khẩu");
 	forgetPasswordButton.getStyleClass().addAll(Styles.FLAT, Styles.ACCENT, Styles.SMALL);
 	forgetPasswordButton.setMnemonicParsing(true);
-	forgetPasswordButton.setOnAction(evt -> forgetPasswordButtonHandler.run());
+	forgetPasswordButton.setOnAction(evt -> interactor.forgetPasswordButtonHandler ());
 	forgetPasswordButton.setCursor(Cursor.HAND);
 
 	HBox forgetPasswordButtonWrapper = new HBox(forgetPasswordButton);
@@ -76,7 +79,7 @@ public class LoginView extends BorderPane {
 	loginButton.setMnemonicParsing(true);
 	loginButton.setMinWidth(100);
 	loginButton.setCursor(Cursor.HAND);
-	loginButton.setOnAction(evt -> loginButtonHandler.run());
+	loginButton.setOnAction(evt -> interactor.loginHandler ());
 
 	HBox loginButtonWrapper = new HBox(loginButton);
 	loginButtonWrapper.setAlignment(Pos.BOTTOM_RIGHT);

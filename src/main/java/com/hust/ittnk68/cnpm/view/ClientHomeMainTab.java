@@ -18,7 +18,6 @@ public class ClientHomeMainTab extends AnchorPane {
     ClientHomeMainTab() {
 	super();
 
-	ClientHomeMainTabInfoSection ap1 = new ClientHomeMainTabInfoSection();
 	ClientHomeMainTabScrollSection ap2 = new ClientHomeMainTabScrollSection();
 	//
 	// ap1.setPrefHeight(300);
@@ -30,8 +29,6 @@ public class ClientHomeMainTab extends AnchorPane {
 	// sp.setOrientation(Orientation.VERTICAL);
 	
 	VBox wrapper = new VBox(
-	    ap1,
-	    new Separator(Orientation.HORIZONTAL),
 	    ap2
 	);
 

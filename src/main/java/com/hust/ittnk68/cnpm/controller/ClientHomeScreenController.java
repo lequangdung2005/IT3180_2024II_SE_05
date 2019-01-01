@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.interactor.ClientHomeScreenInteractor;
 import javafx.scene.layout.Region;
 
 import com.hust.ittnk68.cnpm.model.ClientHomeScreenModel;
@@ -11,7 +12,8 @@ public class ClientHomeScreenController {
 
     public ClientHomeScreenController(ClientSceneController sceneController) {
         ClientHomeScreenModel model = new ClientHomeScreenModel();
-        view = new ClientHomeScreenView();
+        ClientHomeScreenInteractor interactor = new ClientHomeScreenInteractor (sceneController);
+        view = new ClientHomeScreenView (sceneController, interactor);
         sceneController.setTitle("BlueMoon - Trang chủ");
     }
 

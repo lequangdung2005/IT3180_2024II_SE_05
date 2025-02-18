@@ -30,6 +30,13 @@
       <artifactId>javafx-controls</artifactId>
       <version>23.0.2</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.2.0</version>
+    </dependency>
+
   </dependencies>
   
   <properties>
@@ -70,7 +77,8 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.2.1</version>
         <configuration>
-          <mainClass>com.hust.ittnk68.cnpm.app.App</mainClass>
+          <mainClass>com.hust.ittnk68.cnpm.app.TestJDBC</mainClass>
+          <!-- <mainClass>com.hust.ittnk68.cnpm.app.App</mainClass> -->
         </configuration>
       </plugin>
 

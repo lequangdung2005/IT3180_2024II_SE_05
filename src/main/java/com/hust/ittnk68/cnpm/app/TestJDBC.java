@@ -21,16 +21,41 @@ import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.animation.*;
 
-
 public class TestJDBC {
+
+	// de tam day
+	// se import tu class khac
+	final static String MYSQL_CONFIG_DIR = "MySQL.conf";
+
+	static String getPropertyFromKey(Properties p, String key) throws NullPointerException {
+		String value = p.getProperty(key);
+		if(value == null) {
+			throw new NullPointerException("Khong the tim thay thuoc tinh <" + key + "> trong config file.");
+		}
+		return value;
+	}
+
 	public static void main(String[] args) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://127.0.0.1:3306/testjdbc";
-			String username = "cnpm";
-			String password = "cnpm";
-
+			Properties mySQLProperties = new Properties();
+			try {
+				mySQLProperties.load(new FileInputStream(MYSQL_CONFIG_DIR));
+			} catch(Exception e) {
+				System.out.println("MySQL.conf not found!");
+			}
+			/* for(String key : mySQLProperties.stringPropertyNames()) {
+				String value = mySQLProperties.getProperty(key);
+				System.out.printf("Config file content: %s => %s\n", key, value);
+			} */
+			String ip = getPropertyFromKey(mySQLProperties, "ip");
+			String port = getPropertyFromKey(mySQLProperties, "port");
+			String username = getPropertyFromKey(mySQLProperties, "username");
+			String password = getPropertyFromKey(mySQLProperties, "password");
+	
+			String url = String.format("jdbc:mysql://%s:%s/testjdbc", ip, port);
+			System.out.println("oke r: " + url);
 			Connection con = DriverManager.getConnection(url, username, password);
 
 			if(con.isClosed()) {

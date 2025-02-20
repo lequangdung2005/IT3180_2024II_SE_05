@@ -10,14 +10,25 @@ import java.util.HashMap;
 import java.sql.*;
 
 public class MySQLDatabaseUtils {
-    public static Connection createConnection(String driver, String url, String username, String password) throws ClassNotFoundException, SQLException {
-        Class.forName(driver);
+    public static Connection createConnection(String driver, String url, String username, String password) throws SQLException {
+
+        System.out.println(driver);
+        System.out.flush();
+
+        try {
+            Class.forName(driver);
+        }
+        catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         if((username == null) || (password == null) || (username.trim().length() == 0) || (password.trim().length() == 0)) {
             return DriverManager.getConnection(url);
         }
         else {
             return DriverManager.getConnection(url, username, password);
         }
+
     }
 
     public static void close(Connection connection) {

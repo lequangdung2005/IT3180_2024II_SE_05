@@ -3,35 +3,42 @@ package com.hust.ittnk68.cnpm.model;
 import org.apache.commons.codec.digest.*;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Connection;
-
-public class Account implements GetSQLProperties {
+public class Account extends GetSQLProperties {
     private int accountId;
     private int familyId;
     private String username;
     private String digestPassword;
 
-    // tim kiem trong database
-    public Account(int accountId) {
-        this.accountId = accountId;
-    }
-    // tao cai moi
-    public Account(int familyId, String username, String password) { 
+    public Account(int familyId, String username, String password) {
+        this.accountId = -1;
         this.familyId = familyId;
         this.username = username;
-        // this.digestPassword = ? (password);
+        this.digestPassword = DigestUtils.sha256Hex(password);
     }
 
+    public int getAccountId() {
+        return accountId;
+    }
+    public int getFamilyId() {
+        return familyId;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String getDigestPassword() {
+        return digestPassword;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.accountId = id;
+    }
+    @Override
     public String getSQLTableName() {
-        return new String("account_id");
+        return new String("account");
     }
-    public String getSQLInsertColumns() {
-        return new String("familyId, username, digestPassword");
-    }
-    public String getSQLInsertValues() {
-        return String.format("%d, %s, %s", familyId, username, digestPassword);
+    @Override
+    public String getSQLInsertCommand() {
+        return String.format("INSERT INTO %s (family_id,username,digest_password) values ('%d','%s','%s');", this.getSQLTableName(), familyId, username, digestPassword);
     }
 }

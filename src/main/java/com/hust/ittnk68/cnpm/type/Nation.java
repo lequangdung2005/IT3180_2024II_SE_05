@@ -210,7 +210,8 @@ public enum Nation {
         this.nation = nation;
     }
 
-    public String getUrl() {
+    @Override
+    public String toString() {
         return nation;
     }
 }

@@ -9,6 +9,7 @@ public class Account extends GetSQLProperties {
     private String username;
     private String digestPassword;
 
+    public Account() {}
     public Account(int familyId, String username, String password) {
         this.accountId = -1;
         this.familyId = familyId;

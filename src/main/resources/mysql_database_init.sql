@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS account (
 
 CREATE TABLE IF NOT EXISTS vehicle (
     vehicle_id int not null auto_increment,
+    vehicle_type varchar(64) not null,
     family_id int,
     plate_id varchar(16) not null,
     PRIMARY KEY (vehicle_id, family_id),
@@ -47,7 +48,9 @@ CREATE TABLE IF NOT EXISTS expense (
     expense_id int not null auto_increment,
     expense_title varchar(256) not null,
     expense_description varchar(256) not null,
+    published_date date,
     total_cost int,
+    expense_type varchar(32),
     required tinyint(1),
     PRIMARY KEY(expense_id)
 );
@@ -57,6 +60,7 @@ CREATE TABLE IF NOT EXISTS payment_status (
     expense_id int,
     family_id int,
     total_pay int,
+    published_date date,
     PRIMARY KEY(payment_status_id, expense_id, family_id),
     FOREIGN KEY(expense_id)
         REFERENCES expense(expense_id)

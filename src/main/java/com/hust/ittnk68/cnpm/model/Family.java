@@ -7,6 +7,7 @@ public class Family extends GetSQLProperties {
     private int personId;
     private String houseNumber;
 
+    public Family() {}
     public Family(int personId, String houseNumber) {
         this.familyId = -1;
         this.personId = personId;

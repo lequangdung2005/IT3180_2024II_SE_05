@@ -13,7 +13,8 @@ import java.sql.SQLException;
 import com.hust.ittnk68.cnpm.config.MySQLConfig;
 import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 
-public class MySQLDatabase implements Database {
+public class MySQLDatabase implements Database, AutoCloseable {
+    private Connection con;
     private String driver;
     private String url;
     private String username;
@@ -21,25 +22,27 @@ public class MySQLDatabase implements Database {
 
     public MySQLDatabase() throws FileNotFoundException, IOException, ConfigFileException {
 
-		MySQLConfig mySQLConf = new MySQLConfig();
+        MySQLConfig mySQLConf = new MySQLConfig();
         this.driver = mySQLConf.getDriver();
         this.url = mySQLConf.getUrl();
         this.username = mySQLConf.getUsername();
         this.password = mySQLConf.getPassword();
 
+        try {
+            con = MySQLDatabaseUtils.createConnection(driver, url, username, password);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private Connection connectToMySQL() throws SQLException {
-        return MySQLDatabaseUtils.createConnection(driver, url, username, password);
+    public void close() {
+        MySQLDatabaseUtils.close(con);
     }
-
-    // @Override
-    // protected void finalize() {
-    // }
     
     public void create(GetSQLProperties g) throws SQLException {
         try (
-            Connection con = this.connectToMySQL();
             PreparedStatement statement = con.prepareStatement(
                 g.getSQLInsertCommand(),
                 Statement.RETURN_GENERATED_KEYS
@@ -68,10 +71,9 @@ public class MySQLDatabase implements Database {
         }
     }
 
-    public void deleteById(int id, GetSQLProperties g) throws SQLException {
+    public void deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
-            Connection con = this.connectToMySQL();
-            PreparedStatement statement = con.prepareStatement(g.getSQLDeleteByIdCommand(id));
+            PreparedStatement statement = con.prepareStatement(g.getSQLDeleteByConditionCommand(condition));
         )
         {
             System.out.println(statement);
@@ -81,10 +83,9 @@ public class MySQLDatabase implements Database {
         }
     }
 
-    public List< Map<String, Object> > findById(int id, GetSQLProperties g) throws SQLException {
+    public List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
-            Connection con = this.connectToMySQL();
-            PreparedStatement statement = con.prepareStatement(g.getSQLFindByIdCommand(id));
+            PreparedStatement statement = con.prepareStatement(g.getSQLFindByConditionCommand(condition));
         )
         {
             System.out.println(statement);

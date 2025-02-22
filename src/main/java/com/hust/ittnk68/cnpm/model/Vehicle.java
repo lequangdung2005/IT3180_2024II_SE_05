@@ -1,12 +1,15 @@
 package com.hust.ittnk68.cnpm.model;
 
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
+import com.hust.ittnk68.cnpm.type.VehicleType;
 
 public class Vehicle extends GetSQLProperties {
     private int vehicleId;
+    private VehicleType vehicleType;
     private int familyId;
     private String plateId;
 
+    public Vehicle() {}
     public Vehicle(int familyId, String plateId) {
         this.vehicleId = -1;
         this.familyId = familyId;
@@ -23,6 +26,6 @@ public class Vehicle extends GetSQLProperties {
     }
     @Override
     public String getSQLInsertCommand() {
-        return String.format("INSERT INTO %s (family_id,plate_id) values ('%d','%s');", this.getSQLTableName(), familyId, plateId);
+        return String.format("INSERT INTO %s (vehicle_type,family_id,plate_id) values ('%s','%d','%s');", this.getSQLTableName(), vehicleType, familyId, plateId);
     }
 }

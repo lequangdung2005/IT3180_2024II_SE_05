@@ -14,6 +14,7 @@ public class Person extends GetSQLProperties {
     private Nation nationality;
     private ResidenceStatus residenceStatus;
 
+    public Person() {}
     public Person(int familyId, String fullname, Date dateOfBirth, String citizenIdentificationNumber,
             String phoneNumber, Sex sex, Nation nationality, ResidenceStatus residenceStatus)
     {

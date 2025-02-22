@@ -6,8 +6,6 @@ import java.util.Map;
 
 public interface Database {
     void create(GetSQLProperties g) throws SQLException;
-    void deleteById(int id, GetSQLProperties g) throws SQLException;
-    List< Map<String, Object> > findById(int id, GetSQLProperties g) throws SQLException;
-    // void delete(GetSQLProperties g);
-    // void update(GetSQLProperties g);
+    void deleteByCondition(String condtion, GetSQLProperties g) throws SQLException;
+    List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException;
 }

@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.database;
 
 import com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils;
+import com.hust.ittnk68.cnpm.model.Account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.sql.*;
 public class MySQLDatabaseUtils {
     public static Connection createConnection(String driver, String url, String username, String password) throws SQLException {
 
-        System.out.println(driver);
+        System.out.println("JDBC driver: " + driver);
         System.out.flush();
 
         try {
@@ -96,5 +97,13 @@ public class MySQLDatabaseUtils {
             close(rs);
         }
         return results;
+    }
+
+    public static List< Map<String, Object> > findAccountByUsername(MySQLDatabase sql, Account acc) throws SQLException
+    {
+        return sql.findByCondition(
+                    String.format("username='%s'", acc.getUsername()),
+                    acc
+                );
     }
 }

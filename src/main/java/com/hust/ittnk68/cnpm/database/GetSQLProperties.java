@@ -10,16 +10,14 @@ public abstract class GetSQLProperties {
     abstract public String getSQLTableName();
     abstract public String getSQLInsertCommand();
 
-    public String getSQLFindByIdCommand(int id) {
-        return String.format("select * from %s where %s_id=%d;",
+    public String getSQLFindByConditionCommand(String condition) {
+        return String.format("select * from %s where (%s);",
                 getSQLTableName(),
-                getSQLTableName(),
-                id);
+                condition);
     }
-    public String getSQLDeleteByIdCommand(int id) {
-        return String.format("delete from %s where %s_id=%d;",
+    public String getSQLDeleteByConditionCommand(String condition) {
+        return String.format("delete from %s where (%s);",
                 getSQLTableName(),
-                getSQLTableName(),
-                id);
+                condition);
     }
 }

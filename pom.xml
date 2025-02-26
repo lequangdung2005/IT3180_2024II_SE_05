@@ -60,6 +60,17 @@
       <version>2.0.1</version>
     </dependency>
 
+    <dependency>
+        <groupId>org.kordamp.ikonli</groupId>
+        <artifactId>ikonli-javafx</artifactId>
+        <version>12.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.kordamp.ikonli</groupId>
+      <artifactId>ikonli-material2-pack</artifactId>
+      <version>12.3.1</version>
+    </dependency>
+
   </dependencies>
   
   <properties>
@@ -122,24 +133,24 @@
     </plugins>
 
     <resources>
-      <!-- regular resource processsing for everything except logback.xml -->
-      <!-- <resource>
-        <directory>src/main/resources</directory>
-        <excludes>
-          <exclude>logback.xml</exclude>
-        </excludes>
-      </resource> -->
-      <!-- resource processsing with a different output directory
-           for logback.xml -->
+
+      <!-- <resource> -->
+      <!--   <directory>src/main/resources</directory> -->
+      <!--   <includes> -->
+      <!--     <include>MySQL.conf</include> -->
+      <!--     <include>client.css</include> -->
+      <!--     <include>mysql_database_init.sql</include> -->
+      <!--   </includes> -->
+      <!--   <targetPath>.</targetPath> -->
+      <!-- </resource> -->
+
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>${basedir}/src/main/resources</directory>
         <includes>
-          <include>MySQL.conf</include>
+          <include>**/*.*</include>
         </includes>
-        <!-- relative to target/classes
-             i.e. ${project.build.outputDirectory} -->
-        <targetPath>.</targetPath>
       </resource>
+
     </resources>
   </build>
 

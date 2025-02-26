@@ -10,23 +10,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.hust.ittnk68.cnpm.config.MySQLConfig;
+import com.hust.ittnk68.cnpm.config.ConfigFileLoader;
+import com.hust.ittnk68.cnpm.config.MySQLDefaultConfig;
 import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 
-public class MySQLDatabase implements Database, AutoCloseable {
-    private Connection con;
-    private String driver;
-    private String url;
-    private String username;
-    private String password;
+public class MySQLDatabase {
+    private static Connection con;
+    private static String driver;
+    private static String url;
+    private static String username;
+    private static String password;
 
-    public MySQLDatabase() throws FileNotFoundException, IOException, ConfigFileException {
+    public static void start() throws FileNotFoundException, IOException, ConfigFileException {
 
-        MySQLConfig mySQLConf = new MySQLConfig();
-        this.driver = mySQLConf.getDriver();
-        this.url = mySQLConf.getUrl();
-        this.username = mySQLConf.getUsername();
-        this.password = mySQLConf.getPassword();
+        ConfigFileLoader loader = new ConfigFileLoader("MySQL.conf", new MySQLDefaultConfig());
+
+        driver = loader.getProperty("driver"); 
+        url = loader.getProperty("url");
+        username = loader.getProperty("username");
+        password = loader.getProperty("password");
 
         try {
             con = MySQLDatabaseUtils.createConnection(driver, url, username, password);
@@ -34,14 +36,13 @@ public class MySQLDatabase implements Database, AutoCloseable {
         catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void close() {
+    public static void close() {
         MySQLDatabaseUtils.close(con);
     }
     
-    public void create(GetSQLProperties g) throws SQLException {
+    public static void create(GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(
                 g.getSQLInsertCommand(),
@@ -66,12 +67,10 @@ public class MySQLDatabase implements Database, AutoCloseable {
                     throw new SQLException("Creating object of table " + g.getSQLTableName() + ", no ID obtained.");
                 }
             }
-
-            MySQLDatabaseUtils.close(con);
         }
     }
 
-    public void deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
+    public static void deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLDeleteByConditionCommand(condition));
         )
@@ -83,7 +82,7 @@ public class MySQLDatabase implements Database, AutoCloseable {
         }
     }
 
-    public List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException {
+    public static List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLFindByConditionCommand(condition));
         )

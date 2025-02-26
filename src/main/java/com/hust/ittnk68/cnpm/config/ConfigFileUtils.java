@@ -13,4 +13,5 @@ public class ConfigFileUtils {
         props.load(new FileInputStream(configPath));
         return props;
     }
+
 }

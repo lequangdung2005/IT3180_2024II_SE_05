@@ -10,6 +10,8 @@ public enum ExpenseType {
     ExpenseType(String expenseType) {
         this.expenseType = expenseType;
     }
+
+    @Override
     public String toString() {
         return expenseType;
     }

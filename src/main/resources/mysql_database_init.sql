@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS account (
     family_id int,
     username varchar(32) not null,
     digest_password varchar(64) not null,
+    account_type varchar(32) not null,
     PRIMARY KEY(account_id, family_id),
     FOREIGN KEY(family_id)
         REFERENCES family (family_id)

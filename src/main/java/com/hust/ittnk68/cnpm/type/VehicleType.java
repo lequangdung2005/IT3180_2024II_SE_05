@@ -11,6 +11,8 @@ public enum VehicleType {
     VehicleType(String vehicleType) {
         this.vehicleType = vehicleType;
     }
+
+    @Override
     public String toString() {
         return vehicleType;
     }

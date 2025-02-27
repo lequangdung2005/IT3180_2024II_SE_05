@@ -8,36 +8,39 @@ import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
-import com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils;
 import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.type.AccountType;
 
-class UserMetadata {
+class UserHomeMetadata {
 	public String fullname;
 	public String houseNumber;
 	public int totalSpendingThisMonth;
+	public List<Person> familyPersonList;
 }
 
 @RestController
 @SpringBootApplication
 public class Server {
 
-	private Account getAccountByUsernamePassword(String username, String digestPassword) {
-		try (
-			MySQLDatabase sql = new MySQLDatabase();
-		)
+	// private static List<Person> getFamilyMemberFromDatabase(int familyId) {
+	// }
+
+	private static Account getAccountByUsernamePassword(String username, String digestPassword) {
+		try
 		{
-			List< Map<String, Object> > res = sql.findByCondition(
+			List< Map<String, Object> > res = MySQLDatabase.findByCondition(
 				String.format("(username='%s' and digest_password='%s')", username, digestPassword),
 				new Account()
 			); 
@@ -53,7 +56,8 @@ public class Server {
 			assert res.size() == 1;
 
 			Map<String, Object> m = res.get(0);
-			Account acc = new Account((int)m.get("family_id"), (String)m.get("username"), (String)m.get("digest_password"));
+			AccountType accountType = AccountType.matchByString((String)m.get("account_type")).get();
+			Account acc = new Account((int)m.get("family_id"), (String)m.get("username"), null, (String)m.get("digest_password"), accountType );
 
 			acc.setId((int)m.get("account_id"));
 			return acc;
@@ -65,12 +69,10 @@ public class Server {
 		return null;
 	}
 
-	private List< Map<String, Object> > queryPaymentStatusFromDatabase(int familyId, int month) {
-		try (
-			MySQLDatabase sql = new MySQLDatabase();
-		)
+	private static List< Map<String, Object> > queryPaymentStatusFromDatabase(int familyId, int month) {
+		try
 		{
-			return sql.findByCondition(
+			return MySQLDatabase.findByCondition(
 				String.format("family_id=%d AND DATE_FORMAT(published_date,'%%m')=%d", familyId, month),
 				new PaymentStatus()
 			);
@@ -81,7 +83,7 @@ public class Server {
 		return null;
 	}
 
-	private int getTotalSpending(int familyId, int month) {
+	private static int getTotalSpending(int familyId, int month) {
 		List< Map<String, Object> > list = queryPaymentStatusFromDatabase(familyId, month);
 		System.out.println(list);
 		int totalSpending = 0;
@@ -91,12 +93,10 @@ public class Server {
 		return totalSpending;
 	}
 
-	private Map<String, Object> getMetadataById(int id, GetSQLProperties g) {
-		try (
-			MySQLDatabase sql = new MySQLDatabase();
-		)
+	private static Map<String, Object> getMetadataById(int id, GetSQLProperties g) {
+		try
 		{
-			List< Map<String, Object> > list = sql.findByCondition(
+			List< Map<String, Object> > list = MySQLDatabase.findByCondition(
 				String.format("%s_id=%d", g.getSQLTableName(), id),
 				g
 			);
@@ -122,8 +122,18 @@ public class Server {
 		return "Hello, World!";
 	}
 
-	@RequestMapping("/api/user-metadata")
-	UserMetadata getUserMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
+	@RequestMapping("/api/account-auth")
+	String accountAuth(@RequestParam String username, @RequestParam String digestPassword) {
+		Account acc = getAccountByUsernamePassword(username, digestPassword);
+		if(acc != null) {
+			System.out.println(username + " " + digestPassword);
+			System.out.println(acc.getAccountType());
+		}
+		return ((acc == null) ? AccountType.UNVALID : acc.getAccountType()).toString();
+	}
+
+	@RequestMapping("/api/user-home-metadata")
+	UserHomeMetadata getUserHomeMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
 	{
 		Account acc = getAccountByUsernamePassword(username, digestPassword);
 		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -136,7 +146,7 @@ public class Server {
 		Map<String, Object> personMetadata = getMetadataById(representative_person_id,
 															new Person());
 
-		UserMetadata res = new UserMetadata();
+		UserHomeMetadata res = new UserHomeMetadata();
 		res.fullname = (String)personMetadata.get("fullname");
 		res.houseNumber = (String)familyMetadata.get("house_number");
 		res.totalSpendingThisMonth = getTotalSpending(acc.getFamilyId(), thisMonth);
@@ -144,8 +154,19 @@ public class Server {
 		return res;
 	}
 
+	@EventListener({ ContextClosedEvent.class })
+	void beforeShutdownGracefully() {
+		MySQLDatabase.close();
+	}
+
 	public static void main(String[] args) {
-		SpringApplication.run(Server.class, args);
+		try {
+			MySQLDatabase.start();
+			SpringApplication.run(Server.class, args);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

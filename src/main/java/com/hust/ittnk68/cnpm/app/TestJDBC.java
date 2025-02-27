@@ -1,4 +1,4 @@
-package com.hust.ittnk68.cnpm.app;
+package com.hust.ittnk68.cnpm.app234;
 
 import java.util.*;
 import java.io.*;
@@ -103,4 +103,3 @@ public class TestJDBC {
 		}
 	}
 }
-

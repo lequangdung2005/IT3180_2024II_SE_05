@@ -1,85 +1,78 @@
 package com.hust.ittnk68.cnpm.app;
 
-import java.util.*;
-import java.sql.*;
+import com.hust.ittnk68.cnpm.type.Date;
+import com.hust.ittnk68.cnpm.type.Nation;
+import com.hust.ittnk68.cnpm.type.ResidenceStatus;
+import com.hust.ittnk68.cnpm.type.Sex;
 
-import javax.sql.*;
+import com.hust.ittnk68.cnpm.model.Person;
 
-import javafx.util.*;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.*;
-import javafx.scene.paint.*;
-import javafx.scene.shape.*;
-import javafx.scene.effect.*;
-import javafx.stage.*;
-import javafx.geometry.*;
-import javafx.animation.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
-public class App extends Application {
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
-	@Override
-	public void start(Stage primaryStage) {
-		Group root = new Group();
-		Scene scene = new Scene(root, 800, 600, Color.BLACK);
-		primaryStage.setScene(scene);
+import com.hust.ittnk68.cnpm.config.MySQLDefaultConfig;
+import com.hust.ittnk68.cnpm.database.GetSQLProperties;
+import com.hust.ittnk68.cnpm.database.MySQLDatabase;
+import com.hust.ittnk68.cnpm.exception.ConfigFileException;
+import com.hust.ittnk68.cnpm.model.Account;
+import com.hust.ittnk68.cnpm.model.Family;
 
-		Group circles = new Group();
-		for(int i = 0; i < 30; ++i) {
-			Circle circle = new Circle(150, Color.web("white", 0.05));
-			circle.setStrokeType(StrokeType.OUTSIDE);
-			circle.setStroke(Color.web("white", 0.16));
-			circle.setStrokeWidth(4);
-			circles.getChildren().add(circle);
-		}
-		circles.setEffect(new BoxBlur(10, 10, 3));
+// import javafx.util.*;
+// import javafx.application.*;
+// import javafx.event.ActionEvent;
+// import javafx.event.EventHandler;
+// import javafx.scene.*;
+// import javafx.scene.control.*;
+// import javafx.scene.layout.*;
+// import javafx.scene.text.*;
+// import javafx.scene.paint.*;
+// import javafx.scene.shape.*;
+// import javafx.scene.effect.*;
+// import javafx.stage.*;
+// import javafx.geometry.*;
+// import javafx.animation.*;
 
-		Rectangle colors = new Rectangle(scene.getWidth(), scene.getHeight(),
-				new LinearGradient(0f, 1f, 1f, 0f, true, CycleMethod.NO_CYCLE,
-					new Stop[] {
-						new Stop(0, Color.web("#f8bd55")),
-						new Stop(0.14, Color.web("#c0fe56")),
-						new Stop(0.28, Color.web("#5dfbc1")),
-						new Stop(0.43, Color.web("#64c2f8")),
-						new Stop(0.57, Color.web("#be4af7")),
-						new Stop(0.71, Color.web("#ed5fc2")),
-						new Stop(0.85, Color.web("#ef504c")),
-						new Stop(1, Color.web("#f2660f")),
-					}));
-		colors.widthProperty().bind(scene.widthProperty());
-		colors.heightProperty().bind(scene.heightProperty());
+public class App {
+	public static void main(String[] args) throws NoSuchFileException, IOException, ConfigFileException {
 
-		Group blendModeGroup = new Group(
-									new Group(new Rectangle(scene.getWidth(), scene.getHeight(), Color.BLACK),
-									circles),
-									colors
-								);
-		colors.setBlendMode(BlendMode.OVERLAY);
-
-		Timeline timeline = new Timeline();
-		for(Node circle : circles.getChildren()) {
-			timeline.getKeyFrames().addAll(
-				new KeyFrame(Duration.ZERO,
-					new KeyValue(circle.translateXProperty(), Math.random() * 800),
-					new KeyValue(circle.translateYProperty(), Math.random() * 600)
-				),
-				new KeyFrame(new Duration(40000),
-					new KeyValue(circle.translateXProperty(), Math.random() * 800),
-					new KeyValue(circle.translateYProperty(), Math.random() * 600)
-				)
-			);
-		}
-		timeline.play();
-
-		root.getChildren().add(blendModeGroup);
-		primaryStage.show();
-	}
+		// Person p1 = new Person(69, "ND Dang Duong", new Date(2005, 12, 3), "010039931183", "0912375999", Sex.MALE, Nation.VIETNAM, ResidenceStatus.PRESENT);
+		// Person p2 = new Person(69, "Phuc Du", new Date(1997, 3, 06), "010039931183", "0912375999", Sex.MALE, Nation.USA, ResidenceStatus.ABSENT);
+		// Person p3 = new Person(69, "Ablaham", new Date(1977, 9, 15), "010039931183", "0912375999", Sex.FEMALE, Nation.INDIA, ResidenceStatus.PRESENT);
+		// Person p4 = new Person(1, "Ablaham", new Date(1977, 9, 15), "010039931183", "0912375999", Sex.FEMALE, Nation.INDIA, ResidenceStatus.PRESENT);
+		// Person p5 = new Person(2, "Ablaham", new Date(1977, 9, 15), "010039931183", "0912375999", Sex.FEMALE, Nation.INDIA, ResidenceStatus.PRESENT);
+		// Person p6 = new Person(33, "Ablaham", new Date(1977, 9, 15), "010039931183", "0912375999", Sex.FEMALE, Nation.INDIA, ResidenceStatus.PRESENT);
+		//
+		//
+		// try {
+		// 	sql.create(p1);
+		// 	sql.create(p2);
+		// 	sql.create(p3);
+		// 	sql.create(p4);
+		// 	sql.create(p5);
+		// 	sql.create(p6);
+		// }
+		// catch (Exception e) {
+		// 	e.printStackTrace();
+		// }
+		//
+		// Family f = new Family(2, "A35");
+		//
+		// try {
+		// 	sql.create(f);
+		// }
+		// catch (Exception e) {
+		// 	e.printStackTrace();
+		// }
+		//
+		// Account acc = new Account(1, "root", "tomoshibi");
+		//
+		// try {
+		// 	int id = sql.create(acc);
+		// 	System.out.printf("insert id = %d\n", id);
+		// }
+		// catch (Exception e) {
+		// 	e.printStackTrace();
+		// }
+	} 
 }
-

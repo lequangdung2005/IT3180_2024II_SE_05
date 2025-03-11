@@ -2,9 +2,15 @@ package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.SceneModel;
+import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
 import org.springframework.web.client.RestClient;
 
+import com.hust.ittnk68.cnpm.communication.ApiMapping;
+import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,9 +34,42 @@ public class ClientSceneController {
         stage.setScene(scene);
 	stage.show(); 
     }
-    // public Stage getStage() {
-    //     return stage;
-    // }
+
+    public ServerResponseStartSession startSession (ClientMessageStartSession message)
+    {
+        // loading screen ...
+
+        ServerResponseStartSession res;
+        try {
+            res = restClient.post()
+                    .uri (getUriBase() + ApiMapping.START_SESSION)
+                    .body (message)
+                    .retrieve ()
+                    .body (ServerResponseStartSession.class);
+        }
+        catch (Exception e)
+        {
+            return new ServerResponseStartSession (ResponseStatus.NOT_OK, "can't connect to server", "", AccountType.UNVALID);
+        }
+        // stop loading screen ...
+        return res;
+    }
+
+    public void endSession ()
+    {
+        try {
+            restClient.post()
+                    .uri (getUriBase() + ApiMapping.END_SESSION)
+                    .body (getToken ())
+                    .retrieve ()
+                    .body (String.class);
+        }
+        catch (Exception e)
+        {
+            System.out.println ("end session: can't connect to server");
+        }
+    }
+
     public Scene getView() {
         return stage.getScene();
     }
@@ -51,7 +90,12 @@ public class ClientSceneController {
         return sceneModel.getUriBase();
     }
 
-    public RestClient getRestClient() {
-        return restClient;
+    public String getToken ()
+    {
+        return sceneModel.getToken ();
+    }
+    public void setToken (String token)
+    {
+        sceneModel.setToken (token);
     }
 }

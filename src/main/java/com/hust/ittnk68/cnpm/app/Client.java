@@ -16,6 +16,8 @@ import com.hust.ittnk68.cnpm.controller.LoginController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.view.ClientHomeScreenView;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.session.SessionController;
+import com.hust.ittnk68.cnpm.session.Token;
 import com.hust.ittnk68.cnpm.type.Date;
 
 import atlantafx.base.theme.NordDark;
@@ -38,23 +40,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
+import com.hust.ittnk68.cnpm.session.SessionController;
+
 public class Client extends Application {
 	private static ClientSceneController sceneController;
 
 	public static void main(String[] args) {
-
-		// ObjectMapper objectMapper = new ObjectMapper();
-		// 
-		// Person a = new Person();
-		//
-		// List<Person> list = new ArrayList<Person>();
-		// list.add(a);
-		// try {
-		// 	objectMapper.writeValue(System.out, list);
-		// }
-		// catch (Exception e) {
-		// 	e.printStackTrace();
-		// }
 
 		if(args.length != 1 && args.length != 2) {
 			throw new InvalidParameterException("So luong tham so khong hop le.");
@@ -73,8 +64,14 @@ public class Client extends Application {
 	}
 
 	@Override
+	public void stop(){
+		System.out.println("Stage is closing");
+		sceneController.endSession ();
+	}
+
+	@Override
 	public void start(Stage primaryStage) {
 		Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-		sceneController.start(primaryStage, "javafx app title", 1600, 1000);
+		sceneController.start(primaryStage, "javafx app title", 800, 600);
 	}
 } 

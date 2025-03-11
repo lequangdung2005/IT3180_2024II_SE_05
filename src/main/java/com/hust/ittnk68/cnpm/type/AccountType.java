@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum AccountType {
+    ROOT("root"),
     ADMIN("admin"),
     USER("user"),
     UNVALID("unvalid");

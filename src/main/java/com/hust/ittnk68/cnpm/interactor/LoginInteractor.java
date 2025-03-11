@@ -2,11 +2,14 @@ package com.hust.ittnk68.cnpm.interactor;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientHomeScreenController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.model.LoginModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
 public class LoginInteractor {
     LoginModel model;
@@ -29,26 +32,35 @@ public class LoginInteractor {
         else {
             String digestPassword = DigestUtils.sha256Hex(password);
 
-            String loginResult = sceneController.getRestClient().get()
-                .uri(sceneController.getUriBase()
-                        + String.format("/api/account-auth?username=%s&digestPassword=%s",
-                                username, digestPassword))
-                .retrieve()
-                .body(String.class);
-
-            assert loginResult != null;
+            ClientMessageStartSession message = new ClientMessageStartSession (username, digestPassword);
+            ServerResponseStartSession res = sceneController.startSession (message);
 
             // xu ly exception
             // khong ket noi dc => thong bao
 
-            if(loginResult.equals(AccountType.UNVALID.toString())) {
+            if (res.getResponseStatus ().equals (ResponseStatus.NOT_OK))
+            {
+                System.out.println ("ko ket noi den server dc");
+                return;
+            }
+
+            if (res.getResponseStatus ().equals (ResponseStatus.SESSION_ERROR))
+            {
+                System.out.println ("tai khoan dang dc dang nhap ...");
+                return;
+            }
+
+            sceneController.setToken (res.getToken ());
+            System.out.println ("token = " + sceneController.getToken ());
+
+            if(res.getAccountType().equals(AccountType.UNVALID)) {
                 System.out.println("dang nhap lai");
             }
-            else if(loginResult.equals(AccountType.ADMIN.toString())) {
+            else if(res.getAccountType().equals(AccountType.ADMIN)) {
                 System.out.println("admin");
                 sceneController.setRoot(new ClientHomeScreenController(sceneController).getView());
             }
-            else if(loginResult.equals(AccountType.USER.toString())) {
+            else if(res.getAccountType().equals(AccountType.USER)) {
                 System.out.println("user");
                 sceneController.setRoot(new ClientHomeScreenController(sceneController).getView());
             }

@@ -10,18 +10,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hust.ittnk68.cnpm.communication.ApiMapping;
+import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.exception.ConfigFileException;
+import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.session.SessionController;
 import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
 class UserHomeMetadata {
 	public String fullname;
@@ -33,9 +40,6 @@ class UserHomeMetadata {
 @RestController
 @SpringBootApplication
 public class Server {
-
-	// private static List<Person> getFamilyMemberFromDatabase(int familyId) {
-	// }
 
 	private static Account getAccountByUsernamePassword(String username, String digestPassword) {
 		try
@@ -117,45 +121,67 @@ public class Server {
 		return null;
 	}
 
-	@RequestMapping("/")
-	String hello() {
-		return "Hello, World!";
-	}
+	@RequestMapping(ApiMapping.START_SESSION)
+	ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
+		String username = message.getUsername ();
+		String digestPassword = message.getDigestPassword ();
 
-	@RequestMapping("/api/account-auth")
-	String accountAuth(@RequestParam String username, @RequestParam String digestPassword) {
 		Account acc = getAccountByUsernamePassword(username, digestPassword);
+		String token = "";
+
 		if(acc != null) {
 			System.out.println(username + " " + digestPassword);
 			System.out.println(acc.getAccountType());
+
+			try {
+				token = SessionController.newSession (username);
+			}
+			catch (UserCreateSecondSession e)
+			{
+				return new ServerResponseStartSession (ResponseStatus.SESSION_ERROR, "session-error", "", AccountType.UNVALID);
+			}
+
 		}
-		return ((acc == null) ? AccountType.UNVALID : acc.getAccountType()).toString();
+
+
+		return new ServerResponseStartSession (ResponseStatus.OK,
+												"no message",
+												token,
+												((acc == null) ? AccountType.UNVALID : acc.getAccountType())
+												);
 	}
 
-	@RequestMapping("/api/user-home-metadata")
-	UserHomeMetadata getUserHomeMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
+	@RequestMapping(ApiMapping.END_SESSION)
+	void endSession (@RequestBody String token)
 	{
-		Account acc = getAccountByUsernamePassword(username, digestPassword);
-		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-
-		Map<String, Object> familyMetadata = getMetadataById(acc.getFamilyId(),
-															new Family());
-
-		int representative_person_id = (int)familyMetadata.get("person_id");
-
-		Map<String, Object> personMetadata = getMetadataById(representative_person_id,
-															new Person());
-
-		UserHomeMetadata res = new UserHomeMetadata();
-		res.fullname = (String)personMetadata.get("fullname");
-		res.houseNumber = (String)familyMetadata.get("house_number");
-		res.totalSpendingThisMonth = getTotalSpending(acc.getFamilyId(), thisMonth);
-
-		return res;
+		System.out.println ("End session, token = " + token);
+		SessionController.endSession (token);
 	}
+
+	// @RequestMapping("/api/user-home-metadata")
+	// UserHomeMetadata getUserHomeMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
+	// {
+	// 	Account acc = getAccountByUsernamePassword(username, digestPassword);
+	// 	int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+	//
+	// 	Map<String, Object> familyMetadata = getMetadataById(acc.getFamilyId(),
+	// 														new Family());
+	//
+	// 	int representative_person_id = (int)familyMetadata.get("person_id");
+	//
+	// 	Map<String, Object> personMetadata = getMetadataById(representative_person_id,
+	// 														new Person());
+	//
+	// 	UserHomeMetadata res = new UserHomeMetadata();
+	// 	res.fullname = (String)personMetadata.get("fullname");
+	// 	res.houseNumber = (String)familyMetadata.get("house_number");
+	// 	res.totalSpendingThisMonth = getTotalSpending(acc.getFamilyId(), thisMonth);
+	//
+	// 	return res;
+	// }
 
 	@EventListener({ ContextClosedEvent.class })
-	void beforeShutdownGracefully() {
+	void exitGracefully() {
 		MySQLDatabase.close();
 	}
 

@@ -1,0 +1,26 @@
+.tab-pane {
+    /* -fx-tab-min-width: 100px; /* Set the minimum width of tabs */ */
+    /* -fx-tab-max-width: 200px; /* Set the maximum width of tabs */ */
+    /* -fx-tab-min-height: 10px; */
+    /* -fx-tab-max-height: 10px; */
+}
+
+.tab .tab-label { 
+ 	-fx-alignment: CENTER;
+	/* -fx-text-fill: white; */
+	/* -fx-font-weight: bold; */
+	-fx-padding: 0 10 0 10;
+}
+.tab-pane:top *.tab-header-area {
+	-fx-padding: 0 0 0 30;
+}
+.tab-pane {
+	/* -fx-background-color: transparent; */
+	-fx-tab-min-width: 100px;
+	-fx-tab-min-height: 30px;
+	-fx-tab-max-height: 66px;
+}
+
+#clientMenuLabel {
+    -fx-font-weight: bold;
+}

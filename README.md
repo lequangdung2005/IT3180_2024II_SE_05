@@ -2,7 +2,7 @@
 
 ## Cài đặt
 ```bash
-git clone https://github.com/lequangdung2005/SE-intro-project.git
+git clone https://github.com/lequangdung2005/IT3180_2024II_SE_05.git
 cd SE-intro-project
 mvn install
 ```

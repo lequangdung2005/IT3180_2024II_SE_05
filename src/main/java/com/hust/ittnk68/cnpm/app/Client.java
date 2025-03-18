@@ -40,8 +40,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import com.hust.ittnk68.cnpm.session.SessionController;
-
 public class Client extends Application {
 	private static ClientSceneController sceneController;
 
@@ -72,6 +70,6 @@ public class Client extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-		sceneController.start(primaryStage, "javafx app title", 800, 600);
+		sceneController.start(primaryStage, "javafx app title", 1500, 900);
 	}
 } 

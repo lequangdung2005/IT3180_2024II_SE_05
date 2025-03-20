@@ -36,13 +36,14 @@ import javafx.util.Duration;
 public class ClientSceneController {
     private Stage stage;
     private StackPane stackPane;
-    private SceneModel sceneModel;
+
+    private String uriBase;
+    private String token;
     private RestClient restClient;
 
     public ClientSceneController() {
         stage = null;
         stackPane = new StackPane ();
-        sceneModel = new SceneModel();
         restClient = RestClient.create();
     }
 
@@ -160,21 +161,22 @@ public class ClientSceneController {
     }
 
     public void setUriBase(String url) {
-        sceneModel.setUriBase(url);
+        uriBase = url;
     }
     public void setUriBase(String ip, String port) {
-        sceneModel.setUriBase(ip, port);
+        uriBase = String.format("http://%s:%s", ip, port);
     }
     public String getUriBase() {
-        return sceneModel.getUriBase();
+        return uriBase;
     }
 
     public String getToken ()
     {
-        return sceneModel.getToken ();
+        return token;
     }
     public void setToken (String token)
     {
-        sceneModel.setToken (token);
+        this.token = token;
     }
+
 }

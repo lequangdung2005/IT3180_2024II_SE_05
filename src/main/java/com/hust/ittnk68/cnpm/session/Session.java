@@ -21,6 +21,9 @@ public class Session
         this.sessionEnd = cal.getTime ();
     }
 
+    public String getUsername () {
+        return username;
+    }
     public Date getSessionEnd ()
     {
         return sessionEnd;

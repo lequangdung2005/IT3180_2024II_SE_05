@@ -9,7 +9,6 @@ import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
 public class SessionController
 {
     private static Map <String, String> usernameToToken = new TreeMap <String, String> ();
-    private static Map <String, String> tokenToUsername = new TreeMap <String, String> ();
     private static Map <String, Session> tokenToSession = new TreeMap <String, Session> ();
 
     private static void updateUserSessionState (String username)
@@ -25,7 +24,6 @@ public class SessionController
         if (now.after(session.getSessionEnd ()))
         {
             usernameToToken.remove (username);
-            tokenToUsername.remove (token);
             tokenToSession.remove (token);
         }
     }
@@ -45,7 +43,6 @@ public class SessionController
         }
         token = Token.generateToken ();
         usernameToToken.put (username, token);
-        tokenToUsername.put (token, username);
         tokenToSession.put (token, new Session (username));
         return token;
     }
@@ -57,9 +54,8 @@ public class SessionController
             return -1;
         }
 
-        String username = tokenToUsername.get (token);
+        String username = tokenToSession.get(token).getUsername();
         usernameToToken.remove (username);
-        tokenToUsername.remove (token);
         tokenToSession.remove (token);
         return 0;
     }

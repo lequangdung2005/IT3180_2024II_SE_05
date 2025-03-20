@@ -2,6 +2,8 @@ package com.hust.ittnk68.cnpm.view;
 
 import java.util.stream.IntStream;
 
+import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+
 import atlantafx.base.controls.Calendar;
 import javafx.geometry.Insets;
 import javafx.scene.chart.BarChart;
@@ -13,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class ClientHomePage extends DuongFXGridPane {
-    public ClientHomePage () {
+    public ClientHomePage (ClientSceneController sceneController) {
 	super (12, 9);
 	// this.setGridLinesVisible (true);
 	// this.getStyleClass().addAll ("fullpadding");

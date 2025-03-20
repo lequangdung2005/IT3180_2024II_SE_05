@@ -1,7 +1,6 @@
 package com.hust.ittnk68.cnpm.controller;
 
-import com.hust.ittnk68.cnpm.model.Account;
-import com.hust.ittnk68.cnpm.model.SceneModel;
+import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -10,14 +9,13 @@ import atlantafx.base.theme.Styles;
 import atlantafx.base.util.Animations;
 
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.material2.Material2AL;
 import org.springframework.web.client.RestClient;
 
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
-import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
@@ -37,14 +35,13 @@ public class ClientSceneController {
     private Stage stage;
     private StackPane stackPane;
 
-    private String uriBase;
-    private String token;
-    private RestClient restClient;
+    private ClientModel clientModel;
+    private ClientInteractor clientInteractor;
 
     public ClientSceneController() {
         stage = null;
         stackPane = new StackPane ();
-        restClient = RestClient.create();
+        clientModel = new ClientModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -75,6 +72,7 @@ public class ClientSceneController {
 
         ServerResponseStartSession res;
         try {
+            RestClient restClient = clientModel.getRestClient ();
             res = restClient.post()
                     .uri (getUriBase() + ApiMapping.START_SESSION)
                     .body (message)
@@ -92,6 +90,7 @@ public class ClientSceneController {
     public void endSession ()
     {
         try {
+            RestClient restClient = clientModel.getRestClient ();
             restClient.post()
                     .uri (getUriBase() + ApiMapping.END_SESSION)
                     .body (getToken ())
@@ -161,22 +160,28 @@ public class ClientSceneController {
     }
 
     public void setUriBase(String url) {
-        uriBase = url;
+        clientModel.setUriBase ( url );
     }
     public void setUriBase(String ip, String port) {
-        uriBase = String.format("http://%s:%s", ip, port);
+        clientModel.setUriBase ( String.format("http://%s:%s", ip, port) );
     }
-    public String getUriBase() {
-        return uriBase;
+    public String getUriBase () {
+        return clientModel.getUriBase ();
     }
 
-    public String getToken ()
-    {
-        return token;
+    public String getToken () {
+        return clientModel.getToken ();
     }
-    public void setToken (String token)
-    {
-        this.token = token;
+    public void setToken (String token) {
+        clientModel.setToken (token);
+    }
+
+    public ClientModel getClientModel () {
+        return clientModel;
+    }
+
+    public ClientInteractor getClientInteractor () {
+        return clientInteractor;
     }
 
 }

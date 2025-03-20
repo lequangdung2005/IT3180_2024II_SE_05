@@ -3,45 +3,33 @@ package com.hust.ittnk68.cnpm.view;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2AL;
 
-import com.hust.ittnk68.cnpm.model.LoginModel;
+import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.view.LoginView;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.interactor.LoginInteractor;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Spacer;
-import atlantafx.base.layout.InputGroup;
 import atlantafx.base.theme.Styles;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 public class LoginView extends BorderPane {
-    public LoginView(ClientSceneController sceneController, LoginModel model, LoginInteractor interactor)
+    public LoginView(ClientSceneController sceneController)
     {
 	super();
+
+	ClientModel model = sceneController.getClientModel ();
+	ClientInteractor interactor = sceneController.getClientInteractor ();
 
 	this.getStyleClass().add("gradientbackground");
 

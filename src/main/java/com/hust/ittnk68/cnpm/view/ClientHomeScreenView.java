@@ -1,7 +1,7 @@
 package com.hust.ittnk68.cnpm.view;
 
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.interactor.ClientHomeScreenInteractor;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Spacer;
@@ -75,7 +75,7 @@ public class ClientHomeScreenView extends DuongFXGridPane {
     private static final int numCols = 15;
     private static final int numRows = 12;
 
-    public ClientHomeScreenView(ClientSceneController sceneController, ClientHomeScreenInteractor interactor) {
+    public ClientHomeScreenView(ClientSceneController sceneController, ClientInteractor interactor) {
 	super (numCols, numRows);
 
 	// this.setGridLinesVisible (true);
@@ -86,7 +86,7 @@ public class ClientHomeScreenView extends DuongFXGridPane {
 	this.getStyleClass().add("gradientbackground");
 	 
 	this.add (interactor.getMainScreen(), 1, 1, numCols - 1, numRows - 1);
-	interactor.setRoot (new ClientHomePage ());
+	interactor.setRoot (new ClientHomePage (sceneController));
 
 	BorderPane bp = new BorderPane ();
 	// bp.setPadding (new Insets (0, 0, 0, 15));
@@ -109,7 +109,7 @@ public class ClientHomeScreenView extends DuongFXGridPane {
 	
 	this.add (new Label(""), 0, 0, 1, 1);
 
-	ClientHomeSideBar vb = new ClientHomeSideBar (interactor);
+	ClientHomeSideBar vb = new ClientHomeSideBar (sceneController);
 	this.add (vb, 0, 1, 1, numRows - 1);
 
     }

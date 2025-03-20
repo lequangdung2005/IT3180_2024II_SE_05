@@ -7,8 +7,9 @@ import org.kordamp.ikonli.material2.Material2MZ;
 import org.kordamp.ikonli.material2.Material2RoundAL;
 import org.kordamp.ikonli.material2.Material2SharpAL;
 
+import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.group.AccentToggleGroup;
-import com.hust.ittnk68.cnpm.interactor.ClientHomeScreenInteractor;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import atlantafx.base.theme.Styles;
 import javafx.geometry.Insets;
@@ -22,19 +23,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ClientHomeSideBar extends BorderPane {
- //    AnchorPane anchorPane;
-	//
- //    void setAnchorPaneRoot (Parent p) {
-	// anchorPane.getChildren ().clear ();
-	// anchorPane.getChildren ().add (p);
-	// AnchorPane.setTopAnchor (p, 0.0);
-	// AnchorPane.setLeftAnchor (p, 0.0);
-	// AnchorPane.setRightAnchor (p, 0.0);
-	// AnchorPane.setBottomAnchor (p, 0.0);
- //    }
 
-    public ClientHomeSideBar (ClientHomeScreenInteractor interactor) {
-	// this.setPadding (new Insets (36, 0, 18, 0));
+    public ClientHomeSideBar (ClientSceneController sceneController) {
+        ClientInteractor interactor = sceneController.getClientInteractor ();
 
 	IconButton btn1 = new IconButton (new FontIcon (Material2AL.HOME));
 	btn1.setOnAction (e -> interactor.setRoot (new ClientHomeMainTab ()));

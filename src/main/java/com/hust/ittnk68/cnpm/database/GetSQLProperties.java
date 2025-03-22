@@ -7,7 +7,7 @@ import com.hust.ittnk68.cnpm.model.*;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "getSQLTableName()")
+    property = "type")
 @JsonSubTypes({
     @JsonSubTypes.Type(value=Account.class, name = "account"),
     @JsonSubTypes.Type(value=Expense.class, name = "expense"),

@@ -29,17 +29,22 @@ public class AdminHomeSideBar extends BorderPane {
         ClientInteractor interactor = sceneController.getClientInteractor ();
 
 	IconButton btn1 = new IconButton (new FontIcon (Material2OutlinedAL.ACCOUNT_CIRCLE));
+	btn1.setOnAction (e -> interactor.setRoot (new AdminAccountManagePage (sceneController)));
 
-	// IconButton btn2 = new IconButton (new FontIcon (Material2RoundAL.FAMILY_RESTROOM));
-	// IconButton btn3 = new IconButton (new FontIcon (Material2SharpAL.DIRECTIONS_CAR));
+	IconButton btn2 = new IconButton (new FontIcon (Material2RoundAL.FAMILY_RESTROOM));
+	btn2.setOnAction (e -> interactor.setRoot (new AdminExpenseManagePage (sceneController)));
+
+	IconButton btn3 = new IconButton (new FontIcon (Material2MZ.PERSON));
+	btn3.setOnAction (e -> interactor.setRoot (new AdminPersonManagePage (sceneController)));
+	
 	// IconButton btn4 = new IconButton (new FontIcon (Material2AL.ATTACH_MONEY)); 
 	// IconButton btn5 = new IconButton (new FontIcon (Material2AL.FAVORITE));
 	// IconButton btn6 = new IconButton (new FontIcon (Material2MZ.SETTINGS));
 
-	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1);//, btn2, btn3, btn4, btn5, btn6);
+	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3);
 	accentGroup.setActive (btn1);
 
-	VBox groupWrapper = new VBox (btn1);//, btn2, btn3, btn4, btn5, btn6);
+	VBox groupWrapper = new VBox (btn1, btn2, btn3);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 

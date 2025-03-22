@@ -4,15 +4,26 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2AL;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.AdminHomeScreenController;
 import com.hust.ittnk68.cnpm.controller.ClientHomeScreenController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.controller.LoginController;
+import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.model.ClientModel;
+import com.hust.ittnk68.cnpm.model.CreatePersonModel;
+import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.type.Date;
+import com.hust.ittnk68.cnpm.type.Nation;
+import com.hust.ittnk68.cnpm.type.ResidenceStatus;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
+import com.hust.ittnk68.cnpm.type.Sex;
 
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -104,6 +115,90 @@ public class ClientInteractor {
 
     public AnchorPane getMainScreen() {
         return mainScreen;
+    }
+
+    public void createPersonHandler () {
+        CreatePersonModel model = sceneController.getCreatePersonModel ();
+
+        String fullname = model.getFullnameProperty().get();
+        fullname = fullname.trim ();
+        fullname = fullname.replaceAll ("^ +| +$|( )+", "$1");
+
+        Date dateOfBirth = Date.convertFromLocalDate( model.getDateOfBirthProperty().get() );
+
+        String citizenId = model.getCitizenIdProperty().get();
+        citizenId = citizenId.replace (" ", "");
+        citizenId = citizenId.replace ("-", "");
+
+        String phoneNumber = model.getPhoneNumberProperty().get();
+        phoneNumber = phoneNumber.replace (" ", "");
+
+        String sexString = model.getSexProperty().get();
+        String nationString = model.getNationProperty().get();
+        String residenceStatusString = model.getResidenceStatusProperty().get();
+
+        if (fullname.isEmpty()) {
+            System.out.println ("Chua nhap ten");
+            return;
+        }
+
+        if (citizenId.contains("_")) {
+            System.out.println ("Ma so CCCD chua hop le");
+            return;
+        }
+
+        if (phoneNumber.contains("_")) {
+            System.out.println ("Sdt chua hop le");
+            return;
+        }
+
+        Sex sex = null;
+        if (sexString.equals("Nam"))
+            sex = Sex.MALE;
+        else if (sexString.equals("Nữ"))
+            sex = Sex.FEMALE;
+        else {
+            System.out.println ("Chua chon gioi tinh");
+            return;
+        }
+
+        if (Nation.matchByString(nationString).isEmpty()) {
+            System.out.println ("Chua chon quoc tich");
+            return;
+        }
+        Nation nation = Nation.matchByString (nationString).get();
+
+        ResidenceStatus residenceStatus = null;
+        if (residenceStatusString.equals("Đang cư trú"))
+            residenceStatus = ResidenceStatus.PRESENT;
+        else if (residenceStatusString.equals("Tạm vắng"))
+            residenceStatus = ResidenceStatus.ABSENT;
+        else {
+            System.out.println ("Chua chon tinh trang cu tru");
+            return;
+        }
+
+
+        Person object = new Person (-1, fullname,
+                                        dateOfBirth, citizenId,
+                                        phoneNumber, sex,
+                                        nation, residenceStatus);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        ServerCreateObjectResponse res = sceneController.createObject (req);
+
+        System.out.println (res.getResponseStatus());
+        System.out.println (res.getResponseMessage());
+        System.out.println (res.getObjectId());
     }
 }
 

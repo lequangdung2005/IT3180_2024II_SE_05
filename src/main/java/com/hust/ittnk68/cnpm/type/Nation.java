@@ -1,7 +1,9 @@
 package com.hust.ittnk68.cnpm.type;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Nation {
-    USA("United States of America"),
     AFGHANISTAN("Afghanistan"),
     ALBANIA("Albania"),
     ALGERIA("Algeria"),
@@ -195,6 +197,7 @@ public enum Nation {
     UNITED_ARAB_EMIRATES("United Arab Emirates"),
     UNITED_KINGDOM("United Kingdom"),
     URUGUAY("Uruguay"),
+    USA("United States of America"),
     UZBEKISTAN("Uzbekistan"),
     VANUATU("Vanuatu"),
     VATICAN_CITY("Vatican City"),
@@ -214,4 +217,9 @@ public enum Nation {
     public String toString() {
         return nation;
     }
-}
+
+    public static Optional<Nation> matchByString(String name) {
+        return Arrays.stream(values()).filter(it -> it.toString().equals(name)).findAny();
+    }
+
+} 

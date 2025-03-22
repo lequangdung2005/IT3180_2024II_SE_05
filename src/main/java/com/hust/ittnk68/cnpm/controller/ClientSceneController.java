@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.model.ClientModel;
+import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -11,8 +12,10 @@ import atlantafx.base.util.Animations;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.web.client.RestClient;
 
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
@@ -35,7 +38,9 @@ public class ClientSceneController {
     private Stage stage;
     private StackPane stackPane;
 
+    private CreatePersonModel createPersonModel;
     private ClientModel clientModel;
+
     private ClientInteractor clientInteractor;
 
     public ClientSceneController() {
@@ -43,6 +48,7 @@ public class ClientSceneController {
         stackPane = new StackPane ();
         clientModel = new ClientModel ();
         clientInteractor = new ClientInteractor (this);
+        createPersonModel = new CreatePersonModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -104,9 +110,29 @@ public class ClientSceneController {
         }
     }
 
+    public ServerCreateObjectResponse createObject (AdminCreateObject req) {
+
+        ServerCreateObjectResponse res;
+
+        try {
+            RestClient restClient = clientModel.getRestClient ();
+            res = restClient.post()
+                        .uri (getUriBase() + ApiMapping.CREATE_OBJECT)
+                        .body (req)
+                        .retrieve ()
+                        .body (ServerCreateObjectResponse.class);
+        }
+        catch (Exception e)
+        {
+            return new ServerCreateObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+
+        return res;
+    }
+
     public void openSubStage (Region rg, int W, int H)
     {
-        final Stage dialog = new Stage ();
+        final Stage dialog = new Stage (); 
         dialog.initModality (Modality.APPLICATION_MODAL);
         dialog.initOwner (this.stage);
         Scene dialogScene = new Scene (rg, W, H);
@@ -183,6 +209,10 @@ public class ClientSceneController {
 
     public ClientInteractor getClientInteractor () {
         return clientInteractor;
+    }
+
+    public CreatePersonModel getCreatePersonModel () {
+        return createPersonModel;
     }
 
 }

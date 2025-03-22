@@ -157,8 +157,6 @@ public class Server {
 	}
 
 	private boolean checkPrivilegeAdminAbove (Session session) {
-		if (session == null)
-			return false;
 		if (!session.getAccountType().equals(AccountType.ROOT)
 			&& !session.getAccountType().equals(AccountType.ADMIN))
 			return false;
@@ -170,8 +168,10 @@ public class Server {
 		String token = req.getToken ();
 
 		Session session = SessionController.getSession (token);
-		if (!checkPrivilegeAdminAbove (session))
+		if (session == null)
 			return new ServerCreateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerCreateObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
 
 		try {
 			MySQLDatabase.create (req.getObject());

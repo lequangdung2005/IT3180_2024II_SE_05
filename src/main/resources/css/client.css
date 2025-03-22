@@ -86,3 +86,10 @@
 	-fx-border-insets: 0 0 0 0;
 	-fx-border-radius: 0;
 }
+
+
+.duongfxseparator .line {
+    -fx-background-color: black;
+    -fx-pref-height: 1;
+    -fx-border-color: null;
+}

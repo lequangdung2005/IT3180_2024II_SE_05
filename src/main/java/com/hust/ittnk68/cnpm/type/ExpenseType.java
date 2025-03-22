@@ -1,6 +1,8 @@
 package com.hust.ittnk68.cnpm.type;
 
 import java.util.Map;
+import java.util.Optional;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.kordamp.ikonli.Ikon;
@@ -20,6 +22,10 @@ public enum ExpenseType {
     private String expenseType;
     ExpenseType(String expenseType) {
         this.expenseType = expenseType;
+    }
+
+    public static Optional<ExpenseType> matchByString(String name) {
+        return Arrays.stream(values()).filter(it -> it.toString().equals(name)).findAny();
     }
 
     @Override

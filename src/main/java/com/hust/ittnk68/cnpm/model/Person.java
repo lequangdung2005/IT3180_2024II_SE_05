@@ -30,6 +30,69 @@ public class Person extends GetSQLProperties {
         this.residenceStatus = residenceStatus;
     }
 
+    public int getPersonId () {
+        return personId;
+    }
+    public void setPersonId (int personId) {
+        this.personId = personId;
+    }
+
+    public int getFamilyId () {
+        return familyId;
+    }
+    public void setFamilyId (int familyId) {
+        this.familyId = familyId;
+    }
+
+    public String getFullname () {
+        return fullname;
+    }
+    public void setFullname (String fullname) {
+        this.fullname = fullname;
+    }
+
+    public Date getDateOfBirth () {
+        return dateOfBirth;
+    }
+    public void setDateOfBirth (Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCitizenIdentificationNumber () {
+        return citizenIdentificationNumber;
+    }
+    public void setCitizenIdentificationNumber (String citizenIdentificationNumber) {
+        this.citizenIdentificationNumber = citizenIdentificationNumber;
+    }
+
+    public String getPhoneNumber () {
+        return phoneNumber;
+    }
+    public void setPhoneNumber (String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Sex getSex () {
+        return sex;
+    }
+    public void setSex (Sex sex) {
+        this.sex = sex;
+    }
+
+    public Nation getNationality () {
+        return nationality;
+    }
+    public void setNationality (Nation nationality) {
+        this.nationality = nationality;
+    }
+
+    public ResidenceStatus getResidenceStatus () {
+        return residenceStatus;
+    }
+    public void setResidenceStatus (ResidenceStatus residenceStatus) {
+        this.residenceStatus = residenceStatus;
+    }
+
     @Override
     @JsonIgnore
     public int getId() {

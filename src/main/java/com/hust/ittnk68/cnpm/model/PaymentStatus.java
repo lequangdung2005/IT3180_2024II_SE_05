@@ -1,5 +1,6 @@
 package com.hust.ittnk68.cnpm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 
 import com.hust.ittnk68.cnpm.type.Date;
@@ -20,14 +21,22 @@ public class PaymentStatus extends GetSQLProperties {
     }
 
     @Override
+    @JsonIgnore
+    public int getId() {
+        return paymentStatusId;
+    }
+    @Override
+    @JsonIgnore
     public void setId(int id) {
         paymentStatusId = id;
     }
     @Override
+    @JsonIgnore
     public String getSQLTableName() {
         return new String("payment_status");
     }
     @Override
+    @JsonIgnore
     public String getSQLInsertCommand() {
         return String.format("INSERT INTO %s (expense_id,family_id,total_pay,published_date) values ('%d','%d','%d','%s');", this.getSQLTableName(), expenseId, familyId, totalPay, publishedDate);
     }

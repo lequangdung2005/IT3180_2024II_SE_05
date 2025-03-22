@@ -75,6 +75,11 @@ public class Account extends GetSQLProperties {
 
     @Override
     @JsonIgnore
+    public int getId() {
+        return accountId;
+    }
+    @Override
+    @JsonIgnore
     public void setId(int id) {
         this.accountId = id;
     }

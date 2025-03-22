@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hust.ittnk68.cnpm.communication.AdminCreateAccount;
-import com.hust.ittnk68.cnpm.communication.AdminCreateExpense;
-import com.hust.ittnk68.cnpm.communication.AdminCreateFamily;
-import com.hust.ittnk68.cnpm.communication.AdminCreatePerson;
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
-import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
@@ -168,80 +165,22 @@ public class Server {
 		return true;
 	}
 
-	@RequestMapping(ApiMapping.CREATE_ACCOUNT)
-	private ServerResponseBase createAccount (@RequestBody AdminCreateAccount req) {
+	@RequestMapping(ApiMapping.CREATE_OBJECT)
+	private ServerCreateObjectResponse create_object (@RequestBody AdminCreateObject req) {
 		String token = req.getToken ();
 
-		Session session = SessionController.getSession (token);
-		if (!checkPrivilegeAdminAbove (session))
-			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		// Session session = SessionController.getSession (token);
+		// if (!checkPrivilegeAdminAbove (session))
+		// 	return new ServerCreateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
 
 		try {
-			MySQLDatabase.create (req.getAccount ());
+			MySQLDatabase.create (req.getObject());
+			return new ServerCreateObjectResponse (ResponseStatus.OK, "succeed", req.getObject()); 
 		}
 		catch (SQLException e) {
 			e.printStackTrace ();
-			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
+			return new ServerCreateObjectResponse (ResponseStatus.SQL_ERROR, "sql exception ...");
 		}
-
-		return new ServerResponseBase (ResponseStatus.OK, "succeed");
-	}
-
-	@RequestMapping(ApiMapping.CREATE_EXPENSE)
-	private ServerResponseBase createExpense (@RequestBody AdminCreateExpense req) {
-		String token = req.getToken ();
-
-		Session session = SessionController.getSession (token);
-		if (!checkPrivilegeAdminAbove (session))
-			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
-
-		try {
-			MySQLDatabase.create (req.getExpense ());
-		}
-		catch (SQLException e) {
-			e.printStackTrace ();
-			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
-		}
-
-		return new ServerResponseBase (ResponseStatus.OK, "succeed");
-	}
-
-	@RequestMapping(ApiMapping.CREATE_FAMILY)
-	private ServerResponseBase createFamily (@RequestBody AdminCreateFamily req) {
-		String token = req.getToken ();
-
-		Session session = SessionController.getSession (token);
-		if (!checkPrivilegeAdminAbove (session))
-			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
-
-		try {
-			MySQLDatabase.create (req.getFamily ());
-		}
-		catch (SQLException e) {
-			e.printStackTrace ();
-			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
-		}
-
-		return new ServerResponseBase (ResponseStatus.OK, "succeed");
-	}
-
-	@RequestMapping(ApiMapping.CREATE_PERSON)
-	private ServerResponseBase createPerson (@RequestBody AdminCreatePerson req) {
-		String token = req.getToken ();
-
-		Session session = SessionController.getSession (token);
-		if (!checkPrivilegeAdminAbove (session))
-			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
-
-		try {
-			MySQLDatabase.create (req.getPerson ());
-		}
-		catch (SQLException e) {
-			e.printStackTrace ();
-			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
-		}
-
-		return new ServerResponseBase (ResponseStatus.OK, "succeed");
 	}
 
 	@EventListener({ ContextClosedEvent.class })

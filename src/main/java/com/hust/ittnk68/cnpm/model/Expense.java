@@ -50,6 +50,11 @@ public class Expense extends GetSQLProperties {
         return required;
     }
 
+    @Override
+    @JsonIgnore
+    public int getId() {
+        return expenseId;
+    }
     @JsonIgnore
     @Override
     public void setId(int id) {

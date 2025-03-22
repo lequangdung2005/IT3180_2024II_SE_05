@@ -169,9 +169,9 @@ public class Server {
 	private ServerCreateObjectResponse create_object (@RequestBody AdminCreateObject req) {
 		String token = req.getToken ();
 
-		// Session session = SessionController.getSession (token);
-		// if (!checkPrivilegeAdminAbove (session))
-		// 	return new ServerCreateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		Session session = SessionController.getSession (token);
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerCreateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
 
 		try {
 			MySQLDatabase.create (req.getObject());

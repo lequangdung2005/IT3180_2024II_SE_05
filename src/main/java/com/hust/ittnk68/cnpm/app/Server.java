@@ -1,8 +1,6 @@
 package com.hust.ittnk68.cnpm.app;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -12,20 +10,23 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hust.ittnk68.cnpm.communication.AdminCreateAccount;
+import com.hust.ittnk68.cnpm.communication.AdminCreateExpense;
+import com.hust.ittnk68.cnpm.communication.AdminCreateFamily;
+import com.hust.ittnk68.cnpm.communication.AdminCreatePerson;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
-import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
 import com.hust.ittnk68.cnpm.model.Account;
-import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.session.Session;
 import com.hust.ittnk68.cnpm.session.SessionController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -122,7 +123,7 @@ public class Server {
 	}
 
 	@RequestMapping(ApiMapping.START_SESSION)
-	ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
+	private ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
 		String username = message.getUsername ();
 		String digestPassword = message.getDigestPassword ();
 
@@ -134,7 +135,7 @@ public class Server {
 			System.out.println(acc.getAccountType());
 
 			try {
-				token = SessionController.newSession (username);
+				token = SessionController.newSession (acc);
 			}
 			catch (UserCreateSecondSession e)
 			{
@@ -152,37 +153,100 @@ public class Server {
 	}
 
 	@RequestMapping(ApiMapping.END_SESSION)
-	void endSession (@RequestBody String token)
+	private void endSession (@RequestBody String token)
 	{
 		System.out.println ("End session, token = " + token);
 		SessionController.endSession (token);
 	}
 
-	// @RequestMapping("/api/user-home-metadata")
-	// UserHomeMetadata getUserHomeMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
-	// {
-	// 	Account acc = getAccountByUsernamePassword(username, digestPassword);
-	// 	int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-	//
-	// 	Map<String, Object> familyMetadata = getMetadataById(acc.getFamilyId(),
-	// 														new Family());
-	//
-	// 	int representative_person_id = (int)familyMetadata.get("person_id");
-	//
-	// 	Map<String, Object> personMetadata = getMetadataById(representative_person_id,
-	// 														new Person());
-	//
-	// 	UserHomeMetadata res = new UserHomeMetadata();
-	// 	res.fullname = (String)personMetadata.get("fullname");
-	// 	res.houseNumber = (String)familyMetadata.get("house_number");
-	// 	res.totalSpendingThisMonth = getTotalSpending(acc.getFamilyId(), thisMonth);
-	//
-	// 	return res;
-	// }
+	private boolean checkPrivilegeAdminAbove (Session session) {
+		if (session == null)
+			return false;
+		if (!session.getAccountType().equals(AccountType.ROOT)
+			&& !session.getAccountType().equals(AccountType.ADMIN))
+			return false;
+		return true;
+	}
+
+	@RequestMapping(ApiMapping.CREATE_ACCOUNT)
+	private ServerResponseBase createAccount (@RequestBody AdminCreateAccount req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			MySQLDatabase.create (req.getAccount ());
+		}
+		catch (SQLException e) {
+			e.printStackTrace ();
+			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
+		}
+
+		return new ServerResponseBase (ResponseStatus.OK, "succeed");
+	}
+
+	@RequestMapping(ApiMapping.CREATE_EXPENSE)
+	private ServerResponseBase createExpense (@RequestBody AdminCreateExpense req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			MySQLDatabase.create (req.getExpense ());
+		}
+		catch (SQLException e) {
+			e.printStackTrace ();
+			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
+		}
+
+		return new ServerResponseBase (ResponseStatus.OK, "succeed");
+	}
+
+	@RequestMapping(ApiMapping.CREATE_FAMILY)
+	private ServerResponseBase createFamily (@RequestBody AdminCreateFamily req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			MySQLDatabase.create (req.getFamily ());
+		}
+		catch (SQLException e) {
+			e.printStackTrace ();
+			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
+		}
+
+		return new ServerResponseBase (ResponseStatus.OK, "succeed");
+	}
+
+	@RequestMapping(ApiMapping.CREATE_PERSON)
+	private ServerResponseBase createPerson (@RequestBody AdminCreatePerson req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerResponseBase (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			MySQLDatabase.create (req.getPerson ());
+		}
+		catch (SQLException e) {
+			e.printStackTrace ();
+			return new ServerResponseBase (ResponseStatus.SQL_ERROR, "sql exception ...");
+		}
+
+		return new ServerResponseBase (ResponseStatus.OK, "succeed");
+	}
 
 	@EventListener({ ContextClosedEvent.class })
 	void exitGracefully() {
-		MySQLDatabase.close();
+		MySQLDatabase.close(); 
 	}
 
 	public static void main(String[] args) {

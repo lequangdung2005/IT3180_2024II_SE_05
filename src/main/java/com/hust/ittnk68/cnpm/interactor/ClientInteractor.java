@@ -73,7 +73,7 @@ public class ClientInteractor {
             if(res.getAccountType().equals(AccountType.UNVALID)) {
                 System.out.println("dang nhap lai");
             }
-            else if(res.getAccountType().equals(AccountType.ADMIN)) {
+            else if(res.getAccountType().equals(AccountType.ADMIN) || res.getAccountType().equals(AccountType.ROOT)) {
                 System.out.println("admin");
                 sceneController.setRoot(new AdminHomeScreenController(sceneController).getView());
             }

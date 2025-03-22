@@ -75,18 +75,18 @@ public class ClientHomeScreenView extends DuongFXGridPane {
     private static final int numCols = 15;
     private static final int numRows = 12;
 
-    public ClientHomeScreenView(ClientSceneController sceneController, ClientInteractor interactor) {
+    public ClientHomeScreenView(ClientSceneController sceneController) {
 	super (numCols, numRows);
+
+	ClientInteractor interactor = sceneController.getClientInteractor ();
 
 	// this.setGridLinesVisible (true);
 	this.setHgap (10);
 	this.setVgap (10);
 	this.setPadding (new Insets (30, 50, 30, 50));
-
 	this.getStyleClass().add("gradientbackground");
-	 
+
 	this.add (interactor.getMainScreen(), 1, 1, numCols - 1, numRows - 1);
-	interactor.setRoot (new ClientHomePage (sceneController));
 
 	BorderPane bp = new BorderPane ();
 	// bp.setPadding (new Insets (0, 0, 0, 15));

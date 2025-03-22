@@ -42,6 +42,7 @@ public class ClientSceneController {
         stage = null;
         stackPane = new StackPane ();
         clientModel = new ClientModel ();
+        clientInteractor = new ClientInteractor (this);
     }
 
     public void start(Stage stage, String title, double width, double height) {

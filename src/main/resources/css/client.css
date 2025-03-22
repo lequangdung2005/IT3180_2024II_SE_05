@@ -11,12 +11,6 @@
     -fx-text-fill: #FFFFFF;
 }
 
-/* .clienthomesidebar { */
-/*     -fx-padding: 18 0 16 0; */
-/*     -fx-background-color: #CCCCCC; */
-/*     -fx-background-radius: 8, 0; */
-/* } */
-
 .graywrapper {
     -fx-hgap: 5px;
 
@@ -40,4 +34,55 @@
 
 .gradientbackground {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4a4a4a, #2a2a2a);
+}
+
+.expensetile {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+
+.duongfxtabpane .tab-pane {
+    -fx-background-color: #DDE1E4;
+}
+.duongfxtabpane .tab-header-area .tab-header-background {
+    -fx-background-color: #DDE1E4; 
+}
+.duongfxtabpane .tab {
+    -fx-background-color: #DDE1E4;
+    -fx-background-radius: 15px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-border-width: 1px;
+
+    -fx-border-style: segments(3, 5, 3, 5) line-cap round ;
+    /* -fx-border-style: dashed;  */
+
+    /* add margin */
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+.duongfxtabpane .tab-content {
+    -fx-background-color: red;
+}
+.duongfxtabpane .tab:selected
+{
+    /* -fx-background-color: white;  */
+    -fx-border-style: solid;
+    -fx-border-color: #0550ae;
+}
+.duongfxtabpane .tab:selected .tab-label
+{
+    -fx-text-fill: #0550ae; 
+}
+.duongfxtabpane .tab:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.duongfxtabpane .tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+	-fx-border-insets: 0 0 0 0;
+	-fx-border-radius: 0;
 }

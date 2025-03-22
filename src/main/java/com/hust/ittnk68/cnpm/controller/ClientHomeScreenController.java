@@ -12,7 +12,7 @@ public class ClientHomeScreenController {
 
     public ClientHomeScreenController(ClientSceneController sceneController) {
         ClientInteractor interactor = new ClientInteractor(sceneController);
-        view = new ClientHomeScreenView (sceneController, interactor);
+        view = new ClientHomeScreenView (sceneController);
         sceneController.setTitle("BlueMoon - Trang chủ");
     }
 

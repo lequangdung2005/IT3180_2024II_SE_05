@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -16,12 +15,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
-import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.Person;
-import com.hust.ittnk68.cnpm.type.Date;
+import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.Nation;
 import com.hust.ittnk68.cnpm.type.ResidenceStatus;
 import com.hust.ittnk68.cnpm.type.Sex;
@@ -29,16 +27,12 @@ import com.hust.ittnk68.cnpm.type.Sex;
 import atlantafx.base.controls.MaskTextField;
 import atlantafx.base.theme.Styles;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -51,6 +45,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class AdminPersonManagePage extends DuongFXTabPane {
@@ -71,7 +66,7 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         TextField fullnameTf = new TextField ();
         fullnameTf.setPromptText ("Full name");
 
-        // date of birth picker
+        DuongFXToggleDatePicker dateOfBirthPicker = DuongFXToggleDatePicker.create ();
 
         DuongFXIntegerField cidTf = new DuongFXIntegerField ();
         cidTf.setPromptText ("CCCD");
@@ -97,11 +92,23 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         ));
         residenceStatusChoose.getSelectionModel().selectFirst();
 
+        sceneController.getFindPersonModel().getPersonIdProperty().bind (personIdTf.textProperty());
+        sceneController.getFindPersonModel().getFamilyIdProperty().bind (familyIdTf.textProperty());
+        sceneController.getFindPersonModel().getFullnameProperty().bind (fullnameTf.textProperty());
+        sceneController.getFindPersonModel().getEnableDateOfBirth().bind (dateOfBirthPicker.enableProperty());
+        sceneController.getFindPersonModel().getDateOfBirthProperty().bind (dateOfBirthPicker.valueProperty());
+        sceneController.getFindPersonModel().getCitizenIdProperty().bind (cidTf.textProperty());
+        sceneController.getFindPersonModel().getPhoneNumberProperty().bind (phoneNumberTf.textProperty());
+        sceneController.getFindPersonModel().getSexProperty().bind (genderChoose.valueProperty());
+        sceneController.getFindPersonModel().getNationProperty().bind (nationChoose.valueProperty());
+        sceneController.getFindPersonModel().getResidenceStatusProperty().bind (residenceStatusChoose.valueProperty());
+
         IconButton resetFilterBtn = new IconButton (new FontIcon (Material2MZ.REPLAY));
         resetFilterBtn.setOnAction (e -> {
             personIdTf.setText ("");
             familyIdTf.setText ("");
             fullnameTf.setText ("");
+            dateOfBirthPicker.enableProperty().set (false);
             cidTf.setText ("");
             phoneNumberTf.setText ("");
             genderChoose.getSelectionModel().selectFirst();
@@ -113,10 +120,10 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         filters.setVgap (8);
         filters.setHgap (4);
         filters.getChildren ().addAll (
-            new Text ("Bộ lọc"),
             personIdTf,
             familyIdTf,
             fullnameTf,
+            dateOfBirthPicker,
             cidTf,
             phoneNumberTf,
             genderChoose,
@@ -128,9 +135,10 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         Button searchBtn = new Button ("Tìm kiếm", new FontIcon (Material2MZ.PERSON_SEARCH));
 
         TableView<Person> tableView = new TableView<>();
+        sceneController.getFindPersonModel().setTableView (tableView);
 
         TableColumn<Person, String> actionCol = new TableColumn<> ("Action");
-        actionCol.setCellValueFactory (new PropertyValueFactory<> ("ActionDummy"));
+        actionCol.setCellValueFactory (new PropertyValueFactory<> ("Dummy Value"));
         actionCol.setCellFactory (new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             
             @Override
@@ -149,8 +157,15 @@ public class AdminPersonManagePage extends DuongFXTabPane {
                             setGraphic (null);
                         }
                         else {
+
+                            editBtn.getStyleClass().addAll(Styles.ACCENT);
+                            deleteBtn.getStyleClass().addAll(Styles.DANGER);
+
                             editBtn.setOnAction (event -> {
                                 Person person = getTableView().getItems().get(getIndex());
+                                UpdatePersonModel model = sceneController.getUpdatePersonModel ();
+                                model.setUpdatePersonWindow (new Stage ());
+                                sceneController.openSubStage (model.getUpdatePersonWindow (), createPersonUpdateForm (sceneController, person));
                             });
                             deleteBtn.setOnAction (event -> {
                                 Person person = getTableView().getItems().get(getIndex());
@@ -236,78 +251,149 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         tableView.getColumns().addAll (actionCol, personIdCol, familyIdCol, fullnameCol, dateOfBirthCol, cidCol,
                                         phoneNumberCol, nationalityCol, residenceStatusCol);
 
-        VBox vb = new VBox (18, filters, searchBtn, tableView);
+        VBox vb = new VBox (18,
+            new Text ("FILTER"),
+            filters,
+            searchBtn,
+            tableView
+        );
 
-        searchBtn.setOnAction (e -> {
-            String personId = personIdTf.getText ();
-            String familyId = familyIdTf.getText ();
-            String fullname = fullnameTf.getText ();
-            String citizenId = cidTf.getText ();
-            String phoneNumber = phoneNumberTf.getText ();
+        searchBtn.setOnAction (e -> sceneController.getClientInteractor().findPersonHandler());
 
-            String sexString = genderChoose.getValue ();
-            String nationString = nationChoose.getValue ();
-            String residenceStatusString  = residenceStatusChoose.getValue ();
+        return vb;
+    }
 
-            Sex sex = null;
-            if (sexString.equals("Nam"))
-                sex = Sex.MALE;
-            else if (sexString.equals("Nữ"))
-                sex = Sex.FEMALE;
+    private String stringToMaskCID (String text) {
+        return String.format ("%s - %s - %s", text.subSequence (0, 4),
+                                                text.subSequence (4, 8),
+                                                text.subSequence (8, 12));
+    }
+    private String stringToMaskPhoneNumber (String text) {
+        return String.format ("%s %s %s %s", text.subSequence (0, 3),
+                                                text.subSequence (3, 6),
+                                                text.subSequence (6, 8),
+                                                text.subSequence (8, 10));
+    }
 
-            Nation nation = null; 
-            if (! Nation.matchByString(nationString).isEmpty()) {
-                nation = Nation.matchByString (nationString).get();
-            }
+    private VBox createPersonUpdateForm (ClientSceneController sceneController, Person person) {
+        UpdatePersonModel model = sceneController.getUpdatePersonModel ();
 
-            ResidenceStatus residenceStatus = null;
-            if (residenceStatusString.equals("Đang cư trú"))
-                residenceStatus = ResidenceStatus.PRESENT;
-            else if (residenceStatusString.equals("Tạm vắng"))
-                residenceStatus = ResidenceStatus.ABSENT;
+        GridPane gridPane = new GridPane ();
 
-            StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
-            if (!personId.isEmpty()) {
-                conditionBuilder.append (String.format (" AND (person_id='%s')", personId));
-            }
-            if (!familyId.isEmpty()) {
-                conditionBuilder.append (String.format (" AND (family_id='%s')", familyId));
-            }
-            if (!fullname.isEmpty()) {
-                conditionBuilder.append (String.format (" AND (fullname LIKE '%%%s%%')", fullname));
-            }
-            if (!citizenId.isEmpty()) {
-                conditionBuilder.append (String.format (" AND (citizen_identification_number LIKE '%%%s%%')", citizenId));
-            }
-            if (!phoneNumber.isEmpty()) {
-                conditionBuilder.append (String.format (" AND (phone_number LIKE '%%%s%%')", phoneNumber));
-            }
-            if (sex != null) {
-                conditionBuilder.append (String.format (" AND (sex LIKE '%%%s%%')", sex));
-            }
-            if (nation != null) { 
-                conditionBuilder.append (String.format (" AND (nationality LIKE '%%%s%%')", nation));
-            }
-            if (residenceStatus != null) { 
-                conditionBuilder.append (String.format (" AND (residence_status LIKE '%%%s%%')", residenceStatus));
-            }
+        gridPane.setVgap (10);
+        gridPane.setHgap (10);
+        // gridPane.setGridLinesVisible (true);
 
-            String condition = conditionBuilder.toString ();
+        Text personId = new Text ("Person Id");
+        gridPane.add (personId, 0, 0, 2, 1);
 
-            AdminFindObject request = new AdminFindObject (sceneController.getToken (),
-                                            condition, new Person ());
+        DuongFXIntegerField personIdTextField = new DuongFXIntegerField ();
+        personIdTextField.setDisable (true);
+        gridPane.add (personIdTextField, 2, 0, 3, 1);
 
-            List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        Text familyId = new Text ("Family Id");
+        gridPane.add (familyId, 0, 1, 2, 1);
 
-            List<Person> data = new ArrayList<>();
-            for (Map<String, Object> map : requestResult) {
-                data.add (Person.convertFromMap (map));
-            }
+        DuongFXIntegerField familyIdTextField = new DuongFXIntegerField ();
+        gridPane.add (familyIdTextField, 2, 1, 3, 1);
 
-            tableView.setItems (FXCollections.observableList (data));
+        Text hoVaTen = new Text ("Họ và tên:");
+        gridPane.add (hoVaTen, 0, 2, 2, 1);
 
-        });
+        TextField fullNameTextField = new TextField ();
+        gridPane.add (fullNameTextField, 2, 2, 3, 1);
 
+        Text ngaySinh = new Text ("Ngày sinh:");
+        gridPane.add (ngaySinh, 0, 3, 2, 1);
+
+        LocalDate today = LocalDate.now (ZoneId.systemDefault());
+        DatePicker dateOfBirthPicker = new DatePicker (today);
+        dateOfBirthPicker.setEditable (true);
+        gridPane.add (dateOfBirthPicker, 2, 3);
+
+        Text canCuocCongDan = new Text ("Căn cước công dân:");
+        gridPane.add (canCuocCongDan, 0, 4, 2, 1);
+
+        MaskTextField CIDTextField = new MaskTextField("9999 - 9999 - 9999");
+        CIDTextField.setLeft (new FontIcon (Material2MZ.PAYMENT));
+        gridPane.add (CIDTextField, 2, 4, 3, 1);
+
+        Text soDienThoai = new Text ("Số điện thoại:");
+        gridPane.add (soDienThoai, 0, 5, 2, 1);
+
+        MaskTextField phoneNumberTextField = new MaskTextField("999 999 99 99");
+        phoneNumberTextField.setLeft (new FontIcon (Material2OutlinedMZ.PHONE));
+        gridPane.add (phoneNumberTextField, 2, 5, 3, 1);
+
+        Text gioiTinh = new Text ("Giới tính:");
+        gridPane.add (gioiTinh, 0, 6, 2, 1);
+
+        ComboBox<String> genderChoose = new ComboBox<>();
+        genderChoose.setItems (FXCollections.observableArrayList(
+            "Nam", "Nữ"
+        ));
+        genderChoose.getSelectionModel().selectFirst();
+        gridPane.add (genderChoose, 2, 6, 3, 1);
+
+        Text quocTich = new Text ("Quốc tịch:");
+        gridPane.add (quocTich, 0, 7, 2, 1);
+
+        ComboBox<String> nationChoose = new ComboBox<>();
+        nationChoose.setItems (FXCollections.observableArrayList( getAllNation ()) );
+        nationChoose.getSelectionModel().selectFirst();
+        gridPane.add (nationChoose, 2, 7, 3, 1);
+
+        Text tinhTrangCuTru = new Text ("Tình trạng cư trú:");
+        gridPane.add (tinhTrangCuTru, 0, 8, 2, 1);
+
+        ComboBox<String> residenceStatusChoose = new ComboBox<> ();
+        residenceStatusChoose.setItems (FXCollections.observableArrayList(
+            "Đang cư trú",
+            "Tạm vắng"
+        ));
+        residenceStatusChoose.getSelectionModel().selectFirst();
+        gridPane.add (residenceStatusChoose, 2, 8, 3, 1);
+
+        Button updateBtn = new Button ("Cập nhật");
+        updateBtn.getStyleClass().addAll(Styles.ACCENT, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
+        updateBtn.setOnAction (e -> sceneController.getClientInteractor().updatePersonHandler ());
+
+        Button updateAndCloseBtn = new Button ("Cập nhật và đóng");
+        updateAndCloseBtn.getStyleClass().addAll (Styles.SUCCESS, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
+        updateAndCloseBtn.setOnAction (e -> sceneController.getClientInteractor().updateAndClosePersonHandler ());
+
+        Button closeBtn = new Button ("Đóng");
+        closeBtn.getStyleClass().addAll (Styles.DANGER, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
+        closeBtn.setOnAction (e -> sceneController.getClientInteractor().closePersonUpdateHandler());
+
+        personIdTextField.setText (String.valueOf(person.getPersonId ()));
+        familyIdTextField.setText (String.valueOf(person.getFamilyId ()));
+        fullNameTextField.setText (person.getFullname ());
+        dateOfBirthPicker.setValue (person.getDateOfBirth().convertToLocalDate());
+        CIDTextField.setText ( stringToMaskCID(person.getCitizenIdentificationNumber ()) );
+        phoneNumberTextField.setText ( stringToMaskPhoneNumber(person.getPhoneNumber ()) );
+        genderChoose.getSelectionModel().select ( person.getSex() == Sex.MALE ? 0 : 1 );
+        nationChoose.getItems().stream()
+                            .filter(nation -> nation.equals(person.getNationality().toString()))
+                            .findAny()
+                            .ifPresent(nationChoose.getSelectionModel()::select);
+        residenceStatusChoose.getSelectionModel().select ( person.getResidenceStatus() == ResidenceStatus.PRESENT ? 0 : 1 );
+
+        model.getPersonIdProperty().bind (personIdTextField.textProperty());
+        model.getFamilyIdProperty().bind (familyIdTextField.textProperty());
+        model.getFullnameProperty().bind (fullNameTextField.textProperty());
+        model.getDateOfBirthProperty().bind (dateOfBirthPicker.valueProperty());
+        model.getCitizenIdProperty().bind (CIDTextField.textProperty());
+        model.getPhoneNumberProperty().bind (phoneNumberTextField.textProperty());
+        model.getSexProperty().bind (genderChoose.valueProperty());
+        model.getNationProperty().bind (nationChoose.valueProperty());
+        model.getResidenceStatusProperty().bind (residenceStatusChoose.valueProperty());
+ 
+        VBox vb = new VBox ( 18,
+            gridPane,
+            new HBox (18, updateBtn, updateAndCloseBtn, closeBtn)
+        );
+        vb.setPadding (new Insets (16));
         return vb;
     }
 

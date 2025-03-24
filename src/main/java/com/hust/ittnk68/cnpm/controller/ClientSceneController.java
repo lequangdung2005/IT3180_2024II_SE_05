@@ -2,6 +2,8 @@ package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
+import com.hust.ittnk68.cnpm.model.FindPersonModel;
+import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -15,12 +17,14 @@ import org.springframework.web.client.RestClient;
 import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
 import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
 import com.hust.ittnk68.cnpm.communication.AdminFindObject;
+import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
@@ -43,7 +47,10 @@ public class ClientSceneController {
     private Scene scene;
     private StackPane stackPane;
 
+    private UpdatePersonModel updatePersonModel;
+    private FindPersonModel findPersonModel;
     private CreatePersonModel createPersonModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -53,6 +60,8 @@ public class ClientSceneController {
         clientModel = new ClientModel ();
         clientInteractor = new ClientInteractor (this);
         createPersonModel = new CreatePersonModel ();
+        findPersonModel = new FindPersonModel ();
+        updatePersonModel = new UpdatePersonModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -164,14 +173,28 @@ public class ClientSceneController {
         }
     }
 
-    public void openSubStage (Region rg, int W, int H)
+    public ServerUpdateObjectResponse updateObject (AdminUpdateObject req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerUpdateObjectResponse res = restClient.post()
+                                                .uri (getUriBase() + ApiMapping.UPDATE_OBJECT)
+                                                .body (req)
+                                                .retrieve ()
+                                                .body (ServerUpdateObjectResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerUpdateObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+
+    public void openSubStage (Stage subStage, Region rg)
     {
-        final Stage dialog = new Stage (); 
-        dialog.initModality (Modality.APPLICATION_MODAL);
-        dialog.initOwner (this.stage);
-        Scene dialogScene = new Scene (rg, W, H);
-        dialog.setScene (dialogScene);
-        dialog.show ();
+        subStage.initModality (Modality.APPLICATION_MODAL);
+        subStage.initOwner (this.stage);
+        Scene subStageScene = new Scene (rg);
+        subStage.setScene (subStageScene);
+        subStage.show ();
     }
 
     public void openWarningNoti (String str, FontIcon icon)
@@ -247,6 +270,12 @@ public class ClientSceneController {
 
     public CreatePersonModel getCreatePersonModel () {
         return createPersonModel;
+    }
+    public FindPersonModel getFindPersonModel () {
+        return findPersonModel;
+    }
+    public UpdatePersonModel getUpdatePersonModel () {
+        return updatePersonModel;
     }
 
     public Scene getScene () {

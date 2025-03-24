@@ -131,4 +131,12 @@ public class Person extends GetSQLProperties {
     public String getSQLInsertCommand() {
         return String.format("INSERT INTO %s (family_id,fullname,date_of_birth,citizen_identification_number,phone_number,sex,nationality,residence_status) values ('%d','%s','%s','%s','%s','%s','%s','%s');", this.getSQLTableName(), familyId, fullname, dateOfBirth, citizenIdentificationNumber, phoneNumber, sex, nationality, residenceStatus);
     }
+    @Override
+    @JsonIgnore
+    public String getSQLUpdateCommand() {
+        return String.format("UPDATE %s SET family_id='%d',fullname='%s',date_of_birth='%s',citizen_identification_number='%s',phone_number='%s',sex='%s',nationality='%s',residence_status='%s' WHERE %s_id='%d';",
+                this.getSQLTableName(),
+                familyId, fullname, dateOfBirth, citizenIdentificationNumber, phoneNumber, sex, nationality, residenceStatus,
+                this.getSQLTableName(), getId());
+    }
 }

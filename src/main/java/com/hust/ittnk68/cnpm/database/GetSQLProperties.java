@@ -21,6 +21,7 @@ public abstract class GetSQLProperties {
     abstract public void setId(int id);
     abstract public String getSQLTableName();
     abstract public String getSQLInsertCommand();
+    abstract public String getSQLUpdateCommand();
 
     public String getSQLFindByConditionCommand(String condition) {
         return String.format("select * from %s where (%s);",

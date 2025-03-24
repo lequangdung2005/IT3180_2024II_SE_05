@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
 import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
 import com.hust.ittnk68.cnpm.communication.AdminFindObject;
+import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
@@ -227,25 +229,25 @@ public class Server {
 		}
 	}
 
-	// @RequestMapping(ApiMapping.DELETE_OBJECT)
-	// private ServerDeleteObjectResponse deleteObject (@RequestBody AdminDeleteObject req) {
-	// 	String token = req.getToken ();
-	//
-	// 	Session session = SessionController.getSession (token);
-	// 	if (session == null)
-	// 		return new ServerDeleteObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
-	// 	if (!checkPrivilegeAdminAbove (session))
-	// 		return new ServerDeleteObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
-	//
-	// 	try {
-	// 		MySQLDatabase.deleteByCondition (req.getCondition(), req.getObject());
-	// 		return new ServerDeleteObjectResponse (ResponseStatus.OK, "succeed");
-	// 	}
-	// 	catch (SQLException e) {
-	// 		e.printStackTrace();
-	// 		return new ServerDeleteObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
-	// 	}
-	// }
+	@RequestMapping(ApiMapping.UPDATE_OBJECT)
+	private ServerUpdateObjectResponse updateObject (@RequestBody AdminUpdateObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerUpdateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerUpdateObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			int affectedRows = MySQLDatabase.singleUpdate (req.getObject());
+			return new ServerUpdateObjectResponse (ResponseStatus.OK, "succeed", affectedRows);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerUpdateObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
 
 	@EventListener({ ContextClosedEvent.class })
 	void exitGracefully() {

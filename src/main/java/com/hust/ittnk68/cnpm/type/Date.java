@@ -37,6 +37,17 @@ public class Date {
     }
 
     @JsonIgnore
+    public LocalDate convertToLocalDate () {
+        return LocalDate.of (year, month, day);
+    }
+
+    @JsonIgnore
+    public Date plusDays (long daysToAdd) {
+        LocalDate localDate = this.convertToLocalDate().plusDays (daysToAdd);
+        return Date.convertFromLocalDate (localDate); 
+    }
+
+    @JsonIgnore
     public static Date cast (String value) {
         String[] arr = value.split ("-");
         return new Date (Integer.parseInt (arr[0]),

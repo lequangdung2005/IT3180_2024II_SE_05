@@ -96,9 +96,9 @@ public class MySQLDatabase {
         }
     }
 
-    public static int singleUpdate (String operation, GetSQLProperties g) throws SQLException {
+    public static int singleUpdate (GetSQLProperties g) throws SQLException {
         try (
-            PreparedStatement statement = con.prepareStatement(g.getSQLSingleUpdate (operation));
+            PreparedStatement statement = con.prepareStatement(g.getSQLUpdateCommand());
         )
         {
             System.out.println (statement);

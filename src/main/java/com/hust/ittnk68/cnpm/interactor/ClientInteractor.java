@@ -200,5 +200,10 @@ public class ClientInteractor {
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
     }
+
+    public void findPersonHandler () {
+
+    }
+
 }
 

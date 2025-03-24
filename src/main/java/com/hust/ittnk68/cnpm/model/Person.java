@@ -1,5 +1,7 @@
 package com.hust.ittnk68.cnpm.model;
 
+import java.util.Map;
+
 import com.hust.ittnk68.cnpm.type.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
@@ -91,6 +93,22 @@ public class Person extends GetSQLProperties {
     }
     public void setResidenceStatus (ResidenceStatus residenceStatus) {
         this.residenceStatus = residenceStatus;
+    }
+
+    @JsonIgnore
+    public static Person convertFromMap (Map<String, Object> map) {
+        Person p = new Person (
+            (int)map.get("family_id"),
+            (String)map.get("fullname"),
+            Date.cast((String)map.get("date_of_birth")),
+            (String)map.get("citizen_identification_number"),
+            (String)map.get("phone_number"),
+            Sex.matchByString((String)map.get("sex")).get(),
+            Nation.matchByString ((String)map.get("nationality")).get(),
+            ResidenceStatus.matchByString((String)map.get("residence_status")).get()
+        );
+        p.setId ((int)map.get("person_id"));
+        return p;
     }
 
     @Override

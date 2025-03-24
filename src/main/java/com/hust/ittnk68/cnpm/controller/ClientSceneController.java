@@ -13,9 +13,13 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.web.client.RestClient;
 
 import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
+import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
+import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
@@ -36,6 +40,7 @@ import javafx.util.Duration;
 
 public class ClientSceneController {
     private Stage stage;
+    private Scene scene;
     private StackPane stackPane;
 
     private CreatePersonModel createPersonModel;
@@ -44,7 +49,6 @@ public class ClientSceneController {
     private ClientInteractor clientInteractor;
 
     public ClientSceneController() {
-        stage = null;
         stackPane = new StackPane ();
         clientModel = new ClientModel ();
         clientInteractor = new ClientInteractor (this);
@@ -62,7 +66,7 @@ public class ClientSceneController {
         stage.setTitle(title);
         stage.initStyle (StageStyle.TRANSPARENT);
 
-        Scene scene = new Scene(this.stackPane, width, height);
+        scene = new Scene(this.stackPane, width, height);
         scene.setFill (Color.TRANSPARENT);
         scene.getStylesheets().add(getClass().getResource("/css/client.css").toExternalForm());
         stage.setScene(scene);
@@ -112,22 +116,52 @@ public class ClientSceneController {
 
     public ServerCreateObjectResponse createObject (AdminCreateObject req) {
 
-        ServerCreateObjectResponse res;
 
         try {
             RestClient restClient = clientModel.getRestClient ();
+            ServerCreateObjectResponse res;
             res = restClient.post()
                         .uri (getUriBase() + ApiMapping.CREATE_OBJECT)
                         .body (req)
                         .retrieve ()
                         .body (ServerCreateObjectResponse.class);
+            return res;
         }
         catch (Exception e)
         {
             return new ServerCreateObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
         }
 
-        return res;
+    }
+
+    public ServerFindObjectResponse findObject (AdminFindObject req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerFindObjectResponse res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.FIND_OBJECT)
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerFindObjectResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerFindObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+
+    public ServerDeleteObjectResponse deleteObject (AdminDeleteObject req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerDeleteObjectResponse res = restClient.post()
+                                                .uri (getUriBase() + ApiMapping.DELETE_OBJECT)
+                                                .body (req)
+                                                .retrieve ()
+                                                .body (ServerDeleteObjectResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerDeleteObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
     }
 
     public void openSubStage (Region rg, int W, int H)
@@ -213,6 +247,10 @@ public class ClientSceneController {
 
     public CreatePersonModel getCreatePersonModel () {
         return createPersonModel;
+    }
+
+    public Scene getScene () {
+        return scene;
     }
 
 }

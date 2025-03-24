@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.client.RestClient;
@@ -44,6 +45,8 @@ public class Client extends Application {
 	private static ClientSceneController sceneController;
 
 	public static void main(String[] args) {
+
+		Locale.setDefault (Locale.forLanguageTag ("vi"));
 
 		if(args.length != 1 && args.length != 2) {
 			throw new InvalidParameterException("So luong tham so khong hop le.");

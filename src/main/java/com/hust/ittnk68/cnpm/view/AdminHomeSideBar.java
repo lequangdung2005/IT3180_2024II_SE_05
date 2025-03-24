@@ -29,13 +29,16 @@ public class AdminHomeSideBar extends BorderPane {
         ClientInteractor interactor = sceneController.getClientInteractor ();
 
 	IconButton btn1 = new IconButton (new FontIcon (Material2OutlinedAL.ACCOUNT_CIRCLE));
-	btn1.setOnAction (e -> interactor.setRoot (new AdminAccountManagePage (sceneController)));
+	AdminAccountManagePage adminAccountManagePage = new AdminAccountManagePage (sceneController);
+	btn1.setOnAction (e -> interactor.setRoot (adminAccountManagePage));
 
 	IconButton btn2 = new IconButton (new FontIcon (Material2RoundAL.FAMILY_RESTROOM));
-	btn2.setOnAction (e -> interactor.setRoot (new AdminExpenseManagePage (sceneController)));
+	AdminExpenseManagePage adminExpenseManagePage = new AdminExpenseManagePage (sceneController);
+	btn2.setOnAction (e -> interactor.setRoot (adminExpenseManagePage));
 
 	IconButton btn3 = new IconButton (new FontIcon (Material2MZ.PERSON));
-	btn3.setOnAction (e -> interactor.setRoot (new AdminPersonManagePage (sceneController)));
+	AdminPersonManagePage adminPersonManagePage = new AdminPersonManagePage (sceneController);
+	btn3.setOnAction (e -> interactor.setRoot (adminPersonManagePage));
 	
 	// IconButton btn4 = new IconButton (new FontIcon (Material2AL.ATTACH_MONEY)); 
 	// IconButton btn5 = new IconButton (new FontIcon (Material2AL.FAVORITE));

@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
+import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
+import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
@@ -164,7 +168,7 @@ public class Server {
 	}
 
 	@RequestMapping(ApiMapping.CREATE_OBJECT)
-	private ServerCreateObjectResponse create_object (@RequestBody AdminCreateObject req) {
+	private ServerCreateObjectResponse createObject (@RequestBody AdminCreateObject req) {
 		String token = req.getToken ();
 
 		Session session = SessionController.getSession (token);
@@ -179,9 +183,69 @@ public class Server {
 		}
 		catch (SQLException e) {
 			e.printStackTrace ();
-			return new ServerCreateObjectResponse (ResponseStatus.SQL_ERROR, "sql exception ...");
+			return new ServerCreateObjectResponse (ResponseStatus.SQL_ERROR, e.toString ());
 		}
 	}
+
+	@RequestMapping(ApiMapping.FIND_OBJECT)
+	private ServerFindObjectResponse findObject (@RequestBody AdminFindObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerFindObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerFindObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			List<Map<String, Object>> res = MySQLDatabase.findByCondition (req.getCondition(), req.getObject());
+			return new ServerFindObjectResponse (ResponseStatus.OK, "succeed", res);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerFindObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	@RequestMapping(ApiMapping.DELETE_OBJECT)
+	private ServerDeleteObjectResponse deleteObject (@RequestBody AdminDeleteObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerDeleteObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerDeleteObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			int affectedRows = MySQLDatabase.deleteByCondition (req.getCondition(), req.getObject());
+			return new ServerDeleteObjectResponse (ResponseStatus.OK, "succeed", affectedRows);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerDeleteObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	// @RequestMapping(ApiMapping.DELETE_OBJECT)
+	// private ServerDeleteObjectResponse deleteObject (@RequestBody AdminDeleteObject req) {
+	// 	String token = req.getToken ();
+	//
+	// 	Session session = SessionController.getSession (token);
+	// 	if (session == null)
+	// 		return new ServerDeleteObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+	// 	if (!checkPrivilegeAdminAbove (session))
+	// 		return new ServerDeleteObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+	//
+	// 	try {
+	// 		MySQLDatabase.deleteByCondition (req.getCondition(), req.getObject());
+	// 		return new ServerDeleteObjectResponse (ResponseStatus.OK, "succeed");
+	// 	}
+	// 	catch (SQLException e) {
+	// 		e.printStackTrace();
+	// 		return new ServerDeleteObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+	// 	}
+	// }
 
 	@EventListener({ ContextClosedEvent.class })
 	void exitGracefully() {

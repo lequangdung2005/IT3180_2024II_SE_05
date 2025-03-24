@@ -32,4 +32,11 @@ public abstract class GetSQLProperties {
                 getSQLTableName(),
                 condition);
     }
+    public String getSQLSingleUpdate (String operation) {
+        return String.format("update %s set %s where %s_id=%d",
+                getSQLTableName(),
+                operation,
+                getSQLTableName(),
+                getId());
+    }
 }

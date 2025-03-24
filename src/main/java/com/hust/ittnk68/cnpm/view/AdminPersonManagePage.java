@@ -28,7 +28,6 @@ import atlantafx.base.controls.MaskTextField;
 import atlantafx.base.theme.Styles;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -38,7 +37,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -170,22 +168,20 @@ public class AdminPersonManagePage extends DuongFXTabPane {
                             deleteBtn.setOnAction (event -> {
                                 Person person = getTableView().getItems().get(getIndex());
 
-                                Alert alert = new Alert (AlertType.CONFIRMATION);
-                                alert.setTitle ("Xác nhận xóa thông tin cư dân");
-                                alert.setHeaderText ("Kiểm tra lại thông tin cư dân trước khi xóa");
-
                                 ObjectMapper mapper = new ObjectMapper ();
                                 mapper.enable (SerializationFeature.INDENT_OUTPUT);
+                                String json = null;
                                 try {
-                                    alert.setContentText (mapper.writeValueAsString (person));
+                                    json = mapper.writeValueAsString (person);
                                 }
                                 catch (Exception e) {
                                     e.printStackTrace ();
                                 }
 
-                                alert.initOwner (sceneController.getScene().getWindow());
-
-                                Optional<ButtonType> result = alert.showAndWait ();
+                                Optional<ButtonType> result = sceneController.getClientInteractor()
+                                                        .showComfirmationWindow("Xác nhận xóa cư dân",
+                                                                                "Kiểm tra lại thông tin cư dân trước khi xóa",
+                                                                                json);
                                 System.out.println (result.get());
 
                                 if (result.get() != ButtonType.OK)
@@ -199,12 +195,7 @@ public class AdminPersonManagePage extends DuongFXTabPane {
                                         System.out.println ("xoa thanh cong");
                                         break;
                                     default:
-                                        Alert fail = new Alert (AlertType.ERROR);
-                                        fail.setTitle ("Thất bại");
-                                        fail.setHeaderText (res.getResponseStatus().toString());
-                                        fail.setContentText (res.getResponseMessage());
-                                        fail.initOwner (sceneController.getScene().getWindow());
-                                        fail.showAndWait ();
+                                        sceneController.getClientInteractor().showFailedWindow (res);
 
                                         System.out.println (res.getResponseStatus());
                                         System.out.println (res.getResponseMessage());

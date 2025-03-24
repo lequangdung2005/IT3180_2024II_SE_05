@@ -3,6 +3,7 @@ package com.hust.ittnk68.cnpm.interactor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -15,6 +16,7 @@ import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.controller.AdminHomeScreenController;
@@ -23,7 +25,9 @@ import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.controller.LoginController;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.model.ClientModel;
+import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
+import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
@@ -37,6 +41,7 @@ import com.hust.ittnk68.cnpm.type.Sex;
 import javafx.collections.FXCollections;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -130,6 +135,33 @@ public class ClientInteractor {
         return mainScreen;
     }
 
+    public Optional<ButtonType> showComfirmationWindow (String title, String headerText, String contentText) {
+        Alert alert = new Alert (AlertType.CONFIRMATION);
+        alert.setTitle (title);
+        alert.setHeaderText (headerText);
+        alert.setContentText (contentText);
+        alert.initOwner (sceneController.getScene().getWindow());
+        Optional<ButtonType> result = alert.showAndWait ();
+        return result;
+    }
+
+    public Optional<ButtonType> showFailedWindow (ServerResponseBase res) {
+        Alert fail = new Alert (AlertType.ERROR);
+        fail.setTitle ("Thất bại");
+        fail.setHeaderText (res.getResponseStatus().toString());
+        fail.setContentText (res.getResponseMessage());
+        fail.initOwner (sceneController.getScene().getWindow());
+        return fail.showAndWait ();
+    }
+
+    private void notificateUpdateSuccessfully () {
+        Alert success = new Alert (AlertType.INFORMATION);
+        success.setTitle ("Cập nhật thành công");
+        success.setHeaderText ("Cập nhật thành công");
+        success.initOwner (sceneController.getScene().getWindow());
+        success.showAndWait ();
+    }
+
     public void createPersonHandler () {
         CreatePersonModel model = sceneController.getCreatePersonModel ();
 
@@ -212,6 +244,11 @@ public class ClientInteractor {
         System.out.println (res.getResponseStatus());
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
+
+        if (res.getResponseStatus() == ResponseStatus.OK)
+            notificateUpdateSuccessfully ();
+        else
+            ;
     }
 
     public void findPersonHandler () {
@@ -380,13 +417,9 @@ public class ClientInteractor {
                     }
                 }
 
-                Alert success = new Alert (AlertType.INFORMATION);
-                success.setTitle ("Cập nhật thành công");
-                success.setHeaderText ("Cập nhật thành công");
-                success.initOwner (sceneController.getScene().getWindow());
-                success.showAndWait ();
-
+                notificateUpdateSuccessfully ();
                 break;
+
             default:
                 Alert fail = new Alert (AlertType.ERROR);
                 fail.setTitle ("Thất bại");
@@ -407,6 +440,34 @@ public class ClientInteractor {
     public void updateAndClosePersonHandler () {
         updatePersonHandler ();
         closePersonUpdateHandler ();
+    }
+
+    public void createFamilyHandler () {
+        CreateFamilyModel model = sceneController.getCreateFamilyModel ();
+
+        String personId = model.personIdProperty().get();
+
+        String houseNumber = model.houseNumberProperty().get();
+        houseNumber = houseNumber.trim ();
+        houseNumber = houseNumber.replaceAll ("^ +| +$|( )+", "$1");
+
+        Family object = new Family (Integer.parseInt (personId),
+                                    houseNumber);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        ServerCreateObjectResponse res = sceneController.createObject (req);
+        System.out.println (res.getResponseStatus());
+        System.out.println (res.getResponseMessage());
+        System.out.println (res.getObjectId());
     }
  
 }

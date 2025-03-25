@@ -135,7 +135,7 @@ public class AdminAccountManagePage extends DuongFXTabPane {
                                 }
 
                                 Optional<ButtonType> result = sceneController.getClientInteractor()
-                                                        .showComfirmationWindow("Xác nhận xóa tài khoản",
+                                                        .showConfirmationWindow("Xác nhận xóa tài khoản",
                                                                                 "Kiểm tra lại thông tin tài khoản trước khi xóa",
                                                                                 json);
                                 System.out.println (result.get());

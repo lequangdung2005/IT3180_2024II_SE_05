@@ -136,7 +136,7 @@ public class AdminFamilyManagePage extends DuongFXTabPane {
                                 }
 
                                 Optional<ButtonType> result = sceneController.getClientInteractor()
-                                                        .showComfirmationWindow("Xác nhận xóa hộ gia đình",
+                                                        .showConfirmationWindow("Xác nhận xóa hộ gia đình",
                                                                                 "Kiểm tra lại thông tin hộ gia đình trước khi xóa",
                                                                                 json);
                                 System.out.println (result.get());

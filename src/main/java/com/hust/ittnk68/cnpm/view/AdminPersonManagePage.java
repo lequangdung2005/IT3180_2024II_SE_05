@@ -179,7 +179,7 @@ public class AdminPersonManagePage extends DuongFXTabPane {
                                 }
 
                                 Optional<ButtonType> result = sceneController.getClientInteractor()
-                                                        .showComfirmationWindow("Xác nhận xóa cư dân",
+                                                        .showConfirmationWindow("Xác nhận xóa cư dân",
                                                                                 "Kiểm tra lại thông tin cư dân trước khi xóa",
                                                                                 json);
                                 System.out.println (result.get());

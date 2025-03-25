@@ -28,8 +28,10 @@ import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.Family;
+import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.Date;
@@ -421,12 +423,7 @@ public class ClientInteractor {
                 break;
 
             default:
-                Alert fail = new Alert (AlertType.ERROR);
-                fail.setTitle ("Thất bại");
-                fail.setHeaderText (res.getResponseStatus().toString());
-                fail.setContentText (res.getResponseMessage());
-                fail.initOwner (sceneController.getScene().getWindow());
-                fail.showAndWait ();
+                showFailedWindow (res);
                 break;
         }
     }
@@ -470,5 +467,94 @@ public class ClientInteractor {
         System.out.println (res.getObjectId());
     }
  
+    public void findFamilyHandler () {
+        FindFamilyModel model = sceneController.getFindFamilyModel ();
+
+        String familyId = model.familyIdProperty().get();
+        String personId = model.personIdProperty().get();
+        String houseNumber = model.houseNumberProperty().get();
+
+        StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
+        if (!familyId.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (family_id='%s')", familyId));
+        }
+        if (!personId.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (person_id='%s')", personId));
+        }
+        if (!houseNumber.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (house_number LIKE '%%%s%%')", houseNumber));
+        }
+        String condition = conditionBuilder.toString ();
+
+        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                        condition, new Family ());
+
+        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+
+        List<Family> data = new ArrayList<>();
+        for (Map<String, Object> map : requestResult) {
+            data.add (Family.convertFromMap (map));
+        }
+
+        TableView<Family> tableView = model.getTableView ();
+        tableView.setItems (FXCollections.observableList (data));
+    }
+
+    public void updateFamilyHandler () {
+        UpdateFamilyModel model = sceneController.getUpdateFamilyModel ();
+
+        String familyId = model.familyIdProperty().get();
+        String personId = model.personIdProperty().get();
+
+        String houseNumber = model.houseNumberProperty().get(); 
+        houseNumber = houseNumber.trim ();
+        houseNumber = houseNumber.replaceAll ("^ +| +$|( )+", "$1");
+
+        if (personId.isEmpty()) {
+            System.out.println ("Chua person id");
+            return;
+        }
+
+        if (houseNumber.isEmpty()) {
+            System.out.println ("Chua so nha");
+            return;
+        }
+
+        GetSQLProperties object = new Family (Integer.parseInt(personId), houseNumber);
+        object.setId(Integer.parseInt(familyId));
+
+        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+
+        switch (res.getResponseStatus ()) {
+            case OK:
+                TableView<Family> tableView = sceneController.getFindFamilyModel().getTableView();
+                for(int i = 0; i < tableView.getItems().size(); ++i) {
+                    if (tableView.getItems().get(i).getFamilyId() == object.getId()) {
+                        tableView.getItems().set(i, (Family) object);
+                        break;
+                    }
+                }
+
+                notificateUpdateSuccessfully ();
+                break;
+
+            default:
+                showFailedWindow (res);
+                break;
+        }
+    }
+
+    public void closeFamilyUpdateHandler () {
+        sceneController.getUpdateFamilyModel()
+                        .getUpdateFamilyWindow()
+                        .close();
+    }
+
+    public void updateAndCloseFamilyHandler () {
+        updateFamilyHandler();
+        closeFamilyUpdateHandler ();
+    }
+
 }
 

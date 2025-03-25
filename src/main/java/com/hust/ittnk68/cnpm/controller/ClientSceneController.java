@@ -1,8 +1,11 @@
 package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.model.ClientModel;
+import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
+import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
+import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -51,6 +54,10 @@ public class ClientSceneController {
     private FindPersonModel findPersonModel;
     private CreatePersonModel createPersonModel;
 
+    private CreateFamilyModel createFamilyModel;
+    private FindFamilyModel findFamilyModel;
+    private UpdateFamilyModel updateFamilyModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -59,9 +66,14 @@ public class ClientSceneController {
         stackPane = new StackPane ();
         clientModel = new ClientModel ();
         clientInteractor = new ClientInteractor (this);
+
         createPersonModel = new CreatePersonModel ();
         findPersonModel = new FindPersonModel ();
         updatePersonModel = new UpdatePersonModel ();
+
+        createFamilyModel = new CreateFamilyModel ();
+        findFamilyModel = new FindFamilyModel ();
+        updateFamilyModel = new UpdateFamilyModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -276,6 +288,16 @@ public class ClientSceneController {
     }
     public UpdatePersonModel getUpdatePersonModel () {
         return updatePersonModel;
+    }
+
+    public CreateFamilyModel getCreateFamilyModel () {
+        return createFamilyModel;
+    }
+    public FindFamilyModel getFindFamilyModel () {
+        return findFamilyModel;
+    }
+    public UpdateFamilyModel getUpdateFamilyModel () {
+        return updateFamilyModel;
     }
 
     public Scene getScene () {

@@ -1,5 +1,7 @@
 package com.hust.ittnk68.cnpm.model;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 
@@ -36,6 +38,16 @@ public class Family extends GetSQLProperties {
         this.houseNumber = houseNumber;
     }
 
+    @JsonIgnore
+    public static Family convertFromMap (Map<String, Object> map) {
+        Family f = new Family (
+            (int)map.get("person_id"),
+            (String)map.get("house_number")
+        );
+        f.setId ((int)map.get("family_id"));
+        return f;
+    }
+
     @Override
     @JsonIgnore
     public int getId() {
@@ -55,5 +67,13 @@ public class Family extends GetSQLProperties {
     @JsonIgnore
     public String getSQLInsertCommand() {
         return String.format("INSERT INTO %s (person_id,house_number) values ('%d','%s');", this.getSQLTableName(), personId, houseNumber);
+    }
+    @Override
+    @JsonIgnore
+    public String getSQLUpdateCommand() {
+        return String.format("UPDATE %s SET person_id='%d',house_number='%s' WHERE %s_id='%d';",
+                this.getSQLTableName(),
+                personId, houseNumber,
+                this.getSQLTableName(), getId());
     }
 }

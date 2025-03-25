@@ -31,7 +31,6 @@ public class AdminHomeView extends DuongFXGridPane {
         this.getStyleClass().add("gradientbackground");
          
         this.add (interactor.getMainScreen(), 1, 1, numCols - 1, numRows - 1);
-        interactor.setRoot (new AdminAccountManagePage (sceneController));
 
         BorderPane bp = new BorderPane ();
         // bp.setPadding (new Insets (0, 0, 0, 15));
@@ -40,7 +39,7 @@ public class AdminHomeView extends DuongFXGridPane {
 
         Label greeting = new Label ("Xin chào, Đăng Dương!");
         greeting.setId ("greetinglabel");
-        Label desc = new Label ("Cổng thông tin, dịch vụ chung cư BlueMoon");
+        Label desc = new Label ("Cổng thông tin, dịch vụ chung cư BlueMoon (trang quản trị)");
         desc.setId ("desclabel");
         VBox greetingVBox = new VBox (greeting, desc);
         bp.setLeft (greetingVBox);

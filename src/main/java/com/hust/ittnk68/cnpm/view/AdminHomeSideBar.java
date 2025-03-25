@@ -33,8 +33,8 @@ public class AdminHomeSideBar extends BorderPane {
 	btn1.setOnAction (e -> interactor.setRoot (adminAccountManagePage));
 
 	IconButton btn2 = new IconButton (new FontIcon (Material2RoundAL.FAMILY_RESTROOM));
-	AdminExpenseManagePage adminExpenseManagePage = new AdminExpenseManagePage (sceneController);
-	btn2.setOnAction (e -> interactor.setRoot (adminExpenseManagePage));
+	AdminFamilyManagePage adminFamilyManagePage = new AdminFamilyManagePage (sceneController);
+	btn2.setOnAction (e -> interactor.setRoot (adminFamilyManagePage));
 
 	IconButton btn3 = new IconButton (new FontIcon (Material2MZ.PERSON));
 	AdminPersonManagePage adminPersonManagePage = new AdminPersonManagePage (sceneController);
@@ -45,7 +45,6 @@ public class AdminHomeSideBar extends BorderPane {
 	// IconButton btn6 = new IconButton (new FontIcon (Material2MZ.SETTINGS));
 
 	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3);
-	accentGroup.setActive (btn1);
 
 	VBox groupWrapper = new VBox (btn1, btn2, btn3);
 	groupWrapper.setAlignment (Pos.CENTER);
@@ -62,5 +61,7 @@ public class AdminHomeSideBar extends BorderPane {
 	logoutWrapper.setAlignment (Pos.CENTER);;
 
 	this.setBottom (logoutWrapper);
+
+	btn1.fire ();
     }
 }

@@ -2,6 +2,8 @@ package com.hust.ittnk68.cnpm.model;
 
 import org.apache.commons.codec.digest.*;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.type.AccountType;
@@ -73,6 +75,18 @@ public class Account extends GetSQLProperties {
         return accountType;
     }
 
+    @JsonIgnore
+    public static Account convertFromMap (Map<String, Object> map) {
+        Account acc = new Account (
+            (int)map.get("family_id"),
+            (String)map.get("username"),
+            (String)map.get("digest_password"),
+            AccountType.matchByString((String)map.get("account_type")).get()
+        );
+        acc.setId ((int)map.get("account_id"));
+        return acc;
+    }
+
     @Override
     @JsonIgnore
     public int getId() {
@@ -93,4 +107,13 @@ public class Account extends GetSQLProperties {
     public String getSQLInsertCommand() {
         return String.format("INSERT INTO %s (family_id,username,digest_password,account_type) values ('%d','%s','%s','%s');", this.getSQLTableName(), familyId, username, digestPassword, accountType);
     }
+    @Override
+    @JsonIgnore
+    public String getSQLUpdateCommand() {
+        return String.format("UPDATE %s SET family_id='%d',username='%s',digest_password='%s',account_type='%s' WHERE %s_id='%d';",
+                                this.getSQLTableName(),
+                                familyId, username, digestPassword, accountType,
+                                this.getSQLTableName(), getId());
+    }
 }
+

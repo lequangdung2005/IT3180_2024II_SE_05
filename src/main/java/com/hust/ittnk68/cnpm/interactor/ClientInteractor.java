@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -24,13 +25,17 @@ import com.hust.ittnk68.cnpm.controller.ClientHomeScreenController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.controller.LoginController;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
+import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.ClientModel;
+import com.hust.ittnk68.cnpm.model.CreateAccountModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.Family;
+import com.hust.ittnk68.cnpm.model.FindAccountModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
@@ -554,6 +559,175 @@ public class ClientInteractor {
     public void updateAndCloseFamilyHandler () {
         updateFamilyHandler();
         closeFamilyUpdateHandler ();
+    }
+
+    public void createAccountHandler () {
+        CreateAccountModel model = sceneController.getCreateAccountModel ();
+
+        String familyId = model.familyIdProperty().get();
+        String username = model.usernameProperty().get();
+        String password = model.passwordProperty().get();
+        String password2 = model.password2Property().get();
+
+        String accountTypeString = model.accountTypeProperty().get();
+        AccountType accountType = null; 
+        if (!AccountType.matchByString(accountTypeString).isEmpty()) {
+            accountType = AccountType.matchByString(accountTypeString).get();
+        }
+
+        String regex = "^[A-Za-z]\\w{5,29}$";
+        Pattern p = Pattern.compile (regex);
+        if (!p.matcher(username).matches()) {
+            showComfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
+            return;
+        }
+
+        if (!password.equals (password2)) {
+            showComfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
+            return;
+        }
+        if (accountType == null) {
+            showComfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
+            return;
+        }
+
+        String digestPassword = DigestUtils.sha256Hex (password);
+
+        Account object = new Account (Integer.parseInt (familyId),
+                                        username,
+                                        digestPassword,
+                                        accountType);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        ServerCreateObjectResponse res = sceneController.createObject (req);
+        System.out.println (res.getResponseStatus());
+        System.out.println (res.getResponseMessage());
+        System.out.println (res.getObjectId());
+    }
+ 
+    public void findAccountHandler () {
+        FindAccountModel model = sceneController.getFindAccountModel ();
+
+        String accountId = model.accountIdProperty().get();
+        String familyId = model.familyIdProperty().get();
+
+        String username = model.usernameProperty().get();
+        username = username.trim();
+
+        String accountTypeString = model.accountTypeProperty().get();
+        AccountType accountType = null; 
+        if (!AccountType.matchByString(accountTypeString).isEmpty()) {
+            accountType = AccountType.matchByString(accountTypeString).get();
+        }
+
+        StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
+        if (!accountId.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (account_id='%s')", accountId));
+        }
+        if (!familyId.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (family_id='%s')", familyId));
+        }
+        if (!username.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (username LIKE '%%%s%%')", username));
+        }
+        if (accountType != null) {
+            conditionBuilder.append (String.format (" AND (account_type LIKE '%%%s%%')", accountType));
+        }
+        String condition = conditionBuilder.toString ();
+
+        System.out.printf("%s\n%s\n%s\n%s\n", accountId, familyId, username, condition);
+
+        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                        condition, new Account ());
+
+        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+
+        List<Account> data = new ArrayList<>();
+        for (Map<String, Object> map : requestResult) {
+            data.add (Account.convertFromMap (map));
+        }
+
+        TableView<Account> tableView = model.getTableView ();
+        tableView.setItems (FXCollections.observableList (data));
+    }
+
+    public void updateAccountHandler () {
+        UpdateAccountModel model = sceneController.getUpdateAccountModel ();
+
+        String accountId = model.accountIdProperty().get();
+        String familyId = model.familyIdProperty().get();
+        String username = model.usernameProperty().get();
+        String password = model.passwordProperty().get();
+        String password2 = model.password2Property().get();
+
+        String accountTypeString = model.accountTypeProperty().get();
+        AccountType accountType = null; 
+        if (!AccountType.matchByString(accountTypeString).isEmpty()) {
+            accountType = AccountType.matchByString(accountTypeString).get();
+        }
+
+        String regex = "^[A-Za-z]\\w{5,29}$";
+        Pattern p = Pattern.compile (regex);
+        if (!p.matcher(username).matches()) {
+            showComfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
+            return;
+        }
+
+        if (!password.equals (password2)) {
+            showComfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
+            return;
+        }
+
+        if (accountType == null) {
+            showComfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
+            return;
+        }
+
+        String digestPassword = password.isEmpty() ? model.getDigestPassword() : DigestUtils.sha256Hex (password);
+
+        GetSQLProperties object = new Account (Integer.parseInt(familyId), username, digestPassword, accountType);
+        object.setId(Integer.parseInt(accountId));
+
+        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+
+        switch (res.getResponseStatus ()) {
+            case OK:
+                TableView<Account> tableView = sceneController.getFindAccountModel().getTableView();
+                for(int i = 0; i < tableView.getItems().size(); ++i) {
+                    if (tableView.getItems().get(i).getAccountId() == object.getId()) {
+                        tableView.getItems().set(i, (Account) object);
+                        break;
+                    }
+                }
+
+                notificateUpdateSuccessfully ();
+                break;
+
+            default:
+                showFailedWindow (res);
+                break;
+        }
+    }
+
+    public void closeAccountUpdateHandler () {
+        sceneController.getUpdateAccountModel()
+                        .getUpdateAccountWindow()
+                        .close();
+    }
+
+    public void updateAndCloseAccountHandler () {
+        updateAccountHandler();
+        closeAccountUpdateHandler ();
     }
 
 }

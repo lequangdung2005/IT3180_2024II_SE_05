@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.view;
 
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Spacer;
@@ -12,7 +13,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2AL;
 import org.kordamp.ikonli.material2.Material2MZ;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
@@ -22,8 +25,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -65,37 +71,46 @@ import javafx.scene.text.TextFlow;
 // 	return tweetCard;
 //     }
 // }
-public class ClientHomeScreenView extends AnchorPane {
-    public ClientHomeScreenView() {
-	super();
+public class ClientHomeScreenView extends DuongFXGridPane {
+    private static final int numCols = 15;
+    private static final int numRows = 12;
 
-	Tab homeTab = new Tab("Trang chủ", new ClientHomeMainTab());
-	homeTab.setGraphic(new FontIcon(Material2AL.HOME));
+    public ClientHomeScreenView(ClientSceneController sceneController) {
+	super (numCols, numRows);
 
-	Tab memberTab = new Tab("Thành viên", new ClientHomeFamilyMemberTab());
-	memberTab.setGraphic(new FontIcon(Material2AL.FAMILY_RESTROOM));
+	ClientInteractor interactor = sceneController.getClientInteractor ();
 
-	Tab vehicleTab = new Tab("Xe cộ");
-	vehicleTab.setGraphic(new FontIcon(Material2AL.DIRECTIONS_CAR));
+	// this.setGridLinesVisible (true);
+	this.setHgap (10);
+	this.setVgap (10);
+	this.setPadding (new Insets (30, 50, 30, 50));
+	this.getStyleClass().add("gradientbackground");
 
-	Tab expenseTab = new Tab("Chi phí");
-	expenseTab.setGraphic(new FontIcon(Material2AL.ATTACH_MONEY));
+	this.add (interactor.getMainScreen(), 1, 1, numCols - 1, numRows - 1);
 
-	Tab donateTab = new Tab("Quyên góp");
-	donateTab.setGraphic(new FontIcon(Material2AL.GRADE));
+	BorderPane bp = new BorderPane ();
+	// bp.setPadding (new Insets (0, 0, 0, 15));
 
-	Tab settingTab = new Tab("Cài đặt");
-	settingTab.setGraphic(new FontIcon(Material2MZ.SETTINGS));
+	this.add (bp, 1, 0, numCols - 1, 1);
 
-	TabPane tabPane = new TabPane();
-	tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-	tabPane.getTabs().addAll(homeTab, memberTab, vehicleTab, expenseTab, donateTab, settingTab);
-	tabPane.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+	Label greeting = new Label ("Xin chào, Đăng Dương!");
+	greeting.setId ("greetinglabel");
+	Label desc = new Label ("Cổng thông tin, dịch vụ chung cư BlueMoon");
+	desc.setId ("desclabel");
+	VBox greetingVBox = new VBox (greeting, desc);
+	bp.setLeft (greetingVBox);
 
-	this.getChildren().add(tabPane);
-	AnchorPane.setTopAnchor(tabPane, 0.0);
-	AnchorPane.setLeftAnchor(tabPane, 0.0);
-	AnchorPane.setRightAnchor(tabPane, 0.0);
-	AnchorPane.setBottomAnchor(tabPane, 0.0);
+	IconButton chatBtn = new IconButton (new FontIcon (Material2AL.CHAT));
+	IconButton notiBtn = new IconButton (new FontIcon (Material2MZ.NOTIFICATIONS));
+	HBox notificationWrapper = new HBox (chatBtn, notiBtn);
+	notificationWrapper.getStyleClass().addAll("graywrapper", "leftrightpadding");
+	notificationWrapper.setAlignment (Pos.CENTER);
+	bp.setRight (notificationWrapper);
+	
+	this.add (new Label(""), 0, 0, 1, 1);
+
+	ClientHomeSideBar vb = new ClientHomeSideBar (sceneController);
+	this.add (vb, 0, 1, 1, numRows - 1);
+
     }
 }

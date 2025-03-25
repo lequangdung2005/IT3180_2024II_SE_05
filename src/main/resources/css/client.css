@@ -1,26 +1,95 @@
-.tab-pane {
-    /* -fx-tab-min-width: 100px; /* Set the minimum width of tabs */ */
-    /* -fx-tab-max-width: 200px; /* Set the maximum width of tabs */ */
-    /* -fx-tab-min-height: 10px; */
-    /* -fx-tab-max-height: 10px; */
+.root {
+    /* -fx-font-family: "Noto Sans"; */
+    -fx-font-family: "Montserrat";
 }
 
-.tab .tab-label { 
- 	-fx-alignment: CENTER;
-	/* -fx-text-fill: white; */
-	/* -fx-font-weight: bold; */
-	-fx-padding: 0 10 0 10;
+#greetinglabel {
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #FFFFFF;
 }
-.tab-pane:top *.tab-header-area {
-	-fx-padding: 0 0 0 30;
-}
-.tab-pane {
-	/* -fx-background-color: transparent; */
-	-fx-tab-min-width: 100px;
-	-fx-tab-min-height: 30px;
-	-fx-tab-max-height: 66px;
+#desclabel {
+    -fx-text-fill: #FFFFFF;
 }
 
-#clientMenuLabel {
-    -fx-font-weight: bold;
+.graywrapper {
+    -fx-hgap: 5px;
+
+    -fx-background-color: #DDE1E4;
+    -fx-background-radius: 35px;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.updownpadding {
+    -fx-padding: 16 0 16 0;
+}
+
+.leftrightpadding {
+    -fx-padding: 0 16 0 16;
+}
+
+.fullpadding {
+    -fx-padding: 16 16 16 16;
+}
+
+.gradientbackground {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4a4a4a, #2a2a2a);
+}
+
+.expensetile {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+
+.duongfxtabpane .tab-pane {
+    -fx-background-color: #DDE1E4;
+}
+.duongfxtabpane .tab-header-area .tab-header-background {
+    -fx-background-color: #DDE1E4; 
+}
+.duongfxtabpane .tab {
+    -fx-background-color: #DDE1E4;
+    -fx-background-radius: 15px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-border-width: 1px;
+
+    -fx-border-style: segments(3, 5, 3, 5) line-cap round ;
+    /* -fx-border-style: dashed;  */
+
+    /* add margin */
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+.duongfxtabpane > .tab-content-area > * {
+    -fx-padding: 13;
+}
+.duongfxtabpane .tab:selected
+{
+    /* -fx-background-color: white;  */
+    -fx-border-style: solid;
+    -fx-border-color: #0550ae;
+}
+.duongfxtabpane .tab:selected .tab-label
+{
+    -fx-text-fill: #0550ae; 
+}
+.duongfxtabpane .tab:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.duongfxtabpane .tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+	-fx-border-insets: 0 0 0 0;
+	-fx-border-radius: 0;
+}
+
+
+.duongfxseparator .line {
+    -fx-background-color: black;
+    -fx-pref-height: 1;
+    -fx-border-color: null;
 }

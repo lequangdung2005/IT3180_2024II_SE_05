@@ -3,8 +3,10 @@ package com.hust.ittnk68.cnpm.type;
 public enum ResponseStatus
 {
     OK("ok"),
-    NOT_OK("not ok"),
-    SESSION_ERROR("session_error");
+    CANT_CONNECT_SERVER("can't connect to server"),
+    SESSION_ERROR("session error"),
+    PERMISSION_ERROR("not have permission"),
+    SQL_ERROR("operation not succeed due to a sql exception");
 
     private String responseStatus;
     ResponseStatus (String responseStatus)

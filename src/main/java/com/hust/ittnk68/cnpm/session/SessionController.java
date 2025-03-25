@@ -5,11 +5,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
+import com.hust.ittnk68.cnpm.model.Account;
+import com.hust.ittnk68.cnpm.type.AccountType;
 
 public class SessionController
 {
     private static Map <String, String> usernameToToken = new TreeMap <String, String> ();
-    private static Map <String, String> tokenToUsername = new TreeMap <String, String> ();
     private static Map <String, Session> tokenToSession = new TreeMap <String, Session> ();
 
     private static void updateUserSessionState (String username)
@@ -25,7 +26,6 @@ public class SessionController
         if (now.after(session.getSessionEnd ()))
         {
             usernameToToken.remove (username);
-            tokenToUsername.remove (token);
             tokenToSession.remove (token);
         }
     }
@@ -35,8 +35,20 @@ public class SessionController
         return tokenToSession.get (token) != null;
     }
 
-    public static String newSession (String username) throws UserCreateSecondSession
+    public static Session getSession (String token) {
+        Session session = tokenToSession.get (token);
+        if (session == null) {
+            return null;
+        }
+        updateUserSessionState (session.getUsername ());
+        return tokenToSession.get (token);
+    }
+
+    public static String newSession (Account account) throws UserCreateSecondSession
     {
+        String username = account.getUsername();
+        AccountType accountType = account.getAccountType();
+
         updateUserSessionState (username);
         String token = usernameToToken.get (username);
         if (token != null)
@@ -45,8 +57,7 @@ public class SessionController
         }
         token = Token.generateToken ();
         usernameToToken.put (username, token);
-        tokenToUsername.put (token, username);
-        tokenToSession.put (token, new Session (username));
+        tokenToSession.put (token, new Session (username, accountType));
         return token;
     }
 
@@ -57,9 +68,8 @@ public class SessionController
             return -1;
         }
 
-        String username = tokenToUsername.get (token);
+        String username = tokenToSession.get(token).getUsername();
         usernameToToken.remove (username);
-        tokenToUsername.remove (token);
         tokenToSession.remove (token);
         return 0;
     }

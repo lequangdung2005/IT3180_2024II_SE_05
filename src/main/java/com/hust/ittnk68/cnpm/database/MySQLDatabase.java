@@ -70,7 +70,7 @@ public class MySQLDatabase {
         }
     }
 
-    public static void deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
+    public static int deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLDeleteByConditionCommand(condition));
         )
@@ -78,7 +78,8 @@ public class MySQLDatabase {
             System.out.println(statement);
             System.out.flush();
 
-            statement.executeUpdate();
+            int affectedRows = statement.executeUpdate();
+            return affectedRows;
         }
     }
 
@@ -94,4 +95,18 @@ public class MySQLDatabase {
             return MySQLDatabaseUtils.map(rs);
         }
     }
+
+    public static int singleUpdate (GetSQLProperties g) throws SQLException {
+        try (
+            PreparedStatement statement = con.prepareStatement(g.getSQLUpdateCommand());
+        )
+        {
+            System.out.println (statement);
+            System.out.flush ();
+
+            int affectedRows = statement.executeUpdate ();
+            return affectedRows;
+        }
+    }
+
 }

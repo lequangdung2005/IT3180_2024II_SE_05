@@ -1,8 +1,6 @@
 package com.hust.ittnk68.cnpm.app;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -12,20 +10,26 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
+import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
+import com.hust.ittnk68.cnpm.communication.AdminFindObject;
+import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
-import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
 import com.hust.ittnk68.cnpm.model.Account;
-import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.session.Session;
 import com.hust.ittnk68.cnpm.session.SessionController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -122,7 +126,7 @@ public class Server {
 	}
 
 	@RequestMapping(ApiMapping.START_SESSION)
-	ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
+	private ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
 		String username = message.getUsername ();
 		String digestPassword = message.getDigestPassword ();
 
@@ -134,7 +138,7 @@ public class Server {
 			System.out.println(acc.getAccountType());
 
 			try {
-				token = SessionController.newSession (username);
+				token = SessionController.newSession (acc);
 			}
 			catch (UserCreateSecondSession e)
 			{
@@ -152,37 +156,102 @@ public class Server {
 	}
 
 	@RequestMapping(ApiMapping.END_SESSION)
-	void endSession (@RequestBody String token)
+	private void endSession (@RequestBody String token)
 	{
 		System.out.println ("End session, token = " + token);
 		SessionController.endSession (token);
 	}
 
-	// @RequestMapping("/api/user-home-metadata")
-	// UserHomeMetadata getUserHomeMetadata(@RequestParam String username, @RequestParam String digestPassword) throws SQLException, ConfigFileException, IOException
-	// {
-	// 	Account acc = getAccountByUsernamePassword(username, digestPassword);
-	// 	int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-	//
-	// 	Map<String, Object> familyMetadata = getMetadataById(acc.getFamilyId(),
-	// 														new Family());
-	//
-	// 	int representative_person_id = (int)familyMetadata.get("person_id");
-	//
-	// 	Map<String, Object> personMetadata = getMetadataById(representative_person_id,
-	// 														new Person());
-	//
-	// 	UserHomeMetadata res = new UserHomeMetadata();
-	// 	res.fullname = (String)personMetadata.get("fullname");
-	// 	res.houseNumber = (String)familyMetadata.get("house_number");
-	// 	res.totalSpendingThisMonth = getTotalSpending(acc.getFamilyId(), thisMonth);
-	//
-	// 	return res;
-	// }
+	private boolean checkPrivilegeAdminAbove (Session session) {
+		if (!session.getAccountType().equals(AccountType.ROOT)
+			&& !session.getAccountType().equals(AccountType.ADMIN))
+			return false;
+		return true;
+	}
+
+	@RequestMapping(ApiMapping.CREATE_OBJECT)
+	private ServerCreateObjectResponse createObject (@RequestBody AdminCreateObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerCreateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerCreateObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			MySQLDatabase.create (req.getObject());
+			return new ServerCreateObjectResponse (ResponseStatus.OK, "succeed", req.getObject()); 
+		}
+		catch (SQLException e) {
+			e.printStackTrace ();
+			return new ServerCreateObjectResponse (ResponseStatus.SQL_ERROR, e.toString ());
+		}
+	}
+
+	@RequestMapping(ApiMapping.FIND_OBJECT)
+	private ServerFindObjectResponse findObject (@RequestBody AdminFindObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerFindObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerFindObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			List<Map<String, Object>> res = MySQLDatabase.findByCondition (req.getCondition(), req.getObject());
+			return new ServerFindObjectResponse (ResponseStatus.OK, "succeed", res);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerFindObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	@RequestMapping(ApiMapping.DELETE_OBJECT)
+	private ServerDeleteObjectResponse deleteObject (@RequestBody AdminDeleteObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerDeleteObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerDeleteObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			int affectedRows = MySQLDatabase.deleteByCondition (req.getCondition(), req.getObject());
+			return new ServerDeleteObjectResponse (ResponseStatus.OK, "succeed", affectedRows);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerDeleteObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	@RequestMapping(ApiMapping.UPDATE_OBJECT)
+	private ServerUpdateObjectResponse updateObject (@RequestBody AdminUpdateObject req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerUpdateObjectResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		if (!checkPrivilegeAdminAbove (session))
+			return new ServerUpdateObjectResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			int affectedRows = MySQLDatabase.singleUpdate (req.getObject());
+			return new ServerUpdateObjectResponse (ResponseStatus.OK, "succeed", affectedRows);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerUpdateObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
 
 	@EventListener({ ContextClosedEvent.class })
 	void exitGracefully() {
-		MySQLDatabase.close();
+		MySQLDatabase.close(); 
 	}
 
 	public static void main(String[] args) {

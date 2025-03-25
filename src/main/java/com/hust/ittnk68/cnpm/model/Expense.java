@@ -1,5 +1,7 @@
 package com.hust.ittnk68.cnpm.model;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.type.Date;
@@ -50,6 +52,20 @@ public class Expense extends GetSQLProperties {
         return required;
     }
 
+    @JsonIgnore
+    public static Expense convertFromMap (Map<String, Object> map) {
+        Expense e = new Expense (
+            (String) map.get("expense_title"),
+            (String) map.get("expense_description"),
+            Date.cast ((String) map.get("published_date")),
+            (int) map.get("total_cost"),
+            ExpenseType.matchByString((String) map.get("expense_type")).get(),
+            (boolean) map.get("required")
+        );
+        e.setId ((int)map.get("expense_id"));
+        return e;
+    }
+
     @Override
     @JsonIgnore
     public int getId() {
@@ -68,6 +84,14 @@ public class Expense extends GetSQLProperties {
     @JsonIgnore
     @Override
     public String getSQLInsertCommand() {
-        return String.format("INSERT INTO %s (expense_title,expense_description,published_date,total_cost,expense_type,required) values ('%s','%s','%s','%d','%s','%d');", this.getSQLTableName(), expenseTitle, expenseDescription, publishedDate, totalCost, required ? 1 : 0);
+        return String.format("INSERT INTO %s (expense_title,expense_description,published_date,total_cost,expense_type,required) values ('%s','%s','%s','%d','%s','%d');", this.getSQLTableName(), expenseTitle, expenseDescription, publishedDate, totalCost, expenseType, required ? 1 : 0);
+    }
+    @JsonIgnore
+    @Override
+    public String getSQLUpdateCommand() {
+        return String.format("UPDATE %s SET expense_title='%s',expense_description='%s',published_date='%s',total_cost='%d',expense_type='%s',required='%d' WHERE %s_id='%d';",
+                this.getSQLTableName(),
+                expenseTitle, expenseDescription, publishedDate, totalCost, expenseType, required ? 1 : 0,
+                this.getSQLTableName(), getId());
     }
 }

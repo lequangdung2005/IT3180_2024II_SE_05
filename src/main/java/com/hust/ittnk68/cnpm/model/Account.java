@@ -116,4 +116,3 @@ public class Account extends GetSQLProperties {
                                 this.getSQLTableName(), getId());
     }
 }
-

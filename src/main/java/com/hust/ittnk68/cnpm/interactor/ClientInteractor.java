@@ -1,5 +1,6 @@
 package com.hust.ittnk68.cnpm.interactor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,18 +29,23 @@ import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
+import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
+import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.FindAccountModel;
+import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
+import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.Date;
+import com.hust.ittnk68.cnpm.type.ExpenseType;
 import com.hust.ittnk68.cnpm.type.Nation;
 import com.hust.ittnk68.cnpm.type.ResidenceStatus;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -142,7 +148,7 @@ public class ClientInteractor {
         return mainScreen;
     }
 
-    public Optional<ButtonType> showComfirmationWindow (String title, String headerText, String contentText) {
+    public Optional<ButtonType> showConfirmationWindow (String title, String headerText, String contentText) {
         Alert alert = new Alert (AlertType.CONFIRMATION);
         alert.setTitle (title);
         alert.setHeaderText (headerText);
@@ -578,16 +584,16 @@ public class ClientInteractor {
         String regex = "^[A-Za-z]\\w{5,29}$";
         Pattern p = Pattern.compile (regex);
         if (!p.matcher(username).matches()) {
-            showComfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
+            showConfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
             return;
         }
 
         if (!password.equals (password2)) {
-            showComfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
+            showConfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
             return;
         }
         if (accountType == null) {
-            showComfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
+            showConfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
             return;
         }
 
@@ -678,17 +684,17 @@ public class ClientInteractor {
         String regex = "^[A-Za-z]\\w{5,29}$";
         Pattern p = Pattern.compile (regex);
         if (!p.matcher(username).matches()) {
-            showComfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
+            showConfirmationWindow ("Lỗi", "Tên tài khoản không hợp lệ", null);
             return;
         }
 
         if (!password.equals (password2)) {
-            showComfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
+            showConfirmationWindow ("Lỗi", "Không thể tạo tài khoản", "Mật khẩu không trùng lặp");
             return;
         }
 
         if (accountType == null) {
-            showComfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
+            showConfirmationWindow ("Lỗi", "Chưa chọn loại tài khoản", null);
             return;
         }
 
@@ -728,6 +734,170 @@ public class ClientInteractor {
     public void updateAndCloseAccountHandler () {
         updateAccountHandler();
         closeAccountUpdateHandler ();
+    }
+
+    public void createExpenseHandler () {
+        CreateExpenseModel model = sceneController.getCreateExpenseModel ();
+
+        String expenseTitle = model.expenseTitleProperty().get();
+        String expenseDescription = model.expenseDescriptionProperty().get();
+        LocalDate publishedDate = model.publishedDateProperty().get();
+        String expenseTypeString = model.expenseTypeProperty().get();
+        String totalCostString = model.totalCostProperty().get();
+        boolean required = model.requiredProperty().get();
+
+        if (expenseTitle.isEmpty ()) {
+            showConfirmationWindow ("Lỗi", "Chưa có tiêu đề", null);
+            return;
+        }
+        if (totalCostString.isEmpty ()) {
+            showConfirmationWindow ("Lỗi", "Chưa có tổng chi phí", null);
+            return;
+        }
+        if (ExpenseType.matchByString (expenseTypeString).isEmpty()) {
+            showConfirmationWindow ("Lỗi", "Chưa chọn loại chi phí", null);
+            return;
+        }
+
+        ExpenseType expenseType = ExpenseType.matchByString (expenseTypeString).get();
+
+        Expense object = new Expense (expenseTitle,
+                                        expenseDescription,
+                                        Date.convertFromLocalDate(publishedDate),
+                                        Integer.parseInt (totalCostString),
+                                        expenseType,
+                                        required);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        ServerCreateObjectResponse res = sceneController.createObject (req);
+        System.out.println (res.getResponseStatus());
+        System.out.println (res.getResponseMessage());
+        System.out.println (res.getObjectId());
+    }
+
+    public void findExpenseHandler () {
+        FindExpenseModel model = sceneController.getFindExpenseModel ();
+
+        boolean enableDayFilter = model.enableDayFilterProperty().get();
+        LocalDate beginPublishedDate = model.beginPublishedDateProperty().get();
+        LocalDate endPublishedDate = model.endPublishedDateProperty().get();
+        String minTotalCostString = model.minTotalCostProperty().get();
+        String maxTotalCostString = model.maxTotalCostProperty().get();
+        String expenseTypeString = model.expenseTypeProperty().get();
+        boolean required = model.requiredProperty().get();
+
+        ExpenseType expenseType = null;
+        if (!ExpenseType.matchByString (expenseTypeString).isEmpty()) {
+           expenseType = ExpenseType.matchByString (expenseTypeString).get();
+        }
+
+
+        StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
+        if (enableDayFilter) {
+            conditionBuilder.append (String.format (" AND (published_date>='%s 00:00:00') AND (published_date<'%s 00:00:00')",
+                                                    Date.convertFromLocalDate (beginPublishedDate),
+                                                    Date.convertFromLocalDate (endPublishedDate).plusDays (1)) );
+        }
+        if (!minTotalCostString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (total_cost>='%s')", Integer.parseInt (minTotalCostString)));
+        }
+        if (!maxTotalCostString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (total_cost<='%s')", Integer.parseInt (maxTotalCostString)));
+        }
+        if (expenseType != null) {
+            conditionBuilder.append (String.format (" AND (expense_type LIKE '%%%s%%')", expenseType));
+        }
+
+        conditionBuilder.append (String.format ("AND (required=%d)", required ? 1 : 0));
+
+        String condition = conditionBuilder.toString ();
+
+        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                        condition, new Expense ());
+
+
+        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+
+        List<Expense> data = new ArrayList<>();
+        for (Map<String, Object> map : requestResult) {
+            data.add (Expense.convertFromMap (map));
+        }
+
+        TableView<Expense> tableView = model.getTableView ();
+        tableView.setItems (FXCollections.observableList (data));
+    }
+
+    public void updateExpenseHandler () {
+        UpdateExpenseModel model = sceneController.getUpdateExpenseModel ();
+
+        String expenseIdString = model.expenseIdProperty().get();
+        String expenseTitle = model.expenseTitleProperty().get();
+        String expenseDescription = model.expenseDescriptionProperty().get();
+        LocalDate publishedDate = model.publishedDateProperty().get();
+        String expenseTypeString = model.expenseTypeProperty().get();
+        String totalCostString = model.totalCostProperty().get();
+        boolean required = model.requiredProperty().get();
+
+        if (expenseTitle.isEmpty ()) {
+            showConfirmationWindow ("Lỗi", "Chưa có tiêu đề", null);
+            return;
+        }
+        if (totalCostString.isEmpty ()) {
+            showConfirmationWindow ("Lỗi", "Chưa có tổng chi phí", null);
+            return;
+        }
+        if (ExpenseType.matchByString (expenseTypeString).isEmpty()) {
+            showConfirmationWindow ("Lỗi", "Chưa chọn loại chi phí", null);
+            return;
+        }
+
+        ExpenseType expenseType = ExpenseType.matchByString (expenseTypeString).get();
+
+        GetSQLProperties object = new Expense (expenseTitle, expenseDescription,
+                                                Date.convertFromLocalDate (publishedDate), Integer.parseInt(totalCostString),
+                                                expenseType, required);
+        object.setId(Integer.parseInt (expenseIdString));
+
+        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+
+        switch (res.getResponseStatus ()) {
+            case OK:
+                TableView<Expense> tableView = sceneController.getFindExpenseModel().getTableView();
+                for(int i = 0; i < tableView.getItems().size(); ++i) {
+                    if (tableView.getItems().get(i).getExpenseId() == object.getId()) {
+                        tableView.getItems().set(i, (Expense) object);
+                        break;
+                    }
+                }
+
+                notificateUpdateSuccessfully ();
+                break;
+
+            default:
+                showFailedWindow (res);
+                break;
+        }
+    }
+
+    public void closeExpenseUpdateHandler () {
+        sceneController.getUpdateExpenseModel()
+                        .getUpdateExpenseWindow()
+                        .close();
+    }
+
+    public void updateAndCloseExpenseHandler () {
+        updateExpenseHandler();
+        closeExpenseUpdateHandler ();
     }
 
 }

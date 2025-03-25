@@ -2,12 +2,15 @@ package com.hust.ittnk68.cnpm.controller;
 
 import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
+import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.FindAccountModel;
+import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
+import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
@@ -65,6 +68,10 @@ public class ClientSceneController {
     private FindAccountModel findAccountModel;
     private UpdateAccountModel updateAccountModel;
 
+    private CreateExpenseModel createExpenseModel;
+    private FindExpenseModel findExpenseModel;
+    private UpdateExpenseModel updateExpenseModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -85,6 +92,10 @@ public class ClientSceneController {
         createAccountModel = new CreateAccountModel ();
         findAccountModel = new FindAccountModel ();
         updateAccountModel = new UpdateAccountModel ();
+        
+        createExpenseModel = new CreateExpenseModel ();
+        findExpenseModel = new FindExpenseModel ();
+        updateExpenseModel = new UpdateExpenseModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -319,6 +330,16 @@ public class ClientSceneController {
     }
     public UpdateAccountModel getUpdateAccountModel () {
         return updateAccountModel;
+    }
+
+    public CreateExpenseModel getCreateExpenseModel () {
+        return createExpenseModel;
+    }
+    public FindExpenseModel getFindExpenseModel () {
+        return findExpenseModel;
+    }
+    public UpdateExpenseModel getUpdateExpenseModel () {
+        return updateExpenseModel;
     }
 
     public Scene getScene () {

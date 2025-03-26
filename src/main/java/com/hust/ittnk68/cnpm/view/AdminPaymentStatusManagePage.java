@@ -155,8 +155,8 @@ public class AdminPaymentStatusManagePage extends DuongFXTabPane {
                                 }
 
                                 Optional<ButtonType> result = sceneController.getClientInteractor()
-                                                        .showConfirmationWindow("Xác nhận xóa hộ gia đình",
-                                                                                "Kiểm tra lại thông tin hộ gia đình trước khi xóa",
+                                                        .showConfirmationWindow("Xác nhận xóa tình trạng khoản thu",
+                                                                                "Kiểm tra lại thông tin tình trạng khoản thu trước khi xóa",
                                                                                 json);
                                 System.out.println (result.get());
 

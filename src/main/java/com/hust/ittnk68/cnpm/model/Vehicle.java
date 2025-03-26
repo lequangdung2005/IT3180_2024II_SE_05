@@ -37,4 +37,12 @@ public class Vehicle extends GetSQLProperties {
     public String getSQLInsertCommand() {
         return String.format("INSERT INTO %s (vehicle_type,family_id,plate_id) values ('%s','%d','%s');", this.getSQLTableName(), vehicleType, familyId, plateId);
     }
+    @Override
+    @JsonIgnore
+    public String getSQLUpdateCommand() {
+        return String.format("UPDATE %s SET vehicle_type='%s',family_id='%d',plate_id='%s' WHERE %s_id=%d;",
+                this.getSQLTableName(),
+                vehicleType, familyId, plateId,
+                this.getSQLTableName(), getId());
+    }
 }

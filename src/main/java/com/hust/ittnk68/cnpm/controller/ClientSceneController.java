@@ -35,9 +35,11 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
@@ -247,6 +249,20 @@ public class ClientSceneController {
         }
         catch (Exception e) {
             return new ServerPaymentStatusQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerObjectByIdQueryResponse userQueryObjectById(UserQueryObjectById req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerObjectByIdQueryResponse res = restClient.post()
+                                                    .uri (getUriBase() + ApiMapping.QUERY_OBJECT_BY_ID)
+                                                    .body (req)
+                                                    .retrieve ()
+                                                    .body (ServerObjectByIdQueryResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerObjectByIdQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
         }
     }
 

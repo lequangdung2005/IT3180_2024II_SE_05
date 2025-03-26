@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +22,10 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
@@ -33,13 +36,6 @@ import com.hust.ittnk68.cnpm.session.Session;
 import com.hust.ittnk68.cnpm.session.SessionController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
-
-class UserHomeMetadata {
-	public String fullname;
-	public String houseNumber;
-	public int totalSpendingThisMonth;
-	public List<Person> familyPersonList;
-}
 
 @RestController
 @SpringBootApplication
@@ -246,6 +242,29 @@ public class Server {
 		catch (SQLException e) {
 			e.printStackTrace();
 			return new ServerUpdateObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	@RequestMapping(ApiMapping.QUERY_FAMILY_PAYMENT_STATUS)
+	private ServerPaymentStatusQueryResponse queryPaymentStatus (@RequestBody UserQueryPaymentStatus request) {
+		String token = request.getToken ();
+
+		Session session = SessionController.getSession (token); 
+		if (session == null)
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			StringBuilder conditionBuilder = new StringBuilder ( String.format("family_id='%d'", session.getAccount().getFamilyId()) );
+			String condition = conditionBuilder.toString ();
+			List<Map<String, Object>> rawList = MySQLDatabase.findByCondition (condition, new PaymentStatus());
+			List<PaymentStatus> list = new ArrayList<> ();
+			for (Map<String, Object> map : rawList)
+				list.add (PaymentStatus.convertFromMap (map));
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.OK, "", list);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.SQL_ERROR, e.toString());
 		}
 	}
 

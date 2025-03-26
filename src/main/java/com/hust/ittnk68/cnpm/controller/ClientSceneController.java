@@ -35,8 +35,10 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
@@ -230,6 +232,21 @@ public class ClientSceneController {
         }
         catch (Exception e) {
             return new ServerUpdateObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+
+    public ServerPaymentStatusQueryResponse queryPaymentStatus (UserQueryPaymentStatus req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerPaymentStatusQueryResponse res = restClient.post()
+                                                    .uri (getUriBase() + ApiMapping.QUERY_FAMILY_PAYMENT_STATUS)
+                                                    .body (req)
+                                                    .retrieve ()
+                                                    .body (ServerPaymentStatusQueryResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerPaymentStatusQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
         }
     }
 

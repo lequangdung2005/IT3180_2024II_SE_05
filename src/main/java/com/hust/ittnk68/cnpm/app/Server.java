@@ -159,8 +159,8 @@ public class Server {
 	}
 
 	private boolean checkPrivilegeAdminAbove (Session session) {
-		if (!session.getAccountType().equals(AccountType.ROOT)
-			&& !session.getAccountType().equals(AccountType.ADMIN))
+		if (!session.getAccount().getAccountType().equals(AccountType.ROOT)
+			&& !session.getAccount().getAccountType().equals(AccountType.ADMIN))
 			return false;
 		return true;
 	}
@@ -256,11 +256,8 @@ public class Server {
 		try {
 			StringBuilder conditionBuilder = new StringBuilder ( String.format("family_id='%d'", session.getAccount().getFamilyId()) );
 			String condition = conditionBuilder.toString ();
-			List<Map<String, Object>> rawList = MySQLDatabase.findByCondition (condition, new PaymentStatus());
-			List<PaymentStatus> list = new ArrayList<> ();
-			for (Map<String, Object> map : rawList)
-				list.add (PaymentStatus.convertFromMap (map));
-			return new ServerPaymentStatusQueryResponse(ResponseStatus.OK, "", list);
+			List<Map<String, Object>> query = MySQLDatabase.findByCondition (condition, new PaymentStatus());
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.OK, "", query);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

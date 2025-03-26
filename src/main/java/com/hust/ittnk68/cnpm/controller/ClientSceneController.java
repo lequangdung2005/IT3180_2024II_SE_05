@@ -4,14 +4,17 @@ import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
 import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
+import com.hust.ittnk68.cnpm.model.CreatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.FindAccountModel;
 import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
+import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
 import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
+import com.hust.ittnk68.cnpm.model.UpdatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -72,6 +75,10 @@ public class ClientSceneController {
     private FindExpenseModel findExpenseModel;
     private UpdateExpenseModel updateExpenseModel;
 
+    private CreatePaymentStatusModel createPaymentStatusModel;
+    private FindPaymentStatusModel findPaymentStatusModel;
+    private UpdatePaymentStatusModel updatePaymentStatusModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -96,6 +103,10 @@ public class ClientSceneController {
         createExpenseModel = new CreateExpenseModel ();
         findExpenseModel = new FindExpenseModel ();
         updateExpenseModel = new UpdateExpenseModel ();
+
+        createPaymentStatusModel = new CreatePaymentStatusModel ();
+        findPaymentStatusModel = new FindPaymentStatusModel ();
+        updatePaymentStatusModel = new UpdatePaymentStatusModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -340,6 +351,16 @@ public class ClientSceneController {
     }
     public UpdateExpenseModel getUpdateExpenseModel () {
         return updateExpenseModel;
+    }
+
+    public CreatePaymentStatusModel getCreatePaymentStatusModel () {
+        return createPaymentStatusModel;
+    }
+    public FindPaymentStatusModel getFindPaymentStatusModel () {
+        return findPaymentStatusModel;
+    }
+    public UpdatePaymentStatusModel getUpdatePaymentStatusModel () {
+        return updatePaymentStatusModel;
     }
 
     public Scene getScene () {

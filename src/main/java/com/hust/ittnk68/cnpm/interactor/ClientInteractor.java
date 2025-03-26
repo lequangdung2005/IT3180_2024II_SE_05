@@ -31,17 +31,21 @@ import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
 import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
+import com.hust.ittnk68.cnpm.model.CreatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.FindAccountModel;
 import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
+import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
+import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
 import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
+import com.hust.ittnk68.cnpm.model.UpdatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.Date;
@@ -258,10 +262,12 @@ public class ClientInteractor {
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
 
-        if (res.getResponseStatus() == ResponseStatus.OK)
+        if (res.getResponseStatus() == ResponseStatus.OK) {
             notificateUpdateSuccessfully ();
-        else
-            ;
+        }
+        else {
+            showFailedWindow (res);
+        }
     }
 
     public void findPersonHandler () {
@@ -476,6 +482,13 @@ public class ClientInteractor {
         System.out.println (res.getResponseStatus());
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
+
+        if (res.getResponseStatus() == ResponseStatus.OK) {
+            notificateUpdateSuccessfully ();
+        }
+        else {
+            showFailedWindow (res);
+        }
     }
  
     public void findFamilyHandler () {
@@ -618,6 +631,13 @@ public class ClientInteractor {
         System.out.println (res.getResponseStatus());
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
+
+        if (res.getResponseStatus() == ResponseStatus.OK) {
+            notificateUpdateSuccessfully ();
+        }
+        else {
+            showFailedWindow (res);
+        }
     }
  
     public void findAccountHandler () {
@@ -782,6 +802,13 @@ public class ClientInteractor {
         System.out.println (res.getResponseStatus());
         System.out.println (res.getResponseMessage());
         System.out.println (res.getObjectId());
+
+        if (res.getResponseStatus() == ResponseStatus.OK) {
+            notificateUpdateSuccessfully ();
+        }
+        else {
+            showFailedWindow (res);
+        }
     }
 
     public void findExpenseHandler () {
@@ -898,6 +925,131 @@ public class ClientInteractor {
     public void updateAndCloseExpenseHandler () {
         updateExpenseHandler();
         closeExpenseUpdateHandler ();
+    }
+
+    public void createPaymentStatusHandler () {
+        CreatePaymentStatusModel model = sceneController.getCreatePaymentStatusModel ();
+
+        String expenseIdString = model.expenseIdProperty().get();
+        String familyIdString = model.familyIdProperty().get();
+        String totalPayString = model.totalPayProperty().get();
+        LocalDate publishedDate = model.publishedDateProperty().get();
+
+        PaymentStatus object = new PaymentStatus (Integer.parseInt(expenseIdString),
+                                                    Integer.parseInt(familyIdString),
+                                                    Integer.parseInt(totalPayString),
+                                                    Date.convertFromLocalDate(publishedDate));
+        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+
+        System.out.println (req.getObject().getSQLInsertCommand());
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        ServerCreateObjectResponse res = sceneController.createObject (req);
+
+        System.out.println (res.getResponseStatus());
+        System.out.println (res.getResponseMessage());
+        System.out.println (res.getObjectId());
+
+        if (res.getResponseStatus() == ResponseStatus.OK) {
+            notificateUpdateSuccessfully ();
+        }
+        else {
+            showFailedWindow (res);
+        }
+    }
+
+    public void findPaymentStatusHandler () {
+        FindPaymentStatusModel model = sceneController.getFindPaymentStatusModel ();
+
+        String paymentStatusIdString = model.paymentStatusIdProperty().get();
+        String expenseIdString = model.expenseIdProperty().get();
+        String familyIdString = model.familyIdProperty().get();
+        // String totalPayString = model.totalPayProperty().get();
+        boolean enableDayFilter = model.enableDateFilterProperty().get();
+        LocalDate beginPublishedDate = model.beginPublishedDateProperty().get();
+        LocalDate endPublishedDate = model.endPublishedDateProperty().get();
+
+        StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
+
+        if (!paymentStatusIdString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (payment_status_id='%s')", paymentStatusIdString));
+        }
+        if (!expenseIdString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (expense_id='%s')", expenseIdString));
+        }
+        if (!familyIdString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (family_id='%s')", familyIdString));
+        }
+        if (enableDayFilter) {
+            conditionBuilder.append (String.format (" AND (published_date>='%s 00:00:00') AND (published_date<'%s 00:00:00')",
+                                                    Date.convertFromLocalDate (beginPublishedDate),
+                                                    Date.convertFromLocalDate (endPublishedDate).plusDays (1)) );
+        }
+
+        String condition = conditionBuilder.toString ();
+
+        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                        condition, new PaymentStatus ());
+
+
+        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+
+        List<PaymentStatus> data = new ArrayList<>();
+        for (Map<String, Object> map : requestResult) {
+            data.add (PaymentStatus.convertFromMap (map));
+        }
+
+        TableView<PaymentStatus> tableView = model.getTableView ();
+        tableView.setItems (FXCollections.observableList (data));
+    }
+
+    public void updatePaymentStatusHandler () {
+        UpdatePaymentStatusModel model = sceneController.getUpdatePaymentStatusModel ();
+        //
+        // GetSQLProperties object = new PaymentStatus (expenseTitle, expenseDescription,
+        //                                         Date.convertFromLocalDate (publishedDate), Integer.parseInt(totalCostString),
+        //                                         expenseType, required);
+        // object.setId(Integer.parseInt (expenseIdString));
+        //
+        // AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+        // ServerUpdateObjectResponse res = sceneController.updateObject (request);
+        //
+        // switch (res.getResponseStatus ()) {
+        //     case OK:
+        //         TableView<PaymentStatus> tableView = sceneController.getFindPaymentStatusModel().getTableView();
+        //         for(int i = 0; i < tableView.getItems().size(); ++i) {
+        //             if (tableView.getItems().get(i).getPaymentStatusId() == object.getId()) {
+        //                 tableView.getItems().set(i, (PaymentStatus) object);
+        //                 break;
+        //             }
+        //         }
+        //
+        //         notificateUpdateSuccessfully ();
+        //         break;
+        //
+        //     default:
+        //         showFailedWindow (res);
+        //         break;
+        // }
+    }
+
+    public void closePaymentStatusUpdateHandler () {
+        sceneController.getUpdatePaymentStatusModel()
+                        .getUpdatePaymentStatusWindow()
+                        .close();
+    }
+
+    public void updateAndClosePaymentStatusHandler () {
+        updatePaymentStatusHandler();
+        closePaymentStatusUpdateHandler ();
     }
 
 }

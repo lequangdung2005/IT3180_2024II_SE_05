@@ -44,12 +44,15 @@ public class AdminHomeSideBar extends BorderPane {
 	AdminExpenseManagePage adminExpenseManagePage = new AdminExpenseManagePage (sceneController);
 	btn4.setOnAction (e -> interactor.setRoot (adminExpenseManagePage));
 
-	// IconButton btn5 = new IconButton (new FontIcon (Material2AL.FAVORITE));
+	IconButton btn5 = new IconButton (new FontIcon (Material2MZ.PAYMENTS));
+	AdminPaymentStatusManagePage adminPaymentStatusPage = new AdminPaymentStatusManagePage (sceneController);
+	btn5.setOnAction (e -> interactor.setRoot (adminPaymentStatusPage));
+
 	// IconButton btn6 = new IconButton (new FontIcon (Material2MZ.SETTINGS));
 
-	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4);
+	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5);
 
-	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4);
+	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 

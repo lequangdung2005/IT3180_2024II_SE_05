@@ -1,7 +1,5 @@
 package com.hust.ittnk68.cnpm.view;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +7,6 @@ import java.util.Optional;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2MZ;
 import org.kordamp.ikonli.material2.Material2OutlinedAL;
-import org.kordamp.ikonli.material2.Material2OutlinedMZ;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -21,24 +18,16 @@ import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
 import com.hust.ittnk68.cnpm.model.Family;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
 import com.hust.ittnk68.cnpm.type.Nation;
-import com.hust.ittnk68.cnpm.type.ResidenceStatus;
-import com.hust.ittnk68.cnpm.type.Sex;
 
-import atlantafx.base.controls.MaskTextField;
 import atlantafx.base.theme.Styles;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -206,6 +195,7 @@ public class AdminFamilyManagePage extends DuongFXTabPane {
         gridPane.add (familyId, 0, 0, 2, 1);
 
         DuongFXIntegerField familyIdTextField = new DuongFXIntegerField ();
+        familyIdTextField.setDisable (true);
         gridPane.add (familyIdTextField, 2, 0, 3, 1);
 
         Text personId = new Text ("Person Id (Chủ nhà):");

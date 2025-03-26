@@ -4,14 +4,17 @@ import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
 import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
 import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
+import com.hust.ittnk68.cnpm.model.CreatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.CreatePersonModel;
 import com.hust.ittnk68.cnpm.model.FindAccountModel;
 import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
+import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
 import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
+import com.hust.ittnk68.cnpm.model.UpdatePaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
@@ -32,8 +35,12 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
@@ -72,6 +79,10 @@ public class ClientSceneController {
     private FindExpenseModel findExpenseModel;
     private UpdateExpenseModel updateExpenseModel;
 
+    private CreatePaymentStatusModel createPaymentStatusModel;
+    private FindPaymentStatusModel findPaymentStatusModel;
+    private UpdatePaymentStatusModel updatePaymentStatusModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -96,6 +107,10 @@ public class ClientSceneController {
         createExpenseModel = new CreateExpenseModel ();
         findExpenseModel = new FindExpenseModel ();
         updateExpenseModel = new UpdateExpenseModel ();
+
+        createPaymentStatusModel = new CreatePaymentStatusModel ();
+        findPaymentStatusModel = new FindPaymentStatusModel ();
+        updatePaymentStatusModel = new UpdatePaymentStatusModel ();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -222,6 +237,35 @@ public class ClientSceneController {
         }
     }
 
+    public ServerPaymentStatusQueryResponse queryPaymentStatus (UserQueryPaymentStatus req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerPaymentStatusQueryResponse res = restClient.post()
+                                                    .uri (getUriBase() + ApiMapping.QUERY_FAMILY_PAYMENT_STATUS)
+                                                    .body (req)
+                                                    .retrieve ()
+                                                    .body (ServerPaymentStatusQueryResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerPaymentStatusQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerObjectByIdQueryResponse userQueryObjectById(UserQueryObjectById req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerObjectByIdQueryResponse res = restClient.post()
+                                                    .uri (getUriBase() + ApiMapping.QUERY_OBJECT_BY_ID)
+                                                    .body (req)
+                                                    .retrieve ()
+                                                    .body (ServerObjectByIdQueryResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerObjectByIdQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+
     public void openSubStage (Stage subStage, Region rg)
     {
         subStage.initModality (Modality.APPLICATION_MODAL);
@@ -340,6 +384,16 @@ public class ClientSceneController {
     }
     public UpdateExpenseModel getUpdateExpenseModel () {
         return updateExpenseModel;
+    }
+
+    public CreatePaymentStatusModel getCreatePaymentStatusModel () {
+        return createPaymentStatusModel;
+    }
+    public FindPaymentStatusModel getFindPaymentStatusModel () {
+        return findPaymentStatusModel;
+    }
+    public UpdatePaymentStatusModel getUpdatePaymentStatusModel () {
+        return updatePaymentStatusModel;
     }
 
     public Scene getScene () {

@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +22,17 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.exception.UserCreateSecondSession;
 import com.hust.ittnk68.cnpm.model.Account;
+import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.session.Session;
@@ -34,16 +40,24 @@ import com.hust.ittnk68.cnpm.session.SessionController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
-class UserHomeMetadata {
-	public String fullname;
-	public String houseNumber;
-	public int totalSpendingThisMonth;
-	public List<Person> familyPersonList;
-}
-
 @RestController
 @SpringBootApplication
 public class Server {
+
+	private boolean checkPrivilegeAdminAbove (Session session) {
+		if (!session.getAccount().getAccountType().equals(AccountType.ROOT)
+			&& !session.getAccount().getAccountType().equals(AccountType.ADMIN))
+			return false;
+		return true;
+	}
+
+	private boolean checkObjectUserCanQuery (GetSQLProperties g) {
+		// if (g instanceof Expense) {
+		// 	return true;
+		// }
+		// return false;
+		return true;
+	}
 
 	private static Account getAccountByUsernamePassword(String username, String digestPassword) {
 		try
@@ -77,52 +91,27 @@ public class Server {
 		return null;
 	}
 
-	private static List< Map<String, Object> > queryPaymentStatusFromDatabase(int familyId, int month) {
-		try
-		{
-			return MySQLDatabase.findByCondition(
-				String.format("family_id=%d AND DATE_FORMAT(published_date,'%%m')=%d", familyId, month),
-				new PaymentStatus()
-			);
+	@RequestMapping(ApiMapping.QUERY_OBJECT_BY_ID)
+	private ServerObjectByIdQueryResponse queryObjectById (@RequestBody UserQueryObjectById req) {
+		String token = req.getToken ();
+
+		Session session = SessionController.getSession (token);
+		if (session == null)
+			return new ServerObjectByIdQueryResponse (ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+		
+		if (!checkObjectUserCanQuery (req.getObject ()))
+			return new ServerObjectByIdQueryResponse (ResponseStatus.PERMISSION_ERROR, "you don't have permission to do this...");
+
+		try {
+			GetSQLProperties g = req.getObject();
+			List<Map<String, Object>> res = MySQLDatabase.findByCondition (String.format("%s_id='%d'", g.getSQLTableName(), g.getId()),
+																			req.getObject());
+			return new ServerObjectByIdQueryResponse (ResponseStatus.OK, "succeed", res);
 		}
-		catch (Exception e) {
+		catch (SQLException e) {
 			e.printStackTrace();
+			return new ServerObjectByIdQueryResponse (ResponseStatus.SQL_ERROR, e.toString());
 		}
-		return null;
-	}
-
-	private static int getTotalSpending(int familyId, int month) {
-		List< Map<String, Object> > list = queryPaymentStatusFromDatabase(familyId, month);
-		System.out.println(list);
-		int totalSpending = 0;
-		for(Map<String, Object> map : list) {
-			totalSpending += (int)map.get("total_pay"); 
-		}
-		return totalSpending;
-	}
-
-	private static Map<String, Object> getMetadataById(int id, GetSQLProperties g) {
-		try
-		{
-			List< Map<String, Object> > list = MySQLDatabase.findByCondition(
-				String.format("%s_id=%d", g.getSQLTableName(), id),
-				g
-			);
-
-			System.out.println(list);
-
-			if(list.isEmpty()) {
-				return null;
-			}
-			if(list.size() > 1) {
-				// exception ?
-			}
-			return list.get(0);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	@RequestMapping(ApiMapping.START_SESSION)
@@ -160,13 +149,6 @@ public class Server {
 	{
 		System.out.println ("End session, token = " + token);
 		SessionController.endSession (token);
-	}
-
-	private boolean checkPrivilegeAdminAbove (Session session) {
-		if (!session.getAccountType().equals(AccountType.ROOT)
-			&& !session.getAccountType().equals(AccountType.ADMIN))
-			return false;
-		return true;
 	}
 
 	@RequestMapping(ApiMapping.CREATE_OBJECT)
@@ -246,6 +228,26 @@ public class Server {
 		catch (SQLException e) {
 			e.printStackTrace();
 			return new ServerUpdateObjectResponse (ResponseStatus.SQL_ERROR, e.toString());
+		}
+	}
+
+	@RequestMapping(ApiMapping.QUERY_FAMILY_PAYMENT_STATUS)
+	private ServerPaymentStatusQueryResponse queryPaymentStatus (@RequestBody UserQueryPaymentStatus request) {
+		String token = request.getToken ();
+
+		Session session = SessionController.getSession (token); 
+		if (session == null)
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.SESSION_ERROR, "token is invalid or is expired");
+
+		try {
+			StringBuilder conditionBuilder = new StringBuilder ( String.format("family_id='%d'", session.getAccount().getFamilyId()) );
+			String condition = conditionBuilder.toString ();
+			List<Map<String, Object>> query = MySQLDatabase.findByCondition (condition, new PaymentStatus());
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.OK, "", query);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new ServerPaymentStatusQueryResponse(ResponseStatus.SQL_ERROR, e.toString());
 		}
 	}
 

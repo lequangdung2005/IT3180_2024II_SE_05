@@ -8,11 +8,14 @@ import com.hust.ittnk68.cnpm.type.Sex;
 
 import com.hust.ittnk68.cnpm.model.Person;
 
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriBuilder;
@@ -44,58 +47,16 @@ import com.hust.ittnk68.cnpm.communication.*;
 
 public class App {
 	public static void main(String[] args) throws NoSuchFileException, IOException, ConfigFileException {
-		int familyId;
-		String username;
-		String password;
-		String type;
 
-		Scanner scanner = new Scanner (System.in);
+		GetSQLProperties g = new Person ();
 
 		try {
-			familyId = scanner.nextInt ();
-			username = scanner.next ();
-			password = scanner.next ();
-			type = scanner.next ();
+
 		}
 		catch (Exception e) {
-			scanner.close ();
-			return;
+			e.printStackTrace ();
 		}
+		System.out.println (DigestUtils.sha256Hex ("root"));
 
-		Account acc = new Account (familyId, username, password, null, AccountType.matchByString (type).get());
-
-		AdminCreateAccount req = new AdminCreateAccount ("not check yet", acc);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		String jsonString = mapper.writeValueAsString (req.getAccount());
-		System.out.println (jsonString);
-
-		System.out.println ("Do you want to continue? [y/n]");
-
-		String option;
-		try { 
-			option = scanner.next();
-		}
-		catch (Exception e) {
-			scanner.close ();
-			return;
-		}
-
-		if (!option.equals ("y")) {
-			scanner.close ();
-			return;
-		}
-		scanner.close ();
-
-
-		RestClient restClient = RestClient.create (); 
-		ServerResponseBase res =  restClient.post()
-									.uri ("http://127.0.0.1:8080/" + ApiMapping.CREATE_ACCOUNT)
-									.body (req)
-									.retrieve ()
-									.body (ServerResponseBase.class);
-
-		System.out.println (res.getResponseStatus() + " " + res.getResponseMessage());
 	} 
 }

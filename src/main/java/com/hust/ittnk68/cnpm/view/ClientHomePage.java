@@ -49,9 +49,9 @@ public class ClientHomePage extends DuongFXGridPane {
 	chart.getData().addAll (donate, expense);
 
 	HBox hb = createHbox ();
-	hb.setPadding (new Insets (10, 0, 0, 0));
-	HBox.setHgrow (chart, Priority.ALWAYS);
-	hb.getChildren ().add (chart);
+	// hb.setPadding (new Insets (10, 0, 0, 0));
+	// HBox.setHgrow (chart, Priority.ALWAYS);
+	// hb.getChildren ().add (chart);
 
 	this.add (hb, 0, 0, 8, 5);
 

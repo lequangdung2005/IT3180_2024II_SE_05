@@ -110,7 +110,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 
     private Tile createExpenseTile (Expense expense, PaymentStatus ps) {
 	Tile tile = new Tile (expense.getExpenseTitle(),
-		expense.getPublishedDate() + " --- " + String.format("%,d/%,d", ps.getTotalPay(), expense.getTotalCost()) + " --- " + expense.getExpenseDescription());
+		expense.getPublishedDate() + " --- " + String.format("%,d / %,d", ps.getTotalPay(), expense.getTotalCost()) + " --- " + expense.getExpenseDescription());
 	FontIcon graphicIcon = new FontIcon (ExpenseType.getIkonCode(expense.getExpenseType()));
 	tile.setGraphic (graphicIcon);
 

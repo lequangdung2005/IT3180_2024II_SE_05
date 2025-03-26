@@ -40,7 +40,7 @@ public class SessionController
         if (session == null) {
             return null;
         }
-        updateUserSessionState (session.getUsername ());
+        updateUserSessionState (session.getAccount().getUsername ());
         return tokenToSession.get (token);
     }
 
@@ -57,7 +57,7 @@ public class SessionController
         }
         token = Token.generateToken ();
         usernameToToken.put (username, token);
-        tokenToSession.put (token, new Session (username, accountType));
+        tokenToSession.put (token, new Session (account, accountType));
         return token;
     }
 
@@ -68,7 +68,7 @@ public class SessionController
             return -1;
         }
 
-        String username = tokenToSession.get(token).getUsername();
+        String username = tokenToSession.get(token).getAccount().getUsername();
         usernameToToken.remove (username);
         tokenToSession.remove (token);
         return 0;

@@ -3,18 +3,17 @@ package com.hust.ittnk68.cnpm.session;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.type.AccountType;
 
 public class Session
 {
-    private String username;
-    private AccountType accountType;
+    Account account;
     private Date sessionEnd;
 
-    public Session (String username, AccountType accountType)
+    public Session (Account account, AccountType accountType)
     {
-        this.username = username;
-        this.accountType = accountType;
+        this.account = account;
 
         Date currentDate = new Date ();
         Calendar cal = Calendar.getInstance ();
@@ -25,11 +24,8 @@ public class Session
         this.sessionEnd = cal.getTime ();
     }
 
-    public String getUsername () {
-        return username;
-    }
-    public AccountType getAccountType() {
-        return accountType;
+    public Account getAccount () {
+        return account;
     }
     public Date getSessionEnd ()
     {

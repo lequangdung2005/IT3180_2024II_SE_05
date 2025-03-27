@@ -1,51 +1,23 @@
 package com.hust.ittnk68.cnpm.app;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.web.client.RestClient;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.hust.ittnk68.cnpm.controller.ClientHomeScreenController;
-import com.hust.ittnk68.cnpm.controller.LoginController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.view.ClientHomeScreenView;
-import com.hust.ittnk68.cnpm.model.Person;
-import com.hust.ittnk68.cnpm.session.SessionController;
-import com.hust.ittnk68.cnpm.session.Token;
-import com.hust.ittnk68.cnpm.type.Date;
 
-import atlantafx.base.theme.NordDark;
-import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.geometry.Side;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TabPane.TabClosingPolicy;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+
+import java.awt.im.InputContext;
 
 public class Client extends Application {
 	private static ClientSceneController sceneController;
 
 	public static void main(String[] args) {
 
+		InputContext.getInstance();
 		Locale.setDefault (Locale.forLanguageTag ("vi"));
 
 		if(args.length != 1 && args.length != 2) {

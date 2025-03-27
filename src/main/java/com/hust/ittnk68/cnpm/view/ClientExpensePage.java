@@ -15,18 +15,23 @@ import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
-import com.hust.ittnk68.cnpm.type.Date;
 import com.hust.ittnk68.cnpm.type.ExpenseType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
 import atlantafx.base.controls.Tile;
 import atlantafx.base.theme.Styles;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+interface updateMessageInterface {
+    void updateMsg (String message);
+}
 
 public class ClientExpensePage extends DuongFXTabPane {
 
@@ -34,13 +39,40 @@ public class ClientExpensePage extends DuongFXTabPane {
     List<Node> payedTile = new ArrayList<> ();
 
     public ClientExpensePage (ClientSceneController sceneController) {
-	fetchData (sceneController);
 
-	this.getTabs().add (createTab ("Chưa thanh toán", notPayedTile));
-	this.getTabs().add (createTab ("Đã thanh toán", payedTile));
+	Task<Void> fetchDataTask = new Task<>() {
+
+	    @Override
+	    public Void call () {
+		fetchData (sceneController, new updateMessageInterface() {
+		    @Override
+		    public void updateMsg (String message) {
+			updateMessage (message);
+		    }
+		});
+		return null;
+	    }
+
+	};
+
+        LoadingView root = new LoadingView (fetchDataTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+	fetchDataTask.setOnSucceeded (e -> {
+	    stage.close();
+
+	    this.getTabs().add (createTab ("Chưa thanh toán", notPayedTile));
+	    this.getTabs().add (createTab ("Đã thanh toán", payedTile));
+	});
+
+	new Thread (fetchDataTask).start ();
     }
 
-    private void fetchData (ClientSceneController sceneController) {
+    private void fetchData (ClientSceneController sceneController, updateMessageInterface caller) {
+
+	caller.updateMsg("Fetching expense ...");
+
 	UserQueryPaymentStatus request = new UserQueryPaymentStatus (sceneController.getToken ());
 	ServerPaymentStatusQueryResponse res = sceneController.queryPaymentStatus (request);
 
@@ -54,10 +86,12 @@ public class ClientExpensePage extends DuongFXTabPane {
 	}
 
 	List<Map<String, Object>> list = res.getResult();
+	int expenseCount = 0;
 
 	for (Map<String, Object> map : list) {
 	    PaymentStatus ps = PaymentStatus.convertFromMap (map);
 
+	    caller.updateMsg (String.format ("Fetching expense %d ...", ++expenseCount));
 
 	    Expense tmpExpense = new Expense ();
 	    tmpExpense.setId (ps.getExpenseId ());

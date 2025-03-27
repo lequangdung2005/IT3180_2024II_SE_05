@@ -95,7 +95,7 @@ public class PaymentStatus extends GetSQLProperties {
     @Override
     @JsonIgnore
     public String getSQLUpdateCommand() {
-        return String.format("UPDATE %s SET expense_id='%d',family_id='%d',total_pay='%d',published_date'%s' WHERE %s_id=%d;",
+        return String.format("UPDATE %s SET expense_id='%d',family_id='%d',total_pay='%d',published_date='%s' WHERE %s_id='%d';",
                 this.getSQLTableName(),
                 expenseId, familyId, totalPay, publishedDate,
                 this.getSQLTableName(), getId());

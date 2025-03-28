@@ -26,6 +26,9 @@ public class ConfigFileLoader {
 	    e.printStackTrace();
 	}
     }
+    public ConfigFileLoader(String filePath) {
+	this (filePath, null);
+    }
 
     public String getProperty(String key) {
 	return props.getProperty(key);

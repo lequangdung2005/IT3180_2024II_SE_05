@@ -1,0 +1,13 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/model/Account.java" name="src/main/java/com/hust/ittnk68/cnpm/model/Account.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="383,5,602,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,239,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,51,191,102,189,97,405,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="262,104,358,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="451,51,351,99,349,94,449,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="382,96,603,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="495,48,495,81,490,81,490,48"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="628,96,843,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="550,46,665,88,663,93,549,51"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="867,96,1054,139"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="603,46,852,93,851,98,602,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="com.hust.ittnk68.cnpm.view.LoadingView" name="com.hust.ittnk68.cnpm.view.LoadingView">
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,139,202,224"/>
+<area shape="rect" id="Node000002" href="$classVBox.html" title=" " alt="" coords="5,5,48,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,86,90,138,86,141,53,89"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="72,5,155,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,75,116,122,111,122,111,75"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="179,5,221,75"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,76,160,116,153,126,149,123,155,113,179,73"/>
+</map>

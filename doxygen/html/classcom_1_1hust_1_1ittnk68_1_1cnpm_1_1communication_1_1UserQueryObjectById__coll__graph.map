@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.communication.UserQueryObjectById" name="com.hust.ittnk68.cnpm.communication.UserQueryObjectById">
+<area shape="rect" id="Node000001" title=" " alt="" coords="139,304,378,432"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageBase.html" title=" " alt="" coords="5,59,245,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,198,227,303,222,306,164,201"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1GetSQLProperties.html" title=" " alt="" coords="269,5,514,240"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="331,241,303,291,299,288,326,238"/>
+</map>

@@ -1,0 +1,78 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Connection \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_aac43aaed2c06e03779c7151db861c85c}{create\+Connection}} (String driver, String url, String username, String password)  throws SQLException 
+\item 
+static void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a21ab001450fff0ed9ca3cce74879ae9f}{close}} (Connection connection)
+\item 
+static void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a9c140404e9233516190050b7f2d5f656}{close}} (Statement st)
+\item 
+static void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a88970c61b01563ef452c11a0c4236dd1}{close}} (Result\+Set rs)
+\item 
+static void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_af020ec796afc2e841768331457989ffe}{rollback}} (Connection connection)
+\item 
+static List$<$ Map$<$ String, Object $>$ $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_afccae994cc05a4f73e75399146df765c}{map}} (Result\+Set rs)  throws SQLException 
+\item 
+static List$<$ Map$<$ String, Object $>$ $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a002e136179057716f227242f696f2842}{find\+Account\+By\+Username}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabase}{My\+SQLDatabase}} sql, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Account}{Account}} acc)  throws SQLException     
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a21ab001450fff0ed9ca3cce74879ae9f}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!close@{close}}
+\index{close@{close}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a21ab001450fff0ed9ca3cce74879ae9f} 
+static void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+close (\begin{DoxyParamCaption}\item[{Connection}]{connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a88970c61b01563ef452c11a0c4236dd1}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!close@{close}}
+\index{close@{close}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a88970c61b01563ef452c11a0c4236dd1} 
+static void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+close (\begin{DoxyParamCaption}\item[{Result\+Set}]{rs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a9c140404e9233516190050b7f2d5f656}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!close@{close}}
+\index{close@{close}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a9c140404e9233516190050b7f2d5f656} 
+static void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+close (\begin{DoxyParamCaption}\item[{Statement}]{st}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_aac43aaed2c06e03779c7151db861c85c}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!createConnection@{createConnection}}
+\index{createConnection@{createConnection}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{createConnection()}{createConnection()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_aac43aaed2c06e03779c7151db861c85c} 
+static Connection com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+create\+Connection (\begin{DoxyParamCaption}\item[{String}]{driver}{, }\item[{String}]{url}{, }\item[{String}]{username}{, }\item[{String}]{password}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a002e136179057716f227242f696f2842}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!findAccountByUsername@{findAccountByUsername}}
+\index{findAccountByUsername@{findAccountByUsername}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{findAccountByUsername()}{findAccountByUsername()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_a002e136179057716f227242f696f2842} 
+static List$<$ Map$<$ String, Object $>$ $>$ com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+find\+Account\+By\+Username (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabase}{My\+SQLDatabase}}}]{sql}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Account}{Account}}}]{acc}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_afccae994cc05a4f73e75399146df765c}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!map@{map}}
+\index{map@{map}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_afccae994cc05a4f73e75399146df765c} 
+static List$<$ Map$<$ String, Object $>$ $>$ com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+map (\begin{DoxyParamCaption}\item[{Result\+Set}]{rs}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_af020ec796afc2e841768331457989ffe}\index{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}!rollback@{rollback}}
+\index{rollback@{rollback}!com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils@{com.hust.ittnk68.cnpm.database.MySQLDatabaseUtils}}
+\doxysubsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils_af020ec796afc2e841768331457989ffe} 
+static void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+Utils.\+rollback (\begin{DoxyParamCaption}\item[{Connection}]{connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/database/\mbox{\hyperlink{MySQLDatabaseUtils_8java}{My\+SQLDatabase\+Utils.\+java}}\end{DoxyCompactItemize}

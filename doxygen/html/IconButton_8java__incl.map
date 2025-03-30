@@ -1,0 +1,13 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/view/IconButton.java" name="src/main/java/com/hust/ittnk68/cnpm/view/IconButton.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="390,5,616,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,193,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="409,51,208,95,207,90,408,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="216,96,387,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="457,51,364,92,362,87,455,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="411,104,595,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="506,48,506,88,500,88,500,48"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="619,104,758,131"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="548,46,649,94,647,99,545,51"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="782,104,962,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="590,46,805,97,804,102,589,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="com.hust.ittnk68.cnpm.interactor.ClientInteractor" name="com.hust.ittnk68.cnpm.interactor.ClientInteractor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="212,965,436,1765"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1ClientModel.html" title=" " alt="" coords="5,293,192,613"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,612,207,901,218,948,213,949,201,902,133,614"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1ClientSceneController.html" title=" " alt="" coords="216,5,432,901"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="327,901,327,948,321,948,321,901"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="456,419,538,488"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="498,488,481,665,466,783,447,902,437,949,432,948,441,901,461,782,475,665,492,488"/>
+</map>

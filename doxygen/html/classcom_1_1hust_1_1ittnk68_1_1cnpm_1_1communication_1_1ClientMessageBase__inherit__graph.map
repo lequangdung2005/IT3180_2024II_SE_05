@@ -1,0 +1,17 @@
+<map id="com.hust.ittnk68.cnpm.communication.ClientMessageBase" name="com.hust.ittnk68.cnpm.communication.ClientMessageBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="797,5,1037,133"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminCreateObject.html" title=" " alt="" coords="5,213,245,341"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="783,78,667,88,534,107,393,138,324,159,258,184,201,216,199,211,256,179,323,154,392,133,533,102,667,83,782,73"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminDeleteObject.html" title=" " alt="" coords="269,203,509,352"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="783,99,654,133,587,156,522,184,484,205,482,201,520,179,585,151,653,128,782,93"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminFindObject.html" title=" " alt="" coords="533,192,773,363"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="827,145,762,194,759,190,823,140"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminUpdateObject.html" title=" " alt="" coords="797,213,1037,341"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="920,148,920,213,914,213,914,148"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageStartSession.html" title=" " alt="" coords="1061,181,1301,373"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1011,140,1063,181,1060,185,1008,145"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryObjectById.html" title=" " alt="" coords="1325,213,1565,341"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1052,93,1182,128,1249,151,1314,179,1369,211,1366,216,1312,184,1247,156,1180,133,1051,99"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus.html" title=" " alt="" coords="1589,235,1829,320"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1052,73,1168,83,1302,102,1442,133,1512,154,1578,179,1624,203,1664,233,1661,237,1621,208,1576,184,1510,159,1441,138,1301,107,1167,88,1051,78"/>
+</map>

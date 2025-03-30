@@ -1,0 +1,7 @@
+<map id="Button" name="Button">
+<area shape="rect" id="Node000001" title=" " alt="" coords="169,5,218,75"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1CustomButton.html" title=" " alt="" coords="5,123,182,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,84,129,125,125,121,158,81"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1IconButton.html" title=" " alt="" coords="207,123,383,208"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,80,263,121,259,125,225,84"/>
+</map>

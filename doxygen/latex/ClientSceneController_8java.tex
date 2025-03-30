@@ -1,0 +1,72 @@
+\doxysection{src/main/java/com/hust/ittnk68/cnpm/controller/\+Client\+Scene\+Controller.java File Reference}
+\hypertarget{ClientSceneController_8java}{}\label{ClientSceneController_8java}\index{src/main/java/com/hust/ittnk68/cnpm/controller/ClientSceneController.java@{src/main/java/com/hust/ittnk68/cnpm/controller/ClientSceneController.java}}
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Client\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Create\+Account\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Create\+Expense\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Create\+Family\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Create\+Payment\+Status\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Create\+Person\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Find\+Account\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Find\+Expense\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Find\+Family\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Find\+Payment\+Status\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Find\+Person\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Update\+Account\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Update\+Expense\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Update\+Family\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Update\+Payment\+Status\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Update\+Person\+Model;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+type.\+Account\+Type;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+type.\+Response\+Status;}\newline
+{\ttfamily import atlantafx.\+base.\+controls.\+Notification;}\newline
+{\ttfamily import atlantafx.\+base.\+theme.\+Styles;}\newline
+{\ttfamily import atlantafx.\+base.\+util.\+Animations;}\newline
+{\ttfamily import org.\+kordamp.\+ikonli.\+javafx.\+Font\+Icon;}\newline
+{\ttfamily import org.\+springframework.\+web.\+client.\+Rest\+Client;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Admin\+Create\+Object;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Admin\+Delete\+Object;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Admin\+Find\+Object;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Admin\+Update\+Object;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Api\+Mapping;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Client\+Message\+Start\+Session;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Create\+Object\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Delete\+Object\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Find\+Object\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Object\+By\+Id\+Query\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Payment\+Status\+Query\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Response\+Start\+Session;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Update\+Object\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+User\+Query\+Object\+By\+Id;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+User\+Query\+Payment\+Status;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+controller.\+Client\+Scene\+Controller;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+interactor.\+Client\+Interactor;}\newline
+{\ttfamily import javafx.\+animation.\+Timeline;}\newline
+{\ttfamily import javafx.\+geometry.\+Insets;}\newline
+{\ttfamily import javafx.\+geometry.\+Pos;}\newline
+{\ttfamily import javafx.\+scene.\+Parent;}\newline
+{\ttfamily import javafx.\+scene.\+Scene;}\newline
+{\ttfamily import javafx.\+scene.\+layout.\+Region;}\newline
+{\ttfamily import javafx.\+scene.\+layout.\+Stack\+Pane;}\newline
+{\ttfamily import javafx.\+scene.\+shape.\+Rectangle;}\newline
+{\ttfamily import javafx.\+scene.\+paint.\+Color;}\newline
+{\ttfamily import javafx.\+stage.\+Modality;}\newline
+{\ttfamily import javafx.\+stage.\+Stage;}\newline
+{\ttfamily import javafx.\+stage.\+Stage\+Style;}\newline
+{\ttfamily import javafx.\+util.\+Duration;}\newline
+Include dependency graph for Client\+Scene\+Controller.\+java\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ClientSceneController_8java__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1ClientSceneController}{com.\+hust.\+ittnk68.\+cnpm.\+controller.\+Client\+Scene\+Controller}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Packages}
+\begin{DoxyCompactItemize}
+\item 
+package \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller}{com.\+hust.\+ittnk68.\+cnpm.\+controller}}
+\end{DoxyCompactItemize}

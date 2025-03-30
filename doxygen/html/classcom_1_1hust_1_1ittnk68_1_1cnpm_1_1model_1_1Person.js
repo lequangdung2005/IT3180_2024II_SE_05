@@ -1,0 +1,28 @@
+var classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person =
+[
+    [ "Person", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a6b22c0b69d54d7aa3b13789718a1d99a", null ],
+    [ "Person", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#aadd0e19c509e7e0f27cb1752771075a6", null ],
+    [ "getCitizenIdentificationNumber", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a67890d22e59e3700c37303544e484528", null ],
+    [ "getDateOfBirth", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#ad0916fa55f117a5dba636d3b3fa2b3aa", null ],
+    [ "getFamilyId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a429a79f2ed19a9f57b30c7017bac8c51", null ],
+    [ "getFullname", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#ad76a714f0cfb94bc79f769866ec83663", null ],
+    [ "getId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a322bc1ba607dda940724ddc1512fae8f", null ],
+    [ "getNationality", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a553ec0ed10428f0554fc45ab9d7ec449", null ],
+    [ "getPersonId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a368be6f07e6b4732269d78906437dab6", null ],
+    [ "getPhoneNumber", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#ae54b2d54dc204f0385159144d897f8cd", null ],
+    [ "getResidenceStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#aeee5f16cb4e29ff531e9252aed322d50", null ],
+    [ "getSex", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a054fafa8cd1a92f29eb35bba9dce3e5d", null ],
+    [ "getSQLInsertCommand", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#aa890289eb71f0e6f7ef29bdb142c99bc", null ],
+    [ "getSQLTableName", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#af0d68036eb1b837fb91f57d8360c8099", null ],
+    [ "getSQLUpdateCommand", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#aca1352c26228472740ab01d5a0f0825a", null ],
+    [ "setCitizenIdentificationNumber", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#af00367c27f3c0af0a86e8b67685fc533", null ],
+    [ "setDateOfBirth", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a68d4586ae79ae822aa9a595c5c616858", null ],
+    [ "setFamilyId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a95e7364f921b7716b6e7f8f9963b3b0e", null ],
+    [ "setFullname", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a05973a02df1a1f22d64c3b1d2c2ae1d0", null ],
+    [ "setId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#ac8a7604d53f3218e6fd1c8bb2125d8d5", null ],
+    [ "setNationality", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a88f6ab8d984ac2de7efd487db644f79f", null ],
+    [ "setPersonId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a9427bc7f08cb58e90b53e324c4c83c82", null ],
+    [ "setPhoneNumber", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a60c6737600a30a1a5dbd26213a2a0333", null ],
+    [ "setResidenceStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#a66605ec95a95dc86b92588ef8aef7128", null ],
+    [ "setSex", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Person.html#ac6ef85000d0ee65eb91e1a4e9d2ecc2c", null ]
+];

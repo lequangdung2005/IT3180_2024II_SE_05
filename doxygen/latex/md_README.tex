@@ -1,0 +1,25 @@
+\chapter{SE-\/intro-\/project}
+\hypertarget{md_README}{}\label{md_README}\index{SE-\/intro-\/project@{SE-\/intro-\/project}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Cài đặt}{Cài đặt}}\label{md_README_autotoc_md1}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/lequangdung2005/IT3180\_2024II\_SE\_05.git}
+\DoxyCodeLine{cd\ SE-\/intro-\/project}
+\DoxyCodeLine{mvn\ install}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{Chạy chương trình}{Chạy chương trình}}\label{md_README_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Đầu\ tiên\ chạy\ server\ mysql}
+\DoxyCodeLine{\#\ Sửa\ đường\ url\ trong\ src/resources/MySQL.conf\ cho\ phù\ hợp}
+\DoxyCodeLine{mvn\ clean\ compile}
+\DoxyCodeLine{\#\ Bật\ server}
+\DoxyCodeLine{mvn\ exec:java\ -\/Dexec.mainClass="{}com.hust.ittnk68.cnpm.app.Server"{}}
+\DoxyCodeLine{\#\ Khởi\ chạy\ app}
+\DoxyCodeLine{mvn\ exec:java\ -\/Dexec.mainClass="{}com.hust.ittnk68.cnpm.app.Client"{}\ -\/Dexec.args="{}http://127.0.0.1:8080"{}}
+
+\end{DoxyCode}
+ 

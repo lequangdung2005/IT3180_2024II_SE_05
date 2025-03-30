@@ -1,0 +1,21 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/type/ExpenseType.java" name="src/main/java/com/hust/ittnk68/cnpm/type/ExpenseType.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="508,5,748,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,101,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="507,40,321,61,216,78,114,99,102,102,101,96,112,93,215,73,320,56,507,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="124,104,243,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="507,50,385,71,255,99,241,102,240,97,254,93,384,66,506,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="267,104,375,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="555,51,388,99,378,102,376,97,387,93,553,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="399,104,526,131"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="590,51,501,99,498,94,588,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="550,104,706,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="630,48,630,88,625,88,625,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="730,96,918,139"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="675,46,765,87,763,92,673,51"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="942,96,1130,139"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="724,46,927,90,926,95,723,51"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1154,96,1342,139"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="748,39,928,62,1138,93,1138,98,928,67,748,45"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1366,96,1588,139"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="748,34,1020,57,1351,93,1351,98,1020,62,748,39"/>
+</map>

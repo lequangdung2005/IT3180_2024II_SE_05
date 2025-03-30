@@ -137,8 +137,6 @@ public class ClientSceneController {
 
     public ServerResponseStartSession startSession (ClientMessageStartSession message)
     {
-        // loading screen ...
-
         ServerResponseStartSession res;
         try {
             RestClient restClient = clientModel.getRestClient ();
@@ -152,7 +150,6 @@ public class ClientSceneController {
         {
             return new ServerResponseStartSession (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server", "", AccountType.UNVALID);
         }
-        // stop loading screen ...
         return res;
     }
 

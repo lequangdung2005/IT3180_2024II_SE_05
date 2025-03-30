@@ -54,14 +54,18 @@ import com.hust.ittnk68.cnpm.type.Nation;
 import com.hust.ittnk68.cnpm.type.ResidenceStatus;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 import com.hust.ittnk68.cnpm.type.Sex;
+import com.hust.ittnk68.cnpm.view.LoadingView;
 
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class ClientInteractor {
     ClientModel model;
@@ -89,44 +93,58 @@ public class ClientInteractor {
                                             new FontIcon (Material2AL.FLAG));
         }
         else {
-            String digestPassword = DigestUtils.sha256Hex(password);
 
-            ClientMessageStartSession message = new ClientMessageStartSession (username, digestPassword);
-            ServerResponseStartSession res = sceneController.startSession (message);
+            Task<ServerResponseStartSession> startSessionTask = new Task<>() {
+                @Override
+                public ServerResponseStartSession call () {
+                    String digestPassword = DigestUtils.sha256Hex(password);
+                    ClientMessageStartSession message = new ClientMessageStartSession (username, digestPassword);
+                    updateMessage ("Login ...");
+                    return sceneController.startSession (message);
+                }
+            };
 
-            // xu ly exception
-            // khong ket noi dc => thong bao
+            LoadingView root = new LoadingView (startSessionTask);
+            Stage stage = new Stage ();
+            sceneController.openSubStage (stage, root);
 
-            if (res.getResponseStatus ().equals (ResponseStatus.CANT_CONNECT_SERVER))
-            {
-                System.out.println ("ko ket noi den server dc");
-                sceneController.openWarningNoti ("Không thể kết nối đến server.",
-                                                new FontIcon (Material2AL.FLAG));
-                return;
-            } 
- 
-            if (res.getResponseStatus ().equals (ResponseStatus.SESSION_ERROR))
-            {
-                System.out.println ("tai khoan dang dc dang nhap ...");
-                sceneController.openWarningNoti ("Tài khoản đang được đăng nhập trên thiết bị khác.",
-                                                 new FontIcon (Material2AL.FLAG));
-                return;
-            }
+            startSessionTask.setOnSucceeded (e -> {
+                stage.close ();
 
-            sceneController.setToken (res.getToken ());
-            System.out.println ("token = " + sceneController.getToken ());
+                ServerResponseStartSession res = startSessionTask.getValue ();
+                if (res.getResponseStatus ().equals (ResponseStatus.CANT_CONNECT_SERVER))
+                {
+                    System.out.println ("ko ket noi den server dc");
+                    sceneController.openWarningNoti ("Không thể kết nối đến server.",
+                                                    new FontIcon (Material2AL.FLAG));
+                    return;
+                } 
+     
+                if (res.getResponseStatus ().equals (ResponseStatus.SESSION_ERROR))
+                {
+                    System.out.println ("tai khoan dang dc dang nhap ...");
+                    sceneController.openWarningNoti ("Tài khoản đang được đăng nhập trên thiết bị khác.",
+                                                     new FontIcon (Material2AL.FLAG));
+                    return;
+                }
 
-            if(res.getAccountType().equals(AccountType.UNVALID)) {
-                System.out.println("dang nhap lai");
-            }
-            else if(res.getAccountType().equals(AccountType.ADMIN) || res.getAccountType().equals(AccountType.ROOT)) {
-                System.out.println("admin");
-                sceneController.setRoot(new AdminHomeScreenController(sceneController).getView());
-            }
-            else if(res.getAccountType().equals(AccountType.USER)) {
-                System.out.println("user");
-                sceneController.setRoot(new ClientHomeScreenController(sceneController).getView());
-            }
+                sceneController.setToken (res.getToken ());
+                System.out.println ("token = " + sceneController.getToken ());
+
+                if(res.getAccountType().equals(AccountType.UNVALID)) {
+                    System.out.println("dang nhap lai");
+                }
+                else if(res.getAccountType().equals(AccountType.ADMIN) || res.getAccountType().equals(AccountType.ROOT)) {
+                    System.out.println("admin");
+                    sceneController.setRoot(new AdminHomeScreenController(sceneController).getView());
+                }
+                else if(res.getAccountType().equals(AccountType.USER)) {
+                    System.out.println("user");
+                    sceneController.setRoot(new ClientHomeScreenController(sceneController).getView());
+                }
+            });
+
+            new Thread (startSessionTask).start ();
         }
     }
 
@@ -256,18 +274,34 @@ public class ClientInteractor {
             e.printStackTrace ();
         }
 
-        ServerCreateObjectResponse res = sceneController.createObject (req);
+        Task<ServerCreateObjectResponse> createPersonTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create person ...");
+                return sceneController.createObject (req);
+            }
+        };
 
-        System.out.println (res.getResponseStatus());
-        System.out.println (res.getResponseMessage());
-        System.out.println (res.getObjectId());
+        LoadingView root = new LoadingView (createPersonTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        if (res.getResponseStatus() == ResponseStatus.OK) {
-            notificateUpdateSuccessfully ();
-        }
-        else {
-            showFailedWindow (res);
-        }
+        createPersonTask.setOnSucceeded (e -> {
+            stage.close ();
+
+            ServerCreateObjectResponse res = createPersonTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createPersonTask).start ();
     }
 
     public void findPersonHandler () {
@@ -334,18 +368,33 @@ public class ClientInteractor {
 
         String condition = conditionBuilder.toString ();
 
-        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
-                                        condition, new Person ());
+        Task<List<Map<String, Object>> > findPersonTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find people query ...");
+                AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                                condition, new Person ());
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
 
-        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        LoadingView root = new LoadingView (findPersonTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        List<Person> data = new ArrayList<>();
-        for (Map<String, Object> map : requestResult) {
-            data.add (Person.convertFromMap (map));
-        }
+        findPersonTask.setOnSucceeded (e -> {
+            stage.close();
 
-        TableView<Person> tableView = model.getTableView ();
-        tableView.setItems (FXCollections.observableList (data));
+            List<Map<String, Object>>  res = findPersonTask.getValue ();
+            List<Person> data = new ArrayList<>();
+            for (Map<String, Object> map : res) {
+                data.add (Person.convertFromMap (map));
+            }
+            TableView<Person> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findPersonTask).start ();
     }
 
     public void updatePersonHandler () {
@@ -423,26 +472,43 @@ public class ClientInteractor {
                                         nation, residenceStatus);
         object.setId(Integer.parseInt(personId));
 
-        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
-        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+        Task<ServerUpdateObjectResponse> updatePersonTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update person query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                return sceneController.updateObject (request);
+            }
+        };
 
-        switch (res.getResponseStatus ()) {
-            case OK:
-                TableView<Person> tableView = sceneController.getFindPersonModel().getTableView();
-                for(int i = 0; i < tableView.getItems().size(); ++i) {
-                    if (tableView.getItems().get(i).getPersonId() == object.getId()) {
-                        tableView.getItems().set(i, (Person) object);
-                        break;
+        LoadingView root = new LoadingView (updatePersonTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updatePersonTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updatePersonTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<Person> tableView = sceneController.getFindPersonModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getPersonId() == object.getId()) {
+                            tableView.getItems().set(i, (Person) object);
+                            break;
+                        }
                     }
-                }
 
-                notificateUpdateSuccessfully ();
-                break;
+                    notificateUpdateSuccessfully ();
+                    break;
 
-            default:
-                showFailedWindow (res);
-                break;
-        }
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updatePersonTask).start ();
     }
 
     public void closePersonUpdateHandler () {
@@ -478,17 +544,35 @@ public class ClientInteractor {
             e.printStackTrace ();
         }
 
-        ServerCreateObjectResponse res = sceneController.createObject (req);
-        System.out.println (res.getResponseStatus());
-        System.out.println (res.getResponseMessage());
-        System.out.println (res.getObjectId());
+        Task<ServerCreateObjectResponse> createFamilyTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create family query ...");
+                return sceneController.createObject (req);
+            }
+        };
 
-        if (res.getResponseStatus() == ResponseStatus.OK) {
-            notificateUpdateSuccessfully ();
-        }
-        else {
-            showFailedWindow (res);
-        }
+        LoadingView root = new LoadingView (createFamilyTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        createFamilyTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerCreateObjectResponse res = createFamilyTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createFamilyTask).start ();
     }
  
     public void findFamilyHandler () {
@@ -510,18 +594,35 @@ public class ClientInteractor {
         }
         String condition = conditionBuilder.toString ();
 
-        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
-                                        condition, new Family ());
+        Task<List<Map<String, Object>> > findFamilyTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find family query ...");
+                AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                                                condition, new Family ());
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
 
-        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        LoadingView root = new LoadingView (findFamilyTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        List<Family> data = new ArrayList<>();
-        for (Map<String, Object> map : requestResult) {
-            data.add (Family.convertFromMap (map));
-        }
+        findFamilyTask.setOnSucceeded (e -> {
+            stage.close();
 
-        TableView<Family> tableView = model.getTableView ();
-        tableView.setItems (FXCollections.observableList (data));
+            List<Map<String, Object>> requestResult = findFamilyTask.getValue ();
+
+            List<Family> data = new ArrayList<>();
+            for (Map<String, Object> map : requestResult) {
+                data.add (Family.convertFromMap (map));
+            }
+
+            TableView<Family> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findFamilyTask).start ();
     }
 
     public void updateFamilyHandler () {
@@ -547,26 +648,43 @@ public class ClientInteractor {
         GetSQLProperties object = new Family (Integer.parseInt(personId), houseNumber);
         object.setId(Integer.parseInt(familyId));
 
-        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
-        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+        Task<ServerUpdateObjectResponse> updateFamilyTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update family query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                return sceneController.updateObject (request);
+            }
+        };
 
-        switch (res.getResponseStatus ()) {
-            case OK:
-                TableView<Family> tableView = sceneController.getFindFamilyModel().getTableView();
-                for(int i = 0; i < tableView.getItems().size(); ++i) {
-                    if (tableView.getItems().get(i).getFamilyId() == object.getId()) {
-                        tableView.getItems().set(i, (Family) object);
-                        break;
+        LoadingView root = new LoadingView (updateFamilyTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updateFamilyTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updateFamilyTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<Family> tableView = sceneController.getFindFamilyModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getFamilyId() == object.getId()) {
+                            tableView.getItems().set(i, (Family) object);
+                            break;
+                        }
                     }
-                }
 
-                notificateUpdateSuccessfully ();
-                break;
+                    notificateUpdateSuccessfully ();
+                    break;
 
-            default:
-                showFailedWindow (res);
-                break;
-        }
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updateFamilyTask).start ();
     }
 
     public void closeFamilyUpdateHandler () {
@@ -627,17 +745,34 @@ public class ClientInteractor {
             e.printStackTrace ();
         }
 
-        ServerCreateObjectResponse res = sceneController.createObject (req);
-        System.out.println (res.getResponseStatus());
-        System.out.println (res.getResponseMessage());
-        System.out.println (res.getObjectId());
+        Task<ServerCreateObjectResponse> createAccountTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create account ...");
+                return sceneController.createObject (req);
+            }
+        };
 
-        if (res.getResponseStatus() == ResponseStatus.OK) {
-            notificateUpdateSuccessfully ();
-        }
-        else {
-            showFailedWindow (res);
-        }
+        LoadingView root = new LoadingView (createAccountTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        createAccountTask.setOnSucceeded (e -> {
+            stage.close ();
+
+            ServerCreateObjectResponse res = createAccountTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createAccountTask).start ();
     }
  
     public void findAccountHandler () {
@@ -675,15 +810,31 @@ public class ClientInteractor {
         AdminFindObject request = new AdminFindObject (sceneController.getToken (),
                                         condition, new Account ());
 
-        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        Task<List<Map<String, Object>> > findAccountTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find accounts query ...");
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
 
-        List<Account> data = new ArrayList<>();
-        for (Map<String, Object> map : requestResult) {
-            data.add (Account.convertFromMap (map));
-        }
+        LoadingView root = new LoadingView (findAccountTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        TableView<Account> tableView = model.getTableView ();
-        tableView.setItems (FXCollections.observableList (data));
+        findAccountTask.setOnSucceeded (e -> {
+            stage.close();
+
+            List<Map<String, Object>>  res = findAccountTask.getValue ();
+            List<Account> data = new ArrayList<>();
+            for (Map<String, Object> map : res) {
+                data.add (Account.convertFromMap (map));
+            }
+            TableView<Account> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findAccountTask).start ();
     }
 
     public void updateAccountHandler () {
@@ -723,26 +874,43 @@ public class ClientInteractor {
         GetSQLProperties object = new Account (Integer.parseInt(familyId), username, digestPassword, accountType);
         object.setId(Integer.parseInt(accountId));
 
-        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
-        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+        Task<ServerUpdateObjectResponse> updateAccountTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update account query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                return sceneController.updateObject (request);
+            }
+        };
 
-        switch (res.getResponseStatus ()) {
-            case OK:
-                TableView<Account> tableView = sceneController.getFindAccountModel().getTableView();
-                for(int i = 0; i < tableView.getItems().size(); ++i) {
-                    if (tableView.getItems().get(i).getAccountId() == object.getId()) {
-                        tableView.getItems().set(i, (Account) object);
-                        break;
+        LoadingView root = new LoadingView (updateAccountTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updateAccountTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updateAccountTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<Account> tableView = sceneController.getFindAccountModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getAccountId() == object.getId()) {
+                            tableView.getItems().set(i, (Account) object);
+                            break;
+                        }
                     }
-                }
 
-                notificateUpdateSuccessfully ();
-                break;
+                    notificateUpdateSuccessfully ();
+                    break;
 
-            default:
-                showFailedWindow (res);
-                break;
-        }
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updateAccountTask).start ();
     }
 
     public void closeAccountUpdateHandler () {
@@ -798,17 +966,34 @@ public class ClientInteractor {
             e.printStackTrace ();
         }
 
-        ServerCreateObjectResponse res = sceneController.createObject (req);
-        System.out.println (res.getResponseStatus());
-        System.out.println (res.getResponseMessage());
-        System.out.println (res.getObjectId());
+        Task<ServerCreateObjectResponse> createExpenseTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create account ...");
+                return sceneController.createObject (req);
+            }
+        };
 
-        if (res.getResponseStatus() == ResponseStatus.OK) {
-            notificateUpdateSuccessfully ();
-        }
-        else {
-            showFailedWindow (res);
-        }
+        LoadingView root = new LoadingView (createExpenseTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        createExpenseTask.setOnSucceeded (e -> {
+            stage.close ();
+
+            ServerCreateObjectResponse res = createExpenseTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createExpenseTask).start ();
     }
 
     public void findExpenseHandler () {
@@ -851,16 +1036,31 @@ public class ClientInteractor {
         AdminFindObject request = new AdminFindObject (sceneController.getToken (),
                                         condition, new Expense ());
 
+        Task<List<Map<String, Object>> > findExpenseTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find expenses query ...");
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
 
-        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        LoadingView root = new LoadingView (findExpenseTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        List<Expense> data = new ArrayList<>();
-        for (Map<String, Object> map : requestResult) {
-            data.add (Expense.convertFromMap (map));
-        }
+        findExpenseTask.setOnSucceeded (e -> {
+            stage.close();
 
-        TableView<Expense> tableView = model.getTableView ();
-        tableView.setItems (FXCollections.observableList (data));
+            List<Map<String, Object>>  res = findExpenseTask.getValue ();
+            List<Expense> data = new ArrayList<>();
+            for (Map<String, Object> map : res) {
+                data.add (Expense.convertFromMap (map));
+            }
+            TableView<Expense> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findExpenseTask).start ();
     }
 
     public void updateExpenseHandler () {
@@ -894,26 +1094,43 @@ public class ClientInteractor {
                                                 expenseType, required);
         object.setId(Integer.parseInt (expenseIdString));
 
-        AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
-        ServerUpdateObjectResponse res = sceneController.updateObject (request);
+        Task<ServerUpdateObjectResponse> updateExpenseTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update expense query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                return sceneController.updateObject (request);
+            }
+        };
 
-        switch (res.getResponseStatus ()) {
-            case OK:
-                TableView<Expense> tableView = sceneController.getFindExpenseModel().getTableView();
-                for(int i = 0; i < tableView.getItems().size(); ++i) {
-                    if (tableView.getItems().get(i).getExpenseId() == object.getId()) {
-                        tableView.getItems().set(i, (Expense) object);
-                        break;
+        LoadingView root = new LoadingView (updateExpenseTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updateExpenseTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updateExpenseTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<Expense> tableView = sceneController.getFindExpenseModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getExpenseId() == object.getId()) {
+                            tableView.getItems().set(i, (Expense) object);
+                            break;
+                        }
                     }
-                }
 
-                notificateUpdateSuccessfully ();
-                break;
+                    notificateUpdateSuccessfully ();
+                    break;
 
-            default:
-                showFailedWindow (res);
-                break;
-        }
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updateExpenseTask).start ();
     }
 
     public void closeExpenseUpdateHandler () {
@@ -952,18 +1169,34 @@ public class ClientInteractor {
             e.printStackTrace ();
         }
 
-        ServerCreateObjectResponse res = sceneController.createObject (req);
+        Task<ServerCreateObjectResponse> createPaymentStatusTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create account ...");
+                return sceneController.createObject (req);
+            }
+        };
 
-        System.out.println (res.getResponseStatus());
-        System.out.println (res.getResponseMessage());
-        System.out.println (res.getObjectId());
+        LoadingView root = new LoadingView (createPaymentStatusTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        if (res.getResponseStatus() == ResponseStatus.OK) {
-            notificateUpdateSuccessfully ();
-        }
-        else {
-            showFailedWindow (res);
-        }
+        createPaymentStatusTask.setOnSucceeded (e -> {
+            stage.close ();
+
+            ServerCreateObjectResponse res = createPaymentStatusTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createPaymentStatusTask).start ();
     }
 
     public void findPaymentStatusHandler () {
@@ -999,46 +1232,85 @@ public class ClientInteractor {
         AdminFindObject request = new AdminFindObject (sceneController.getToken (),
                                         condition, new PaymentStatus ());
 
+        Task<List<Map<String, Object>> > findPaymentStatusTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find payment statuses query ...");
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
 
-        List<Map<String, Object>> requestResult = sceneController.findObject (request). getRequestResult ();
+        LoadingView root = new LoadingView (findPaymentStatusTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
 
-        List<PaymentStatus> data = new ArrayList<>();
-        for (Map<String, Object> map : requestResult) {
-            data.add (PaymentStatus.convertFromMap (map));
-        }
+        findPaymentStatusTask.setOnSucceeded (e -> {
+            stage.close();
 
-        TableView<PaymentStatus> tableView = model.getTableView ();
-        tableView.setItems (FXCollections.observableList (data));
+            List<Map<String, Object>>  res = findPaymentStatusTask.getValue ();
+            List<PaymentStatus> data = new ArrayList<>();
+            for (Map<String, Object> map : res) {
+                data.add (PaymentStatus.convertFromMap (map));
+            }
+            TableView<PaymentStatus> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findPaymentStatusTask).start ();
     }
 
     public void updatePaymentStatusHandler () {
         UpdatePaymentStatusModel model = sceneController.getUpdatePaymentStatusModel ();
-        //
-        // GetSQLProperties object = new PaymentStatus (expenseTitle, expenseDescription,
-        //                                         Date.convertFromLocalDate (publishedDate), Integer.parseInt(totalCostString),
-        //                                         expenseType, required);
-        // object.setId(Integer.parseInt (expenseIdString));
-        //
-        // AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
-        // ServerUpdateObjectResponse res = sceneController.updateObject (request);
-        //
-        // switch (res.getResponseStatus ()) {
-        //     case OK:
-        //         TableView<PaymentStatus> tableView = sceneController.getFindPaymentStatusModel().getTableView();
-        //         for(int i = 0; i < tableView.getItems().size(); ++i) {
-        //             if (tableView.getItems().get(i).getPaymentStatusId() == object.getId()) {
-        //                 tableView.getItems().set(i, (PaymentStatus) object);
-        //                 break;
-        //             }
-        //         }
-        //
-        //         notificateUpdateSuccessfully ();
-        //         break;
-        //
-        //     default:
-        //         showFailedWindow (res);
-        //         break;
-        // }
+
+        String paymentStatusIdString = model.paymentStatusIdProperty().get();
+        String expenseIdString = model.expenseIdProperty().get();
+        String familyIdString = model.familyIdProperty().get();
+        String totalPayString = model.totalPayProperty().get();
+        LocalDate publishedDate = model.publishedDateProperty().get();
+
+        GetSQLProperties object = new PaymentStatus (   Integer.parseInt (expenseIdString), 
+                                                        Integer.parseInt (familyIdString),
+                                                        Integer.parseInt (totalPayString),
+                                                        Date.convertFromLocalDate(publishedDate) );
+        object.setId(Integer.parseInt (paymentStatusIdString));
+
+        Task<ServerUpdateObjectResponse> updatePaymentStatusTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update payment status query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                return sceneController.updateObject (request);
+            }
+        };
+
+        LoadingView root = new LoadingView (updatePaymentStatusTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updatePaymentStatusTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updatePaymentStatusTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<PaymentStatus> tableView = sceneController.getFindPaymentStatusModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getPaymentStatusId() == object.getId()) {
+                            tableView.getItems().set(i, (PaymentStatus) object);
+                            break;
+                        }
+                    }
+
+                    notificateUpdateSuccessfully ();
+                    break;
+
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updatePaymentStatusTask).start ();
     }
 
     public void closePaymentStatusUpdateHandler () {

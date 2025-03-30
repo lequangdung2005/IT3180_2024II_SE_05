@@ -19,6 +19,7 @@ import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 
 import atlantafx.base.controls.PasswordTextField;
+import atlantafx.base.controls.Spacer;
 import atlantafx.base.controls.ToggleSwitch;
 import atlantafx.base.layout.InputGroup;
 import atlantafx.base.theme.Styles;
@@ -113,7 +114,9 @@ public class AdminExpenseManagePage extends DuongFXTabPane {
         filters.getChildren ().addAll (
 	    new InputGroup (new Label("", enableDayFilter), beginDatePicker, new Label ("", new FontIcon (Material2OutlinedAL.KEYBOARD_ARROW_RIGHT)), endDatePicker),
 	    new InputGroup (beginTotalCostIntField, new Label ("", new FontIcon (Material2OutlinedAL.KEYBOARD_ARROW_RIGHT)), endTotalCostIntField),
-	    new InputGroup (new Label("expense type"), expenseTypeChoose, new Label("required", requiredSwitch)),
+	    new InputGroup (new Label("expense type"), expenseTypeChoose),
+
+            new InputGroup (new Label("required", requiredSwitch), new Spacer (5)),
 
 	    resetFilterBtn
         );

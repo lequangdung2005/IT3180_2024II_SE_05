@@ -9,11 +9,13 @@ mvn install
 
 ## Chạy chương trình
 ```bash
-# Đầu tiên chạy server mysql
-# Sửa đường url trong src/resources/MySQL.conf cho phù hợp
 mvn clean compile
 # Bật server
-mvn exec:java -Dexec.mainClass="com.hust.ittnk68.cnpm.app.Server"
+mvn exec:java -D exec.mainClass="com.hust.ittnk68.cnpm.app.Server"
 # Khởi chạy app
-mvn exec:java -Dexec.mainClass="com.hust.ittnk68.cnpm.app.Client" -Dexec.args="http://127.0.0.1:8080"
+mvn exec:java -D exec.mainClass="com.hust.ittnk68.cnpm.app.Client" -D exec.args="http://127.0.0.1:8080"
 ```
+> [!NOTE]
+>
+> Phải chạy Server và Client trên 2 terminal riêng, thường server sẽ mở tại cổng 8080.
+> Nếu Server mở tại cổng khác hãy sửa đổi tham số của câu lệnh cuối.

@@ -10,7 +10,7 @@ public class ConfigFileUtils {
 
     public static Properties getProps(String filePath) throws FileNotFoundException, IOException {
 	String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-	String configPath = Paths.get(rootPath, filePath).toString(); 
+	String configPath = String.format("%s\\%s", rootPath, filePath);
 	Properties props = new Properties();
         props.load(new FileInputStream(configPath));
         return props;

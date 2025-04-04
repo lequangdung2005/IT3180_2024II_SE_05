@@ -9,5 +9,5 @@ mvn install
 
 ## Chạy chương trình
 ```bash
-mvn exec:java -D exec.mainClass="com.hust.ittnk68.cnpm.app.Client" -D exec.args="http://gcloud-99.tomoshibi.co:8080"
+mvn exec:java -D exec.mainClass="com.hust.ittnk68.cnpm.app.Client" -D exec.args="https://bluemoon-service-portal-server-106512668344.asia-east1.run.app/"
 ```

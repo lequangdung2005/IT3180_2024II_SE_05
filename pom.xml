@@ -12,10 +12,10 @@
   <url>http://maven.apache.org</url>
 
   <parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
-	</parent>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-parent</artifactId>
+          <version>3.4.3</version>
+  </parent>
 
   <dependencies>
     <dependency>
@@ -84,30 +84,43 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-            <archive>
-              <manifest>
-                <!-- <mainClass>com.hust.ittnk68.cnpm.app.TestJDBC</mainClass> -->
-                <mainClass>com.hust.ittnk68.cnpm.app.App</mainClass>
-              </manifest>
-            </archive>
-        </configuration>
-        <executions>
-            <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-            </execution>
-        </executions>
-      </plugin>
+
+       <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>3.4.4</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.maven.plugins</groupId> -->
+      <!--   <artifactId>maven-assembly-plugin</artifactId> -->
+      <!--   <configuration> -->
+      <!--       <descriptorRefs> -->
+      <!--         <descriptorRef>jar-with-dependencies</descriptorRef> -->
+      <!--       </descriptorRefs> -->
+      <!--       <archive> -->
+      <!--         <manifest> -->
+      <!--           <mainClass>com.hust.ittnk68.cnpm.app.Server</mainClass> -->
+      <!--         </manifest> -->
+      <!--       </archive> -->
+      <!--   </configuration> -->
+      <!--   <executions> -->
+      <!--       <execution> -->
+      <!--           <id>make-assembly</id> -->
+      <!--           <phase>package</phase> -->
+      <!--           <goals> -->
+      <!--             <goal>single</goal> -->
+      <!--           </goals> -->
+      <!--       </execution> -->
+      <!--   </executions> -->
+      <!-- </plugin> -->
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

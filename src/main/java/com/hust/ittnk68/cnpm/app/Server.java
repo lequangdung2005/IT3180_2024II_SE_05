@@ -91,6 +91,11 @@ public class Server {
 		return null;
 	}
 
+	@RequestMapping("/")
+	private String welcome() {
+		return "Hello, World!";
+	}
+
 	@RequestMapping(ApiMapping.QUERY_OBJECT_BY_ID)
 	private ServerObjectByIdQueryResponse queryObjectById (@RequestBody UserQueryObjectById req) {
 		String token = req.getToken ();

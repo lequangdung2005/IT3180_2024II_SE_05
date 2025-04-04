@@ -23,12 +23,17 @@ public class MySQLDatabase {
 
     public static void start() throws FileNotFoundException, IOException, ConfigFileException {
 
-        ConfigFileLoader loader = new ConfigFileLoader("MySQL.conf", new MySQLDefaultConfig());
+        ConfigFileLoader loader = new ConfigFileLoader("/MySQL.conf", new MySQLDefaultConfig());
 
         driver = loader.getProperty("driver"); 
         url = loader.getProperty("url");
         username = loader.getProperty("username");
         password = loader.getProperty("password");
+
+        System.out.println ("debug " + driver);
+        System.out.println ("debug " + url);
+        System.out.println ("debug " + username);
+        System.out.println ("debug " + password);
 
         try {
             con = MySQLDatabaseUtils.createConnection(driver, url, username, password);

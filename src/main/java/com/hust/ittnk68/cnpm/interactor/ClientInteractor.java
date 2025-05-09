@@ -59,7 +59,6 @@ import com.hust.ittnk68.cnpm.view.LoadingView;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
@@ -153,7 +152,8 @@ public class ClientInteractor {
     }
 
     public void logout () {
-        sceneController.endSession ();
+        // delete used token
+        sceneController.getClientModel ().setToken (null);
         sceneController.setRoot (new LoginController (sceneController).getView ());
     }
 
@@ -263,7 +263,7 @@ public class ClientInteractor {
                                         dateOfBirth, citizenId,
                                         phoneNumber, sex,
                                         nation, residenceStatus);
-        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), object);
 
         ObjectMapper mapper = new ObjectMapper ();
         try {
@@ -372,7 +372,7 @@ public class ClientInteractor {
             @Override
             public List<Map<String, Object>>  call () {
                 updateMessage ("Executing find people query ...");
-                AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
                                                 condition, new Person ());
                 return sceneController.findObject (request).getRequestResult ();
             }
@@ -476,7 +476,7 @@ public class ClientInteractor {
             @Override
             public ServerUpdateObjectResponse call () {
                 updateMessage ("Update person query ...");
-                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
                 return sceneController.updateObject (request);
             }
         };
@@ -533,7 +533,7 @@ public class ClientInteractor {
 
         Family object = new Family (Integer.parseInt (personId),
                                     houseNumber);
-        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), object);
 
         ObjectMapper mapper = new ObjectMapper ();
         try {
@@ -598,7 +598,7 @@ public class ClientInteractor {
             @Override
             public List<Map<String, Object>>  call () {
                 updateMessage ("Executing find family query ...");
-                AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+                AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
                                                 condition, new Family ());
                 return sceneController.findObject (request).getRequestResult ();
             }
@@ -652,7 +652,7 @@ public class ClientInteractor {
             @Override
             public ServerUpdateObjectResponse call () {
                 updateMessage ("Update family query ...");
-                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
                 return sceneController.updateObject (request);
             }
         };
@@ -734,7 +734,7 @@ public class ClientInteractor {
                                         username,
                                         digestPassword,
                                         accountType);
-        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), object);
 
         ObjectMapper mapper = new ObjectMapper ();
         try {
@@ -807,7 +807,7 @@ public class ClientInteractor {
 
         System.out.printf("%s\n%s\n%s\n%s\n", accountId, familyId, username, condition);
 
-        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+        AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
                                         condition, new Account ());
 
         Task<List<Map<String, Object>> > findAccountTask = new Task<>() {
@@ -878,7 +878,7 @@ public class ClientInteractor {
             @Override
             public ServerUpdateObjectResponse call () {
                 updateMessage ("Update account query ...");
-                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
                 return sceneController.updateObject (request);
             }
         };
@@ -955,7 +955,7 @@ public class ClientInteractor {
                                         Integer.parseInt (totalCostString),
                                         expenseType,
                                         required);
-        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), object);
 
         ObjectMapper mapper = new ObjectMapper ();
         try {
@@ -1033,7 +1033,7 @@ public class ClientInteractor {
 
         String condition = conditionBuilder.toString ();
 
-        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+        AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
                                         condition, new Expense ());
 
         Task<List<Map<String, Object>> > findExpenseTask = new Task<>() {
@@ -1098,7 +1098,7 @@ public class ClientInteractor {
             @Override
             public ServerUpdateObjectResponse call () {
                 updateMessage ("Update expense query ...");
-                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
                 return sceneController.updateObject (request);
             }
         };
@@ -1156,7 +1156,7 @@ public class ClientInteractor {
                                                     Integer.parseInt(familyIdString),
                                                     Integer.parseInt(totalPayString),
                                                     Date.convertFromLocalDate(publishedDate));
-        AdminCreateObject req = new AdminCreateObject (sceneController.getToken(), object);
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), object);
 
         System.out.println (req.getObject().getSQLInsertCommand());
 
@@ -1229,7 +1229,7 @@ public class ClientInteractor {
 
         String condition = conditionBuilder.toString ();
 
-        AdminFindObject request = new AdminFindObject (sceneController.getToken (),
+        AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
                                         condition, new PaymentStatus ());
 
         Task<List<Map<String, Object>> > findPaymentStatusTask = new Task<>() {
@@ -1278,7 +1278,7 @@ public class ClientInteractor {
             @Override
             public ServerUpdateObjectResponse call () {
                 updateMessage ("Update payment status query ...");
-                AdminUpdateObject request = new AdminUpdateObject (sceneController.getToken(), object);
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
                 return sceneController.updateObject (request);
             }
         };
@@ -1325,4 +1325,3 @@ public class ClientInteractor {
     }
 
 }
-

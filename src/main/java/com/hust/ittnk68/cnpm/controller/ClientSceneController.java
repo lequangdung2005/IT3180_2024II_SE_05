@@ -44,6 +44,8 @@ import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
+import java.net.http.*;
+
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -137,10 +139,9 @@ public class ClientSceneController {
 
     public ServerResponseStartSession startSession (ClientMessageStartSession message)
     {
-        ServerResponseStartSession res;
         try {
             RestClient restClient = clientModel.getRestClient ();
-            res = restClient.post()
+            return restClient.post()
                     .uri (getUriBase() + ApiMapping.START_SESSION)
                     .body (message)
                     .retrieve ()
@@ -150,23 +151,6 @@ public class ClientSceneController {
         {
             return new ServerResponseStartSession (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server", "", AccountType.UNVALID);
         }
-        return res;
-    }
-
-    public void endSession ()
-    {
-        try {
-            RestClient restClient = clientModel.getRestClient ();
-            restClient.post()
-                    .uri (getUriBase() + ApiMapping.END_SESSION)
-                    .body (getToken ())
-                    .retrieve ()
-                    .body (String.class);
-        }
-        catch (Exception e)
-        {
-            System.out.println ("end session: can't connect to server");
-        }
     }
 
     public ServerCreateObjectResponse createObject (AdminCreateObject req) {
@@ -175,11 +159,11 @@ public class ClientSceneController {
         try {
             RestClient restClient = clientModel.getRestClient ();
             ServerCreateObjectResponse res;
-            res = restClient.post()
-                        .uri (getUriBase() + ApiMapping.CREATE_OBJECT)
-                        .body (req)
-                        .retrieve ()
-                        .body (ServerCreateObjectResponse.class);
+            res = restClient.get()
+                .uri (getUriBase () + ApiMapping.CREATE_OBJECT)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .retrieve ()
+                .body (ServerCreateObjectResponse.class);
             return res;
         }
         catch (Exception e)
@@ -194,6 +178,7 @@ public class ClientSceneController {
             RestClient restClient = clientModel.getRestClient();
             ServerFindObjectResponse res = restClient.post()
                                             .uri (getUriBase() + ApiMapping.FIND_OBJECT)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
                                             .body (req)
                                             .retrieve ()
                                             .body (ServerFindObjectResponse.class);
@@ -209,6 +194,7 @@ public class ClientSceneController {
             RestClient restClient = clientModel.getRestClient();
             ServerDeleteObjectResponse res = restClient.post()
                                                 .uri (getUriBase() + ApiMapping.DELETE_OBJECT)
+                                                .headers (headers -> headers.setBearerAuth (getToken ()))
                                                 .body (req)
                                                 .retrieve ()
                                                 .body (ServerDeleteObjectResponse.class);
@@ -224,6 +210,7 @@ public class ClientSceneController {
             RestClient restClient = clientModel.getRestClient();
             ServerUpdateObjectResponse res = restClient.post()
                                                 .uri (getUriBase() + ApiMapping.UPDATE_OBJECT)
+                                                .headers (headers -> headers.setBearerAuth (getToken ()))
                                                 .body (req)
                                                 .retrieve ()
                                                 .body (ServerUpdateObjectResponse.class);
@@ -237,14 +224,17 @@ public class ClientSceneController {
     public ServerPaymentStatusQueryResponse queryPaymentStatus (UserQueryPaymentStatus req) {
         try {
             RestClient restClient = clientModel.getRestClient();
+            System.out.println ("i step in here");
             ServerPaymentStatusQueryResponse res = restClient.post()
                                                     .uri (getUriBase() + ApiMapping.QUERY_FAMILY_PAYMENT_STATUS)
+                                                    .headers (headers -> headers.setBearerAuth (getToken ()))
                                                     .body (req)
                                                     .retrieve ()
                                                     .body (ServerPaymentStatusQueryResponse.class);
             return res;
         }
         catch (Exception e) {
+            e.printStackTrace ();
             return new ServerPaymentStatusQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
         }
     }
@@ -253,6 +243,7 @@ public class ClientSceneController {
             RestClient restClient = clientModel.getRestClient();
             ServerObjectByIdQueryResponse res = restClient.post()
                                                     .uri (getUriBase() + ApiMapping.QUERY_OBJECT_BY_ID)
+                                                    .headers (headers -> headers.setBearerAuth (getToken ()))
                                                     .body (req)
                                                     .retrieve ()
                                                     .body (ServerObjectByIdQueryResponse.class);
@@ -333,6 +324,11 @@ public class ClientSceneController {
     }
     public void setToken (String token) {
         clientModel.setToken (token);
+    }
+
+    public String getUsername () {
+        assert false;
+        return null;
     }
 
     public ClientModel getClientModel () {

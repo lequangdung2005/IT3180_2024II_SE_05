@@ -15,7 +15,6 @@ public class Account extends GetSQLProperties {
     private String digestPassword;
     private AccountType accountType;
 
-    @JsonIgnore
     public Account () {}
 
     public Account(int familyId, String username, String digestPassword, AccountType accountType) {

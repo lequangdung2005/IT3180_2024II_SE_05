@@ -6,6 +6,7 @@ public enum ResponseStatus
     CANT_CONNECT_SERVER("can't connect to server"),
     SESSION_ERROR("session error"),
     PERMISSION_ERROR("not have permission"),
+    INTERNAL_ERROR("internal error"),
     SQL_ERROR("operation not succeed due to a sql exception");
 
     private String responseStatus;

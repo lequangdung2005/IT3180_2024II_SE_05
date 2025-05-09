@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hust.ittnk68.cnpm.app</groupId>
+  <groupId>com.hust.ittnk68.cnpm</groupId>
   <artifactId>cnpm-project</artifactId>
   <packaging>jar</packaging>
 

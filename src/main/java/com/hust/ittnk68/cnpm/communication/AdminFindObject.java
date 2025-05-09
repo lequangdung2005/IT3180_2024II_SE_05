@@ -7,8 +7,8 @@ public class AdminFindObject extends ClientMessageBase {
     private String condition;
     private GetSQLProperties object;
 
-    public AdminFindObject (String token, String condition, GetSQLProperties object) {
-        super (token);
+    public AdminFindObject (String username, String condition, GetSQLProperties object) {
+        super (username);
         this.condition = condition;
         this.object = object;
     } 

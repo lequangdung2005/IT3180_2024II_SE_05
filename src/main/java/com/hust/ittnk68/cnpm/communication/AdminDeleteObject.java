@@ -6,8 +6,8 @@ public class AdminDeleteObject extends ClientMessageBase {
 
     private GetSQLProperties object;
 
-    public AdminDeleteObject (String token, GetSQLProperties object) {
-        super (token);
+    public AdminDeleteObject (String username, GetSQLProperties object) {
+        super (username);
         this.object = object;
     } 
 

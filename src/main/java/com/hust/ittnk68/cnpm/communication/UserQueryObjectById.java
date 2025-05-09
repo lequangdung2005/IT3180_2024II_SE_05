@@ -6,8 +6,8 @@ public class UserQueryObjectById extends ClientMessageBase {
 
     GetSQLProperties object;
 
-    public UserQueryObjectById (String token, GetSQLProperties object) {
-        super (token);
+    public UserQueryObjectById (String username, GetSQLProperties object) {
+        super (username);
         this.object = object;
     } 
 

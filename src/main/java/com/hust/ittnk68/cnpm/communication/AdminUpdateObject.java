@@ -6,8 +6,8 @@ public class AdminUpdateObject extends ClientMessageBase {
 
     private GetSQLProperties object;
 
-    public AdminUpdateObject (String token, GetSQLProperties object) {
-        super (token);
+    public AdminUpdateObject (String username, GetSQLProperties object) {
+        super (username);
         this.object = object;
     } 
 

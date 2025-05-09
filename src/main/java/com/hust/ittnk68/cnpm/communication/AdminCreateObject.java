@@ -6,8 +6,8 @@ public class AdminCreateObject extends ClientMessageBase {
 
     GetSQLProperties object;
 
-    public AdminCreateObject (String token, GetSQLProperties object) {
-        super (token);
+    public AdminCreateObject (String username, GetSQLProperties object) {
+        super (username);
         this.object = object;
     }
 

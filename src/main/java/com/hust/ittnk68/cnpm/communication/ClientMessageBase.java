@@ -2,19 +2,19 @@ package com.hust.ittnk68.cnpm.communication;
 
 public class ClientMessageBase
 {
-    private String token; 
+    private String username; 
 
-    ClientMessageBase (String token)
+    ClientMessageBase (String username)
     {
-        this.token = token;
+        this.username = username;
     }
 
-    public String getToken ()
+    public String getUsername ()
     {
-        return token;
+        return username;
     }
-    public void setToken (String token)
+    public void setUsername (String username)
     {
-        this.token = token;
+        this.username = username;
     }
 }

@@ -2,8 +2,7 @@ package com.hust.ittnk68.cnpm.communication;
 
 public class ApiMapping 
 {
-    public final static String START_SESSION = "/api/start-session";
-    public final static String END_SESSION = "/api/end-session";
+    public final static String START_SESSION = "/auth";
     public final static String CREATE_OBJECT = "/api/create-object";
     public final static String FIND_OBJECT = "/api/find-object";
     public final static String UDPATE_OBJECT = "/api/update-object";

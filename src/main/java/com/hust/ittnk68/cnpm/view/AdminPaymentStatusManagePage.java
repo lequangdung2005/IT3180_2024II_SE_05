@@ -163,7 +163,7 @@ public class AdminPaymentStatusManagePage extends DuongFXTabPane {
                                 if (result.get() != ButtonType.OK)
                                     return;
 
-                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getToken(), paymentStatus);
+                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getUsername(), paymentStatus);
                                 ServerDeleteObjectResponse res = sceneController.deleteObject (request);
                                 switch (res.getResponseStatus()) {
                                     case OK:

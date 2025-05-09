@@ -143,7 +143,7 @@ public class AdminAccountManagePage extends DuongFXTabPane {
                                 if (result.get() != ButtonType.OK)
                                     return;
 
-                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getToken(), account);
+                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getUsername(), account);
                                 ServerDeleteObjectResponse res = sceneController.deleteObject (request);
                                 switch (res.getResponseStatus()) {
                                     case OK:

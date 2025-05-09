@@ -73,7 +73,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 
 	caller.updateMsg("Fetching expense ...");
 
-	UserQueryPaymentStatus request = new UserQueryPaymentStatus (sceneController.getToken ());
+	UserQueryPaymentStatus request = new UserQueryPaymentStatus (sceneController.getUsername());
 	ServerPaymentStatusQueryResponse res = sceneController.queryPaymentStatus (request);
 
 	System.out.println ("debug:");
@@ -95,7 +95,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 
 	    Expense tmpExpense = new Expense ();
 	    tmpExpense.setId (ps.getExpenseId ());
-	    UserQueryObjectById expenseRequest = new UserQueryObjectById (sceneController.getToken (), tmpExpense);
+	    UserQueryObjectById expenseRequest = new UserQueryObjectById (sceneController.getUsername(), tmpExpense);
 	    ServerObjectByIdQueryResponse expenseResult = sceneController.userQueryObjectById (expenseRequest);
 
 	    if (expenseResult.getResponseStatus() != ResponseStatus.OK) {

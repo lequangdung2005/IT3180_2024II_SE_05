@@ -68,4 +68,3 @@ public class ClientHomePage extends DuongFXGridPane {
 	return a;
     }
 }
-

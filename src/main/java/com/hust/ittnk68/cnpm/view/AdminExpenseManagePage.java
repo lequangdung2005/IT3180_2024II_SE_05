@@ -179,7 +179,7 @@ public class AdminExpenseManagePage extends DuongFXTabPane {
                                 if (result.get() != ButtonType.OK)
                                     return;
 
-                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getToken(), expense);
+                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getUsername(), expense);
                                 ServerDeleteObjectResponse res = sceneController.deleteObject (request);
                                 switch (res.getResponseStatus()) {
                                     case OK:

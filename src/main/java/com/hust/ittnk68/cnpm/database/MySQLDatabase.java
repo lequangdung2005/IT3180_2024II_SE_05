@@ -14,14 +14,20 @@ import com.hust.ittnk68.cnpm.config.ConfigFileLoader;
 import com.hust.ittnk68.cnpm.config.MySQLDefaultConfig;
 import com.hust.ittnk68.cnpm.exception.ConfigFileException;
 
-public class MySQLDatabase {
-    private static Connection con;
-    private static String driver;
-    private static String url;
-    private static String username;
-    private static String password;
+import org.springframework.stereotype.Repository;
 
-    public static void start() throws FileNotFoundException, IOException, ConfigFileException {
+import jakarta.annotation.*;
+
+@Repository
+public class MySQLDatabase {
+    private Connection con;
+    private String driver;
+    private String url;
+    private String username;
+    private String password;
+
+    @PostConstruct
+    public void start() throws FileNotFoundException, IOException, ConfigFileException {
 
         ConfigFileLoader loader = new ConfigFileLoader("/MySQL.conf", new MySQLDefaultConfig());
 
@@ -43,11 +49,12 @@ public class MySQLDatabase {
         }
     }
 
-    public static void close() {
+    @PreDestroy
+    public void close() {
         MySQLDatabaseUtils.close(con);
     }
     
-    public static void create(GetSQLProperties g) throws SQLException {
+    public void create(GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(
                 g.getSQLInsertCommand(),
@@ -75,7 +82,7 @@ public class MySQLDatabase {
         }
     }
 
-    public static int deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
+    public int deleteByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLDeleteByConditionCommand(condition));
         )
@@ -88,7 +95,7 @@ public class MySQLDatabase {
         }
     }
 
-    public static List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException {
+    public List< Map<String, Object> > findByCondition(String condition, GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLFindByConditionCommand(condition));
         )
@@ -101,7 +108,7 @@ public class MySQLDatabase {
         }
     }
 
-    public static int singleUpdate (GetSQLProperties g) throws SQLException {
+    public int singleUpdate (GetSQLProperties g) throws SQLException {
         try (
             PreparedStatement statement = con.prepareStatement(g.getSQLUpdateCommand());
         )

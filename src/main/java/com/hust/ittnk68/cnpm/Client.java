@@ -1,4 +1,4 @@
-package com.hust.ittnk68.cnpm.app;
+package com.hust.ittnk68.cnpm;
 
 import java.security.InvalidParameterException;
 import java.util.Locale;
@@ -38,8 +38,7 @@ public class Client extends Application {
 
 	@Override
 	public void stop(){
-		System.out.println("Stage is closing");
-		sceneController.endSession ();
+		// no need to end session now
 	}
 
 	@Override

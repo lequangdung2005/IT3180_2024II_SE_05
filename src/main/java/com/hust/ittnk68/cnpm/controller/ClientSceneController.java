@@ -327,8 +327,7 @@ public class ClientSceneController {
     }
 
     public String getUsername () {
-        assert false;
-        return null;
+        return clientModel.getUsername ();
     }
 
     public ClientModel getClientModel () {

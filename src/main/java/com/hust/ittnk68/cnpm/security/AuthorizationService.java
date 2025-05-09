@@ -2,6 +2,9 @@ package com.hust.ittnk68.cnpm.security;
 
 import com.hust.ittnk68.cnpm.auth.JwtUtil;
 import com.hust.ittnk68.cnpm.communication.*;
+import com.hust.ittnk68.cnpm.service.AuthController;
+import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.model.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,6 +13,9 @@ import org.springframework.stereotype.Component;
 
 @Component("authz")
 public class AuthorizationService {
+
+    @Autowired
+    private AuthController authController;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -24,10 +30,12 @@ public class AuthorizationService {
             .equals (req.getUsername ());
     }
 
-    // private boolean checkAdminPrivilege (ClientMessageBase req)
-    // {
-    //
-    // }
+    private boolean checkAdminPrivilege (ClientMessageBase req)
+    {
+        Account account = authController.getAccountByUsername (req.getUsername ());
+        return account.getAccountType().equals (AccountType.ROOT)
+            || account.getAccountType().equals (AccountType.ADMIN);
+    }
 
     public boolean canStartSession(ClientMessageStartSession message) {
         // every one can /auth
@@ -41,28 +49,29 @@ public class AuthorizationService {
 
     public boolean canCreateObject(AdminCreateObject req)
     {
-        return true;
+        return checkToken (req) && checkAdminPrivilege (req);
     }
     public boolean canFindObject(AdminFindObject req)
     {
-        return true;
+        return checkToken (req) && checkAdminPrivilege (req);
     }
     public boolean canDeleteObject(AdminDeleteObject req)
     {
-        return true;
+        return checkToken (req) && checkAdminPrivilege (req);
     }
     public boolean canUpdateObject(AdminUpdateObject req)
     {
-        return true;
+        return checkToken (req) && checkAdminPrivilege (req);
     }
 
     public boolean canQueryObjectById(UserQueryObjectById req)
     {
-        return true;
+        // i'm to lazy to implement this
+        return checkToken (req);
     }
     public boolean canQueryPaymentStatus (UserQueryPaymentStatus req)
     {
-        return true;
+        return checkToken (req);
     }
 
 }

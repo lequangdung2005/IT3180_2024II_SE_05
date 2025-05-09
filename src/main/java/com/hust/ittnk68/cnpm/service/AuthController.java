@@ -25,11 +25,11 @@ public class AuthController
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	private Account getAccountByUsernamePassword(String username, String digestPassword) {
+	public Account getAccountByUsername (String username) {
 		try
 		{
 			List< Map<String, Object> > res = mysqlDb.findByCondition(
-				String.format("(username='%s' and digest_password='%s')", username, digestPassword),
+				String.format("(username='%s')", username),
 				new Account()
 			); 
 			System.out.println(res);
@@ -73,9 +73,11 @@ public class AuthController
 	public ServerResponseStartSession startSession(@RequestBody ClientMessageStartSession message) {
 		String username = message.getUsername ();
 		String digestPassword = message.getDigestPassword ();
-
-		Account acc = getAccountByUsernamePassword(username, digestPassword);
-
+		Account acc = getAccountByUsername(username);
+		// password not match
+		if (! acc.getDigestPassword ().equals (digestPassword)) {
+			acc = null;
+		}
 		String token = "";
 		if(acc != null) {
 			System.out.println(username + " " + digestPassword);

@@ -117,7 +117,7 @@ public class ApiController
 		try {
 			String token = tokenGetter.get ();
 			System.out.printf ("token=%s\n", token);
-			Account account = jwtUtil.extractAccount (token);
+			Account account = jwtUtil.extract (token, Account.class);
 			StringBuilder conditionBuilder = new StringBuilder ( String.format("family_id='%d'", account.getFamilyId()) );
 			String condition = conditionBuilder.toString ();
 			List<Map<String, Object>> query = mysqlDb.findByCondition (condition, new PaymentStatus());
@@ -133,4 +133,5 @@ public class ApiController
 			return new ServerPaymentStatusQueryResponse(ResponseStatus.INTERNAL_ERROR, e.toString());
 		}
 	}
+
 }

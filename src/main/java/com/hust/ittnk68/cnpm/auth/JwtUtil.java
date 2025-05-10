@@ -32,13 +32,13 @@ public class JwtUtil {
         objectMapper = new ObjectMapper ();
     }
 
-    public String generateToken (Account account) throws Exception
+    public <T> String generateToken (T object) throws Exception
     {
         try {
-            String accountJson = objectMapper.writeValueAsString (account);         // convert to json
-            System.out.printf ("debug: %s\n", accountJson);
+            String jsonString = objectMapper.writeValueAsString (object);         // convert to json
+            System.out.printf ("debug: %s\n", jsonString);
             return Jwts.builder()
-                .setSubject (accountJson) 
+                .setSubject (jsonString) 
                 .setIssuedAt (new Date ())
                 .setExpiration (new Date (System.currentTimeMillis () + 1000*60*60))
                 .signWith (getPrivateKey (), SignatureAlgorithm.RS256)
@@ -49,16 +49,16 @@ public class JwtUtil {
         }
     }
 
-    public Account extractAccount (String token)
+    public <T> T extract (String token, Class<T> clazz)
     {
         try {
-            String accountJson = Jwts.parserBuilder ()
+            String jsonString = Jwts.parserBuilder ()
                 .setSigningKey (getPublicKey ())
                 .build ()
                 .parseClaimsJws (token)
                 .getBody ()
                 .getSubject ();
-            return objectMapper.readValue (accountJson, Account.class);
+            return objectMapper.readValue (jsonString, clazz);
         }
         catch (ExpiredJwtException e) {
             throw new IllegalArgumentException ("Token has expired");
@@ -71,10 +71,10 @@ public class JwtUtil {
         }
     }
 
-    public boolean isTokenValid (String token)
+    public <T> boolean isTokenValid (String token, Class<T> clazz)
     {
         try {
-            extractAccount (token);
+            extract (token, clazz);
             return true;
         }
         catch (Exception e)

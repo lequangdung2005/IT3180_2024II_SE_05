@@ -3,15 +3,12 @@ package com.hust.ittnk68.cnpm.security;
 import com.hust.ittnk68.cnpm.auth.JwtUtil;
 import com.hust.ittnk68.cnpm.communication.*;
 import com.hust.ittnk68.cnpm.service.AuthController;
-import com.hust.ittnk68.cnpm.service.ApiController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component("authz")
@@ -19,8 +16,6 @@ public class AuthorizationService {
 
     @Autowired
     private AuthController authController;
-    @Autowired
-    private ApiController apiController;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -31,8 +26,9 @@ public class AuthorizationService {
     private boolean checkToken (ClientMessageBase req)
     {
         String token = tokenGetter.get ();
-        return jwtUtil.extractAccount (token).getUsername ()
-            .equals (req.getUsername ());
+        return jwtUtil.isTokenValid (token, Account.class) &&
+            (jwtUtil.extract (token, Account.class)).getUsername ()
+                .equals (req.getUsername ());
     }
 
     private boolean checkAdminPrivilege (ClientMessageBase req)

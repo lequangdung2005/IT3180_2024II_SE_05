@@ -3,8 +3,11 @@ package com.hust.ittnk68.cnpm.security;
 import com.hust.ittnk68.cnpm.auth.JwtUtil;
 import com.hust.ittnk68.cnpm.communication.*;
 import com.hust.ittnk68.cnpm.service.AuthController;
+import com.hust.ittnk68.cnpm.service.ApiController;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.model.Account;
+import com.hust.ittnk68.cnpm.model.Expense;
+import com.hust.ittnk68.cnpm.model.PaymentStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +19,8 @@ public class AuthorizationService {
 
     @Autowired
     private AuthController authController;
+    @Autowired
+    private ApiController apiController;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -72,6 +77,11 @@ public class AuthorizationService {
     public boolean canQueryPaymentStatus (UserQueryPaymentStatus req)
     {
         return checkToken (req);
+    }
+
+    public boolean canPay (PaymentRequest req, PaymentStatus ps, Expense ex)
+    {
+        return true;
     }
 
 }

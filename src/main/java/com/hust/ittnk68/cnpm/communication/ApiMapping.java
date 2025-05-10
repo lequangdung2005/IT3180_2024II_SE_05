@@ -8,7 +8,7 @@ public class ApiMapping
     public final static String UDPATE_OBJECT = "/api/update-object";
     public final static String DELETE_OBJECT = "/api/delete-object";
     public final static String UPDATE_OBJECT = "/api/update-object";
-
     public final static String QUERY_FAMILY_PAYMENT_STATUS = "/api/xxyyksjdfldksjflkdsjfkdsieujmdjlx";
     public final static String QUERY_OBJECT_BY_ID = "/api/query-object-by-id";
+    public final static String PAYMENT = "/api/pay";
 }

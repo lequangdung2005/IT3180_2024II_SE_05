@@ -7,6 +7,7 @@ public enum ResponseStatus
     SESSION_ERROR("session error"),
     PERMISSION_ERROR("not have permission"),
     INTERNAL_ERROR("internal error"),
+    ILLEGAL_OPERATION("illegal operation"),
     SQL_ERROR("operation not succeed due to a sql exception");
 
     private String responseStatus;

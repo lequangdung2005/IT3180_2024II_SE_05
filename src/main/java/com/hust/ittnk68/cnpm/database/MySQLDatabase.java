@@ -121,4 +121,11 @@ public class MySQLDatabase {
         }
     }
 
+    public List< Map<String, Object> > findById (GetSQLProperties g) throws SQLException
+    {
+	    return findByCondition (String.format("%s_id='%d'",
+                                            g.getSQLTableName(),
+                                            g.getId()), g);
+    }
+
 }

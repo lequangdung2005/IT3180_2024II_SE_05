@@ -3,13 +3,14 @@ package com.hust.ittnk68.cnpm.view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
-import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.material2.Material2MZ;
-import org.kordamp.ikonli.material2.Material2OutlinedAL;
-
+import com.hust.ittnk68.cnpm.communication.PaymentRequest;
+import com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;
 import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;
+import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
@@ -18,16 +19,40 @@ import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.type.ExpenseType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2MZ;
+import org.kordamp.ikonli.material2.Material2OutlinedAL;
+
+import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Tile;
 import atlantafx.base.theme.Styles;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 interface updateMessageInterface {
     void updateMsg (String message);
@@ -35,11 +60,19 @@ interface updateMessageInterface {
 
 public class ClientExpensePage extends DuongFXTabPane {
 
-    List<Node> notPayedTile = new ArrayList<> ();
-    List<Node> payedTile = new ArrayList<> ();
+    private final List<Node> notPayedTile = new ArrayList<> ();
+    private final List<Node> payedTile = new ArrayList<> ();
+
+    private final ClientSceneController sceneController;
 
     public ClientExpensePage (ClientSceneController sceneController) {
 
+	this.sceneController = sceneController;
+	loadPage ();
+    }
+
+    private void loadPage ()
+    {
 	Task<Void> fetchDataTask = new Task<>() {
 
 	    @Override
@@ -67,6 +100,13 @@ public class ClientExpensePage extends DuongFXTabPane {
 	});
 
 	new Thread (fetchDataTask).start ();
+    }
+
+    private void deleteAll ()
+    {
+	notPayedTile.clear ();
+	payedTile.clear ();
+	this.getTabs().clear ();
     }
 
     private void fetchData (ClientSceneController sceneController, updateMessageInterface caller) {
@@ -117,7 +157,7 @@ public class ClientExpensePage extends DuongFXTabPane {
     }
 
     private Tab createTab (String tabName, List<Node> tileList) {
-	VBox con = new VBox (5);
+	VBox con = new VBox (16);
 
 	con.getChildren().addAll(tileList);
 
@@ -142,19 +182,137 @@ public class ClientExpensePage extends DuongFXTabPane {
 	return tab;
     }
 
-    private Tile createExpenseTile (Expense expense, PaymentStatus ps) {
-	Tile tile = new Tile (expense.getExpenseTitle(),
-		expense.getPublishedDate() + " --- " + String.format("%,d / %,d", ps.getTotalPay(), expense.getTotalCost()) + " --- " + expense.getExpenseDescription());
-	FontIcon graphicIcon = new FontIcon (ExpenseType.getIkonCode(expense.getExpenseType()));
-	tile.setGraphic (graphicIcon);
+    private void qrCodeGenerate (PaymentStatus paymentStatus, int amount)
+    {
+	PaymentRequest paymentRequest = new PaymentRequest (sceneController.getUsername(), paymentStatus.getId(), amount);
+	UserGetPaymentQrCode req = new UserGetPaymentQrCode (sceneController.getUsername (), paymentRequest, sceneController.getUriBase(), 500, 500);
+	ServerQrCodeGenerateResponse res = sceneController.getPaymentQrCode (req);
 
-	IconButton pay = new IconButton (new FontIcon (Material2MZ.PAYMENT));
-	IconButton more = new IconButton (new FontIcon (Material2OutlinedAL.INFO)); 
-	VBox vb = new VBox (5, pay, more);
-	tile.setAction (vb);
+	System.out.println (res.getResponseStatus());
+	System.out.println (res.getResponseMessage());
+	System.out.println (res.getToken());
+	System.out.println (res.getQrImageBase64());
 
-	tile.getStyleClass().addAll (Styles.INTERACTIVE, "expensetile");
+	if (! res.getResponseStatus ().equals (ResponseStatus.OK)) {
+	    sceneController.getClientInteractor ().showFailedWindow (res);
+	    return ;
+	}
 
-	return tile;
+	ImageView qrCode = QrImage.build (res.getQrImageBase64 (), req.getWidth ());
+
+	Stage stage = new Stage ();
+	sceneController.openSubStage (stage, qrCodePaymentBox(stage, qrCode, amount, res.getToken ()));
+    }
+
+    private Card qrCodePaymentBox (Stage stage, ImageView qrCode, int amount, String token)
+    {
+	Card card = new Card ();
+	// card.getStyleClass ().add (Styles.ELEVATED_1);
+
+	card.setHeader (qrCode);
+
+	Circle ring = new Circle(16);
+        ring.setFill(null);
+        ring.setStroke(Color.DODGERBLUE);
+        ring.setStrokeWidth(5);
+        ring.setStrokeLineCap(StrokeLineCap.ROUND);
+        ring.getStrokeDashArray().addAll(20.0, 15.0); // Create a gap to look like a ring
+        // Rotate animation
+        RotateTransition rotate = new RotateTransition(Duration.seconds(1), ring);
+        rotate.setByAngle(360);
+        rotate.setCycleCount(RotateTransition.INDEFINITE);
+        rotate.setAutoReverse(false);
+        rotate.play();
+
+	Label moneyLabel = new Label (String.format ("%,d đ", amount));
+	moneyLabel.setFont (new Font (20));
+
+	HBox hbox = new HBox (5, ring, moneyLabel);
+	hbox.setAlignment (Pos.CENTER);
+	hbox.setTranslateX (-21);
+
+	card.setSubHeader (hbox);
+
+	// create new thread to wait client transfer money
+	new Thread (() -> {
+
+	    // wait for stage be shown
+	    while (!stage.isShowing ());
+
+	    AtomicReference<ServerCheckBankingResponse> res = new AtomicReference<>();
+	    // check if qr has been scanned
+	    while (true) {
+
+		if (! stage.isShowing ()) {
+		    return ;
+		}
+
+		res.set (sceneController.checkBanking (token));
+		System.out.println (res.get().getResponseStatus ());
+		System.out.println (res.get().getResponseMessage ());
+		if (res.get().isHasBanked ()) {
+		    break;
+		}
+		try {
+		    Thread.sleep (2000);
+		}
+		catch (InterruptedException e) {
+		    e.printStackTrace ();
+		}
+	    }
+
+	    Platform.runLater(() -> {
+		rotate.stop ();
+		stage.close ();
+		if (res.get().getResponseStatus().equals (ResponseStatus.OK))
+		{
+		    sceneController.getClientInteractor ().notificate ("Thanh toán thành công", "Thanh toán thành công");
+		    deleteAll ();
+		    loadPage ();
+		}
+		else
+		{
+		    sceneController.getClientInteractor ().showFailedWindow (res.get());
+		}
+	    });
+
+	}).start ();
+
+	return card;
+    }
+
+    private VBox createExpenseTile (Expense ex, PaymentStatus ps)
+    {
+	Text title = new Text (ex.getExpenseTitle ());
+	title.getStyleClass ().addAll (Styles.ACCENT, Styles.TEXT, Styles.TITLE_2);
+
+	Button infoBtn = new Button ("Chi tiết");
+	infoBtn.getStyleClass ().add (Styles.BUTTON_OUTLINED);
+	infoBtn.setPrefWidth (125);
+	infoBtn.setOnAction (event -> {
+	    // show info
+	});
+
+	Button payBtn = new Button ("Thanh toán");
+	payBtn.getStyleClass ().addAll (Styles.BUTTON_OUTLINED, Styles.SUCCESS);
+	payBtn.setPrefWidth (125);
+	payBtn.setOnAction (event -> {
+	    Stage stage = new Stage ();
+	    PaymentView payView = new PaymentView (sceneController, stage, ex, ps, (a, b) -> qrCodeGenerate (a, b));
+	    sceneController.openSubStage (stage, payView);
+	});
+
+	VBox vb = new VBox ( 15,
+	    new TextFlow (title),
+	    new VBox ( 5,
+		new Label (String.format ("Ngày tạo: %s", ex.getPublishedDate ())),
+		new Label (String.format ("Đã thanh toán: %,d / %,d", ps.getTotalPay (), ex.getTotalCost ()))
+	    ),
+	    new HBox ( 5,
+		infoBtn, payBtn
+	    )
+	);
+	vb.getStyleClass ().addAll (Styles.INTERACTIVE, "expensetile");
+	return vb;
     }
 }

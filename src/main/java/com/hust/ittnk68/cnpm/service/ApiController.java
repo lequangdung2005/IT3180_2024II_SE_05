@@ -1,13 +1,8 @@
 package com.hust.ittnk68.cnpm.service;
 
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.security.authentication.InsufficientAuthenticationException;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hust.ittnk68.cnpm.auth.JwtUtil;
 import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
@@ -27,15 +22,27 @@ import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
-import com.hust.ittnk68.cnpm.type.ResponseStatus;
 import com.hust.ittnk68.cnpm.security.Token;
+import com.hust.ittnk68.cnpm.type.ResponseStatus;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApiController
 {
 
 	@Autowired
-	MySQLDatabase mysqlDb;
+	private BankingTokenRepository bankingTokenRepository;
+
+	@Autowired
+	private MySQLDatabase mysqlDb;
 
 	@Autowired
 	private JwtUtil jwtUtil;

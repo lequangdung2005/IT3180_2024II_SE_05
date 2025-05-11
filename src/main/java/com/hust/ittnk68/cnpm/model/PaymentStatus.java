@@ -25,41 +25,6 @@ public class PaymentStatus extends GetSQLProperties {
         this.publishedDate = publishedDate;
     }
 
-    public int getPaymentStatusId () {
-        return paymentStatusId;
-    }
-    public void setPaymentStatusId (int paymentStatusId) {
-        this.paymentStatusId = paymentStatusId;
-    }
-
-    public int getExpenseId () {
-        return expenseId;
-    }
-    public void setExpenseId (int expenseId) {
-        this.expenseId = paymentStatusId;
-    }
-
-    public int getFamilyId () {
-        return familyId;
-    }
-    public void setFamilyId (int familyId) {
-        this.familyId = paymentStatusId;
-    }
-
-    public int getTotalPay () {
-        return totalPay;
-    }
-    public void setTotalPay (int totalPay) {
-        this.totalPay = paymentStatusId;
-    }
-
-    public Date getPublishedDate () {
-        return publishedDate;
-    }
-    public void setPublishedDate (Date publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
     @JsonIgnore
     public static PaymentStatus convertFromMap (Map<String, Object> map) {
         PaymentStatus ps = new PaymentStatus (
@@ -100,4 +65,44 @@ public class PaymentStatus extends GetSQLProperties {
                 expenseId, familyId, totalPay, publishedDate,
                 this.getSQLTableName(), getId());
     }
+
+	public int getPaymentStatusId() {
+		return paymentStatusId;
+	}
+
+	public void setPaymentStatusId(int paymentStatusId) {
+		this.paymentStatusId = paymentStatusId;
+	}
+
+	public int getExpenseId() {
+		return expenseId;
+	}
+
+	public void setExpenseId(int expenseId) {
+		this.expenseId = expenseId;
+	}
+
+	public int getFamilyId() {
+		return familyId;
+	}
+
+	public void setFamilyId(int familyId) {
+		this.familyId = familyId;
+	}
+
+	public int getTotalPay() {
+		return totalPay;
+	}
+
+	public void setTotalPay(int totalPay) {
+		this.totalPay = totalPay;
+	}
+
+	public Date getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
+	}
 }

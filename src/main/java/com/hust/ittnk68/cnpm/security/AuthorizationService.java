@@ -1,12 +1,21 @@
 package com.hust.ittnk68.cnpm.security;
 
 import com.hust.ittnk68.cnpm.auth.JwtUtil;
-import com.hust.ittnk68.cnpm.communication.*;
-import com.hust.ittnk68.cnpm.service.AuthController;
-import com.hust.ittnk68.cnpm.type.AccountType;
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
+import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
+import com.hust.ittnk68.cnpm.communication.AdminFindObject;
+import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
+import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
+import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.PaymentRequest;
+import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
+import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
+import com.hust.ittnk68.cnpm.service.AuthController;
+import com.hust.ittnk68.cnpm.type.AccountType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -76,6 +85,11 @@ public class AuthorizationService {
     }
 
     public boolean canPay (PaymentRequest req, PaymentStatus ps, Expense ex)
+    {
+        return true;
+    }
+
+	public boolean canGetPaymentQrCode(UserGetPaymentQrCode req)
     {
         return true;
     }

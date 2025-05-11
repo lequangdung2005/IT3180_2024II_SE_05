@@ -1,5 +1,24 @@
 package com.hust.ittnk68.cnpm.controller;
 
+import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
+import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
+import com.hust.ittnk68.cnpm.communication.AdminFindObject;
+import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
+import com.hust.ittnk68.cnpm.communication.ApiMapping;
+import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;
+import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
+import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;
+import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
+import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
+import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
+import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
 import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
@@ -19,33 +38,13 @@ import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import atlantafx.base.controls.Notification;
 import atlantafx.base.theme.Styles;
 import atlantafx.base.util.Animations;
-
-import org.kordamp.ikonli.javafx.FontIcon;
-import org.springframework.web.client.RestClient;
-
-import com.hust.ittnk68.cnpm.communication.AdminCreateObject;
-import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
-import com.hust.ittnk68.cnpm.communication.AdminFindObject;
-import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
-import com.hust.ittnk68.cnpm.communication.ApiMapping;
-import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
-import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
-import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
-import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
-import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
-import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
-import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
-import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
-import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
-import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
-import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
-
-import java.net.http.*;
-
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -53,8 +52,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -159,9 +158,10 @@ public class ClientSceneController {
         try {
             RestClient restClient = clientModel.getRestClient ();
             ServerCreateObjectResponse res;
-            res = restClient.get()
+            res = restClient.post ()
                 .uri (getUriBase () + ApiMapping.CREATE_OBJECT)
                 .headers (headers -> headers.setBearerAuth (getToken ()))
+                .body (req)
                 .retrieve ()
                 .body (ServerCreateObjectResponse.class);
             return res;
@@ -251,6 +251,44 @@ public class ClientSceneController {
         }
         catch (Exception e) {
             return new ServerObjectByIdQueryResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+
+    public ServerQrCodeGenerateResponse getPaymentQrCode (UserGetPaymentQrCode req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            return restClient.post()
+                .uri (getUriBase() + ApiMapping.QR_CODE_GENERATOR)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .body (req)
+                .retrieve ()
+                .body (ServerQrCodeGenerateResponse.class);
+        }
+        catch (Exception e) {
+            return new ServerQrCodeGenerateResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...", null, null);
+        }
+    }
+
+    public ServerCheckBankingResponse checkBanking (String bankingToken)
+    {
+        try {
+            String finalUrl = UriComponentsBuilder
+                            .fromUriString (getUriBase() + ApiMapping.CHECK_BANKING)
+                            .queryParam ("token", bankingToken)
+                            .build ()
+                            .toString ();
+
+            RestClient restClient = clientModel.getRestClient ();
+            return restClient.get()
+                .uri (finalUrl)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .retrieve ()
+                .body (ServerCheckBankingResponse.class);
+        }
+        catch (Exception e)
+        {
+            return new ServerCheckBankingResponse (ResponseStatus.INTERNAL_ERROR, e.toString(), false);
         }
     }
 

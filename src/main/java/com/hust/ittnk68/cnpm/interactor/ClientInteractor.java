@@ -182,7 +182,7 @@ public class ClientInteractor {
 
     public Optional<ButtonType> showFailedWindow (ServerResponseBase res) {
         Alert fail = new Alert (AlertType.ERROR);
-        fail.setTitle ("Thất bại");
+        fail.setTitle ("Yêu cầu không thể thực hiện");
         fail.setHeaderText (res.getResponseStatus().toString());
         fail.setContentText (res.getResponseMessage());
         fail.initOwner (sceneController.getScene().getWindow());
@@ -190,9 +190,13 @@ public class ClientInteractor {
     }
 
     private void notificateUpdateSuccessfully () {
+        notificate ("Cập nhật thành công", "Cập nhật thành công");
+    }
+    
+    public void notificate (String title, String header) {
         Alert success = new Alert (AlertType.INFORMATION);
-        success.setTitle ("Cập nhật thành công");
-        success.setHeaderText ("Cập nhật thành công");
+        success.setTitle (title);
+        success.setHeaderText (header);
         success.initOwner (sceneController.getScene().getWindow());
         success.showAndWait ();
     }

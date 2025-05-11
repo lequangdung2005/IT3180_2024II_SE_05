@@ -49,10 +49,11 @@ public class AppTest extends TestCase
 
         System.out.printf ("token = %s\n", token);
 
-        Account tmp = jwtUtil.extractAccount (token);
+        Account tmp = jwtUtil.extract (token, Account.class);
         assertTrue (tmp.getFamilyId () == 59);
         assertTrue (tmp.getUsername().equals("anbatocom"));
         assertTrue (tmp.getDigestPassword().equals("dfjsdl39fjs???jdlfjslfloewjlkjlf"));
         assertTrue (tmp.getAccountType().equals(AccountType.USER));
     }
+
 }

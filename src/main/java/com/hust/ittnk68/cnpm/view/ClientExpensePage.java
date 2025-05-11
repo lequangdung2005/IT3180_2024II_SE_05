@@ -145,11 +145,14 @@ public class ClientExpensePage extends DuongFXTabPane {
 		expense = Expense.convertFromMap (map2);
 	    }
 
-	    System.out.println (expense.getExpenseTitle());
-	    System.out.printf ("%d/%d\n", ps.getTotalPay(), expense.getTotalCost());
+	    if (expense.getRequired ()) {
+		System.out.println (expense.getExpenseTitle());
+		System.out.printf ("%d/%d\n", ps.getTotalPay(), expense.getTotalCost());
 
-	    (ps.getTotalPay() < expense.getTotalCost() ? notPayedTile : payedTile)	
-		.add (createExpenseTile (expense, ps));
+		(ps.getTotalPay() < expense.getTotalCost() ? notPayedTile : payedTile)	
+		    .add (createExpenseTile (expense, ps));
+	    }
+
 	}
     }
 

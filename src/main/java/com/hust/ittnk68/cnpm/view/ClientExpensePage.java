@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import com.hust.ittnk68.cnpm.callback.UpdateMessageInterface;
 import com.hust.ittnk68.cnpm.communication.PaymentRequest;
 import com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;
 import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
@@ -54,10 +55,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-interface updateMessageInterface {
-    void updateMsg (String message);
-}
-
 public class ClientExpensePage extends DuongFXTabPane {
 
     private final List<Node> notPayedTile = new ArrayList<> ();
@@ -77,7 +74,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 
 	    @Override
 	    public Void call () {
-		fetchData (sceneController, new updateMessageInterface() {
+		fetchData (sceneController, new UpdateMessageInterface() {
 		    @Override
 		    public void updateMsg (String message) {
 			updateMessage (message);
@@ -109,7 +106,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 	this.getTabs().clear ();
     }
 
-    private void fetchData (ClientSceneController sceneController, updateMessageInterface caller) {
+    private void fetchData (ClientSceneController sceneController, UpdateMessageInterface caller) {
 
 	caller.updateMsg("Fetching expense ...");
 

@@ -44,6 +44,6 @@ public class Client extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-		sceneController.start(primaryStage, "javafx app title", 1200, 700);
+		sceneController.start(primaryStage, "javafx app title", 1500, 900);
 	}
 } 

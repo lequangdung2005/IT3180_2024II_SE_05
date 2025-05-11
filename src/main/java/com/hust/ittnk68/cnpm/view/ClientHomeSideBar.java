@@ -27,19 +27,21 @@ public class ClientHomeSideBar extends BorderPane {
 	btn1.setOnAction (e -> interactor.setRoot (new ClientHomePage (sceneController)));
 
 	IconButton btn2 = new IconButton (new FontIcon (Material2RoundAL.FAMILY_RESTROOM));
+	btn2.setOnAction (e -> {});
+
 	IconButton btn3 = new IconButton (new FontIcon (Material2SharpAL.DIRECTIONS_CAR));
+	btn3.setOnAction (e -> {});
 
 	IconButton btn4 = new IconButton (new FontIcon (Material2AL.ATTACH_MONEY)); 
 	btn4.setOnAction (e -> interactor.setRoot (new ClientExpensePage (sceneController)));
 
 	IconButton btn5 = new IconButton (new FontIcon (Material2AL.FAVORITE));
-	IconButton btn6 = new IconButton (new FontIcon (Material2MZ.SETTINGS));
 
-	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6);
+	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5);
 	accentGroup.setActive (btn1);
 	interactor.setRoot (new ClientHomePage (sceneController));
 
-	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5, btn6);
+	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 

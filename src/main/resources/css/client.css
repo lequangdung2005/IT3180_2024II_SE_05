@@ -1,6 +1,7 @@
 .root {
     /* -fx-font-family: "Noto Sans"; */
-    -fx-font-family: "Montserrat";
+    /* -fx-font-family: "Montserrat"; */
+    -fx-font-family: 'Segoe UI', sans-serif;
 }
 
 #greetinglabel {
@@ -14,7 +15,17 @@
 .graywrapper {
     -fx-hgap: 5px;
 
-    -fx-background-color: #DDE1E4;
+    /* -fx-background-color: #DDE1E4; */
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 35px;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.redwrapper {
+    -fx-hgap: 5px;
+
+    -fx-background-color: #ffe0e0;
     -fx-background-radius: 35px;
 
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
@@ -33,24 +44,32 @@
 }
 
 .gradientbackground {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4a4a4a, #2a2a2a);
+    /* -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4a4a4a, #2a2a2a); */
+    /* -fx-background-color: linear-gradient(to bottom right, #1f1c2c, #928dab); */
+    /* -fx-background-color: linear-gradient(to bottom right, #2E2A47, #434058); */
+    -fx-background-color: linear-gradient(to bottom right, #2D1B4E, #1F2A40);
+    /* -fx-background-color: linear-gradient(to bottom right, #2F3E46, #354F52); */
+    /* -fx-background-color: linear-gradient(to bottom right, #2A2540, #3A3F58); */
+    /* -fx-background-color: linear-gradient(to bottom right, #1E1E28, #2A2A36); */
+    /* -fx-background-color: linear-gradient(to bottom right, #1B263B, #2C3E50); */
 }
 
 .expensetile {
     -fx-border-color: black;
     -fx-border-width: 1px;
     -fx-border-radius: 10px;
+    -fx-padding: 30;
 }
 
 
 .duongfxtabpane .tab-pane {
-    -fx-background-color: #DDE1E4;
+    -fx-background-color: #FFFFFF;
 }
 .duongfxtabpane .tab-header-area .tab-header-background {
-    -fx-background-color: #DDE1E4; 
+    -fx-background-color: #FFFFFF; 
 }
 .duongfxtabpane .tab {
-    -fx-background-color: #DDE1E4;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 15px;
     -fx-border-color: black;
     -fx-border-radius: 15px;
@@ -93,3 +112,33 @@
     -fx-pref-height: 1;
     -fx-border-color: null;
 }
+
+.date-text {
+    -fx-fill: #e74c3c;
+    -fx-padding: 4px 0;
+}
+
+.chart {
+    -fx-background-color: transparent;
+}
+.chart-series-line {
+    -fx-stroke: #ff9800;
+    -fx-stroke-width: 2px;
+}
+.chart-line-symbol {
+    -fx-background-color: white, #ff9800;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.chart-plot-background {
+    -fx-background-color: #fafafa;
+}
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #444;
+}
+.axis-label {
+    -fx-text-fill: #555;
+}
+

@@ -15,11 +15,17 @@
     );
 }
 .progress-bar {
-    -fx-background-color: #DDE1E4;
+    -fx-background-color: #FFFFFF;
 }
 
 .graywrapper {
     -fx-hgap: 5px;
-    -fx-background-color: #DDE1E4;
+    -fx-background-color: #FFFFFF;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
 }
+

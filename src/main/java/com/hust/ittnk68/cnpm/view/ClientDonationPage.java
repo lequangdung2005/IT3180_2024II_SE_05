@@ -55,17 +55,34 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class ClientExpensePage extends DuongFXTabPane {
+public class ClientDonationPage extends HBox {
 
-    private final List<Node> notPayedTile = new ArrayList<> ();
-    private final List<Node> payedTile = new ArrayList<> ();
+    private final List<Node> donationList = new ArrayList<> ();
 
     private final ClientSceneController sceneController;
 
-    public ClientExpensePage (ClientSceneController sceneController) {
+    private final VBox con;
+
+    public ClientDonationPage (ClientSceneController sceneController) {
 
 	this.sceneController = sceneController;
 	loadPage ();
+
+	con = new VBox (16);
+	con.getChildren().addAll(donationList);
+	final ScrollPane sp = new ScrollPane ();
+	sp.setPadding (new Insets (5, 0, 0, 0));
+	sp.setContent (con);
+	sp.widthProperty().addListener ((obs, oldVal, newVal) -> {
+	    // minus scrollbar's width ...
+	    con.setPrefWidth (newVal.doubleValue() - 10);
+	});
+
+        HBox.setHgrow (sp, Priority.ALWAYS);
+        sp.setMaxWidth (Double.MAX_VALUE);
+	this.getChildren().add (sp);
+        this.setPadding (new Insets (36));
+        this.getStyleClass ().add ("graywrapper");
     }
 
     private void loadPage ()
@@ -91,9 +108,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 
 	fetchDataTask.setOnSucceeded (e -> {
 	    stage.close();
-
-	    this.getTabs().add (createTab ("Chưa thanh toán", notPayedTile));
-	    this.getTabs().add (createTab ("Đã thanh toán", payedTile));
+            con.getChildren ().addAll (donationList);
 	});
 
 	new Thread (fetchDataTask).start ();
@@ -101,9 +116,8 @@ public class ClientExpensePage extends DuongFXTabPane {
 
     private void deleteAll ()
     {
-	notPayedTile.clear ();
-	payedTile.clear ();
-	this.getTabs().clear ();
+        donationList.clear ();
+        con.getChildren ().clear ();
     }
 
     private void fetchData (ClientSceneController sceneController, UpdateMessageInterface caller) {
@@ -145,42 +159,12 @@ public class ClientExpensePage extends DuongFXTabPane {
 		expense = Expense.convertFromMap (map2);
 	    }
 
-	    if (expense.getRequired ()) {
-		System.out.println (expense.getExpenseTitle());
-		System.out.printf ("%d/%d\n", ps.getTotalPay(), expense.getTotalCost());
-
-		boolean notPayed = (ps.getTotalPay() < expense.getTotalCost());
-		(notPayed ? notPayedTile : payedTile)	
-		    .add (createExpenseTile (expense, ps, notPayed));
-	    }
-
+            if (! expense.getRequired ()) {
+                System.out.println (expense.getExpenseTitle());
+                System.out.printf ("%d/%d\n", ps.getTotalPay(), expense.getTotalCost());
+                donationList.add (createDonationTile (expense, ps));
+            }
 	}
-    }
-
-    private Tab createTab (String tabName, List<Node> tileList) {
-	VBox con = new VBox (16);
-
-	con.getChildren().addAll(tileList);
-
-	ScrollPane sp = new ScrollPane ();
-	sp.setPadding (new Insets (5, 0, 0, 0));
-	sp.setContent (con);
-	sp.widthProperty().addListener ((obs, oldVal, newVal) -> {
-	    // minus scrollbar's width ...
-	    con.setPrefWidth (newVal.doubleValue() - 10);
-	});
-
-	AnchorPane ap = new AnchorPane();
-	ap.getChildren().add (sp);
-	AnchorPane.setTopAnchor (sp, 0.0);
-	AnchorPane.setLeftAnchor (sp, 0.0);
-	AnchorPane.setRightAnchor (sp, 0.0);
-	AnchorPane.setBottomAnchor (sp, 0.0);
-
-	Tab tab = new Tab ();
-	tab.setText (tabName);
-	tab.setContent (ap);
-	return tab;
     }
 
     private void qrCodeGenerate (PaymentStatus paymentStatus, int amount)
@@ -282,7 +266,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 	return card;
     }
 
-    private VBox createExpenseTile (Expense ex, PaymentStatus ps, boolean notPayed)
+    private VBox createDonationTile (Expense ex, PaymentStatus ps)
     {
 	Text title = new Text (ex.getExpenseTitle ());
 	title.getStyleClass ().addAll (Styles.ACCENT, Styles.TEXT, Styles.TITLE_2);
@@ -294,7 +278,7 @@ public class ClientExpensePage extends DuongFXTabPane {
 	    // show info
 	});
 
-	Button payBtn = new Button ("Thanh toán");
+	Button payBtn = new Button ("Quyên góp");
 	payBtn.getStyleClass ().addAll (Styles.BUTTON_OUTLINED, Styles.SUCCESS);
 	payBtn.setPrefWidth (125);
 	payBtn.setOnAction (event -> {
@@ -303,16 +287,15 @@ public class ClientExpensePage extends DuongFXTabPane {
 	    sceneController.openSubStage (stage, payView);
 	});
 
-	HBox btnBox = new HBox (5, infoBtn);
-	if (notPayed) btnBox.getChildren ().add (payBtn);
-
 	VBox vb = new VBox ( 15,
 	    new TextFlow (title),
 	    new VBox ( 5,
 		new Label (String.format ("Ngày tạo: %s", ex.getPublishedDate ())),
-		new Label (String.format ("Đã thanh toán: %,d / %,d đ", ps.getTotalPay (), ex.getTotalCost ()))
+		new Label (String.format ("Đã quyên góp: %,d đ", ps.getTotalPay ()))
 	    ),
-	    btnBox
+	    new HBox ( 5,
+		infoBtn, payBtn
+	    )
 	);
 	vb.getStyleClass ().addAll (Styles.INTERACTIVE, "expensetile");
 	return vb;

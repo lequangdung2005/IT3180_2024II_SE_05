@@ -1,14 +1,13 @@
 package com.hust.ittnk68.cnpm.view;
 
-import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.material2.Material2AL;
-import org.kordamp.ikonli.material2.Material2MZ;
-import org.kordamp.ikonli.material2.Material2RoundAL;
-import org.kordamp.ikonli.material2.Material2SharpAL;
-
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.group.AccentToggleGroup;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
+
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
+import org.kordamp.ikonli.material2.Material2RoundAL;
+import org.kordamp.ikonli.material2.Material2SharpAL;
 
 import atlantafx.base.theme.Styles;
 import javafx.geometry.Pos;
@@ -36,6 +35,7 @@ public class ClientHomeSideBar extends BorderPane {
 	btn4.setOnAction (e -> interactor.setRoot (new ClientExpensePage (sceneController)));
 
 	IconButton btn5 = new IconButton (new FontIcon (Material2AL.FAVORITE));
+	btn5.setOnAction (e -> interactor.setRoot (new ClientDonationPage (sceneController)));
 
 	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5);
 	accentGroup.setActive (btn1);

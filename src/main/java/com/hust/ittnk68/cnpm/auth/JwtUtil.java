@@ -45,7 +45,7 @@ public class JwtUtil {
                 .compact ();
         }
         catch (JsonProcessingException e) {
-            throw new RuntimeException("Error serializing Account object", e);
+            throw new RuntimeException("Error serializing object", e);
         }
     }
 
@@ -67,7 +67,7 @@ public class JwtUtil {
             throw new IllegalArgumentException ("Invalid token");
         }
         catch (IOException e) {
-            throw new RuntimeException("Error deserializing Account object", e);
+            throw new RuntimeException("Error deserializing object", e);
         }
     }
 

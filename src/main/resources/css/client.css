@@ -143,3 +143,10 @@
     -fx-text-fill: #555;
 }
 
+.border {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-radius: 35px;
+    -fx-padding: 25;
+}
+

@@ -11,6 +11,7 @@ import com.hust.ittnk68.cnpm.communication.PaymentRequest;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
+import com.hust.ittnk68.cnpm.communication.UserQueryPersonByFId;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.Expense;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
@@ -89,7 +90,12 @@ public class AuthorizationService {
         return true;
     }
 
-	public boolean canGetPaymentQrCode(UserGetPaymentQrCode req)
+    public boolean canGetPaymentQrCode(UserGetPaymentQrCode req)
+    {
+        return true;
+    }
+
+    public boolean canQueryPersonByFamilyId(UserQueryPersonByFId req)
     {
         return true;
     }

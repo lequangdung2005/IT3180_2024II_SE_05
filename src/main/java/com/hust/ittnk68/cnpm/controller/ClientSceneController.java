@@ -13,11 +13,13 @@ import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;
+import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
+import com.hust.ittnk68.cnpm.communication.UserQueryPersonByFId;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 import com.hust.ittnk68.cnpm.model.ClientModel;
 import com.hust.ittnk68.cnpm.model.CreateAccountModel;
@@ -39,6 +41,7 @@ import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -50,8 +53,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -60,9 +68,9 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class ClientSceneController {
-    private Stage stage;
     private Scene scene;
     private StackPane stackPane;
+    private Stage stage;
 
     private UpdatePersonModel updatePersonModel;
     private FindPersonModel findPersonModel;
@@ -89,9 +97,9 @@ public class ClientSceneController {
     private ClientInteractor clientInteractor;
 
     public ClientSceneController() {
-        stackPane = new StackPane ();
         clientModel = new ClientModel ();
         clientInteractor = new ClientInteractor (this);
+        stackPane = new StackPane ();
 
         createPersonModel = new CreatePersonModel ();
         findPersonModel = new FindPersonModel ();
@@ -116,21 +124,38 @@ public class ClientSceneController {
 
     public void start(Stage stage, String title, double width, double height) {
 
+        this.stage = stage;
+
         // window shape
         Rectangle rect = new Rectangle (width, height);
         rect.setArcHeight (60.0);
         rect.setArcWidth (60.0);
 
-        this.stage = stage;
         stage.setTitle(title);
         stage.initStyle (StageStyle.TRANSPARENT);
 
-        scene = new Scene(this.stackPane, width, height);
+        StackPane root = new StackPane ();
+        root.setPadding (new Insets (20));
+        scene = new Scene(root, width, height);
         scene.setFill (Color.TRANSPARENT);
         scene.getStylesheets().add(getClass().getResource("/css/client.css").toExternalForm());
         stage.setScene(scene);
 
-        this.stackPane.setClip (rect);
+        Button closeBtn = new Button (null, new FontIcon (Material2AL.CLOSE));
+        closeBtn.getStyleClass ().addAll (Styles.BUTTON_ICON, Styles.BUTTON_OUTLINED, Styles.DANGER);
+        closeBtn.setOnAction (e -> stage.close ());
+        HBox hb = new HBox(closeBtn);
+        hb.setAlignment (Pos.TOP_RIGHT);
+
+        root.setClip (rect);
+        root.getChildren ().add (
+            new VBox (
+                hb,
+                new Separator (),
+                this.stackPane
+            )
+        );
+        VBox.setVgrow (this.stackPane, Priority.ALWAYS);
         this.stackPane.getChildren ().add (new LoginController (this).getView ());
 
 	stage.show(); 
@@ -292,11 +317,29 @@ public class ClientSceneController {
         }
     }
 
+    public ServerQueryPersonByFIdResponse queryPersonByFamilyId (UserQueryPersonByFId req) {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerQueryPersonByFIdResponse res = restClient.post()
+                                                    .uri (getUriBase() + ApiMapping.QUERY_PERSON_BY_FID)
+                                                    .headers (headers -> headers.setBearerAuth (getToken ()))
+                                                    .body (req)
+                                                    .retrieve ()
+                                                    .body (ServerQueryPersonByFIdResponse.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerQueryPersonByFIdResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...", null);
+        }
+    }
+
     public void openSubStage (Stage subStage, Region rg)
     {
         subStage.initModality (Modality.APPLICATION_MODAL);
         subStage.initOwner (this.stage);
+        subStage.initStyle (StageStyle.TRANSPARENT);
         Scene subStageScene = new Scene (rg);
+        subStageScene.setFill (Color.TRANSPARENT);
         subStage.setScene (subStageScene);
         subStage.show ();
     }

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 public class LoadingView extends VBox {
 
@@ -35,5 +36,12 @@ public class LoadingView extends VBox {
         this.getStyleClass ().addAll (
             "graywrapper", "loadingview"
         );
+
+        Rectangle clip = new Rectangle ();
+        clip.widthProperty ().bind (this.widthProperty ());
+        clip.heightProperty ().bind (this.heightProperty ());
+        clip.setArcWidth (10);
+        clip.setArcHeight (10);
+        this.setClip (clip);
     }
 }

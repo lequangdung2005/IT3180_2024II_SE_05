@@ -15,13 +15,16 @@ import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
+import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
+import com.hust.ittnk68.cnpm.communication.UserQueryPersonByFId;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
 import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
+import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.security.Token;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -37,9 +40,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController
 {
-
-	@Autowired
-	private BankingTokenRepository bankingTokenRepository;
 
 	@Autowired
 	private MySQLDatabase mysqlDb;
@@ -138,6 +138,25 @@ public class ApiController
 		{
 			e.printStackTrace ();
 			return new ServerPaymentStatusQueryResponse(ResponseStatus.INTERNAL_ERROR, e.toString());
+		}
+	}
+
+	@PreAuthorize ("@authz.canQueryPersonByFamilyId(#req)")
+	@RequestMapping(ApiMapping.QUERY_PERSON_BY_FID)
+	public ServerQueryPersonByFIdResponse queryPersonByFamilyId (@RequestBody UserQueryPersonByFId req)
+	{
+		int family_id = jwtUtil.extract (tokenGetter.get (), Account.class) .getFamilyId ();
+		try {
+			List<Map<String, Object>> res = mysqlDb.findByCondition (
+					String.format ("family_id='%d'", family_id), 
+					new Person());
+			return new ServerQueryPersonByFIdResponse(ResponseStatus.OK, "okay", res);
+		}
+		catch (SQLException e) {
+			return new ServerQueryPersonByFIdResponse(ResponseStatus.SQL_ERROR, e.toString (), null);
+		}
+		catch (Exception e) {
+			return new ServerQueryPersonByFIdResponse(ResponseStatus.INTERNAL_ERROR, e.toString (), null);
 		}
 	}
 

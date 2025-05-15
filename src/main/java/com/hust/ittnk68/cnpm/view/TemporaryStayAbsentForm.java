@@ -5,7 +5,15 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.type.Date;
 import com.hust.ittnk68.cnpm.type.Nation;
+import com.hust.ittnk68.cnpm.type.ResidenceStatus;
+import com.hust.ittnk68.cnpm.type.ResponseStatus;
+import com.hust.ittnk68.cnpm.type.Sex;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2AL;
@@ -42,6 +50,7 @@ public class TemporaryStayAbsentForm extends VBox {
     final private ComboBox<String> genderChoose;
     final private ComboBox<String> nationChoose;
     final private ComboBox<String> residenceStatusChoose;
+    final private ClientSceneController sceneController;
 
     private List <String> getAllNation () {
         List<String> list = new ArrayList<>();
@@ -81,10 +90,77 @@ public class TemporaryStayAbsentForm extends VBox {
         return gp;
     }
 
-    public TemporaryStayAbsentForm (Stage stage)
+    private ServerResponseBase sendRequest ()
     {
+        String fullname = this.fullnameTf.textProperty ().get();
+        fullname = fullname.trim ();
+        fullname = fullname.replaceAll ("^ +| +$|( )+", "$1");
+
+        Date dateOfBirth = Date.convertFromLocalDate( dateOfBirthPicker.valueProperty ().get() );
+
+        String citizenId = CIDTextField.textProperty ().get();
+        citizenId = citizenId.replace (" ", "");
+        citizenId = citizenId.replace ("-", "");
+
+        String phoneNumber = phoneNumberTextField.textProperty().get();
+        phoneNumber = phoneNumber.replace (" ", "");
+
+        String sexString = genderChoose.valueProperty ().get();
+        String nationString = nationChoose.valueProperty().get();
+        String residenceStatusString = residenceStatusChoose.valueProperty().get();
+
+        if (fullname.isEmpty()) {
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Chưa điền họ và tên.");
+        }
+
+        if (citizenId.contains("_")) {
+            System.out.println ("Ma so CCCD chua hop le");
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Số CCCD chưa đúng định dạng.");
+        }
+
+        if (phoneNumber.contains("_")) {
+            System.out.println ("Sdt chua hop le");
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Số điện thoại chưa đúng định dạng.");
+        }
+
+        Sex sex = null;
+        if (sexString.equals("Nam"))
+            sex = Sex.MALE;
+        else if (sexString.equals("Nữ"))
+            sex = Sex.FEMALE;
+        else {
+            System.out.println ("Chua chon gioi tinh");
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Chưa chọn giới tính.");
+        }
+
+        if (Nation.matchByString(nationString).isEmpty()) {
+            System.out.println ("Chua chon quoc tich");
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Chưa chọn quốc tịch.");
+        }
+        Nation nation = Nation.matchByString (nationString).get();
+
+        ResidenceStatus residenceStatus = null;
+        if (residenceStatusString.equals("Đang cư trú"))
+            residenceStatus = ResidenceStatus.PRESENT;
+        else if (residenceStatusString.equals("Tạm vắng"))
+            residenceStatus = ResidenceStatus.ABSENT;
+        else {
+            System.out.println ("Chua chon tinh trang cu tru");
+            return new ServerResponseBase (ResponseStatus.ILLEGAL_OPERATION, "Chưa chọn tình trạng cư trú.");
+        }
+
+        TemporaryStayAbsentRequest temporaryStayAbsentRequest = new TemporaryStayAbsentRequest(-1, -1,
+                fullname, dateOfBirth, citizenId, phoneNumber, sex, nation, residenceStatus);
+        PostTemporaryStayAbsentRequest req = new PostTemporaryStayAbsentRequest(sceneController.getClientModel().getUsername (), temporaryStayAbsentRequest);
+        return sceneController.createTemporaryStayAbsentRequest (req);
+    }
+
+    public TemporaryStayAbsentForm (Stage stage, ClientSceneController sceneController)
+    {
+        this.sceneController = sceneController;
+
         Button closeBtn = new Button (null, new FontIcon (Material2AL.CLOSE));
-        closeBtn.getStyleClass ().addAll (Styles.BUTTON_ICON, Styles.BUTTON_OUTLINED, Styles.DANGER);
+        closeBtn.getStyleClass ().addAll (Styles.BUTTON_ICON, Styles.DANGER);
         closeBtn.setOnAction (e -> stage.close ());
         HBox hb = new HBox(closeBtn);
         hb.setAlignment (Pos.TOP_RIGHT);
@@ -123,7 +199,17 @@ public class TemporaryStayAbsentForm extends VBox {
         title.getStyleClass ().addAll (Styles.TEXT, Styles.TITLE_3, Styles.ACCENT);
 
         Button submitBtn = new Button ("Khai báo");
-        submitBtn.getStyleClass ().addAll (Styles.BUTTON_OUTLINED, Styles.SUCCESS);
+        submitBtn.getStyleClass ().addAll (Styles.SUCCESS);
+        submitBtn.setOnAction (e -> {
+            ServerResponseBase res =  sendRequest ();
+            if (res.getResponseStatus ().equals (ResponseStatus.OK)) {
+                stage.close ();
+                sceneController.getClientInteractor ().notificate ("Thành công", "Khai báo thành công");
+            }
+            else {
+                sceneController.getClientInteractor ().showFailedWindow (res);
+            }
+        });
         HBox btnBox = new HBox(submitBtn);
         btnBox.setAlignment (Pos.CENTER);
 

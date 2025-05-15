@@ -2,7 +2,13 @@ package com.hust.ittnk68.cnpm.database;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.hust.ittnk68.cnpm.model.*;
+import com.hust.ittnk68.cnpm.model.Account;
+import com.hust.ittnk68.cnpm.model.Expense;
+import com.hust.ittnk68.cnpm.model.Family;
+import com.hust.ittnk68.cnpm.model.PaymentStatus;
+import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.model.Vehicle;
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -14,7 +20,8 @@ import com.hust.ittnk68.cnpm.model.*;
     @JsonSubTypes.Type(value=Family.class, name = "family"),
     @JsonSubTypes.Type(value=PaymentStatus.class, name = "payment_status"),
     @JsonSubTypes.Type(value=Person.class, name = "person"),
-    @JsonSubTypes.Type(value=Vehicle.class, name = "vehicle")
+    @JsonSubTypes.Type(value=Vehicle.class, name = "vehicle"),
+    @JsonSubTypes.Type(value=TemporaryStayAbsentRequest.class, name = "temporary_stay_absent_request")
 })
 public abstract class GetSQLProperties {
     abstract public int getId ();

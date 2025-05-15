@@ -8,6 +8,7 @@ import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.PaymentRequest;
+import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
@@ -96,6 +97,21 @@ public class AuthorizationService {
     }
 
     public boolean canQueryPersonByFamilyId(UserQueryPersonByFId req)
+    {
+        return true;
+    }
+
+    public boolean canPostTemporaryStayAbsentRequest(PostTemporaryStayAbsentRequest req)
+    {
+        return true;
+    }
+
+    public boolean canQueryTemporaryStayAbsentRequest(ClientMessageBase req)
+    {
+        return true;
+    }
+
+    public boolean canDeleteTemporaryStayAbsentRequest(PostTemporaryStayAbsentRequest req)
     {
         return true;
     }

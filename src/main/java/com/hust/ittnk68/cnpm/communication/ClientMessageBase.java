@@ -4,7 +4,7 @@ public class ClientMessageBase
 {
     private String username; 
 
-    ClientMessageBase (String username)
+    public ClientMessageBase (String username)
     {
         this.username = username;
     }

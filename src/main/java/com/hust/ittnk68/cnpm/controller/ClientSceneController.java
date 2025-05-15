@@ -5,7 +5,9 @@ import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
 import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
+import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
+import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
@@ -14,7 +16,9 @@ import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
+import com.hust.ittnk68.cnpm.communication.ServerResponseTemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
@@ -32,6 +36,7 @@ import com.hust.ittnk68.cnpm.model.FindExpenseModel;
 import com.hust.ittnk68.cnpm.model.FindFamilyModel;
 import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
 import com.hust.ittnk68.cnpm.model.FindPersonModel;
+import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
 import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
 import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
@@ -135,23 +140,23 @@ public class ClientSceneController {
         stage.initStyle (StageStyle.TRANSPARENT);
 
         StackPane root = new StackPane ();
-        root.setPadding (new Insets (20));
         scene = new Scene(root, width, height);
         scene.setFill (Color.TRANSPARENT);
         scene.getStylesheets().add(getClass().getResource("/css/client.css").toExternalForm());
         stage.setScene(scene);
 
         Button closeBtn = new Button (null, new FontIcon (Material2AL.CLOSE));
-        closeBtn.getStyleClass ().addAll (Styles.BUTTON_ICON, Styles.BUTTON_OUTLINED, Styles.DANGER);
+        closeBtn.getStyleClass ().addAll (Styles.BUTTON_ICON, Styles.DANGER);
         closeBtn.setOnAction (e -> stage.close ());
         HBox hb = new HBox(closeBtn);
         hb.setAlignment (Pos.TOP_RIGHT);
+        hb.setPadding (new Insets (20, 20, 10, 20));
 
         root.setClip (rect);
         root.getChildren ().add (
-            new VBox (
+            new VBox (0,
                 hb,
-                new Separator (),
+                // new Separator (),
                 this.stackPane
             )
         );
@@ -196,6 +201,55 @@ public class ClientSceneController {
             return new ServerCreateObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
         }
 
+    }
+
+    public ServerResponseBase createTemporaryStayAbsentRequest (PostTemporaryStayAbsentRequest req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseBase res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.POST_TEMPORARY_STAY_ABSENT_REQUEST)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseBase.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerFindObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerResponseBase deleteTemporaryStayAbsentRequest (PostTemporaryStayAbsentRequest req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseBase res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.DELETE_TEMPORARY_STAY_ABSENT_REQUEST)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseBase.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerFindObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerResponseTemporaryStayAbsentRequest queryTemporaryStayAbsentRequest (ClientMessageBase req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseTemporaryStayAbsentRequest res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.QUERY_TEMPORARY_STAY_ABSENT_REQUEST)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseTemporaryStayAbsentRequest.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerResponseTemporaryStayAbsentRequest(ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...", null);
+        }
     }
 
     public ServerFindObjectResponse findObject (AdminFindObject req) {

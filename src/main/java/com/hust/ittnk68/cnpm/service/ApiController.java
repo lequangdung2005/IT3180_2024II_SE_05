@@ -10,12 +10,16 @@ import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
 import com.hust.ittnk68.cnpm.communication.AdminFindObject;
 import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
+import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
+import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
+import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.communication.ServerResponseTemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
@@ -25,6 +29,7 @@ import com.hust.ittnk68.cnpm.database.MySQLDatabase;
 import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
+import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
 import com.hust.ittnk68.cnpm.security.Token;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -157,6 +162,57 @@ public class ApiController
 		}
 		catch (Exception e) {
 			return new ServerQueryPersonByFIdResponse(ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+		}
+	}
+
+	@PreAuthorize("@authz.canPostTemporaryStayAbsentRequest(#req)")
+	@RequestMapping(ApiMapping.POST_TEMPORARY_STAY_ABSENT_REQUEST)
+	public ServerResponseBase postTemporaryStayAbsentRequest (@RequestBody PostTemporaryStayAbsentRequest req)
+	{
+		try {
+			String token = tokenGetter.get ();
+			Account acc = jwtUtil.extract (token, Account.class);
+			req.getTemporaryStayAbsentRequest().setFamilyId (acc.getFamilyId ());
+			mysqlDb.create (req.getTemporaryStayAbsentRequest ());
+			return new ServerResponseBase (ResponseStatus.OK, "success");
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseBase (ResponseStatus.INTERNAL_ERROR, e.toString ());
+		}
+	}
+
+	@PreAuthorize("@authz.canQueryTemporaryStayAbsentRequest(#req)")
+	@RequestMapping(ApiMapping.QUERY_TEMPORARY_STAY_ABSENT_REQUEST)
+	public ServerResponseTemporaryStayAbsentRequest queryTemporaryStayAbsentRequest (@RequestBody ClientMessageBase req)
+	{
+		try {
+			String token = tokenGetter.get ();
+			Account acc = jwtUtil.extract (token, Account.class);
+			return new ServerResponseTemporaryStayAbsentRequest(ResponseStatus.OK, "success",
+					mysqlDb.findByCondition(String.format ("family_id=%d", acc.getFamilyId()), new TemporaryStayAbsentRequest())
+				);
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseTemporaryStayAbsentRequest (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+		}
+	}
+
+	@PreAuthorize("@authz.canDeleteTemporaryStayAbsentRequest(#req)")
+	@RequestMapping(ApiMapping.DELETE_TEMPORARY_STAY_ABSENT_REQUEST)
+	public ServerResponseBase deleteTemporaryStayAbsentRequest (@RequestBody PostTemporaryStayAbsentRequest req)
+	{
+		try {
+			System.out.printf ("debug at server: %d\n", req.getTemporaryStayAbsentRequest().getId ());
+			System.out.println (req.getTemporaryStayAbsentRequest ().getId ());
+			mysqlDb.deleteByCondition(String.format("temporary_stay_absent_request_id=%d", req.getTemporaryStayAbsentRequest().getId()),
+					new TemporaryStayAbsentRequest());
+			return new ServerResponseBase(ResponseStatus.OK, "Success");
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseTemporaryStayAbsentRequest (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
 		}
 	}
 

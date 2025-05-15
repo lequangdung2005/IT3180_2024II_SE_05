@@ -70,3 +70,17 @@ CREATE TABLE IF NOT EXISTS payment_status (
         REFERENCES family(family_id)
         ON UPDATE RESTRICT
 );
+
+CREATE TABLE IF NOT EXISTS temporary_stay_absent_request (
+    temporary_stay_absent_request_id int not null auto_increment,
+    person_id int,
+    family_id int,
+    fullname varchar(64) not null,
+    date_of_birth date,
+    citizen_identification_number varchar(64) not null,
+    phone_number varchar(16) not null,
+    sex varchar(8) not null,
+    nationality varchar(64) not null,
+    residence_status varchar(8) not null,
+    PRIMARY KEY(temporary_stay_absent_request_id)
+);

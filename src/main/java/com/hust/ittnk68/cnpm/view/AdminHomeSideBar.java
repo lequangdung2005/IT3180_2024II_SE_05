@@ -48,15 +48,23 @@ public class AdminHomeSideBar extends BorderPane {
 	AdminPaymentStatusManagePage adminPaymentStatusPage = new AdminPaymentStatusManagePage (sceneController);
 	btn5.setOnAction (e -> interactor.setRoot (adminPaymentStatusPage));
 
-	// IconButton btn6 = new IconButton (new FontIcon (Material2MZ.SETTINGS));
+	IconButton btn6 = new IconButton (new FontIcon (Material2OutlinedAL.CONTACT_PAGE));
+	btn6.setOnAction (e -> interactor.setRoot (new AdminTemporaryStayAbsentView (sceneController)));
 
-	AccentToggleGroup accentGroup = new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5);
+	new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6);
 
 	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 
-	this.setTop (groupWrapper);
+	VBox groupWrapper2 = new VBox (btn6);
+	groupWrapper2.setAlignment (Pos.CENTER);
+	groupWrapper2.getStyleClass().addAll("graywrapper", "updownpadding");
+
+	this.setTop (new VBox(15,
+	    groupWrapper,
+	    groupWrapper2
+	));
 	
 	IconButton logoutBtn = new IconButton (new FontIcon(Material2AL.LOG_OUT));
 	logoutBtn.getStyleClass ().add(Styles.DANGER);

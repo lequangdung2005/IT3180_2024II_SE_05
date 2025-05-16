@@ -16,6 +16,7 @@ import org.kordamp.ikonli.material2.Material2MZ;
 
 import atlantafx.base.layout.InputGroup;
 import atlantafx.base.theme.Styles;
+import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
@@ -23,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class AdminToolView extends DuongFXTabPane {
 
@@ -121,30 +123,49 @@ public class AdminToolView extends DuongFXTabPane {
             }
             System.out.println ("choose folder: " + folder.getAbsolutePath());
 
-            ServerResponseFile res = sceneController.getDonationStatistics();
-            if (! res.getResponseStatus ().equals (ResponseStatus.OK)) {
-                sceneController.getClientInteractor().showFailedWindow(res);
-                return ;
-            }
-
-            String filename = "donation-statistics-" + System.currentTimeMillis() + ".csv";
-            File outputFile = new File (folder, filename);
-            outputFile.getAbsolutePath();
-
-            try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile)))
-            {
-                writer.write (res.getContent ());
-
-                ButtonType type = sceneController.getClientInteractor().showConfirmationWindow("Xác nhận", "File .csv đã được lưu tại " + outputFile.getAbsolutePath(),
-                                        "Bạn có muốn xem nội dung của File không?").get ();
-                if (! type.equals (ButtonType.OK)) {
-                    return; 
+            Task<ServerResponseFile> donationGetTask = new Task<>() {
+                @Override
+                public ServerResponseFile call () {
+                    updateMessage ("Loading donation statistics ...");
+                    return sceneController.getVehicleCsv ();
                 }
-                csvViewer.loadCsvToTable (res.getContent ());
-            }
-            catch (Exception e2) {
-                sceneController.getClientInteractor().notificate("Thất bại", e2.toString ());
-            }
+            };
+
+            LoadingView root = new LoadingView (donationGetTask);
+            Stage stage = new Stage ();
+            sceneController.openSubStage (stage, root);
+
+            donationGetTask.setOnSucceeded (eeee -> {
+                stage.close ();
+
+                ServerResponseFile res = donationGetTask.getValue ();
+                if (! res.getResponseStatus ().equals (ResponseStatus.OK)) {
+                    sceneController.getClientInteractor().showFailedWindow(res);
+                    return ;
+                }
+
+                String filename = "donation-statistics-" + System.currentTimeMillis() + ".csv";
+                File outputFile = new File (folder, filename);
+                outputFile.getAbsolutePath();
+
+                try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile)))
+                {
+                    writer.write (res.getContent ());
+
+                    ButtonType type = sceneController.getClientInteractor().showConfirmationWindow("Xác nhận", "File .csv đã được lưu tại " + outputFile.getAbsolutePath(),
+                                            "Bạn có muốn xem nội dung của File không?").get ();
+                    if (! type.equals (ButtonType.OK)) {
+                        return; 
+                    }
+                    csvViewer.loadCsvToTable (res.getContent ());
+                }
+                catch (Exception e2) {
+                    sceneController.getClientInteractor().notificate("Thất bại", e2.toString ());
+                }
+
+            });
+
+            new Thread (donationGetTask).start ();
 
         });
 
@@ -186,30 +207,49 @@ public class AdminToolView extends DuongFXTabPane {
             }
             System.out.println ("choose folder: " + folder.getAbsolutePath());
 
-            ServerResponseFile res = sceneController.getVehicleCsv ();
-            if (! res.getResponseStatus ().equals (ResponseStatus.OK)) {
-                sceneController.getClientInteractor().showFailedWindow(res);
-                return ;
-            }
-
-            String filename = "vehicle-statistics-" + System.currentTimeMillis() + ".csv";
-            File outputFile = new File (folder, filename);
-            outputFile.getAbsolutePath();
-
-            try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile)))
-            {
-                writer.write (res.getContent ());
-
-                ButtonType type = sceneController.getClientInteractor().showConfirmationWindow("Xác nhận", "File .csv đã được lưu tại " + outputFile.getAbsolutePath(),
-                                        "Bạn có muốn xem nội dung của File không?").get ();
-                if (! type.equals (ButtonType.OK)) {
-                    return; 
+            Task<ServerResponseFile> donationGetTask = new Task<>() {
+                @Override
+                public ServerResponseFile call () {
+                    updateMessage ("Loading vehicle statistics ...");
+                    return sceneController.getVehicleCsv ();
                 }
-                csvViewer.loadCsvToTable (res.getContent ());
-            }
-            catch (Exception e2) {
-                sceneController.getClientInteractor().notificate("Thất bại", e2.toString ());
-            }
+            };
+
+            LoadingView root = new LoadingView (donationGetTask);
+            Stage stage = new Stage ();
+            sceneController.openSubStage (stage, root);
+
+            donationGetTask.setOnSucceeded (eeee -> {
+                stage.close ();
+
+                ServerResponseFile res = donationGetTask.getValue ();
+
+                if (! res.getResponseStatus ().equals (ResponseStatus.OK)) {
+                    sceneController.getClientInteractor().showFailedWindow(res);
+                    return ;
+                }
+
+                String filename = "vehicle-statistics-" + System.currentTimeMillis() + ".csv";
+                File outputFile = new File (folder, filename);
+                outputFile.getAbsolutePath();
+
+                try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile)))
+                {
+                    writer.write (res.getContent ());
+
+                    ButtonType type = sceneController.getClientInteractor().showConfirmationWindow("Xác nhận", "File .csv đã được lưu tại " + outputFile.getAbsolutePath(),
+                                            "Bạn có muốn xem nội dung của File không?").get ();
+                    if (! type.equals (ButtonType.OK)) {
+                        return; 
+                    }
+                    csvViewer.loadCsvToTable (res.getContent ());
+                }
+                catch (Exception e2) {
+                    sceneController.getClientInteractor().notificate("Thất bại", e2.toString ());
+                }
+            });
+
+            new Thread (donationGetTask).start ();
 
         });
 

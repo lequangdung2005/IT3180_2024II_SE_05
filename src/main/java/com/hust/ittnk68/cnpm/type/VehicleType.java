@@ -1,7 +1,9 @@
 package com.hust.ittnk68.cnpm.type;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum VehicleType {
-    TRUCK("truck"),
     CAR("car"),
     BICYCLE("bicycle"),
     MOTORCYCLE("motorcycle"),
@@ -15,5 +17,9 @@ public enum VehicleType {
     @Override
     public String toString() {
         return vehicleType;
+    }
+
+    public static Optional<VehicleType> matchByString(String name) {
+        return Arrays.stream(values()).filter(it -> it.toString().equals(name)).findAny();
     }
 }

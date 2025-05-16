@@ -16,6 +16,12 @@ public class ApiMapping
     public final static String POST_TEMPORARY_STAY_ABSENT_REQUEST = "/api/post-sdfdsf-dsfdsfd-fds-cx";
     public final static String QUERY_TEMPORARY_STAY_ABSENT_REQUEST = "/api/query-sdfdsf-dsfdsfd-fds-cx";
     public final static String DELETE_TEMPORARY_STAY_ABSENT_REQUEST = "/api/delete-sdfdsf-dsfdsfd-fds-cx";
+    public final static String POST_VEHICLE = "/api/vehiclekdjflsfjdsl-sdfdsf-dsfdsfd-fds-cx";
+    public final static String QUERY_VEHICLE = "/api/vehiclefjzzzkdlsjfl-sdfdsf-dsfdsfd-fds-cx";
+    public final static String DELETE_VEHICLE = "/api/vehiclefjkdslaaaaaaalfjlds-sdfdsf-dsfdsfd-fds-cx";
     public final static String PAYMENT = "/api/pay";
     public final static String QR_CODE_GENERATOR = "/api/qr-code-generator";
+    public final static String GET_PARKING_FEE = "/api/get-parking-fee";
+    public final static String GET_VEHICLE_STATISTICS = "/api/get-vehicle-statistics";
+    public final static String GET_DONATION_STATISTICS = "/api/get-donation-statistics";
 }

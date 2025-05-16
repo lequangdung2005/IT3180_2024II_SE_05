@@ -29,7 +29,7 @@ public class ClientHomeSideBar extends BorderPane {
 	btn2.setOnAction (e -> interactor.setRoot (new ClientFamilyPage (sceneController)));
 
 	IconButton btn3 = new IconButton (new FontIcon (Material2SharpAL.DIRECTIONS_CAR));
-	btn3.setOnAction (e -> {});
+	btn3.setOnAction (e -> interactor.setRoot (new ClientVehicleView (sceneController)));
 
 	IconButton btn4 = new IconButton (new FontIcon (Material2AL.ATTACH_MONEY)); 
 	btn4.setOnAction (e -> interactor.setRoot (new ClientExpensePage (sceneController)));

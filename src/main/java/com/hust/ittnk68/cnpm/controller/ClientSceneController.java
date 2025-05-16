@@ -8,6 +8,7 @@ import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.PostVehicle;
 import com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
@@ -17,8 +18,11 @@ import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.communication.ServerResponseFile;
+import com.hust.ittnk68.cnpm.communication.ServerResponseObject;
 import com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;
 import com.hust.ittnk68.cnpm.communication.ServerResponseTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.ServerResponseVehicle;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
@@ -249,6 +253,114 @@ public class ClientSceneController {
         }
         catch (Exception e) {
             return new ServerResponseTemporaryStayAbsentRequest(ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...", null);
+        }
+    }
+
+    public ServerResponseBase postVehicle (PostVehicle req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseBase res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.POST_VEHICLE)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseBase.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerFindObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerResponseBase deleteVehicle (PostVehicle req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseBase res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.DELETE_VEHICLE)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseBase.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerFindObjectResponse (ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...");
+        }
+    }
+    public ServerResponseVehicle queryVehicle (ClientMessageBase req)
+    {
+        try {
+            RestClient restClient = clientModel.getRestClient();
+            ServerResponseVehicle res = restClient.post()
+                                            .uri (getUriBase() + ApiMapping.QUERY_VEHICLE)
+                                            .headers (headers -> headers.setBearerAuth (getToken ()))
+                                            .body (req)
+                                            .retrieve ()
+                                            .body (ServerResponseVehicle.class);
+            return res;
+        }
+        catch (Exception e) {
+            return new ServerResponseVehicle(ResponseStatus.CANT_CONNECT_SERVER, "can't connect to server...", null);
+        }
+    }
+
+    public ServerResponseObject getParkingFee (String username)
+    {
+        try {
+            String finalUrl = UriComponentsBuilder
+                            .fromUriString (getUriBase() + ApiMapping.GET_PARKING_FEE)
+                            .queryParam ("username", username)
+                            .build ()
+                            .toString ();
+
+            return clientModel.getRestClient().get()
+                .uri (finalUrl)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .retrieve ()
+                .body (ServerResponseObject.class);
+        }
+        catch (Exception e)
+        {
+            return new ServerResponseObject(ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+        }
+    }
+
+    public ServerResponseFile getVehicleCsv ()
+    {
+        try {
+            String finalUrl = UriComponentsBuilder
+                            .fromUriString (getUriBase() + ApiMapping.GET_VEHICLE_STATISTICS)
+                            .queryParam ("username", getUsername ())
+                            .build ()
+                            .toString ();
+            return clientModel.getRestClient().get()
+                .uri (finalUrl)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .retrieve ()
+                .body (ServerResponseFile.class);
+        }
+        catch (Exception e) {
+            return new ServerResponseFile (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+        }
+    }
+
+    public ServerResponseFile getDonationStatistics ()
+    {
+        try {
+            String finalUrl = UriComponentsBuilder
+                            .fromUriString (getUriBase() + ApiMapping.GET_DONATION_STATISTICS)
+                            .queryParam ("username", getUsername ())
+                            .build ()
+                            .toString ();
+            return clientModel.getRestClient().get()
+                .uri (finalUrl)
+                .headers (headers -> headers.setBearerAuth (getToken ()))
+                .retrieve ()
+                .body (ServerResponseFile.class);
+        }
+        catch (Exception e) {
+            return new ServerResponseFile (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
         }
     }
 
@@ -525,6 +637,10 @@ public class ClientSceneController {
 
     public Scene getScene () {
         return scene;
+    }
+
+    public Stage getStage () {
+        return this.stage;
     }
 
 }

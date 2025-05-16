@@ -84,3 +84,11 @@ CREATE TABLE IF NOT EXISTS temporary_stay_absent_request (
     residence_status varchar(8) not null,
     PRIMARY KEY(temporary_stay_absent_request_id)
 );
+
+CREATE TABLE IF NOT EXISTS vehicle (
+    vehicle_id int not null auto_increment,
+    vehicle_type varchar (64),
+    family_id int,
+    plate_id varchar (64),
+    PRIMARY KEY(vehicle_id)
+);

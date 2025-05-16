@@ -1,6 +1,7 @@
 package com.hust.ittnk68.cnpm.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.hust.ittnk68.cnpm.communication.AdminUpdateObject;
 import com.hust.ittnk68.cnpm.communication.ApiMapping;
 import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
 import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.PostVehicle;
 import com.hust.ittnk68.cnpm.communication.ServerCreateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.communication.ServerFindObjectResponse;
@@ -19,7 +21,9 @@ import com.hust.ittnk68.cnpm.communication.ServerObjectByIdQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse;
 import com.hust.ittnk68.cnpm.communication.ServerQueryPersonByFIdResponse;
 import com.hust.ittnk68.cnpm.communication.ServerResponseBase;
+import com.hust.ittnk68.cnpm.communication.ServerResponseObject;
 import com.hust.ittnk68.cnpm.communication.ServerResponseTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.ServerResponseVehicle;
 import com.hust.ittnk68.cnpm.communication.ServerUpdateObjectResponse;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
@@ -30,6 +34,7 @@ import com.hust.ittnk68.cnpm.model.Account;
 import com.hust.ittnk68.cnpm.model.PaymentStatus;
 import com.hust.ittnk68.cnpm.model.Person;
 import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.model.Vehicle;
 import com.hust.ittnk68.cnpm.security.Token;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -214,6 +219,70 @@ public class ApiController
 		{
 			return new ServerResponseTemporaryStayAbsentRequest (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
 		}
+	}
+
+	@PreAuthorize("@authz.canQueryVehicle(#req)")
+	@RequestMapping(ApiMapping.QUERY_VEHICLE)
+	public ServerResponseVehicle queryVehicle (@RequestBody ClientMessageBase req)
+	{
+		try {
+			String token = tokenGetter.get ();
+			Account acc = jwtUtil.extract (token, Account.class);
+			return new ServerResponseVehicle(ResponseStatus.OK, "success",
+				mysqlDb.findByCondition(String.format ("family_id=%d", acc.getFamilyId()), new Vehicle ())
+			);
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseVehicle(ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+		}
+	}
+
+	@PreAuthorize("@authz.canPostVehicle(#req)")
+	@RequestMapping(ApiMapping.POST_VEHICLE)
+	public ServerResponseBase postVehicle (@RequestBody PostVehicle req)
+	{
+		try {
+			String token = tokenGetter.get ();
+			Account acc = jwtUtil.extract (token, Account.class);
+			req.getVehicle ().setFamilyId (acc.getFamilyId ());
+			mysqlDb.create (req.getVehicle());
+			return new ServerResponseBase (ResponseStatus.OK, "success");
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseBase (ResponseStatus.INTERNAL_ERROR, e.toString ());
+		}
+	}
+	
+	@PreAuthorize("@authz.canDeleteVehicle(#req)")
+	@RequestMapping(ApiMapping.DELETE_VEHICLE)
+	public ServerResponseBase deleteVehicle (@RequestBody PostVehicle req)
+	{
+		try {
+			System.out.printf ("debug at server: %d\n", req.getVehicle().getId ());
+			System.out.println (req.getVehicle ().getId ());
+			mysqlDb.deleteByCondition(String.format("vehicle_id=%d", req.getVehicle().getId()),
+					new Vehicle ());
+			return new ServerResponseBase(ResponseStatus.OK, "Success");
+		}
+		catch (Exception e)
+		{
+			return new ServerResponseTemporaryStayAbsentRequest (ResponseStatus.INTERNAL_ERROR, e.toString (), null);
+		}
+	}
+
+	@PreAuthorize("@authz.canGetParkingFee(#req)")
+	@GetMapping(ApiMapping.GET_PARKING_FEE)
+	public ServerResponseObject getParkingFee (@RequestParam("username") String username)
+	{
+		Map<String, Object> result = Map.ofEntries (
+			Map.entry("Xe hơi", "500000"),
+			Map.entry("Xe máy", "200000"),
+			Map.entry("Xe đạp", "50000"),
+			Map.entry("Xe đạp điện", "100000")
+		);
+		return new ServerResponseObject (ResponseStatus.OK, "success", result);
 	}
 
 }

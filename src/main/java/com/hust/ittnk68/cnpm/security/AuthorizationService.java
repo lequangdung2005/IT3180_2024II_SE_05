@@ -9,6 +9,7 @@ import com.hust.ittnk68.cnpm.communication.ClientMessageBase;
 import com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;
 import com.hust.ittnk68.cnpm.communication.PaymentRequest;
 import com.hust.ittnk68.cnpm.communication.PostTemporaryStayAbsentRequest;
+import com.hust.ittnk68.cnpm.communication.PostVehicle;
 import com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;
 import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
@@ -112,6 +113,26 @@ public class AuthorizationService {
     }
 
     public boolean canDeleteTemporaryStayAbsentRequest(PostTemporaryStayAbsentRequest req)
+    {
+        return true;
+    }
+
+    public boolean canQueryVehicle(ClientMessageBase req)
+    {
+        return true;
+    }
+
+    public boolean canPostVehicle (PostVehicle req)
+    {
+        return true;
+    }
+
+    public boolean canDeleteVehicle (PostVehicle req)
+    {
+        return true;
+    }
+
+    public boolean canGetParkingFee(String username)
     {
         return true;
     }

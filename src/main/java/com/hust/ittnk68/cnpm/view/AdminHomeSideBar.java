@@ -1,24 +1,17 @@
 package com.hust.ittnk68.cnpm.view;
 
-import com.hust.ittnk68.cnpm.view.IconButton;
+import com.hust.ittnk68.cnpm.controller.ClientSceneController;
+import com.hust.ittnk68.cnpm.group.AccentToggleGroup;
+import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
+
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2AL;
 import org.kordamp.ikonli.material2.Material2MZ;
 import org.kordamp.ikonli.material2.Material2OutlinedAL;
 import org.kordamp.ikonli.material2.Material2RoundAL;
-import org.kordamp.ikonli.material2.Material2SharpAL;
-
-import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.group.AccentToggleGroup;
-import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
 
 import atlantafx.base.theme.Styles;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,16 +41,22 @@ public class AdminHomeSideBar extends BorderPane {
 	AdminPaymentStatusManagePage adminPaymentStatusPage = new AdminPaymentStatusManagePage (sceneController);
 	btn5.setOnAction (e -> interactor.setRoot (adminPaymentStatusPage));
 
+	IconButton btn8 = new IconButton (new FontIcon (Material2AL.DIRECTIONS_CAR));
+	// btn8.setOnAction (e -> interactor.setRoot (new <D->);)
+
 	IconButton btn6 = new IconButton (new FontIcon (Material2OutlinedAL.CONTACT_PAGE));
 	btn6.setOnAction (e -> interactor.setRoot (new AdminTemporaryStayAbsentView (sceneController)));
 
-	new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6);
+	IconButton btn7 = new IconButton (new FontIcon (Material2OutlinedAL.AUTORENEW));
+	btn7.setOnAction (e -> interactor.setRoot (new AdminToolView(sceneController)));
+
+	new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6, btn7);
 
 	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 
-	VBox groupWrapper2 = new VBox (btn6);
+	VBox groupWrapper2 = new VBox (btn6, btn7);
 	groupWrapper2.setAlignment (Pos.CENTER);
 	groupWrapper2.getStyleClass().addAll("graywrapper", "updownpadding");
 

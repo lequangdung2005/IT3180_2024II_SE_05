@@ -79,7 +79,7 @@ public class AuthorizationService {
 
     public boolean canQueryObjectById(UserQueryObjectById req)
     {
-        // i'm to lazy to implement this
+        // may anh tester tha
         return checkToken (req);
     }
     public boolean canQueryPaymentStatus (UserQueryPaymentStatus req)
@@ -94,47 +94,58 @@ public class AuthorizationService {
 
     public boolean canGetPaymentQrCode(UserGetPaymentQrCode req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canQueryPersonByFamilyId(UserQueryPersonByFId req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canPostTemporaryStayAbsentRequest(PostTemporaryStayAbsentRequest req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canQueryTemporaryStayAbsentRequest(ClientMessageBase req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canDeleteTemporaryStayAbsentRequest(PostTemporaryStayAbsentRequest req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canQueryVehicle(ClientMessageBase req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canPostVehicle (PostVehicle req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canDeleteVehicle (PostVehicle req)
     {
-        return true;
+        return checkToken (req);
     }
 
     public boolean canGetParkingFee(String username)
     {
-        return true;
+        return checkToken (new ClientMessageBase (username));
+    }
+
+	public boolean canGetVehicleStatistics(String username)
+    {
+        ClientMessageBase req = new ClientMessageBase (username);
+        return checkToken (req) && checkAdminPrivilege (req);
+    }
+	public boolean canGetDonationStatistics (String username)
+    {
+        ClientMessageBase req = new ClientMessageBase (username);
+        return checkToken (req) && checkAdminPrivilege (req);
     }
 
 }

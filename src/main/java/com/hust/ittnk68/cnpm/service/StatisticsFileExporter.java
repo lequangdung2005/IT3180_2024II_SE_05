@@ -18,6 +18,7 @@ import com.hust.ittnk68.cnpm.type.VehicleType;
 import com.opencsv.CSVWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,7 @@ public class StatisticsFileExporter {
         }
     }
 
+	@PreAuthorize ("@authz.canGetVehicleStatistics(#username)")
 	@GetMapping (ApiMapping.GET_VEHICLE_STATISTICS)
 	public ServerResponseFile getVehicleStatistics (@RequestParam("username") String username)
 	{
@@ -94,6 +96,7 @@ public class StatisticsFileExporter {
 		return new ServerResponseFile (ResponseStatus.OK, "success", csvContent);
 	}
 
+	@PreAuthorize ("@authz.canGetDonationStatistics(#username)")
 	@GetMapping (ApiMapping.GET_DONATION_STATISTICS)
 	public ServerResponseFile getDonationStatistics (@RequestParam("username") String username)
 	{

@@ -1,0 +1,220 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01}{start}} ()  throws File\+Not\+Found\+Exception, IOException, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1exception_1_1_config_file_exception}{Config\+File\+Exception}} 
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739}{close}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af7054e537f955aebac5b55b7c019a506}{create}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}} g)  throws SQLException 
+\item 
+int \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_abf8675232edb20245061fbe450361bde}{delete\+By\+Condition}} (String condition, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}} g)  throws SQLException 
+\item 
+List$<$ Map$<$ String, Object $>$ $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45}{find\+By\+Condition}} (String condition, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}} g)  throws SQLException 
+\item 
+int \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ac1e7c90330e1c1632f047e4fa77f955a}{single\+Update}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}} g)  throws SQLException 
+\item 
+List$<$ Map$<$ String, Object $>$ $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f}{find\+By\+Id}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}} g)  throws SQLException     
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Connection \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{driver}}
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{url}}
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{username}}
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{password}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00022}{22}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!close@{close}}
+\index{close@{close}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739} 
+void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+close (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00053}{53}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af7054e537f955aebac5b55b7c019a506}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!create@{create}}
+\index{create@{create}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af7054e537f955aebac5b55b7c019a506} 
+void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}}}]{g}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00057}{57}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_abf8675232edb20245061fbe450361bde}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!deleteByCondition@{deleteByCondition}}
+\index{deleteByCondition@{deleteByCondition}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteByCondition()}{deleteByCondition()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_abf8675232edb20245061fbe450361bde} 
+int com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+delete\+By\+Condition (\begin{DoxyParamCaption}\item[{String}]{condition}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}}}]{g}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00085}{85}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!findByCondition@{findByCondition}}
+\index{findByCondition@{findByCondition}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{findByCondition()}{findByCondition()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45} 
+List$<$ Map$<$ String, Object $>$ $>$ com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+find\+By\+Condition (\begin{DoxyParamCaption}\item[{String}]{condition}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}}}]{g}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00098}{98}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!findById@{findById}}
+\index{findById@{findById}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{findById()}{findById()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f} 
+List$<$ Map$<$ String, Object $>$ $>$ com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+find\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}}}]{g}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00124}{124}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ac1e7c90330e1c1632f047e4fa77f955a}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!singleUpdate@{singleUpdate}}
+\index{singleUpdate@{singleUpdate}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{singleUpdate()}{singleUpdate()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ac1e7c90330e1c1632f047e4fa77f955a} 
+int com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+single\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{Get\+SQLProperties}}}]{g}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00111}{111}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!start@{start}}
+\index{start@{start}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01} 
+void com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception, IOException, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1exception_1_1_config_file_exception}{Config\+File\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00030}{30}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!con@{con}}
+\index{con@{con}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{con}{con}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7} 
+Connection com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+con\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00023}{23}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!driver@{driver}}
+\index{driver@{driver}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{driver}{driver}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3} 
+String com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+driver\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00024}{24}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!password@{password}}
+\index{password@{password}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf} 
+String com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+password\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00027}{27}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!url@{url}}
+\index{url@{url}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{url}{url}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694} 
+String com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+url\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00025}{25}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}\index{com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}!username@{username}}
+\index{username@{username}!com.hust.ittnk68.cnpm.database.MySQLDatabase@{com.hust.ittnk68.cnpm.database.MySQLDatabase}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c} 
+String com.\+hust.\+ittnk68.\+cnpm.\+database.\+My\+SQLDatabase.\+username\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_my_s_q_l_database_8java_source_l00026}{26}} of file \mbox{\hyperlink{_my_s_q_l_database_8java_source}{My\+SQLDatabase.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/database/\mbox{\hyperlink{_my_s_q_l_database_8java}{My\+SQLDatabase.\+java}}\end{DoxyCompactItemize}

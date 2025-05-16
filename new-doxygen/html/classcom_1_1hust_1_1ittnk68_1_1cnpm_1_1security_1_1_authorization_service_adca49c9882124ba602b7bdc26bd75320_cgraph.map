@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.security.AuthorizationService.canQueryPaymentStatus" name="com.hust.ittnk68.cnpm.security.AuthorizationService.canQueryPaymentStatus">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,297,48"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service.html#a2f35bab55fd687cb728d974066a69632" title=" " alt="" coords="345,5,560,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,24,329,24,329,29,297,29"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base.html#a90950c8b80b01e9cfd9efe1ec4823eb7" title=" " alt="" coords="608,5,858,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="560,24,592,24,592,29,560,29"/>
+</map>

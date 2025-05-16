@@ -1,0 +1,55 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse}{Payment\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a246af1547e3e0c0dbd844f6a789447f5}{pay}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest}{Payment\+Request}} req)
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse}{Server\+Qr\+Code\+Generate\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac1b6d97443eb53b2f0b65eb10fb5109a}{get\+Payment\+Qr\+Code}} (@Request\+Body \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode}{User\+Get\+Payment\+Qr\+Code}} req)
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a4d9024c3544b56b37f70064db2d9b7ad}{bank\+Transfer}} (@Request\+Param(required=true) String token)
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse}{Server\+Check\+Banking\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac8632c04c21bebfed0845f954e854323}{check\+Banking}} (@Request\+Param(required=true) String token)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a4d9024c3544b56b37f70064db2d9b7ad}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!bankTransfer@{bankTransfer}}
+\index{bankTransfer@{bankTransfer}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{bankTransfer()}{bankTransfer()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a4d9024c3544b56b37f70064db2d9b7ad} 
+String com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+bank\+Transfer (\begin{DoxyParamCaption}\item[{@Request\+Param(required=true) String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac8632c04c21bebfed0845f954e854323}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!checkBanking@{checkBanking}}
+\index{checkBanking@{checkBanking}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{checkBanking()}{checkBanking()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac8632c04c21bebfed0845f954e854323} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse}{Server\+Check\+Banking\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+check\+Banking (\begin{DoxyParamCaption}\item[{@Request\+Param(required=true) String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac1b6d97443eb53b2f0b65eb10fb5109a}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!getPaymentQrCode@{getPaymentQrCode}}
+\index{getPaymentQrCode@{getPaymentQrCode}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{getPaymentQrCode()}{getPaymentQrCode()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_ac1b6d97443eb53b2f0b65eb10fb5109a} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse}{Server\+Qr\+Code\+Generate\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+get\+Payment\+Qr\+Code (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode}{User\+Get\+Payment\+Qr\+Code}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a246af1547e3e0c0dbd844f6a789447f5}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!pay@{pay}}
+\index{pay@{pay}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{pay()}{pay()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController_a246af1547e3e0c0dbd844f6a789447f5} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse}{Payment\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+pay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest}{Payment\+Request}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/service/\mbox{\hyperlink{PaymentController_8java}{Payment\+Controller.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="com.hust.ittnk68.cnpm.view.DuongFXTabPane" name="com.hust.ittnk68.cnpm.view.DuongFXTabPane">
+<area shape="rect" id="Node000001" title=" " alt="" coords="558,123,734,208"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page.html" title=" " alt="" coords="5,312,198,477"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="543,171,466,178,380,193,293,219,251,237,211,258,180,283,153,314,149,310,176,279,208,254,248,232,291,214,379,188,465,173,542,165"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_expense_manage_page.html" title=" " alt="" coords="222,312,418,477"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="544,200,487,225,433,258,403,284,377,314,373,310,399,281,430,254,485,220,542,195"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page.html" title=" " alt="" coords="443,301,627,488"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="622,222,582,303,578,300,617,220"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_payment_status_manage_page.html" title=" " alt="" coords="651,296,865,493"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="675,220,712,295,707,297,670,222"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html" title=" " alt="" coords="889,280,1082,509"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="749,191,815,217,878,254,906,278,903,282,875,258,813,222,747,196"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html" title=" " alt="" coords="1107,256,1284,533"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="749,176,843,189,944,207,1033,228,1069,241,1095,254,1108,263,1105,268,1092,258,1067,245,1032,233,942,212,843,194,749,181"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="615,5,677,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="648,89,648,123,643,123,643,89"/>
+</map>

@@ -1,0 +1,223 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{Payment\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5}{pay}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{Payment\+Request}} req)
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response}{Server\+Qr\+Code\+Generate\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a}{get\+Payment\+Qr\+Code}} (@Request\+Body \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code}{User\+Get\+Payment\+Qr\+Code}} req)
+\item 
+String \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad}{bank\+Transfer}} (@Request\+Param(required=true) String token)
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_check_banking_response}{Server\+Check\+Banking\+Response}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323}{check\+Banking}} (@Request\+Param(required=true) String token)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Map$<$ String, Object $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}{format}} (Map$<$ String, Object $>$ input)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_banking_token_repository}{Banking\+Token\+Repository}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398}{banking\+Token\+Repository}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{Jwt\+Util}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a1829f2919ecd4a7efc861d4c1c15f7c4}{jwt\+Util}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{My\+SQLDatabase}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291}{mysql\+Db}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service}{Authorization\+Service}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae}{authz}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_qr_code_service}{Qr\+Code\+Service}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1}{qr\+Code\+Service}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00033}{33}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!bankTransfer@{bankTransfer}}
+\index{bankTransfer@{bankTransfer}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{bankTransfer()}{bankTransfer()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad} 
+String com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+bank\+Transfer (\begin{DoxyParamCaption}\item[{@Request\+Param(required=true) String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00147}{147}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!checkBanking@{checkBanking}}
+\index{checkBanking@{checkBanking}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{checkBanking()}{checkBanking()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_check_banking_response}{Server\+Check\+Banking\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+check\+Banking (\begin{DoxyParamCaption}\item[{@Request\+Param(required=true) String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00153}{153}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!format@{format}}
+\index{format@{format}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb} 
+Map$<$ String, Object $>$ com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+format (\begin{DoxyParamCaption}\item[{Map$<$ String, Object $>$}]{input}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00051}{51}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!getPaymentQrCode@{getPaymentQrCode}}
+\index{getPaymentQrCode@{getPaymentQrCode}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{getPaymentQrCode()}{getPaymentQrCode()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response}{Server\+Qr\+Code\+Generate\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+get\+Payment\+Qr\+Code (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code}{User\+Get\+Payment\+Qr\+Code}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00125}{125}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!pay@{pay}}
+\index{pay@{pay}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{pay()}{pay()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{Payment\+Response}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+pay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{Payment\+Request}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00064}{64}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!authz@{authz}}
+\index{authz@{authz}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{authz}{authz}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service}{Authorization\+Service}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+authz\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00046}{46}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!bankingTokenRepository@{bankingTokenRepository}}
+\index{bankingTokenRepository@{bankingTokenRepository}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{bankingTokenRepository}{bankingTokenRepository}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_banking_token_repository}{Banking\+Token\+Repository}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+banking\+Token\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00037}{37}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a1829f2919ecd4a7efc861d4c1c15f7c4}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!jwtUtil@{jwtUtil}}
+\index{jwtUtil@{jwtUtil}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{jwtUtil}{jwtUtil}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a1829f2919ecd4a7efc861d4c1c15f7c4} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{Jwt\+Util}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+jwt\+Util\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00040}{40}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!mysqlDb@{mysqlDb}}
+\index{mysqlDb@{mysqlDb}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{mysqlDb}{mysqlDb}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{My\+SQLDatabase}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+mysql\+Db\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00043}{43}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1}\index{com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}!qrCodeService@{qrCodeService}}
+\index{qrCodeService@{qrCodeService}!com.hust.ittnk68.cnpm.service.PaymentController@{com.hust.ittnk68.cnpm.service.PaymentController}}
+\doxysubsubsection{\texorpdfstring{qrCodeService}{qrCodeService}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_qr_code_service}{Qr\+Code\+Service}} com.\+hust.\+ittnk68.\+cnpm.\+service.\+Payment\+Controller.\+qr\+Code\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_payment_controller_8java_source_l00049}{49}} of file \mbox{\hyperlink{_payment_controller_8java_source}{Payment\+Controller.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/service/\mbox{\hyperlink{_payment_controller_8java}{Payment\+Controller.\+java}}\end{DoxyCompactItemize}

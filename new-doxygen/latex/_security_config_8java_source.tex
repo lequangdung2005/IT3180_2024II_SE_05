@@ -1,0 +1,42 @@
+\doxysection{Security\+Config.\+java}
+\hypertarget{_security_config_8java_source}{}\label{_security_config_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/security/SecurityConfig.java@{src/main/java/com/hust/ittnk68/cnpm/security/SecurityConfig.java}}
+\mbox{\hyperlink{_security_config_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.security;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Bean;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Configuration;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.builders.HttpSecurity;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.security.web.SecurityFilterChain;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.springframework.security.web.util.matcher.AntPathRequestMatcher;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00012}00012\ @Configuration}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00013}00013\ @EnableWebSecurity}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00014}00014\ @EnableMethodSecurity(prePostEnabled\ =\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00015}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_security_config}{00015}}\ public\ class\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_security_config}{SecurityConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00017}00017\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00018}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_security_config_a275859dabb6e563dcfaee810088cbd85}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ SecurityFilterChain\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_security_config_a275859dabb6e563dcfaee810088cbd85}{filterChain}}\ (HttpSecurity\ http)\ \textcolor{keywordflow}{throws}\ Exception}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ http}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ .csrf(csrf\ -\/>\ csrf.disable())}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ .formLogin(form\ -\/>\ form.disable())}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ .httpBasic(basic\ -\/>\ basic.disable())}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ .authorizeHttpRequests(\mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth}{auth}}\ -\/>\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth}{auth}}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/"{}})).permitAll\ ()\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hello,\ world!}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/auth"{}})).permitAll\ ()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/bank-\/transfer"{}})).permitAll\ ()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/check-\/banking"{}})).permitAll\ ()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/test"{}})).permitAll\ ()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(\textcolor{keyword}{new}\ AntPathRequestMatcher(\textcolor{stringliteral}{"{}/api/**"{}})).permitAll\ ()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .anyRequest().authenticated()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ http.build\ ();}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00036}00036\ \}}
+
+\end{DoxyCode}

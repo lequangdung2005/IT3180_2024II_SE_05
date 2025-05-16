@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.type.ResidenceStatus.matchByString" name="com.hust.ittnk68.cnpm.type.ResidenceStatus.matchByString">
+<area shape="rect" id="Node000001" title=" " alt="" coords="519,5,730,48"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a5da8b6ecfb3f82f623367b6f39811cfd" title=" " alt="" coords="274,5,471,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="503,29,471,29,471,24,503,24"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor.html#a77ef60375c233bbde8ccf7bf798037e0" title=" " alt="" coords="5,5,226,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,29,226,29,226,24,258,24"/>
+</map>

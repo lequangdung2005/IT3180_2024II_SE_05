@@ -1,0 +1,21 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base.html" title=" " alt="" coords="5,272,256,315"/>
+<area shape="rect" id="Node000001" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_create_object.html" title=" " alt="" coords="304,5,554,48"/>
+<area shape="poly" id="edge9_Node000000_Node000001" title=" " alt="" coords="146,257,170,211,205,157,249,104,302,58,323,46,326,51,305,62,253,107,209,161,175,214,150,259"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object.html" title=" " alt="" coords="304,72,554,115"/>
+<area shape="poly" id="edge10_Node000000_Node000002" title=" " alt="" coords="155,258,217,190,258,155,302,124,327,113,329,117,305,129,261,159,221,194,159,262"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_find_object.html" title=" " alt="" coords="304,139,554,181"/>
+<area shape="poly" id="edge11_Node000000_Node000003" title=" " alt="" coords="175,261,234,225,303,191,334,179,336,184,305,196,237,230,177,265"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_update_object.html" title=" " alt="" coords="304,205,554,248"/>
+<area shape="poly" id="edge12_Node000000_Node000004" title=" " alt="" coords="243,265,330,246,331,251,244,271"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request.html" title=" " alt="" coords="304,272,554,315"/>
+<area shape="poly" id="edge13_Node000000_Node000005" title=" " alt="" coords="271,291,303,291,303,296,271,296"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code.html" title=" " alt="" coords="304,339,554,381"/>
+<area shape="poly" id="edge14_Node000000_Node000006" title=" " alt="" coords="244,316,331,335,330,341,243,321"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_object_by_id.html" title=" " alt="" coords="304,405,554,448"/>
+<area shape="poly" id="edge15_Node000000_Node000007" title=" " alt="" coords="177,321,237,357,305,391,336,402,334,407,303,396,234,362,175,326"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_payment_status.html" title=" " alt="" coords="304,472,554,515"/>
+<area shape="poly" id="edge16_Node000000_Node000008" title=" " alt="" coords="159,325,221,393,261,428,305,458,329,469,327,474,302,462,258,432,217,396,155,328"/>
+<area shape="rect" id="Node000009" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_person_by_f_id.html" title=" " alt="" coords="304,539,554,581"/>
+<area shape="poly" id="edge17_Node000000_Node000009" title=" " alt="" coords="150,327,175,373,209,426,253,479,305,524,326,536,323,541,302,529,249,483,205,429,170,375,146,330"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="com.hust.ittnk68.cnpm.view.ClientFamilyPage.fetchData" name="com.hust.ittnk68.cnpm.view.ClientFamilyPage.fetchData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,193,148"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_query_person_by_f_id_response.html#a8c6dac506bd0e0efafaa24d67ceede76" title=" " alt="" coords="241,5,513,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,103,187,79,240,57,262,50,263,55,242,63,189,84,142,107"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base.html#a00b28b53917a741c7537a38b7104c666" title=" " alt="" coords="243,72,510,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,113,227,109,228,114,193,118"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#ae90f7596a3c9daa592cdd4268df79d3f" title=" " alt="" coords="283,139,470,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,135,268,144,267,150,193,141"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#a214c4e1d836de63d54648f8123535819" title=" " alt="" coords="561,131,748,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="471,155,545,152,545,158,471,160"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#a5ff3cc71c5a303ff23b044dd38c8dfbb" title=" " alt="" coords="561,197,748,240"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="471,177,546,193,545,198,470,182"/>
+<area shape="poly" id="edge6_Node000006_Node000001" title=" " alt="" coords="560,226,490,226,409,222,324,212,240,196,192,179,149,158,151,153,194,174,241,191,324,207,409,216,490,220,560,220"/>
+</map>

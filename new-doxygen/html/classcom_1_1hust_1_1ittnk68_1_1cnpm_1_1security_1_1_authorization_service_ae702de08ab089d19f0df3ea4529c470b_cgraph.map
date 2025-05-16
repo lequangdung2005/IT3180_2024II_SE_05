@@ -1,0 +1,11 @@
+<map id="com.hust.ittnk68.cnpm.security.AuthorizationService.canCreateObject" name="com.hust.ittnk68.cnpm.security.AuthorizationService.canCreateObject">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,249,81"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service.html#aa9b171f80eb18a3d5323d083b9fc443f" title=" " alt="" coords="297,5,564,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,44,281,40,282,46,250,49"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service.html#a2f35bab55fd687cb728d974066a69632" title=" " alt="" coords="323,72,538,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="250,71,307,77,307,82,249,76"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#a4ed041150907e39bb59242673ebe43a8" title=" " alt="" coords="638,5,836,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="565,24,623,24,623,29,565,29"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base.html#a90950c8b80b01e9cfd9efe1ec4823eb7" title=" " alt="" coords="612,72,862,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="538,91,597,91,597,96,538,96"/>
+</map>

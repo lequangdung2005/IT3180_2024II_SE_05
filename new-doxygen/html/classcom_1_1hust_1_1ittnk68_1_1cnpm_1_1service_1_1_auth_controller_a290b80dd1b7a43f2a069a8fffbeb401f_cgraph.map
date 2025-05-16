@@ -1,0 +1,14 @@
+<map id="com.hust.ittnk68.cnpm.service.AuthController.startSession" name="com.hust.ittnk68.cnpm.service.AuthController.startSession">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,210,148"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="56,105,54,95,62,86,80,81,108,79,137,81,155,87,153,92,136,86,107,84,81,86,65,91,59,97,61,104"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller.html#aee64336a55d2f3abe47b8ad6ed334f1f" title=" " alt="" coords="258,39,507,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,102,276,83,277,88,199,107"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#a4ed041150907e39bb59242673ebe43a8" title=" " alt="" coords="284,105,481,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="210,124,268,124,268,129,210,129"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#adabd7caa37802e8737f9919fbe3bdb0f" title=" " alt="" coords="284,172,481,215"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="199,146,277,165,276,170,198,151"/>
+<area shape="rect" id="Node000003" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type.html#a168d665b5bfb0594a3017c59e97e76d7" title=" " alt="" coords="560,5,747,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="507,42,544,37,545,43,508,47"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#ab61ef567b7c6a38884f4bbd1d5c15733" title=" " alt="" coords="555,72,752,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="508,73,540,77,539,82,507,78"/>
+</map>

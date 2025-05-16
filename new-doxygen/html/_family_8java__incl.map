@@ -1,0 +1,9 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/model/Family.java" name="src/main/java/com/hust/ittnk68/cnpm/model/Family.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="132,5,340,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,101,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,51,94,99,92,94,192,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="125,96,346,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,48,238,81,233,81,233,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="371,96,586,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,46,408,88,406,93,292,51"/>
+</map>

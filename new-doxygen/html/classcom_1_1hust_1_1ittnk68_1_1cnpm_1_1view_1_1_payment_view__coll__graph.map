@@ -1,0 +1,9 @@
+<map id="com.hust.ittnk68.cnpm.view.PaymentView" name="com.hust.ittnk68.cnpm.view.PaymentView">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,316,182,444"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="53,153,92,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,237,89,316,84,317,75,238"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field.html" title=" " alt="" coords="116,124,293,252"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,253,141,303,137,300,165,251"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="172,5,236,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,89,207,124,202,124,202,89"/>
+</map>

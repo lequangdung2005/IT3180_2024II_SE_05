@@ -1,0 +1,350 @@
+\doxysection{Admin\+Account\+Manage\+Page.\+java}
+\hypertarget{_admin_account_manage_page_8java_source}{}\label{_admin_account_manage_page_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/AdminAccountManagePage.java@{src/main/java/com/hust/ittnk68/cnpm/view/AdminAccountManagePage.java}}
+\mbox{\hyperlink{_admin_account_manage_page_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view}{00001}}\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.kordamp.ikonli.javafx.FontIcon;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2MZ;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2OutlinedAL;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.ObjectMapper;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.SerializationFeature;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.AdminDeleteObject;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.controller.ClientSceneController;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.CreateAccountModel;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00016}00016\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Account;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.UpdateAccountModel;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00019}00019\ \textcolor{keyword}{import}\ atlantafx.base.controls.PasswordTextField;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00020}00020\ \textcolor{keyword}{import}\ atlantafx.base.theme.Styles;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00021}00021\ \textcolor{keyword}{import}\ javafx.collections.FXCollections;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00022}00022\ \textcolor{keyword}{import}\ javafx.geometry.Insets;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00023}00023\ \textcolor{keyword}{import}\ javafx.scene.control.Button;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00024}00024\ \textcolor{keyword}{import}\ javafx.scene.control.ButtonType;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00025}00025\ \textcolor{keyword}{import}\ javafx.scene.control.ComboBox;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00026}00026\ \textcolor{keyword}{import}\ javafx.scene.control.Tab;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00027}00027\ \textcolor{keyword}{import}\ javafx.scene.control.TableCell;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00028}00028\ \textcolor{keyword}{import}\ javafx.scene.control.TableColumn;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00029}00029\ \textcolor{keyword}{import}\ javafx.scene.control.TableView;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00030}00030\ \textcolor{keyword}{import}\ javafx.scene.control.TextField;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00031}00031\ \textcolor{keyword}{import}\ javafx.scene.control.cell.PropertyValueFactory;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00032}00032\ \textcolor{keyword}{import}\ javafx.scene.layout.FlowPane;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00033}00033\ \textcolor{keyword}{import}\ javafx.scene.layout.GridPane;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00034}00034\ \textcolor{keyword}{import}\ javafx.scene.layout.HBox;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00035}00035\ \textcolor{keyword}{import}\ javafx.scene.layout.VBox;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00036}00036\ \textcolor{keyword}{import}\ javafx.scene.text.Text;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00037}00037\ \textcolor{keyword}{import}\ javafx.stage.Stage;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00038}00038\ \textcolor{keyword}{import}\ javafx.util.Callback;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00040}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page}{00040}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a53b662da64506702ab45fabe1d3deb78}{AdminAccountManagePage}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_tab_pane_ad0f6f3078f06261cde3b0551bb2880d0}{DuongFXTabPane}}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00042}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a53b662da64506702ab45fabe1d3deb78}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a53b662da64506702ab45fabe1d3deb78}{AdminAccountManagePage}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Đăng\ ký\ tài\ khoản"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a41769bd1faeeb02c004a1775ebf8eeed}{createAccountCreateForm}}(sceneController)));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Tìm\ kiếm,\ chỉnh\ sửa\ hoặc\ xóa"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a3ca8ca7572b770314cdc16f16a43a88c}{createAccountSearchDeleteView}}(sceneController)));\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00047}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a3ca8ca7572b770314cdc16f16a43a88c}{00047}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a3ca8ca7572b770314cdc16f16a43a88c}{createAccountSearchDeleteView}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ accountIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ accountIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Account\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ familyIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ TextField\ usernameTf\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00056}00056\ \ \ \ \ usernameTf.setPromptText\ (\textcolor{stringliteral}{"{}Username"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ ComboBox<String>\ accountTypeChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ accountTypeChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ Tất\ cả\ -\/-\/"{}},\ \textcolor{stringliteral}{"{}user"{}},\ \textcolor{stringliteral}{"{}admin"{}},\ \textcolor{stringliteral}{"{}root"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ accountTypeChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a1899de08fcf9d0b5b9dc3229e8cba98e}{getFindAccountModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_account_model_a9a1d25115df4d10c0cd03e24ff9de76b}{accountIdProperty}}().bind\ (accountIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a1899de08fcf9d0b5b9dc3229e8cba98e}{getFindAccountModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_account_model_a7f62a41771c13566e413a52fa153b48c}{familyIdProperty}}().bind\ (familyIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a1899de08fcf9d0b5b9dc3229e8cba98e}{getFindAccountModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_account_model_a34c134b621b35085b0ea1d8865b48185}{usernameProperty}}().bind\ (usernameTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a1899de08fcf9d0b5b9dc3229e8cba98e}{getFindAccountModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_account_model_a8e71848f5a2471441693a39b3ff20ec9}{accountTypeProperty}}().bind\ (accountTypeChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ resetFilterBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.REPLAY));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ resetFilterBtn.setOnAction\ (e\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ accountIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ familyIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ usernameTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ accountTypeChoose.getSelectionModel().selectFirst\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ FlowPane\ filters\ =\ \textcolor{keyword}{new}\ FlowPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ filters.setVgap\ (8);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ filters.setHgap\ (4);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ filters.getChildren\ ().addAll\ (}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ accountIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ familyIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ usernameTf,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ accountTypeChoose,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ resetFilterBtn}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ Button\ searchBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Tìm\ kiếm"{}},\ \textcolor{keyword}{new}\ FontIcon\ (Material2MZ.PERSON\_SEARCH));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ searchBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().findAccountHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ TableView<Account>\ tableView\ =\ \textcolor{keyword}{new}\ TableView<>();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a1899de08fcf9d0b5b9dc3229e8cba98e}{getFindAccountModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_account_model_ad1474f592de12d63dac70dd1f495bc11}{setTableView}}\ (tableView);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ actionCol\ =\ \textcolor{keyword}{new}\ TableColumn<>\ (\textcolor{stringliteral}{"{}Action"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ actionCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}Dummy\ Value"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ actionCol.setCellFactory\ (\textcolor{keyword}{new}\ Callback<TableColumn<Account,\ String>,\ TableCell<Account,\ String>>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ TableCell\ call(\textcolor{keyword}{final}\ TableColumn<Account,\ String>\ param)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ TableCell<Account,\ String>\ cell\ =\ \textcolor{keyword}{new}\ TableCell<>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ editBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.CREATE));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ deleteBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.DELETE));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ HBox\ hb\ =\ \textcolor{keyword}{new}\ HBox\ (1,\ editBtn,\ deleteBtn);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ updateItem\ (String\ item,\ \textcolor{keywordtype}{boolean}\ empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ super.updateItem\ (item,\ empty);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setText\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.getStyleClass().addAll(Styles.ACCENT);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.getStyleClass().addAll(Styles.DANGER);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ account\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_account_model}{UpdateAccountModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdateAccountModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.setUpdateAccountWindow\ (\textcolor{keyword}{new}\ Stage\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.openSubStage\ (model.getUpdateAccountWindow\ (),\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a4d5053adca906794a22f4b394cc7af99}{createAccountUpdateForm}}\ (sceneController,\ account));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ account\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ObjectMapper\ mapper\ =\ \textcolor{keyword}{new}\ ObjectMapper\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mapper.enable\ (SerializationFeature.INDENT\_OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ json\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json\ =\ mapper.writeValueAsString\ (account);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optional<ButtonType>\ result\ =\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}()}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_a722bd7be8a41c3a5a9e81cffd6ea7295}{showConfirmationWindow}}(\textcolor{stringliteral}{"{}Xác\ nhận\ xóa\ tài\ khoản"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Kiểm\ tra\ lại\ thông\ tin\ tài\ khoản\ trước\ khi\ xóa"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (result.get());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.get()\ !=\ ButtonType.OK)}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ request\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ (sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a7f1aaad710ec75d35137398f1dc27ad7}{getUsername}}(),\ account);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_delete_object_response}{ServerDeleteObjectResponse}}\ res\ =\ sceneController.deleteObject\ (request);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}())\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ OK:}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getTableView().getItems().remove(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}xoa\ thanh\ cong"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_ab4934f7ef32edae71549ba17f8b91f30}{showFailedWindow}}\ (res);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a68baaa04188acc0fac72c482c22aa970}{getResponseMessage}}());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (hb);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cell;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00168}00168\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00170}00170\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ accountIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Account\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00171}00171\ \ \ \ \ \ \ \ \ accountIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}accountId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00173}00173\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ familyIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00174}00174\ \ \ \ \ \ \ \ \ familyIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}familyId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00176}00176\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ usernameCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Username"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00177}00177\ \ \ \ \ \ \ \ \ usernameCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}username"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00179}00179\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ digestPasswordCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Digest\ password"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00180}00180\ \ \ \ \ \ \ \ \ digestPasswordCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}digestPassword"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00182}00182\ \ \ \ \ \ \ \ \ TableColumn<Account,\ String>\ accountTypeCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Account\ type"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00183}00183\ \ \ \ \ \ \ \ \ accountTypeCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}accountType"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00185}00185\ \ \ \ \ \ \ \ \ tableView.getColumns().addAll\ (actionCol,\ accountIdCol,\ familyIdCol,\ usernameCol,\ digestPasswordCol,\ accountTypeCol);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00187}00187\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (18,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}FILTER"{}}),}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ filters,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ searchBtn,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ tableView}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00192}00192\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00195}00195\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00197}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a4d5053adca906794a22f4b394cc7af99}{00197}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a4d5053adca906794a22f4b394cc7af99}{createAccountUpdateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ account)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00198}00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_account_model}{UpdateAccountModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdateAccountModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00200}00200\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00202}00202\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00203}00203\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00206}00206\ \ \ \ \ \ \ \ \ Text\ accountId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Account\ Id:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00207}00207\ \ \ \ \ \ \ \ \ gridPane.add\ (accountId,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00209}00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ accountIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00210}00210\ \ \ \ \ \ \ \ \ accountIdTextField.setDisable\ (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00211}00211\ \ \ \ \ \ \ \ \ gridPane.add\ (accountIdTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00213}00213\ \ \ \ \ \ \ \ \ Text\ familyId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Family\ Id:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00214}00214\ \ \ \ \ \ \ \ \ gridPane.add\ (familyId,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00216}00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00217}00217\ \ \ \ \ \ \ \ \ gridPane.add\ (familyIdTextField,\ 2,\ 1,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00219}00219\ \ \ \ \ \ \ \ \ Text\ username\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Username:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00220}00220\ \ \ \ \ \ \ \ \ gridPane.add\ (username,\ 0,\ 2,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00222}00222\ \ \ \ \ \ \ \ \ TextField\ usernameTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00223}00223\ \ \ \ \ \ \ \ \ gridPane.add\ (usernameTextField,\ 2,\ 2,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00225}00225\ \ \ \ \ \ \ \ \ Text\ password\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Password:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00226}00226\ \ \ \ \ \ \ \ \ gridPane.add\ (password,\ 0,\ 3,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00228}00228\ \ \ \ \ PasswordTextField\ passwordTextField\ =\ \textcolor{keyword}{new}\ PasswordTextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00229}00229\ \ \ \ \ gridPane.add\ (passwordTextField,\ 2,\ 3,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00231}00231\ \ \ \ \ \ \ \ \ Text\ reTypePassword\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Re-\/type\ Password:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00232}00232\ \ \ \ \ \ \ \ \ gridPane.add\ (reTypePassword,\ 0,\ 4,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00234}00234\ \ \ \ \ PasswordTextField\ reTypePasswordTextField\ =\ \textcolor{keyword}{new}\ PasswordTextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00235}00235\ \ \ \ \ gridPane.add\ (reTypePasswordTextField,\ 2,\ 4,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00237}00237\ \ \ \ \ Text\ accountType\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Account\ type:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00238}00238\ \ \ \ \ \ \ \ \ gridPane.add\ (accountType,\ 0,\ 5,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00240}00240\ \ \ \ \ \ \ \ \ ComboBox<String>\ accountTypeChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00241}00241\ \ \ \ \ \ \ \ \ accountTypeChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user"{}},\ \textcolor{stringliteral}{"{}admin"{}},\ \textcolor{stringliteral}{"{}root"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00243}00243\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00244}00244\ \ \ \ \ gridPane.add\ (accountTypeChoose,\ 2,\ 5,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00246}00246\ \ \ \ \ \ \ \ \ Button\ updateBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00247}00247\ \ \ \ \ \ \ \ \ updateBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00248}00248\ \ \ \ \ \ \ \ \ updateBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updateAccountHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00250}00250\ \ \ \ \ \ \ \ \ Button\ updateAndCloseBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật\ và\ đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00251}00251\ \ \ \ \ \ \ \ \ updateAndCloseBtn.getStyleClass().addAll\ (Styles.SUCCESS,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00252}00252\ \ \ \ \ \ \ \ \ updateAndCloseBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updateAndCloseAccountHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00254}00254\ \ \ \ \ \ \ \ \ Button\ closeBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00255}00255\ \ \ \ \ \ \ \ \ closeBtn.getStyleClass().addAll\ (Styles.DANGER,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00256}00256\ \ \ \ \ \ \ \ \ closeBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().closeAccountUpdateHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00258}00258\ \ \ \ \ accountIdTextField.setText\ (String.valueOf\ (account.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_ab4432467a35a4793505e66257211d5ae}{getAccountId}}()));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00259}00259\ \ \ \ \ familyIdTextField.setText\ (String.valueOf\ (account.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_afccddc95991771e8ec07a41527e2162a}{getFamilyId}}()));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00260}00260\ \ \ \ \ usernameTextField.setText\ (account.getUsername\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00261}00261\ \ \ \ \ passwordTextField.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00262}00262\ \ \ \ \ reTypePasswordTextField.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00263}00263\ \ \ \ \ accountTypeChoose.getItems().stream()}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter(accountTypeString\ -\/>\ accountTypeString.equals(account.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_a4ed041150907e39bb59242673ebe43a8}{getAccountType}}().\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type_ac83280ad7467a45820b8b0a7a1dec14a}{toString}}()))}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .findAny()}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ifPresent(accountTypeChoose.getSelectionModel()::select);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00268}00268\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.accountIdProperty().bind(accountIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00269}00269\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.familyIdProperty().bind(familyIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00270}00270\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.usernameProperty().bind(usernameTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00271}00271\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.passwordProperty().bind(passwordTextField.passwordProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00272}00272\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.password2Property().bind(reTypePasswordTextField.passwordProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00273}00273\ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.accountTypeProperty().bind(accountTypeChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00274}00274\ \ \ \ \ model.setDigestPassword\ (account.getDigestPassword\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00276}00276\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ HBox\ (18,\ updateBtn,\ updateAndCloseBtn,\ closeBtn)}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00279}00279\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00280}00280\ \ \ \ \ \ \ \ \ vb.setPadding\ (\textcolor{keyword}{new}\ Insets\ (16));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00282}00282\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00284}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a41769bd1faeeb02c004a1775ebf8eeed}{00284}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page_a41769bd1faeeb02c004a1775ebf8eeed}{createAccountCreateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00286}00286\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_create_account_model}{CreateAccountModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getCreateAccountModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00288}00288\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00290}00290\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00291}00291\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00294}00294\ \ \ \ \ \ \ \ \ Text\ familyId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Family\ Id:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00295}00295\ \ \ \ \ \ \ \ \ gridPane.add\ (familyId,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00297}00297\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00298}00298\ \ \ \ \ \ \ \ \ gridPane.add\ (familyIdTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00300}00300\ \ \ \ \ \ \ \ \ Text\ username\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Username:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00301}00301\ \ \ \ \ \ \ \ \ gridPane.add\ (username,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00303}00303\ \ \ \ \ \ \ \ \ TextField\ usernameTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00304}00304\ \ \ \ \ \ \ \ \ gridPane.add\ (usernameTextField,\ 2,\ 1,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00306}00306\ \ \ \ \ \ \ \ \ Text\ password\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Password:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00307}00307\ \ \ \ \ \ \ \ \ gridPane.add\ (password,\ 0,\ 2,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00309}00309\ \ \ \ \ PasswordTextField\ passwordTextField\ =\ \textcolor{keyword}{new}\ PasswordTextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00310}00310\ \ \ \ \ gridPane.add\ (passwordTextField,\ 2,\ 2,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00312}00312\ \ \ \ \ \ \ \ \ Text\ reTypePassword\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Re-\/type\ Password:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00313}00313\ \ \ \ \ \ \ \ \ gridPane.add\ (reTypePassword,\ 0,\ 3,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00315}00315\ \ \ \ \ PasswordTextField\ reTypePasswordTextField\ =\ \textcolor{keyword}{new}\ PasswordTextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00316}00316\ \ \ \ \ gridPane.add\ (reTypePasswordTextField,\ 2,\ 3,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00318}00318\ \ \ \ \ Text\ accountType\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Account\ type:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00319}00319\ \ \ \ \ \ \ \ \ gridPane.add\ (accountType,\ 0,\ 4,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00321}00321\ \ \ \ \ \ \ \ \ ComboBox<String>\ accountTypeChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00322}00322\ \ \ \ \ \ \ \ \ accountTypeChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user"{}},\ \textcolor{stringliteral}{"{}admin"{}},\ \textcolor{stringliteral}{"{}root"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00324}00324\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00325}00325\ \ \ \ \ gridPane.add\ (accountTypeChoose,\ 2,\ 4,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00327}00327\ \ \ \ \ \ \ \ \ Button\ submitBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Đăng\ ký"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00328}00328\ \ \ \ \ \ \ \ \ submitBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00329}00329\ \ \ \ \ \ \ \ \ submitBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().createAccountHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bindings}}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00332}00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.familyIdProperty().bind\ (familyIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00333}00333\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.usernameProperty().bind\ (usernameTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00334}00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.passwordProperty().bind\ (passwordTextField.passwordProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00335}00335\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.password2Property().bind\ (reTypePasswordTextField.passwordProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00336}00336\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.accountTypeProperty().bind\ (accountTypeChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00338}00338\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ submitBtn}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00341}00341\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00343}00343\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{_admin_account_manage_page_8java_source_l00344}00344\ \}\ }
+
+\end{DoxyCode}

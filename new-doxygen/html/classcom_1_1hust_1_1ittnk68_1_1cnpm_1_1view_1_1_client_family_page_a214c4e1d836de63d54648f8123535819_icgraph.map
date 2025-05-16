@@ -1,0 +1,12 @@
+<map id="com.hust.ittnk68.cnpm.view.ClientFamilyPage.deleteAll" name="com.hust.ittnk68.cnpm.view.ClientFamilyPage.deleteAll">
+<area shape="rect" id="Node000001" title=" " alt="" coords="991,35,1178,77"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#ae90f7596a3c9daa592cdd4268df79d3f" title=" " alt="" coords="755,35,943,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="975,59,943,59,943,53,975,53"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#a97cfa76dda3e0be11caf6c58eab8828b" title=" " alt="" coords="520,5,707,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="739,45,707,41,708,36,740,40"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#a5ff3cc71c5a303ff23b044dd38c8dfbb" title=" " alt="" coords="285,35,472,77"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="505,43,473,47,472,42,504,38"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="488,57,520,57,707,57,755,56,755,62,707,63,520,63,488,62"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_family_page.html#a9c8cb3feaff0777209e06740a6e10b1a" title=" " alt="" coords="5,35,237,77"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="269,59,237,59,237,53,269,53"/>
+</map>

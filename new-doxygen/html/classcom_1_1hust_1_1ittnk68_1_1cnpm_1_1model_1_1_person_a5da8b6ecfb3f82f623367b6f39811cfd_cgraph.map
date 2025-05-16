@@ -1,0 +1,15 @@
+<map id="com.hust.ittnk68.cnpm.model.Person.convertFromMap" name="com.hust.ittnk68.cnpm.model.Person.convertFromMap">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,139,203,181"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html#aa6ba3ba65ef4e301eebe28c79e09028f" title=" " alt="" coords="263,5,450,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,136,184,97,249,58,262,52,265,57,252,62,186,101,133,140"/>
+<area shape="rect" id="Node000004" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation.html#a0aefc73cfbf8dd4a66c4948a2dcf3d29" title=" " alt="" coords="263,72,450,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,136,258,117,259,122,188,141"/>
+<area shape="rect" id="Node000005" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_residence_status.html#a80231dc6302f090d07b6b82305e6f919" title=" " alt="" coords="251,139,462,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="203,157,235,157,235,163,203,163"/>
+<area shape="rect" id="Node000006" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_sex.html#af4b62eeefce4a60895d2099eac266215" title=" " alt="" coords="263,205,450,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="188,179,259,198,258,203,187,184"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a6b22c0b69d54d7aa3b13789718a1d99a" title=" " alt="" coords="258,272,455,315"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="133,180,186,219,252,258,265,263,262,268,249,262,184,223,130,184"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html#a8f9da3f69021737548c6407fa8501e28" title=" " alt="" coords="510,5,697,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="451,24,494,24,494,29,451,29"/>
+</map>

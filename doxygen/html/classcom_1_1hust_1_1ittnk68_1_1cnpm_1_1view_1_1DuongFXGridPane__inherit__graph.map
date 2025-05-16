@@ -1,11 +1,11 @@
 <map id="com.hust.ittnk68.cnpm.view.DuongFXGridPane" name="com.hust.ittnk68.cnpm.view.DuongFXGridPane">
 <area shape="rect" id="Node000001" title=" " alt="" coords="207,123,383,208"/>
-<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView.html" title=" " alt="" coords="5,267,182,352"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,219,154,269,151,265,223,214"/>
-<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage.html" title=" " alt="" coords="207,256,383,363"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView.html" title=" " alt="" coords="5,256,182,341"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,218,159,258,156,254,218,214"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage.html" title=" " alt="" coords="207,256,383,341"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="298,223,298,256,292,256,292,223"/>
-<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView.html" title=" " alt="" coords="408,267,585,352"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="367,214,439,265,436,269,364,219"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView.html" title=" " alt="" coords="408,256,585,341"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="372,214,434,254,431,258,369,218"/>
 <area shape="rect" id="Node000002" href="$classGridPane.html" title=" " alt="" coords="263,5,327,75"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,89,298,123,292,123,292,89"/>
 </map>

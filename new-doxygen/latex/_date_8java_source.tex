@@ -1,0 +1,74 @@
+\doxysection{Date.\+java}
+\hypertarget{_date_8java_source}{}\label{_date_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/type/Date.java@{src/main/java/com/hust/ittnk68/cnpm/type/Date.java}}
+\mbox{\hyperlink{_date_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.type;}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.time.LocalDate;}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00005}00005\ \textcolor{keyword}{import}\ com.fasterxml.jackson.annotation.JsonIgnore;}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00007}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00008}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{00008}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{00009}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00010}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{00010}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00012}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}})\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ this.year\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ this.month\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ this.day\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00018}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a2e7aab2aa7dd9fc6443aa45235591d5c}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a2e7aab2aa7dd9fc6443aa45235591d5c}{getYear}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00021}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a094ec4cfc768872d8079de082381b663}{00021}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a094ec4cfc768872d8079de082381b663}{setYear}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}})\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ this.year\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00025}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_af5ffd9fdca6b8ccebf9e2f6ba3dc3449}{00025}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_af5ffd9fdca6b8ccebf9e2f6ba3dc3449}{getMonth}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00028}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a2bee728b39d07386a2aa8b44c0ec83a3}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a2bee728b39d07386a2aa8b44c0ec83a3}{setMonth}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}})\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ this.month\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00032}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a916dce98735f4f64dbdeb73ea61a7ee8}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a916dce98735f4f64dbdeb73ea61a7ee8}{getDay}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00035}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a75270f37fc0e88d68ac65391e1b79a4b}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a75270f37fc0e88d68ac65391e1b79a4b}{setDay}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}})\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ this.day\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}};}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00039}00039\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00040}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a0667f731a8ce0b01f5178d290bdbfd36}{00040}}\ \ \ \ \ \textcolor{keyword}{public}\ LocalDate\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a0667f731a8ce0b01f5178d290bdbfd36}{convertToLocalDate}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ LocalDate.of\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}});}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00044}00044\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00045}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a3ec0a10487ad72556c28675131f1ad05}{00045}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a3ec0a10487ad72556c28675131f1ad05}{plusDays}}\ (\textcolor{keywordtype}{long}\ daysToAdd)\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ LocalDate\ localDate\ =\ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a0667f731a8ce0b01f5178d290bdbfd36}{convertToLocalDate}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a3ec0a10487ad72556c28675131f1ad05}{plusDays}}\ (daysToAdd);}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa281e6809be49999c4611c099a1edb46}{Date.convertFromLocalDate}}\ (localDate);\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00050}00050\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00051}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa6ba3ba65ef4e301eebe28c79e09028f}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa6ba3ba65ef4e301eebe28c79e09028f}{cast}}\ (String\ value)\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ String[]\ arr\ =\ value.split\ (\textcolor{stringliteral}{"{}-\/"{}});}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ (Integer.parseInt\ (arr[0]),}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Integer.parseInt\ (arr[1]),}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Integer.parseInt\ (arr[2]));}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00058}00058\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00059}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa281e6809be49999c4611c099a1edb46}{00059}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa281e6809be49999c4611c099a1edb46}{convertFromLocalDate}}\ (LocalDate\ localDate)\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a8f9da3f69021737548c6407fa8501e28}{Date}}\ (localDate.getYear(),\ localDate.getMonthValue(),\ localDate.getDayOfMonth());}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00063}00063\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00064}00064\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00065}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a0e2fc87e224065f30a3c157cd9d1e786}{00065}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a0e2fc87e224065f30a3c157cd9d1e786}{toString}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format(\textcolor{stringliteral}{"{}\%d-\/\%d-\/\%d"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_aa924b55486229dace1fee87f25d3386d}{year}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a64c522439afc7fea55d1ce65aad1515d}{month}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date_a803c80397e1f8c19b7b7632aceacb9e3}{day}});}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_date_8java_source_l00068}00068\ \}}
+
+\end{DoxyCode}

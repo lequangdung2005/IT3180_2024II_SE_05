@@ -1,0 +1,85 @@
+\doxysection{Family.\+java}
+\hypertarget{_family_8java_source}{}\label{_family_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/model/Family.java@{src/main/java/com/hust/ittnk68/cnpm/model/Family.java}}
+\mbox{\hyperlink{_family_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.model;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Map;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00005}00005\ \textcolor{keyword}{import}\ com.fasterxml.jackson.annotation.JsonIgnore;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00006}00006\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.database.GetSQLProperties;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00008}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family}{00008}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{Family}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{00009}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00010}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00011}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{00011}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00013}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{Family}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00014}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a1f75016fc4f2f34a67c1cdb7c26c129f}{00014}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a1f75016fc4f2f34a67c1cdb7c26c129f}{Family}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}},\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}})\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ this.familyId\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ this.personId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ this.houseNumber\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00020}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a04a088163e92981658b84bbc130d9d3d}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a04a088163e92981658b84bbc130d9d3d}{getFamilyId}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00023}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_ad77e49aaf1bd0c705d389bb9eea70780}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_ad77e49aaf1bd0c705d389bb9eea70780}{setFamilyId}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}})\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ this.familyId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00027}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a3190f6c02282cdb0a6edaddce24b8fae}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a3190f6c02282cdb0a6edaddce24b8fae}{getPersonId}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00030}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4c82868de28e55c63c1c0cd16dec89e0}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4c82868de28e55c63c1c0cd16dec89e0}{setPersonId}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}})\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ this.personId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a83044c093353167c560e4e762e93cf7a}{personId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00034}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0a256ac1f668445f64169837f63865b4}{00034}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0a256ac1f668445f64169837f63865b4}{getHouseNumber}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00037}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a3adabf429b4969383e1a9e296880b94f}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a3adabf429b4969383e1a9e296880b94f}{setHouseNumber}}\ (String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}})\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ this.houseNumber\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00041}00041\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00042}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_ae959ac7eead169894cb70fb1872f0e16}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{Family}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_ae959ac7eead169894cb70fb1872f0e16}{convertFromMap}}\ (Map<String,\ Object>\ map)\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{Family}}\ f\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0c53f89c1fbb5d71ce1b729c37fc1762}{Family}}\ (}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int})map.get(\textcolor{stringliteral}{"{}person\_id"{}}),}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ (String)map.get(\textcolor{stringliteral}{"{}house\_number"{}})}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ f.setId\ ((int)map.get(\textcolor{stringliteral}{"{}family\_id"{}}));}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ f;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00051}00051\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00052}00052\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00053}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a9fd5274e2350af2bef5a56f0153bef1a}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a9fd5274e2350af2bef5a56f0153bef1a}{getId}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00056}00056\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00057}00057\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00058}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a7a2cc594db03e9cc5ef550f651c1769e}{00058}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a7a2cc594db03e9cc5ef550f651c1769e}{setId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a8a07727d2b63291207966564e3dffb2a}{familyId}}\ =\ id;}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00061}00061\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00062}00062\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00063}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_accffbe0d9d8df04795e24fbc6a60d1f9}{00063}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_accffbe0d9d8df04795e24fbc6a60d1f9}{getSQLTableName}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}family"{}};}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00066}00066\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00067}00067\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00068}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_afcbc6e2fa71eb7456cf84e760512e7c3}{00068}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_afcbc6e2fa71eb7456cf84e760512e7c3}{getSQLInsertCommand}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format(\textcolor{stringliteral}{"{}INSERT\ INTO\ \%s\ (person\_id,house\_number)\ values\ ('\%d','\%s');"{}},\ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_accffbe0d9d8df04795e24fbc6a60d1f9}{getSQLTableName}}(),\ personId,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}});}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00071}00071\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00072}00072\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00073}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a2de920a40719b58b49014c61d204fc4d}{00073}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a2de920a40719b58b49014c61d204fc4d}{getSQLUpdateCommand}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format(\textcolor{stringliteral}{"{}UPDATE\ \%s\ SET\ person\_id='\%d',house\_number='\%s'\ WHERE\ \%s\_id='\%d';"{}},}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_accffbe0d9d8df04795e24fbc6a60d1f9}{getSQLTableName}}(),}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ personId,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a4bdc9e921b91a87723493a78d15e0913}{houseNumber}},}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_accffbe0d9d8df04795e24fbc6a60d1f9}{getSQLTableName}}(),\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a9fd5274e2350af2bef5a56f0153bef1a}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_family_8java_source_l00079}00079\ \}}
+
+\end{DoxyCode}

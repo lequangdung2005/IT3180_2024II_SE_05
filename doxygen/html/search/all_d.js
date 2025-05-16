@@ -2,7 +2,7 @@ var searchData=
 [
   ['macedonia_0',['MACEDONIA',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1Nation.html#ac64df71e266b8e24a5bed95155f15de1',1,'com::hust::ittnk68::cnpm::type::Nation']]],
   ['madagascar_1',['MADAGASCAR',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1Nation.html#a69afb6900cb0069b771777ab008cd7ca',1,'com::hust::ittnk68::cnpm::type::Nation']]],
-  ['main_2',['main',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1App.html#a7a99dd52c1ed0df44fbaf053e19d5902',1,'com.hust.ittnk68.cnpm.app.App.main()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1Client.html#a0d02f8a9b40dde8e5ac5ac141b57cfba',1,'com.hust.ittnk68.cnpm.app.Client.main()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1Server.html#a969c14480a3b62af9d0b3fdde7dfaf41',1,'com.hust.ittnk68.cnpm.app.Server.main()']]],
+  ['main_2',['main',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1Client.html#a32d8e1e6418e0204754156c5052bab65',1,'com.hust.ittnk68.cnpm.Client.main()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1Server.html#ae5c9a3bb1e75e657fccabe4acf616430',1,'com.hust.ittnk68.cnpm.Server.main()']]],
   ['malawi_3',['MALAWI',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1Nation.html#af8adeee6f387adf7a251694839952bcf',1,'com::hust::ittnk68::cnpm::type::Nation']]],
   ['malaysia_4',['MALAYSIA',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1Nation.html#a1cc40654779dba6ce71c07e08ce0546d',1,'com::hust::ittnk68::cnpm::type::Nation']]],
   ['maldives_5',['MALDIVES',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1Nation.html#a2288915e6836a92a19e7393775a0fb1b',1,'com::hust::ittnk68::cnpm::type::Nation']]],

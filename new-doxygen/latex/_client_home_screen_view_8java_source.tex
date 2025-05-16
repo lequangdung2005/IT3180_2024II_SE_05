@@ -1,0 +1,122 @@
+\doxysection{Client\+Home\+Screen\+View.\+java}
+\hypertarget{_client_home_screen_view_8java_source}{}\label{_client_home_screen_view_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/ClientHomeScreenView.java@{src/main/java/com/hust/ittnk68/cnpm/view/ClientHomeScreenView.java}}
+\mbox{\hyperlink{_client_home_screen_view_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.controller.ClientSceneController;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.interactor.ClientInteractor;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00006}00006\ \textcolor{keyword}{import}\ atlantafx.base.controls.Card;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00007}00007\ \textcolor{keyword}{import}\ atlantafx.base.controls.Spacer;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00008}00008\ \textcolor{keyword}{import}\ atlantafx.base.theme.Styles;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00010}00010\ \textcolor{keyword}{import}\ java.util.function.Supplier;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.kordamp.ikonli.javafx.FontIcon;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2AL;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00014}00014\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2MZ;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00016}00016\ \textcolor{keyword}{import}\ javafx.geometry.Insets;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00017}00017\ \textcolor{keyword}{import}\ javafx.geometry.Pos;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00018}00018\ \textcolor{keyword}{import}\ javafx.geometry.Side;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00019}00019\ \textcolor{keyword}{import}\ javafx.scene.Node;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00020}00020\ \textcolor{keyword}{import}\ javafx.scene.control.Accordion;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00021}00021\ \textcolor{keyword}{import}\ javafx.scene.control.Button;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00022}00022\ \textcolor{keyword}{import}\ javafx.scene.control.Label;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00023}00023\ \textcolor{keyword}{import}\ javafx.scene.control.Tab;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00024}00024\ \textcolor{keyword}{import}\ javafx.scene.control.TabPane;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00025}00025\ \textcolor{keyword}{import}\ javafx.scene.control.TabPane.TabClosingPolicy;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00026}00026\ \textcolor{keyword}{import}\ javafx.scene.layout.AnchorPane;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00027}00027\ \textcolor{keyword}{import}\ javafx.scene.layout.BorderPane;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00028}00028\ \textcolor{keyword}{import}\ javafx.scene.layout.ColumnConstraints;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00029}00029\ \textcolor{keyword}{import}\ javafx.scene.layout.GridPane;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00030}00030\ \textcolor{keyword}{import}\ javafx.scene.layout.HBox;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00031}00031\ \textcolor{keyword}{import}\ javafx.scene.layout.Region;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00032}00032\ \textcolor{keyword}{import}\ javafx.scene.layout.RowConstraints;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00033}00033\ \textcolor{keyword}{import}\ javafx.scene.layout.VBox;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00034}00034\ \textcolor{keyword}{import}\ javafx.scene.text.Text;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00035}00035\ \textcolor{keyword}{import}\ javafx.scene.text.TextFlow;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00037}00037\ \textcolor{comment}{//\ public\ class\ ClientHomeScreenView\ extends\ Region\ \{}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00038}00038\ \textcolor{comment}{//\ \ \ \ \ public\ ClientHomeScreenView()\ \{}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00039}00039\ \textcolor{comment}{//\ \ super();}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00040}00040\ \textcolor{comment}{//\ \ this.getChildren().add(createTweetCard());}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00041}00041\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00042}00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00043}00043\ \textcolor{comment}{//\ \ \ \ \ private\ Card\ createTweetCard()\ \{}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00044}00044\ \textcolor{comment}{//\ \ Card\ tweetCard\ =\ new\ Card();}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00045}00045\ \textcolor{comment}{//\ \ tweetCard.setMinWidth(300);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00046}00046\ \textcolor{comment}{//\ \ tweetCard.setMaxWidth(300);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00047}00047\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00048}00048\ \textcolor{comment}{//\ \ Label\ title\ =\ new\ Label("{}twitter\ username"{});}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00049}00049\ \textcolor{comment}{//\ \ title.getStyleClass().add(Styles.TITLE\_4);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00050}00050\ \textcolor{comment}{//\ \ tweetCard.setHeader(title);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00051}00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00052}00052\ \textcolor{comment}{//\ \ TextFlow\ text\ =\ new\ TextFlow(new\ Text(}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00053}00053\ \textcolor{comment}{//\ \ \ \ \ \ "{}lorem\ lorem\ lorm\ isum\ isum\ isum\ lorm\ isum\ lorem\ isum\ lorem\ isum"{}}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00054}00054\ \textcolor{comment}{//\ \ ));}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00055}00055\ \textcolor{comment}{//\ \ text.setMaxWidth(260);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00056}00056\ \textcolor{comment}{//\ \ tweetCard.setBody(text);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00057}00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00058}00058\ \textcolor{comment}{//\ \ HBox\ footer\ =\ new\ HBox(10,}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00059}00059\ \textcolor{comment}{//\ \ \ \ \ \ new\ FontIcon(Material2AL.FAVORITE),}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00060}00060\ \textcolor{comment}{//\ \ \ \ \ \ new\ Label("{}861"{}),}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00061}00061\ \textcolor{comment}{//\ \ \ \ \ \ new\ Spacer(20),}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00062}00062\ \textcolor{comment}{//\ \ \ \ \ \ new\ FontIcon(Material2MZ.SHARE),}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00063}00063\ \textcolor{comment}{//\ \ \ \ \ \ new\ Label("{}92"{})}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00064}00064\ \textcolor{comment}{//\ \ );}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00065}00065\ \textcolor{comment}{//\ \ footer.setAlignment(Pos.CENTER\_LEFT);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00066}00066\ \textcolor{comment}{//\ \ tweetCard.setFooter(footer);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00067}00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00068}00068\ \textcolor{comment}{//\ \ tweetCard.getStyleClass().add(Styles.ELEVATED\_1);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00069}00069\ \textcolor{comment}{//\ \ tweetCard.getStyleClass().add(Styles.INTERACTIVE);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00070}00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00071}00071\ \textcolor{comment}{//\ \ return\ tweetCard;}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00072}00072\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00073}00073\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00074}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view}{00074}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a8a3119400df90313d00912448cdc0f46}{ClientHomeScreenView}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_grid_pane_a08841d8da8653edf3fa4648e1c8c0c82}{DuongFXGridPane}}\ \{}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00075}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a0d0995a34103cf63c82c933a668b54cd}{00075}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a0d0995a34103cf63c82c933a668b54cd}{numCols}}\ =\ 15;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00076}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_ae708cde6d9cbbc242975ba969b9e3bc7}{00076}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_ae708cde6d9cbbc242975ba969b9e3bc7}{numRows}}\ =\ 12;}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00078}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a8a3119400df90313d00912448cdc0f46}{00078}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a8a3119400df90313d00912448cdc0f46}{ClientHomeScreenView}}(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00079}00079\ \ \ \ \ super\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a0d0995a34103cf63c82c933a668b54cd}{numCols}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_ae708cde6d9cbbc242975ba969b9e3bc7}{numRows}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor}{ClientInteractor}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor}{interactor}}\ =\ sceneController.getClientInteractor\ ();}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00083}00083\ \ \ \ \ \textcolor{comment}{//\ this.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00084}00084\ \ \ \ \ this.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00085}00085\ \ \ \ \ this.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00086}00086\ \ \ \ \ this.setPadding\ (\textcolor{keyword}{new}\ Insets\ (30,\ 50,\ 30,\ 50));}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00087}00087\ \ \ \ \ this.getStyleClass().add(\textcolor{stringliteral}{"{}gradientbackground"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00089}00089\ \ \ \ \ this.add\ (\mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor}{interactor}}.getMainScreen(),\ 1,\ 1,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a0d0995a34103cf63c82c933a668b54cd}{numCols}}\ -\/\ 1,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_ae708cde6d9cbbc242975ba969b9e3bc7}{numRows}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00091}00091\ \ \ \ \ BorderPane\ bp\ =\ \textcolor{keyword}{new}\ BorderPane\ ();}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ bp.setPadding\ (new\ Insets\ (0,\ 0,\ 0,\ 15));}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00094}00094\ \ \ \ \ this.add\ (bp,\ 1,\ 0,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_a0d0995a34103cf63c82c933a668b54cd}{numCols}}\ -\/\ 1,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00096}00096\ \ \ \ \ Label\ greeting\ =\ \textcolor{keyword}{new}\ Label\ (\textcolor{stringliteral}{"{}Xin\ chào,\ Đăng\ Dương!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00097}00097\ \ \ \ \ greeting.setId\ (\textcolor{stringliteral}{"{}greetinglabel"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00098}00098\ \ \ \ \ Label\ desc\ =\ \textcolor{keyword}{new}\ Label\ (\textcolor{stringliteral}{"{}Cổng\ thông\ tin,\ dịch\ vụ\ chung\ cư\ BlueMoon"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00099}00099\ \ \ \ \ desc.setId\ (\textcolor{stringliteral}{"{}desclabel"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00100}00100\ \ \ \ \ VBox\ greetingVBox\ =\ \textcolor{keyword}{new}\ VBox\ (greeting,\ desc);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00101}00101\ \ \ \ \ bp.setLeft\ (greetingVBox);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ chatBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2AL.CHAT));}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00104}00104\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ notiBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.NOTIFICATIONS));}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00105}00105\ \ \ \ \ HBox\ notificationWrapper\ =\ \textcolor{keyword}{new}\ HBox\ (chatBtn,\ notiBtn);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00106}00106\ \ \ \ \ notificationWrapper.getStyleClass().addAll(\textcolor{stringliteral}{"{}graywrapper"{}},\ \textcolor{stringliteral}{"{}leftrightpadding"{}});}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00107}00107\ \ \ \ \ notificationWrapper.setAlignment\ (Pos.CENTER);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00108}00108\ \ \ \ \ bp.setRight\ (notificationWrapper);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00109}00109\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00110}00110\ \ \ \ \ this.add\ (\textcolor{keyword}{new}\ Label(\textcolor{stringliteral}{"{}"{}}),\ 0,\ 0,\ 1,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00112}00112\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_side_bar}{ClientHomeSideBar}}\ vb\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_side_bar}{ClientHomeSideBar}}\ (sceneController);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00113}00113\ \ \ \ \ this.add\ (vb,\ 0,\ 1,\ 1,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_home_screen_view_ae708cde6d9cbbc242975ba969b9e3bc7}{numRows}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_home_screen_view_8java_source_l00116}00116\ \}}
+
+\end{DoxyCode}

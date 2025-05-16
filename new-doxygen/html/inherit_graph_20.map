@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties.html" title=" " alt="" coords="5,172,221,215"/>
+<area shape="rect" id="Node000001" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html" title=" " alt="" coords="269,5,466,48"/>
+<area shape="poly" id="edge30_Node000000_Node000001" title=" " alt="" coords="143,159,198,108,232,81,267,58,291,46,294,51,270,62,235,85,201,112,146,163"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense.html" title=" " alt="" coords="269,72,466,115"/>
+<area shape="poly" id="edge31_Node000000_Node000002" title=" " alt="" coords="175,163,268,124,299,113,301,118,270,129,177,168"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family.html" title=" " alt="" coords="269,139,466,181"/>
+<area shape="poly" id="edge32_Node000000_Node000003" title=" " alt="" coords="236,175,268,170,269,176,237,180"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html" title=" " alt="" coords="269,205,466,248"/>
+<area shape="poly" id="edge33_Node000000_Node000004" title=" " alt="" coords="237,207,269,211,268,216,236,212"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html" title=" " alt="" coords="269,272,466,315"/>
+<area shape="poly" id="edge34_Node000000_Node000005" title=" " alt="" coords="177,219,270,258,301,269,299,274,268,262,175,224"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle.html" title=" " alt="" coords="269,339,466,381"/>
+<area shape="poly" id="edge35_Node000000_Node000006" title=" " alt="" coords="146,224,201,275,235,301,270,324,294,336,291,341,267,329,232,306,198,279,143,228"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="com.hust.ittnk68.cnpm.view.ClientExpensePage.qrCodeGenerate" name="com.hust.ittnk68.cnpm.view.ClientExpensePage.qrCodeGenerate">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1095,43,1330,85"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#a47a150820ca49d77b6415feeba823ef5" title=" " alt="" coords="798,13,1047,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1079,53,1047,50,1047,45,1079,48"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#af5eae977f6438c8d39874213a64dac07" title=" " alt="" coords="553,13,750,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="783,37,751,37,751,32,783,32"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#a304a19fbac036a7a0374590d060408bd" title=" " alt="" coords="311,13,505,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="538,37,505,37,505,32,538,32"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#adcb3870609d37dc62edc10fade2e3431" title=" " alt="" coords="6,5,262,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="295,34,262,33,262,28,295,29"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#aff7197a53edf7d401b769b1aa71b9d0d" title=" " alt="" coords="5,72,263,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="296,61,237,74,236,69,295,56"/>
+<area shape="poly" id="edge6_Node000006_Node000001" title=" " alt="" coords="278,87,1094,65,1094,70,279,92"/>
+</map>

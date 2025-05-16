@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.communication.AdminDeleteObject" name="com.hust.ittnk68.cnpm.communication.AdminDeleteObject">
+<area shape="rect" id="Node000001" title=" " alt="" coords="139,304,378,453"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base.html" title=" " alt="" coords="5,59,245,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,199,222,303,218,305,163,201"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties.html" title=" " alt="" coords="269,5,514,240"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="333,241,307,291,302,288,328,239"/>
+</map>

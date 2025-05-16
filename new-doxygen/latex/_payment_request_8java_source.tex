@@ -1,0 +1,48 @@
+\doxysection{Payment\+Request.\+java}
+\hypertarget{_payment_request_8java_source}{}\label{_payment_request_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/communication/PaymentRequest.java@{src/main/java/com/hust/ittnk68/cnpm/communication/PaymentRequest.java}}
+\mbox{\hyperlink{_payment_request_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.communication;}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.fasterxml.jackson.annotation.JsonCreator;}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.fasterxml.jackson.annotation.JsonProperty;}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00006}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{00006}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a0b820c3cdbe3e53495d7dbd1d2e3353c}{PaymentRequest}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_a7f7457269d9276c1c9779685cf38c523}{ClientMessageBase}}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{00009}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00010}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00012}00012\ \ \ \ \ @JsonCreator}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00013}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a0b820c3cdbe3e53495d7dbd1d2e3353c}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a0b820c3cdbe3e53495d7dbd1d2e3353c}{PaymentRequest}}\ (}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ @JsonProperty(\textcolor{stringliteral}{"{}username"{}})\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_afd2b713854b92f8c3ff60bcbcbbac031}{username}},}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ @JsonProperty(\textcolor{stringliteral}{"{}paymentStatusId"{}})\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}},}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ @JsonProperty(\textcolor{stringliteral}{"{}amount"{}})\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00017}00017\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ super\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_afd2b713854b92f8c3ff60bcbcbbac031}{username}});}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ this.paymentStatusId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ this.amount\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00024}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_af9cb2e5d7c594cfc062865743a9f02fd}{00024}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_af9cb2e5d7c594cfc062865743a9f02fd}{getPaymentStatusId}}\ ()}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00025}00025\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00028}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_ad61e6232ffc8c2627af4e33e37183327}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_ad61e6232ffc8c2627af4e33e37183327}{setPaymentStatusId}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}})}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ this.paymentStatusId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_a79865cd820601f1322320721bea73cde}{paymentStatusId}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00033}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa8cc02bad5e4d65d86b1dc06a92746a4}{00033}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa8cc02bad5e4d65d86b1dc06a92746a4}{getAmount}}\ ()}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00037}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa9944350ee3dc575a0074e1f29508eae}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa9944350ee3dc575a0074e1f29508eae}{setAmount}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}})}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ this.amount\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_adc9c6117c712b31213638fda02cd9d64}{amount}};}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_payment_request_8java_source_l00042}00042\ \}}
+
+\end{DoxyCode}

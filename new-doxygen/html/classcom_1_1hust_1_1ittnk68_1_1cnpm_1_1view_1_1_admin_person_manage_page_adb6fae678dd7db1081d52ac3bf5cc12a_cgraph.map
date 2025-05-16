@@ -1,0 +1,27 @@
+<map id="com.hust.ittnk68.cnpm.view.AdminPersonManagePage.createPersonUpdateForm" name="com.hust.ittnk68.cnpm.view.AdminPersonManagePage.createPersonUpdateForm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,380,262,439"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#aab542f6577abd7916b0e3777defc1c70" title=" " alt="" coords="325,5,576,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,379,156,312,188,225,211,179,238,135,270,93,308,58,313,54,316,59,311,62,274,97,243,138,216,182,193,227,161,314,143,380"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a67890d22e59e3700c37303544e484528" title=" " alt="" coords="351,72,550,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,378,167,327,202,263,249,197,277,167,308,140,335,125,337,129,311,145,281,171,253,200,207,266,172,329,149,381"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#af31aad947222918a919a0ed80296e4f3" title=" " alt="" coords="321,155,580,197"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="150,378,176,339,213,292,257,246,308,207,318,202,320,206,311,212,261,250,217,296,181,342,155,381"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#ad0916fa55f117a5dba636d3b3fa2b3aa" title=" " alt="" coords="352,221,549,264"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="163,378,227,324,267,297,309,274,336,262,338,267,311,278,269,301,230,329,167,382"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a429a79f2ed19a9f57b30c7017bac8c51" title=" " alt="" coords="352,288,549,331"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="206,377,309,340,336,332,337,337,310,345,208,382"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a553ec0ed10428f0554fc45ab9d7ec449" title=" " alt="" coords="352,355,549,397"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="262,393,336,385,337,391,262,398"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a368be6f07e6b4732269d78906437dab6" title=" " alt="" coords="352,421,549,464"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="262,420,337,428,336,433,262,425"/>
+<area shape="rect" id="Node000009" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#ae54b2d54dc204f0385159144d897f8cd" title=" " alt="" coords="352,488,549,531"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="208,437,310,473,337,481,336,486,309,479,206,442"/>
+<area shape="rect" id="Node000010" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#aeee5f16cb4e29ff531e9252aed322d50" title=" " alt="" coords="352,555,549,597"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="167,437,230,490,269,517,311,540,338,551,336,556,309,545,267,522,227,494,163,441"/>
+<area shape="rect" id="Node000011" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person.html#a054fafa8cd1a92f29eb35bba9dce3e5d" title=" " alt="" coords="352,621,549,664"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="155,438,181,477,217,523,261,569,311,607,338,620,336,625,308,612,257,573,213,526,176,480,150,441"/>
+<area shape="rect" id="Node000012" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#a99064e23f91d9001eaa721dc9b5921d0" title=" " alt="" coords="310,688,591,731"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="148,438,171,490,205,554,252,619,280,649,311,674,318,678,315,683,308,678,277,652,248,623,201,557,166,492,143,440"/>
+<area shape="rect" id="Node000013" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#a0b2ea22eddd4fb6f0e373e2f8e20acfe" title=" " alt="" coords="322,755,579,813"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="145,438,164,502,197,583,219,626,246,668,276,707,311,741,316,744,313,748,308,745,272,710,241,671,215,629,192,586,159,503,139,440"/>
+</map>

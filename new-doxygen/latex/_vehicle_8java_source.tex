@@ -1,0 +1,54 @@
+\doxysection{Vehicle.\+java}
+\hypertarget{_vehicle_8java_source}{}\label{_vehicle_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/model/Vehicle.java@{src/main/java/com/hust/ittnk68/cnpm/model/Vehicle.java}}
+\mbox{\hyperlink{_vehicle_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.model;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.fasterxml.jackson.annotation.JsonIgnore;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.database.GetSQLProperties;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00005}00005\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.VehicleType;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00007}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aaffa904ab7de4fc40aea9e115c53208b}{Vehicle}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00008}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a96b0748096113ea75d8db4894b975832}{00008}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a96b0748096113ea75d8db4894b975832}{vehicleId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_ada9089e76bc4067645540e76ec295189}{00009}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_vehicle_type}{VehicleType}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_ada9089e76bc4067645540e76ec295189}{vehicleType}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00010}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00011}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{00011}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{plateId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00013}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aaffa904ab7de4fc40aea9e115c53208b}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aaffa904ab7de4fc40aea9e115c53208b}{Vehicle}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00014}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aae3b66983ba0c5dc4775456a6cf08e17}{00014}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aae3b66983ba0c5dc4775456a6cf08e17}{Vehicle}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{familyId}},\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{plateId}})\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ this.vehicleId\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ this.familyId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{familyId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ this.plateId\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{plateId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00020}00020\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00021}00021\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00022}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a0926b82770ec2aecd6207445a071a6e2}{00022}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a0926b82770ec2aecd6207445a071a6e2}{getId}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a96b0748096113ea75d8db4894b975832}{vehicleId}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00025}00025\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00026}00026\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00027}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a3bafbdbab6d7b13c0d57a366c846b8de}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a3bafbdbab6d7b13c0d57a366c846b8de}{setId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a96b0748096113ea75d8db4894b975832}{vehicleId}}\ =\ id;}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00030}00030\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00031}00031\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00032}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a874e4f1473cff21608f20dfee4f093dd}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a874e4f1473cff21608f20dfee4f093dd}{getSQLTableName}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ String(\textcolor{stringliteral}{"{}vehicle"{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00035}00035\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00036}00036\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00037}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aa5300dbe208635f99bacd55968d0b9d9}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_aa5300dbe208635f99bacd55968d0b9d9}{getSQLInsertCommand}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format(\textcolor{stringliteral}{"{}INSERT\ INTO\ \%s\ (vehicle\_type,family\_id,plate\_id)\ values\ ('\%s','\%d','\%s');"{}},\ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a874e4f1473cff21608f20dfee4f093dd}{getSQLTableName}}(),\ vehicleType,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{familyId}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{plateId}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00040}00040\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00041}00041\ \ \ \ \ @JsonIgnore}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00042}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a5214abaea0096ae4a9bd57cacffdc913}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a5214abaea0096ae4a9bd57cacffdc913}{getSQLUpdateCommand}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format(\textcolor{stringliteral}{"{}UPDATE\ \%s\ SET\ vehicle\_type='\%s',family\_id='\%d',plate\_id='\%s'\ WHERE\ \%s\_id=\%d;"{}},}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a874e4f1473cff21608f20dfee4f093dd}{getSQLTableName}}(),}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleType,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a06fe65d3c9dcca9f58b425e7cec7d71f}{familyId}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a857735f67d0e815346d4c473a676ccc0}{plateId}},}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a874e4f1473cff21608f20dfee4f093dd}{getSQLTableName}}(),\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_vehicle_a0926b82770ec2aecd6207445a071a6e2}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_8java_source_l00048}00048\ \}}
+
+\end{DoxyCode}

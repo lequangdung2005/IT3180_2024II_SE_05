@@ -20,6 +20,7 @@ var classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor =
     [ "getMainScreen", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a492becfbaaf1630f8d28464e77552f9d", null ],
     [ "loginHandler", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a3fb58a4240571236e34d0a57c7874797", null ],
     [ "logout", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a24fb47b62d1e8f3a6667ed8246705a76", null ],
+    [ "notificate", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a41c27d7e70817f6bd5774f4ceea75dc4", null ],
     [ "setRoot", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a8af120480cbf8328473767071131275e", null ],
     [ "showConfirmationWindow", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#a722bd7be8a41c3a5a9e81cffd6ea7295", null ],
     [ "showFailedWindow", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1ClientInteractor.html#ab4934f7ef32edae71549ba17f8b91f30", null ],

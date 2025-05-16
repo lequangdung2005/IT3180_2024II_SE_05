@@ -47,7 +47,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 1689;
+var viewWidth = 5128;
 var viewHeight = 120;
 var sectionId = 'dynsection-0';
 </script>
@@ -59,10 +59,10 @@ var sectionId = 'dynsection-0';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title=" ">
-<polygon fill="#999999" stroke="#666666" points="904.88,-112 751.62,-112 751.62,-68 904.88,-68 904.88,-112"/>
-<text text-anchor="start" x="759.62" y="-98.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/main/java/com/hust</text>
-<text text-anchor="start" x="759.62" y="-86.5" font-family="Helvetica,sans-Serif" font-size="10.00">/ittnk68/cnpm/view/ClientHome</text>
-<text text-anchor="middle" x="828.25" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">Page.java</text>
+<polygon fill="#999999" stroke="#666666" points="2605.88,-112 2452.62,-112 2452.62,-68 2605.88,-68 2605.88,-112"/>
+<text text-anchor="start" x="2460.62" y="-98.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/main/java/com/hust</text>
+<text text-anchor="start" x="2460.62" y="-86.5" font-family="Helvetica,sans-Serif" font-size="10.00">/ittnk68/cnpm/view/ClientHome</text>
+<text text-anchor="middle" x="2529.25" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">Page.java</text>
 </a>
 </g>
 </g>
@@ -79,8 +79,8 @@ var sectionId = 'dynsection-0';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M751.34,-85.6C623.54,-79.3 359.6,-63.47 138.25,-32 131.52,-31.04 124.48,-29.86 117.52,-28.58"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="118.33,-25.17 107.85,-26.71 117.01,-32.04 118.33,-25.17"/>
+<path fill="none" stroke="#63b8ff" d="M2452.39,-88.99C2096,-88.66 602.19,-84.14 138.25,-32 130.9,-31.17 123.19,-29.98 115.64,-28.63"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="116.34,-25.2 105.86,-26.76 115.02,-32.07 116.34,-25.2"/>
 </a>
 </g>
 </g>
@@ -98,8 +98,8 @@ var sectionId = 'dynsection-0';
 <g id="edge2_Node000001_Node000003" class="edge">
 <title>Node1&#45;&gt;Node3</title>
 <g id="a_edge2_Node000001_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M751.32,-81.79C653.25,-72.3 478.23,-54.35 318.72,-32.3"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="319.63,-28.9 309.25,-30.98 318.67,-35.83 319.63,-28.9"/>
+<path fill="none" stroke="#63b8ff" d="M2452.26,-88.48C2115.24,-85.97 767.18,-73.55 319.1,-32.16"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="319.5,-28.68 309.22,-31.23 318.85,-35.65 319.5,-28.68"/>
 </a>
 </g>
 </g>
@@ -107,9 +107,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000004" class="node">
 <title>Node4</title>
 <g id="a_Node000004"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="443.25,-32 325.25,-32 325.25,0 443.25,0 443.25,-32"/>
-<text text-anchor="start" x="333.25" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">atlantafx.base.controls.</text>
-<text text-anchor="middle" x="384.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Calendar</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="453.12,-32 325.38,-32 325.38,0 453.12,0 453.12,-32"/>
+<text text-anchor="start" x="333.38" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">org.kordamp.ikonli.javafx.</text>
+<text text-anchor="middle" x="389.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">FontIcon</text>
 </a>
 </g>
 </g>
@@ -117,8 +117,8 @@ var sectionId = 'dynsection-0';
 <g id="edge3_Node000001_Node000004" class="edge">
 <title>Node1&#45;&gt;Node4</title>
 <g id="a_edge3_Node000001_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M751.31,-78.86C677.66,-68.82 563.21,-52.3 454.7,-32.39"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="455.5,-28.97 445.03,-30.6 454.23,-35.86 455.5,-28.97"/>
+<path fill="none" stroke="#63b8ff" d="M2452.16,-88.68C2129.03,-87.07 881.58,-78.01 464.44,-32.07"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="465.08,-28.62 454.75,-30.98 464.29,-35.58 465.08,-28.62"/>
 </a>
 </g>
 </g>
@@ -126,8 +126,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000005" class="node">
 <title>Node5</title>
 <g id="a_Node000005"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="575.38,-26 461.12,-26 461.12,-6 575.38,-6 575.38,-26"/>
-<text text-anchor="middle" x="518.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.geometry.Insets</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="612.88,-32 471.62,-32 471.62,0 612.88,0 612.88,-32"/>
+<text text-anchor="start" x="479.62" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">org.kordamp.ikonli.material2.</text>
+<text text-anchor="middle" x="542.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material2AL</text>
 </a>
 </g>
 </g>
@@ -135,8 +136,8 @@ var sectionId = 'dynsection-0';
 <g id="edge4_Node000001_Node000005" class="edge">
 <title>Node1&#45;&gt;Node5</title>
 <g id="a_edge4_Node000001_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M751.22,-71.11C694.66,-57.97 619.37,-40.49 569.89,-28.99"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="570.83,-25.62 560.29,-26.76 569.24,-32.44 570.83,-25.62"/>
+<path fill="none" stroke="#63b8ff" d="M2452.16,-88.32C2145.18,-85.37 1008.25,-72.01 624.63,-32.24"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="625.05,-28.76 614.73,-31.18 624.31,-35.72 625.05,-28.76"/>
 </a>
 </g>
 </g>
@@ -144,8 +145,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000006" class="node">
 <title>Node6</title>
 <g id="a_Node000006"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="731.38,-26 593.12,-26 593.12,-6 731.38,-6 731.38,-26"/>
-<text text-anchor="middle" x="662.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.BarChart</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="771.88,-32 630.62,-32 630.62,0 771.88,0 771.88,-32"/>
+<text text-anchor="start" x="638.62" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">org.kordamp.ikonli.material2.</text>
+<text text-anchor="middle" x="701.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material2OutlinedMZ</text>
 </a>
 </g>
 </g>
@@ -153,8 +155,8 @@ var sectionId = 'dynsection-0';
 <g id="edge5_Node000001_Node000006" class="edge">
 <title>Node1&#45;&gt;Node6</title>
 <g id="a_edge5_Node000001_Node000006"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M778.89,-67.59C751.54,-55.73 718.33,-41.32 694.35,-30.92"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="695.99,-27.82 685.42,-27.05 693.2,-34.24 695.99,-27.82"/>
+<path fill="none" stroke="#63b8ff" d="M2452.23,-88.05C2162.15,-84.25 1134.63,-68.55 783.46,-32.09"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="784.09,-28.64 773.77,-31.06 783.34,-35.6 784.09,-28.64"/>
 </a>
 </g>
 </g>
@@ -162,8 +164,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000007" class="node">
 <title>Node7</title>
 <g id="a_Node000007"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="907.5,-26 749,-26 749,-6 907.5,-6 907.5,-26"/>
-<text text-anchor="middle" x="828.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.CategoryAxis</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="908.25,-32 790.25,-32 790.25,0 908.25,0 908.25,-32"/>
+<text text-anchor="start" x="798.25" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">atlantafx.base.controls.</text>
+<text text-anchor="middle" x="849.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Calendar</text>
 </a>
 </g>
 </g>
@@ -171,8 +174,8 @@ var sectionId = 'dynsection-0';
 <g id="edge6_Node000001_Node000007" class="edge">
 <title>Node1&#45;&gt;Node7</title>
 <g id="a_edge6_Node000001_Node000007"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M828.25,-67.79C828.25,-58.32 828.25,-47.2 828.25,-37.78"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="831.75,-37.82 828.25,-27.82 824.75,-37.82 831.75,-37.82"/>
+<path fill="none" stroke="#63b8ff" d="M2452.3,-88.13C2177.17,-84.75 1241.98,-70.72 919.68,-32.11"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="920.33,-28.67 909.98,-30.91 919.47,-35.61 920.33,-28.67"/>
 </a>
 </g>
 </g>
@@ -180,8 +183,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000008" class="node">
 <title>Node8</title>
 <g id="a_Node000008"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="1078.88,-26 925.62,-26 925.62,-6 1078.88,-6 1078.88,-26"/>
-<text text-anchor="middle" x="1002.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.NumberAxis</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="1044.25,-32 926.25,-32 926.25,0 1044.25,0 1044.25,-32"/>
+<text text-anchor="start" x="934.25" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">atlantafx.base.controls.</text>
+<text text-anchor="middle" x="985.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Spacer</text>
 </a>
 </g>
 </g>
@@ -189,8 +193,8 @@ var sectionId = 'dynsection-0';
 <g id="edge7_Node000001_Node000008" class="edge">
 <title>Node1&#45;&gt;Node8</title>
 <g id="a_edge7_Node000001_Node000008"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M879.98,-67.59C908.78,-55.68 943.78,-41.19 968.95,-30.78"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="970.12,-34.08 978.02,-27.03 967.44,-27.62 970.12,-34.08"/>
+<path fill="none" stroke="#63b8ff" d="M2452.52,-87.85C2193.21,-83.67 1349.73,-67.73 1055.55,-32.1"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1056.34,-28.67 1045.98,-30.91 1055.47,-35.62 1056.34,-28.67"/>
 </a>
 </g>
 </g>
@@ -198,8 +202,8 @@ var sectionId = 'dynsection-0';
 <g id="Node000009" class="node">
 <title>Node9</title>
 <g id="a_Node000009"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="1233.62,-26 1096.88,-26 1096.88,-6 1233.62,-6 1233.62,-26"/>
-<text text-anchor="middle" x="1165.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.XYChart</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="1196.12,-26 1062.38,-26 1062.38,-6 1196.12,-6 1196.12,-26"/>
+<text text-anchor="middle" x="1129.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">atlantafx.base.controls.Tile</text>
 </a>
 </g>
 </g>
@@ -207,8 +211,8 @@ var sectionId = 'dynsection-0';
 <g id="edge8_Node000001_Node000009" class="edge">
 <title>Node1&#45;&gt;Node9</title>
 <g id="a_edge8_Node000001_Node000009"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M905.14,-72.57C967.66,-59.21 1054.35,-40.69 1110.13,-28.78"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1110.67,-32.24 1119.72,-26.73 1109.21,-25.39 1110.67,-32.24"/>
+<path fill="none" stroke="#63b8ff" d="M2452.43,-89.76C2248.48,-90.89 1676.71,-88.34 1205.25,-32 1197.8,-31.11 1189.99,-29.9 1182.33,-28.54"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1183.24,-25.15 1172.77,-26.76 1181.95,-32.03 1183.24,-25.15"/>
 </a>
 </g>
 </g>
@@ -216,8 +220,8 @@ var sectionId = 'dynsection-0';
 <g id="Node000010" class="node">
 <title>Node10</title>
 <g id="a_Node000010"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="1381.25,-26 1251.25,-26 1251.25,-6 1381.25,-6 1381.25,-26"/>
-<text text-anchor="middle" x="1316.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.control.Label</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="1352.38,-26 1214.12,-26 1214.12,-6 1352.38,-6 1352.38,-26"/>
+<text text-anchor="middle" x="1283.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">atlantafx.base.theme.Styles</text>
 </a>
 </g>
 </g>
@@ -225,8 +229,8 @@ var sectionId = 'dynsection-0';
 <g id="edge9_Node000001_Node000010" class="edge">
 <title>Node1&#45;&gt;Node10</title>
 <g id="a_edge9_Node000001_Node000010"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M905.16,-79.89C988.45,-69.67 1125.13,-51.91 1242.25,-32 1248.23,-30.98 1254.46,-29.85 1260.66,-28.66"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1261.1,-32.14 1270.24,-26.79 1259.75,-25.27 1261.1,-32.14"/>
+<path fill="none" stroke="#63b8ff" d="M2452.41,-88.99C2265.12,-88.16 1770.45,-81.08 1361.25,-32 1353.53,-31.07 1345.42,-29.83 1337.47,-28.45"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1338.35,-25.05 1327.89,-26.7 1337.1,-31.94 1338.35,-25.05"/>
 </a>
 </g>
 </g>
@@ -234,8 +238,8 @@ var sectionId = 'dynsection-0';
 <g id="Node000011" class="node">
 <title>Node11</title>
 <g id="a_Node000011"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="1527.5,-26 1399,-26 1399,-6 1527.5,-6 1527.5,-26"/>
-<text text-anchor="middle" x="1463.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.HBox</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="1509.75,-26 1370.75,-26 1370.75,-6 1509.75,-6 1509.75,-26"/>
+<text text-anchor="middle" x="1440.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.animation.Interpolator</text>
 </a>
 </g>
 </g>
@@ -243,8 +247,8 @@ var sectionId = 'dynsection-0';
 <g id="edge10_Node000001_Node000011" class="edge">
 <title>Node1&#45;&gt;Node11</title>
 <g id="a_edge10_Node000001_Node000011"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M904.92,-83.7C1013.39,-75.65 1217.69,-58.41 1390.25,-32 1396.64,-31.02 1403.32,-29.85 1409.93,-28.61"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1410.29,-32.1 1419.43,-26.75 1408.95,-25.23 1410.29,-32.1"/>
+<path fill="none" stroke="#63b8ff" d="M2452.29,-88.1C2282.98,-85.36 1865.71,-74.48 1519.25,-32 1511.53,-31.05 1503.42,-29.81 1495.47,-28.44"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1496.33,-25.04 1485.87,-26.71 1495.09,-31.93 1496.33,-25.04"/>
 </a>
 </g>
 </g>
@@ -252,8 +256,9 @@ var sectionId = 'dynsection-0';
 <g id="Node000012" class="node">
 <title>Node12</title>
 <g id="a_Node000012"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="1680.5,-26 1546,-26 1546,-6 1680.5,-6 1680.5,-26"/>
-<text text-anchor="middle" x="1613.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.Priority</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="1658.62,-32 1527.88,-32 1527.88,0 1658.62,0 1658.62,-32"/>
+<text text-anchor="start" x="1535.88" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.animation.Translate</text>
+<text text-anchor="middle" x="1593.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Transition</text>
 </a>
 </g>
 </g>
@@ -261,8 +266,422 @@ var sectionId = 'dynsection-0';
 <g id="edge11_Node000001_Node000012" class="edge">
 <title>Node1&#45;&gt;Node12</title>
 <g id="a_edge11_Node000001_Node000012"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M905.3,-85.63C1035.68,-79.29 1307.95,-63.33 1536.25,-32 1543.25,-31.04 1550.57,-29.85 1557.79,-28.57"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1558.32,-32.03 1567.52,-26.77 1557.05,-25.15 1558.32,-32.03"/>
+<path fill="none" stroke="#63b8ff" d="M2452.22,-87.36C2302.99,-83.44 1964.02,-70.86 1670.25,-32.29"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1670.81,-28.84 1660.44,-30.99 1669.89,-35.78 1670.81,-28.84"/>
+</a>
+</g>
+</g>
+<!-- Node13 -->
+<g id="Node000013" class="node">
+<title>Node13</title>
+<g id="a_Node000013"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="1802,-26 1676.5,-26 1676.5,-6 1802,-6 1802,-26"/>
+<text text-anchor="middle" x="1739.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.event.ActionEvent</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node13 -->
+<g id="edge12_Node000001_Node000013" class="edge">
+<title>Node1&#45;&gt;Node13</title>
+<g id="a_edge12_Node000001_Node000013"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2452.13,-86.07C2320.25,-80.35 2043.18,-65.23 1811.25,-32 1804.77,-31.07 1798,-29.91 1791.32,-28.66"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1792.19,-25.26 1781.7,-26.76 1790.83,-32.13 1792.19,-25.26"/>
+</a>
+</g>
+</g>
+<!-- Node14 -->
+<g id="Node000014" class="node">
+<title>Node14</title>
+<g id="a_Node000014"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="1952,-26 1820.5,-26 1820.5,-6 1952,-6 1952,-26"/>
+<text text-anchor="middle" x="1886.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.event.EventHandler</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node14 -->
+<g id="edge13_Node000001_Node000014" class="edge">
+<title>Node1&#45;&gt;Node14</title>
+<g id="a_edge13_Node000001_Node000014"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2452.24,-83.66C2342.75,-75.53 2135.96,-58.17 1961.25,-32 1954.69,-31.02 1947.83,-29.85 1941.04,-28.6"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1941.71,-25.16 1931.24,-26.73 1940.4,-32.04 1941.71,-25.16"/>
+</a>
+</g>
+</g>
+<!-- Node15 -->
+<g id="Node000015" class="node">
+<title>Node15</title>
+<g id="a_Node000015"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2084.38,-26 1970.12,-26 1970.12,-6 2084.38,-6 2084.38,-26"/>
+<text text-anchor="middle" x="2027.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.geometry.Insets</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node15 -->
+<g id="edge14_Node000001_Node000015" class="edge">
+<title>Node1&#45;&gt;Node15</title>
+<g id="a_edge14_Node000001_Node000015"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2452.13,-81.12C2364.73,-71.68 2218.19,-54.31 2093.25,-32 2088.03,-31.07 2082.6,-30 2077.2,-28.87"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2078.21,-25.51 2067.69,-26.81 2076.73,-32.35 2078.21,-25.51"/>
+</a>
+</g>
+</g>
+<!-- Node16 -->
+<g id="Node000016" class="node">
+<title>Node16</title>
+<g id="a_Node000016"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2236.5,-26 2102,-26 2102,-6 2236.5,-6 2236.5,-26"/>
+<text text-anchor="middle" x="2169.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.geometry.Orientation</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge15_Node000001_Node000016" class="edge">
+<title>Node1&#45;&gt;Node16</title>
+<g id="a_edge15_Node000001_Node000016"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2452.46,-73.64C2385.2,-60.19 2288.9,-40.93 2227.72,-28.69"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2228.7,-25.32 2218.21,-26.79 2227.33,-32.19 2228.7,-25.32"/>
+</a>
+</g>
+</g>
+<!-- Node17 -->
+<g id="Node000017" class="node">
+<title>Node17</title>
+<g id="a_Node000017"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2359.5,-26 2255,-26 2255,-6 2359.5,-6 2359.5,-26"/>
+<text text-anchor="middle" x="2307.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.geometry.Pos</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node17 -->
+<g id="edge16_Node000001_Node000017" class="edge">
+<title>Node1&#45;&gt;Node17</title>
+<g id="a_edge16_Node000001_Node000017"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2463.24,-67.59C2425.51,-55.36 2379.44,-40.41 2347.18,-29.95"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2348.41,-26.67 2337.82,-26.91 2346.25,-33.33 2348.41,-26.67"/>
+</a>
+</g>
+</g>
+<!-- Node18 -->
+<g id="Node000018" class="node">
+<title>Node18</title>
+<g id="a_Node000018"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2515.38,-26 2377.12,-26 2377.12,-6 2515.38,-6 2515.38,-26"/>
+<text text-anchor="middle" x="2446.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.BarChart</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node18 -->
+<g id="edge17_Node000001_Node000018" class="edge">
+<title>Node1&#45;&gt;Node18</title>
+<g id="a_edge17_Node000001_Node000018"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2504.8,-67.79C2492.27,-56.92 2477.23,-43.88 2465.54,-33.73"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2467.97,-31.21 2458.13,-27.3 2463.39,-36.5 2467.97,-31.21"/>
+</a>
+</g>
+</g>
+<!-- Node19 -->
+<g id="Node000019" class="node">
+<title>Node19</title>
+<g id="a_Node000019"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2691.5,-26 2533,-26 2533,-6 2691.5,-6 2691.5,-26"/>
+<text text-anchor="middle" x="2612.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.CategoryAxis</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node19 -->
+<g id="edge18_Node000001_Node000019" class="edge">
+<title>Node1&#45;&gt;Node19</title>
+<g id="a_edge18_Node000001_Node000019"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2553.7,-67.79C2566.23,-56.92 2581.27,-43.88 2592.96,-33.73"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2595.11,-36.5 2600.37,-27.3 2590.53,-31.21 2595.11,-36.5"/>
+</a>
+</g>
+</g>
+<!-- Node20 -->
+<g id="Node000020" class="node">
+<title>Node20</title>
+<g id="a_Node000020"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="2850.88,-26 2709.62,-26 2709.62,-6 2850.88,-6 2850.88,-26"/>
+<text text-anchor="middle" x="2780.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.LineChart</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node20 -->
+<g id="edge19_Node000001_Node000020" class="edge">
+<title>Node1&#45;&gt;Node20</title>
+<g id="a_edge19_Node000001_Node000020"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2603.88,-67.59C2647.1,-55.2 2700,-40.02 2736.53,-29.54"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2737.21,-32.99 2745.86,-26.87 2735.28,-26.26 2737.21,-32.99"/>
+</a>
+</g>
+</g>
+<!-- Node21 -->
+<g id="Node000021" class="node">
+<title>Node21</title>
+<g id="a_Node000021"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3021.88,-26 2868.62,-26 2868.62,-6 3021.88,-6 3021.88,-26"/>
+<text text-anchor="middle" x="2945.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.NumberAxis</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node21 -->
+<g id="edge20_Node000001_Node000021" class="edge">
+<title>Node1&#45;&gt;Node21</title>
+<g id="a_edge20_Node000001_Node000021"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.18,-75.84C2673.28,-64.35 2773.22,-47.17 2860.25,-32 2866.93,-30.83 2873.91,-29.61 2880.87,-28.39"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="2881.02,-31.92 2890.26,-26.74 2879.81,-25.02 2881.02,-31.92"/>
+</a>
+</g>
+</g>
+<!-- Node22 -->
+<g id="Node000022" class="node">
+<title>Node22</title>
+<g id="a_Node000022"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3176.62,-26 3039.88,-26 3039.88,-6 3176.62,-6 3176.62,-26"/>
+<text text-anchor="middle" x="3108.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.chart.XYChart</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node22 -->
+<g id="edge21_Node000001_Node000022" class="edge">
+<title>Node1&#45;&gt;Node22</title>
+<g id="a_edge21_Node000001_Node000022"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.04,-82.19C2704.75,-73 2881.27,-55.09 3031.25,-32 3037.8,-30.99 3044.65,-29.82 3051.44,-28.59"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3052.08,-32.04 3061.26,-26.76 3050.79,-25.15 3052.08,-32.04"/>
+</a>
+</g>
+</g>
+<!-- Node23 -->
+<g id="Node000023" class="node">
+<title>Node23</title>
+<g id="a_Node000023"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3329.88,-26 3194.62,-26 3194.62,-6 3329.88,-6 3329.88,-26"/>
+<text text-anchor="middle" x="3262.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.control.Button</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node23 -->
+<g id="edge22_Node000001_Node000023" class="edge">
+<title>Node1&#45;&gt;Node23</title>
+<g id="a_edge22_Node000001_Node000023"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.3,-84.95C2729.19,-77.9 2976.95,-61.26 3185.25,-32 3192.24,-31.02 3199.56,-29.82 3206.79,-28.53"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3207.32,-31.99 3216.51,-26.73 3206.04,-25.11 3207.32,-31.99"/>
+</a>
+</g>
+</g>
+<!-- Node24 -->
+<g id="Node000024" class="node">
+<title>Node24</title>
+<g id="a_Node000024"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3478.25,-26 3348.25,-26 3348.25,-6 3478.25,-6 3478.25,-26"/>
+<text text-anchor="middle" x="3413.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.control.Label</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node24 -->
+<g id="edge23_Node000001_Node000024" class="edge">
+<title>Node1&#45;&gt;Node24</title>
+<g id="a_edge23_Node000001_Node000024"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.37,-86.9C2750.78,-82.24 3071.57,-68.39 3339.25,-32 3346.07,-31.07 3353.21,-29.89 3360.25,-28.61"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3360.89,-32.05 3370.05,-26.73 3359.57,-25.17 3360.89,-32.05"/>
+</a>
+</g>
+</g>
+<!-- Node25 -->
+<g id="Node000025" class="node">
+<title>Node25</title>
+<g id="a_Node000025"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3644.62,-26 3495.88,-26 3495.88,-6 3644.62,-6 3644.62,-26"/>
+<text text-anchor="middle" x="3570.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.control.Separator</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node25 -->
+<g id="edge24_Node000001_Node000025" class="edge">
+<title>Node1&#45;&gt;Node25</title>
+<g id="a_edge24_Node000001_Node000025"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.21,-87.54C2769.23,-83.75 3161.14,-71.03 3487.25,-32 3495.35,-31.03 3503.85,-29.77 3512.2,-28.4"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3512.68,-31.87 3521.94,-26.73 3511.49,-24.97 3512.68,-31.87"/>
+</a>
+</g>
+</g>
+<!-- Node26 -->
+<g id="Node000026" class="node">
+<title>Node26</title>
+<g id="a_Node000026"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3797.88,-26 3662.62,-26 3662.62,-6 3797.88,-6 3797.88,-26"/>
+<text text-anchor="middle" x="3730.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.control.Tooltip</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node26 -->
+<g id="edge25_Node000001_Node000026" class="edge">
+<title>Node1&#45;&gt;Node26</title>
+<g id="a_edge25_Node000001_Node000026"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.23,-88.85C2788.73,-87.67 3261.72,-79.82 3653.25,-32 3660.7,-31.09 3668.51,-29.88 3676.18,-28.53"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3676.56,-32.02 3685.76,-26.77 3675.3,-25.14 3676.56,-32.02"/>
+</a>
+</g>
+</g>
+<!-- Node27 -->
+<g id="Node000027" class="node">
+<title>Node27</title>
+<g id="a_Node000027"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="3944.5,-26 3816,-26 3816,-6 3944.5,-6 3944.5,-26"/>
+<text text-anchor="middle" x="3880.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.HBox</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node27 -->
+<g id="edge26_Node000001_Node000027" class="edge">
+<title>Node1&#45;&gt;Node27</title>
+<g id="a_edge26_Node000001_Node000027"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.31,-89.79C2805.7,-90.93 3354.6,-88.24 3807.25,-32 3814.24,-31.13 3821.57,-29.95 3828.76,-28.64"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3829.26,-32.11 3838.41,-26.77 3827.93,-25.23 3829.26,-32.11"/>
+</a>
+</g>
+</g>
+<!-- Node28 -->
+<g id="Node000028" class="node">
+<title>Node28</title>
+<g id="a_Node000028"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4088.38,-26 3962.12,-26 3962.12,-6 4088.38,-6 4088.38,-26"/>
+<text text-anchor="middle" x="4025.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.Pane</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node28 -->
+<g id="edge27_Node000001_Node000028" class="edge">
+<title>Node1&#45;&gt;Node28</title>
+<g id="a_edge27_Node000001_Node000028"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.37,-87.6C2863.33,-82.65 3689.12,-64.57 3953.25,-32 3960.24,-31.14 3967.55,-29.95 3974.73,-28.62"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="3975.21,-32.09 3984.35,-26.73 3973.86,-25.23 3975.21,-32.09"/>
+</a>
+</g>
+</g>
+<!-- Node29 -->
+<g id="Node000029" class="node">
+<title>Node29</title>
+<g id="a_Node000029"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4240.5,-26 4106,-26 4106,-6 4240.5,-6 4240.5,-26"/>
+<text text-anchor="middle" x="4173.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.Priority</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node29 -->
+<g id="edge28_Node000001_Node000029" class="edge">
+<title>Node1&#45;&gt;Node29</title>
+<g id="a_edge28_Node000001_Node000029"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2605.95,-87.82C2879.03,-83.38 3803.33,-66.13 4097.25,-32 4104.79,-31.12 4112.7,-29.91 4120.45,-28.54"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4120.95,-32.01 4130.14,-26.73 4119.66,-25.12 4120.95,-32.01"/>
+</a>
+</g>
+</g>
+<!-- Node30 -->
+<g id="Node000030" class="node">
+<title>Node30</title>
+<g id="a_Node000030"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4410.12,-26 4258.38,-26 4258.38,-6 4410.12,-6 4410.12,-26"/>
+<text text-anchor="middle" x="4334.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.StackPane</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node30 -->
+<g id="edge29_Node000001_Node000030" class="edge">
+<title>Node1&#45;&gt;Node30</title>
+<g id="a_edge29_Node000001_Node000030"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.26,-87.9C2896.45,-83.52 3923.86,-65.93 4249.25,-32 4258.05,-31.08 4267.32,-29.79 4276.36,-28.34"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4276.88,-31.81 4286.16,-26.7 4275.72,-24.9 4276.88,-31.81"/>
+</a>
+</g>
+</g>
+<!-- Node31 -->
+<g id="Node000031" class="node">
+<title>Node31</title>
+<g id="a_Node000031"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4556.12,-26 4428.38,-26 4428.38,-6 4556.12,-6 4556.12,-26"/>
+<text text-anchor="middle" x="4492.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.layout.VBox</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node31 -->
+<g id="edge30_Node000001_Node000031" class="edge">
+<title>Node1&#45;&gt;Node31</title>
+<g id="a_edge30_Node000001_Node000031"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.15,-88.45C2914.15,-85.98 4059.27,-74.09 4419.25,-32 4426.5,-31.15 4434.11,-29.95 4441.55,-28.59"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4442.04,-32.06 4451.18,-26.72 4440.7,-25.19 4442.04,-32.06"/>
+</a>
+</g>
+</g>
+<!-- Node32 -->
+<g id="Node000032" class="node">
+<title>Node32</title>
+<g id="a_Node000032"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4722.25,-26 4574.25,-26 4574.25,-6 4722.25,-6 4722.25,-26"/>
+<text text-anchor="middle" x="4648.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.shape.Rectangle</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node32 -->
+<g id="edge31_Node000001_Node000032" class="edge">
+<title>Node1&#45;&gt;Node32</title>
+<g id="a_edge31_Node000001_Node000032"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.25,-88.4C2929.04,-85.64 4174.62,-72.53 4565.25,-32 4573.76,-31.12 4582.7,-29.86 4591.44,-28.44"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4592.01,-31.89 4601.27,-26.75 4590.82,-24.99 4592.01,-31.89"/>
+</a>
+</g>
+</g>
+<!-- Node33 -->
+<g id="Node000033" class="node">
+<title>Node33</title>
+<g id="a_Node000033"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="4852.62,-26 4739.88,-26 4739.88,-6 4852.62,-6 4852.62,-26"/>
+<text text-anchor="middle" x="4796.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.text.Text</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node33 -->
+<g id="edge32_Node000001_Node000033" class="edge">
+<title>Node1&#45;&gt;Node33</title>
+<g id="a_edge32_Node000001_Node000033"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.21,-89.08C2945.22,-89.12 4307.3,-85.85 4731.25,-32 4737.35,-31.22 4743.72,-30.13 4749.99,-28.87"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4750.55,-32.33 4759.58,-26.8 4749.07,-25.49 4750.55,-32.33"/>
+</a>
+</g>
+</g>
+<!-- Node34 -->
+<g id="Node000034" class="node">
+<title>Node34</title>
+<g id="a_Node000034"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="5004.12,-26 4870.38,-26 4870.38,-6 5004.12,-6 5004.12,-26"/>
+<text text-anchor="middle" x="4937.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.scene.text.TextFlow</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node34 -->
+<g id="edge33_Node000001_Node000034" class="edge">
+<title>Node1&#45;&gt;Node34</title>
+<g id="a_edge33_Node000001_Node000034"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.25,-88.88C2957.44,-88.07 4409.51,-81.73 4861.25,-32 4868.88,-31.16 4876.89,-29.95 4884.73,-28.57"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="4885.36,-32.02 4894.54,-26.74 4884.07,-25.13 4885.36,-32.02"/>
+</a>
+</g>
+</g>
+<!-- Node35 -->
+<g id="Node000035" class="node">
+<title>Node35</title>
+<g id="a_Node000035"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="5120.12,-26 5022.38,-26 5022.38,-6 5120.12,-6 5120.12,-26"/>
+<text text-anchor="middle" x="5071.25" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">javafx.util.Duration</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node35 -->
+<g id="edge34_Node000001_Node000035" class="edge">
+<title>Node1&#45;&gt;Node35</title>
+<g id="a_edge34_Node000001_Node000035"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M2606.37,-88.29C2999.38,-84.51 4770.38,-65.73 5013.25,-32 5018.51,-31.27 5023.98,-30.23 5029.37,-29.04"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="5029.84,-32.53 5038.74,-26.79 5028.2,-25.72 5029.84,-32.53"/>
 </a>
 </g>
 </g>

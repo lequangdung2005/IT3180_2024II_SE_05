@@ -1,0 +1,31 @@
+\doxysection{Admin\+Delete\+Object.\+java}
+\hypertarget{_admin_delete_object_8java_source}{}\label{_admin_delete_object_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/communication/AdminDeleteObject.java@{src/main/java/com/hust/ittnk68/cnpm/communication/AdminDeleteObject.java}}
+\mbox{\hyperlink{_admin_delete_object_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.communication;}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.database.GetSQLProperties;}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00005}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{00005}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_ab2faaf3862a33989b7c5ab2ffae0da02}{AdminDeleteObject}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_a7f7457269d9276c1c9779685cf38c523}{ClientMessageBase}}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00007}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a805aa8bd931383a7b71b0801a82cb9a9}{00007}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a805aa8bd931383a7b71b0801a82cb9a9}{object}};}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_ab2faaf3862a33989b7c5ab2ffae0da02}{00009}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_ab2faaf3862a33989b7c5ab2ffae0da02}{AdminDeleteObject}}\ (String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_afd2b713854b92f8c3ff60bcbcbbac031}{username}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \textcolor{keywordtype}{object})\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00010}00010\ \ \ \ \ \ \ \ \ super\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base_afd2b713854b92f8c3ff60bcbcbbac031}{username}});}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00011}00011\ \ \ \ \ \ \ \ \ this.object\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a805aa8bd931383a7b71b0801a82cb9a9}{object}};}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00012}00012\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00014}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_aecb11b78f25bcf6e6e96f66e190480a9}{00014}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_aecb11b78f25bcf6e6e96f66e190480a9}{getCondition}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format\ (\textcolor{stringliteral}{"{}\%s\_id='\%d'"{}},\ \textcolor{keywordtype}{object}.getSQLTableName(),}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}.getId());}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00019}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a8038e3fffc31574e3febaaeb95b6282e}{00019}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a8038e3fffc31574e3febaaeb95b6282e}{getObject}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a805aa8bd931383a7b71b0801a82cb9a9}{object}};}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00022}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a4e86e1ff73ed4fe44c927a2a54706490}{00022}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a4e86e1ff73ed4fe44c927a2a54706490}{setObject}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ \textcolor{keywordtype}{object})\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ this.object\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object_a805aa8bd931383a7b71b0801a82cb9a9}{object}};}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_delete_object_8java_source_l00025}00025\ \}}
+
+\end{DoxyCode}

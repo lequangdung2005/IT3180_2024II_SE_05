@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['qatar_0',['QATAR',['../enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation.html#ad92dbc15e779f64921d43d1a79ffa9f1',1,'com::hust::ittnk68::cnpm::type::Nation']]],
+  ['qr_5fcode_5fgenerator_1',['QR_CODE_GENERATOR',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping.html#a858fbfac7fb07f4eed953b03e7efdd9c',1,'com::hust::ittnk68::cnpm::communication::ApiMapping']]],
+  ['qrcodegenerate_2',['qrCodeGenerate',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page.html#a213cec94cece0c48c7ac0c0f65dff92c',1,'com.hust.ittnk68.cnpm.view.ClientDonationPage.qrCodeGenerate()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#af5cc8bda0b9ea9453bfdb551e3087908',1,'com.hust.ittnk68.cnpm.view.ClientExpensePage.qrCodeGenerate()']]],
+  ['qrcodegeneratorcallback_3',['QrCodeGeneratorCallback',['../interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1_qr_code_generator_callback.html',1,'com::hust::ittnk68::cnpm::callback']]],
+  ['qrcodegeneratorcallback_2ejava_4',['QrCodeGeneratorCallback.java',['../_qr_code_generator_callback_8java.html',1,'']]],
+  ['qrcodegeneratorcallback_5f8java_2ejs_5',['QrCodeGeneratorCallback_8java.js',['../_qr_code_generator_callback__8java_8js.html',1,'']]],
+  ['qrcodepaymentbox_6',['qrCodePaymentBox',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page.html#a5b4225e4801975497901e8cb52668f43',1,'com.hust.ittnk68.cnpm.view.ClientDonationPage.qrCodePaymentBox()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#aff7197a53edf7d401b769b1aa71b9d0d',1,'com.hust.ittnk68.cnpm.view.ClientExpensePage.qrCodePaymentBox()']]],
+  ['qrcodeservice_7',['QrCodeService',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_qr_code_service.html',1,'com::hust::ittnk68::cnpm::service']]],
+  ['qrcodeservice_8',['qrCodeService',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller.html#a85e39abeb855e746de8d3349a27956e1',1,'com::hust::ittnk68::cnpm::service::PaymentController']]],
+  ['qrcodeservice_2ejava_9',['QrCodeService.java',['../_qr_code_service_8java.html',1,'']]],
+  ['qrcodeservice_5f8java_2ejs_10',['QrCodeService_8java.js',['../_qr_code_service__8java_8js.html',1,'']]],
+  ['qrimage_11',['QrImage',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_qr_image.html',1,'com::hust::ittnk68::cnpm::view']]],
+  ['qrimage_2ejava_12',['QrImage.java',['../_qr_image_8java.html',1,'']]],
+  ['qrimage_5f8java_2ejs_13',['QrImage_8java.js',['../_qr_image__8java_8js.html',1,'']]],
+  ['qrimagebase64_14',['qrImageBase64',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response.html#a5757a6dfa9b20fee3cbdf7696ccd61e4',1,'com::hust::ittnk68::cnpm::communication::ServerQrCodeGenerateResponse']]],
+  ['query_5ffamily_5fpayment_5fstatus_15',['QUERY_FAMILY_PAYMENT_STATUS',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping.html#a75af061c6b6d5792956f4d5e644dcb22',1,'com::hust::ittnk68::cnpm::communication::ApiMapping']]],
+  ['query_5fobject_5fby_5fid_16',['QUERY_OBJECT_BY_ID',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping.html#a8bb037eebd601a1f9cc77b4c2224c293',1,'com::hust::ittnk68::cnpm::communication::ApiMapping']]],
+  ['query_5fperson_5fby_5ffid_17',['QUERY_PERSON_BY_FID',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping.html#a0a97a62680f02c65a25da3e66cbaa0ac',1,'com::hust::ittnk68::cnpm::communication::ApiMapping']]],
+  ['queryobjectbyid_18',['queryObjectById',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_api_controller.html#aac80dfb3bb6ea3dacf8ee791ce1775e1',1,'com::hust::ittnk68::cnpm::service::ApiController']]],
+  ['querypaymentstatus_19',['queryPaymentStatus',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#a6436dee84a75824e51361a41da549837',1,'com.hust.ittnk68.cnpm.controller.ClientSceneController.queryPaymentStatus()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_api_controller.html#a4bb5d55f5d2c8eefcccfdaf15f41d3fa',1,'com.hust.ittnk68.cnpm.service.ApiController.queryPaymentStatus()']]],
+  ['querypersonbyfamilyid_20',['queryPersonByFamilyId',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#aa2e001efea6ec3c76b0760a80cb0a7a0',1,'com.hust.ittnk68.cnpm.controller.ClientSceneController.queryPersonByFamilyId()'],['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_api_controller.html#a528e7919ec5f097099de4c794675f8d2',1,'com.hust.ittnk68.cnpm.service.ApiController.queryPersonByFamilyId()']]]
+];

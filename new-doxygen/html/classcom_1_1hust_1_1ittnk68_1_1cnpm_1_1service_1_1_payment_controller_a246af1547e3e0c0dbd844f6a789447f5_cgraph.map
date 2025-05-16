@@ -1,0 +1,24 @@
+<map id="com.hust.ittnk68.cnpm.service.PaymentController.pay" name="com.hust.ittnk68.cnpm.service.PaymentController.pay">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,205,210,248"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense.html#a2f4fc379fdcbf0ba509a383c176f8979" title=" " alt="" coords="284,72,482,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,203,188,163,256,124,272,118,274,123,259,129,191,168,137,207"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a01d9d9c2d0593f1ea4e66beea41089c8" title=" " alt="" coords="276,139,490,181"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="198,202,277,183,278,188,199,207"/>
+<area shape="rect" id="Node000009" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller.html#a87d5b4d6ebeb46c05a9b5a065ddb67fb" title=" " alt="" coords="281,205,485,248"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="210,224,265,224,265,229,210,229"/>
+<area shape="rect" id="Node000010" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request.html#aa8cc02bad5e4d65d86b1dc06a92746a4" title=" " alt="" coords="258,272,508,315"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="199,246,278,265,277,270,198,251"/>
+<area shape="rect" id="Node000011" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a8b971b47eb2b67e16df11c80a04a5894" title=" " alt="" coords="284,339,482,381"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="137,246,191,286,259,324,274,331,272,336,256,329,188,290,134,251"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html#aa6ba3ba65ef4e301eebe28c79e09028f" title=" " alt="" coords="565,139,752,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="475,113,553,132,552,137,473,118"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense.html#abe41aa3e7cc0b42814da1af656c133be" title=" " alt="" coords="560,5,757,48"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="473,69,552,50,553,55,475,74"/>
+<area shape="rect" id="Node000006" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_expense_type.html#af816e2f01f90876c66c4acfdf31a7549" title=" " alt="" coords="564,72,754,115"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="482,91,548,91,548,96,482,96"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html#a8f9da3f69021737548c6407fa8501e28" title=" " alt="" coords="809,139,997,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="753,157,794,157,794,163,753,163"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="490,157,550,157,550,163,490,163"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#acf70ba24b4e608984ecb0b5783d12204" title=" " alt="" coords="556,205,761,248"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="475,179,553,199,552,204,473,185"/>
+</map>

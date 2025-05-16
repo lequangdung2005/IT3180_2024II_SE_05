@@ -1,0 +1,13 @@
+<map id="com.hust.ittnk68.cnpm.view.AdminAccountManagePage.createAccountUpdateForm" name="com.hust.ittnk68.cnpm.view.AdminAccountManagePage.createAccountUpdateForm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,131,276,189"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#ab4432467a35a4793505e66257211d5ae" title=" " alt="" coords="354,5,552,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,128,250,92,323,58,341,51,343,56,325,62,253,96,190,132"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#a4ed041150907e39bb59242673ebe43a8" title=" " alt="" coords="354,72,552,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="276,128,338,115,339,120,277,134"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#af31aad947222918a919a0ed80296e4f3" title=" " alt="" coords="324,139,582,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,157,308,157,308,163,276,163"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account.html#afccddc95991771e8ec07a41527e2162a" title=" " alt="" coords="354,205,552,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="277,186,339,200,338,205,276,192"/>
+<area shape="rect" id="Node000006" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type.html#ac83280ad7467a45820b8b0a7a1dec14a" title=" " alt="" coords="359,272,546,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="190,188,253,224,325,258,345,265,343,270,323,262,250,228,187,192"/>
+</map>

@@ -1,0 +1,292 @@
+\doxysection{Admin\+Family\+Manage\+Page.\+java}
+\hypertarget{_admin_family_manage_page_8java_source}{}\label{_admin_family_manage_page_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/AdminFamilyManagePage.java@{src/main/java/com/hust/ittnk68/cnpm/view/AdminFamilyManagePage.java}}
+\mbox{\hyperlink{_admin_family_manage_page_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.ArrayList;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.kordamp.ikonli.javafx.FontIcon;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2MZ;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2OutlinedAL;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00011}00011\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.ObjectMapper;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.SerializationFeature;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.AdminDeleteObject;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00016}00016\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.controller.ClientSceneController;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.CreateFamilyModel;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00018}00018\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Family;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00019}00019\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.UpdateFamilyModel;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00020}00020\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.Nation;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00022}00022\ \textcolor{keyword}{import}\ atlantafx.base.theme.Styles;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00023}00023\ \textcolor{keyword}{import}\ javafx.geometry.Insets;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00024}00024\ \textcolor{keyword}{import}\ javafx.scene.control.Button;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00025}00025\ \textcolor{keyword}{import}\ javafx.scene.control.ButtonType;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00026}00026\ \textcolor{keyword}{import}\ javafx.scene.control.Tab;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00027}00027\ \textcolor{keyword}{import}\ javafx.scene.control.TableCell;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00028}00028\ \textcolor{keyword}{import}\ javafx.scene.control.TableColumn;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00029}00029\ \textcolor{keyword}{import}\ javafx.scene.control.TableView;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00030}00030\ \textcolor{keyword}{import}\ javafx.scene.control.TextField;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00031}00031\ \textcolor{keyword}{import}\ javafx.scene.control.cell.PropertyValueFactory;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00032}00032\ \textcolor{keyword}{import}\ javafx.scene.layout.FlowPane;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00033}00033\ \textcolor{keyword}{import}\ javafx.scene.layout.GridPane;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00034}00034\ \textcolor{keyword}{import}\ javafx.scene.layout.HBox;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00035}00035\ \textcolor{keyword}{import}\ javafx.scene.layout.VBox;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00036}00036\ \textcolor{keyword}{import}\ javafx.scene.text.Text;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00037}00037\ \textcolor{keyword}{import}\ javafx.stage.Stage;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00038}00038\ \textcolor{keyword}{import}\ javafx.util.Callback;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00040}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page}{00040}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_afa18d7a5d8873c2b877b117f4b26d10e}{AdminFamilyManagePage}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_tab_pane_ad0f6f3078f06261cde3b0551bb2880d0}{DuongFXTabPane}}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00042}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_afa18d7a5d8873c2b877b117f4b26d10e}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_afa18d7a5d8873c2b877b117f4b26d10e}{AdminFamilyManagePage}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Khai\ báo\ gia\ đình\ mới"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a3ee6980a999c4ba55635a875c65ecc02}{createFamilyCreateForm}}(sceneController)));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Tìm\ kiếm,\ chỉnh\ sửa\ hoặc\ xóa"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a50c096da6327f93a0f2fe7060e237a43}{createFamilySearchDeleteView}}(sceneController)));\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00047}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a50c096da6327f93a0f2fe7060e237a43}{00047}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a50c096da6327f93a0f2fe7060e237a43}{createFamilySearchDeleteView}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ familyIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ personIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ personIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Person\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ TextField\ houseNumberTf\ =\ \textcolor{keyword}{new}\ TextField();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ houseNumberTf.setPromptText\ (\textcolor{stringliteral}{"{}House\ Number"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a0ab0d2123b5f7f208b6902e724b368a1}{getFindFamilyModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_family_model_ae8d1bf888509d1585b55189aa5d375c3}{familyIdProperty}}().bind\ (familyIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a0ab0d2123b5f7f208b6902e724b368a1}{getFindFamilyModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_family_model_a9032aa1ac7aeb833ccdf35818ec6c45d}{personIdProperty}}().bind\ (personIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a0ab0d2123b5f7f208b6902e724b368a1}{getFindFamilyModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_family_model_a759624f55f71fbe2edb4940361b453f7}{houseNumberProperty}}().bind\ (houseNumberTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ resetFilterBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.REPLAY));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ resetFilterBtn.setOnAction\ (e\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ familyIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ personIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ houseNumberTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ FlowPane\ filters\ =\ \textcolor{keyword}{new}\ FlowPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ filters.setVgap\ (8);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ filters.setHgap\ (4);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ filters.getChildren\ ().addAll\ (}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ familyIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ personIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ houseNumberTf,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ resetFilterBtn}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ Button\ searchBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Tìm\ kiếm"{}},\ \textcolor{keyword}{new}\ FontIcon\ (Material2MZ.PERSON\_SEARCH));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ TableView<Family>\ tableView\ =\ \textcolor{keyword}{new}\ TableView<>();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a0ab0d2123b5f7f208b6902e724b368a1}{getFindFamilyModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_family_model_ad3cc21c01ea6f1010c44d37248bb1786}{setTableView}}\ (tableView);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ TableColumn<Family,\ String>\ actionCol\ =\ \textcolor{keyword}{new}\ TableColumn<>\ (\textcolor{stringliteral}{"{}Action"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ actionCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}Dummy\ Value"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ actionCol.setCellFactory\ (\textcolor{keyword}{new}\ Callback<TableColumn<Family,\ String>,\ TableCell<Family,\ String>>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ TableCell\ call(\textcolor{keyword}{final}\ TableColumn<Family,\ String>\ param)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ TableCell<Family,\ String>\ cell\ =\ \textcolor{keyword}{new}\ TableCell<>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ editBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.CREATE));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ deleteBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.DELETE));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ HBox\ hb\ =\ \textcolor{keyword}{new}\ HBox\ (1,\ editBtn,\ deleteBtn);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ updateItem\ (String\ item,\ \textcolor{keywordtype}{boolean}\ empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ super.updateItem\ (item,\ empty);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setText\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.getStyleClass().addAll(Styles.ACCENT);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.getStyleClass().addAll(Styles.DANGER);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family}{Family}}\ family\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_family_model}{UpdateFamilyModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdateFamilyModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.setUpdateFamilyWindow\ (\textcolor{keyword}{new}\ Stage\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.openSubStage\ (model.getUpdateFamilyWindow\ (),\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a560add017e1d6c4c6607e9df2c57ffaa}{createPersonUpdateForm}}\ (sceneController,\ family));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family}{Family}}\ family\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ObjectMapper\ mapper\ =\ \textcolor{keyword}{new}\ ObjectMapper\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mapper.enable\ (SerializationFeature.INDENT\_OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ json\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json\ =\ mapper.writeValueAsString\ (family);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optional<ButtonType>\ result\ =\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}()}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_a722bd7be8a41c3a5a9e81cffd6ea7295}{showConfirmationWindow}}(\textcolor{stringliteral}{"{}Xác\ nhận\ xóa\ hộ\ gia\ đình"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Kiểm\ tra\ lại\ thông\ tin\ hộ\ gia\ đình\ trước\ khi\ xóa"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (result.get());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.get()\ !=\ ButtonType.OK)}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ request\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ (sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a7f1aaad710ec75d35137398f1dc27ad7}{getUsername}}(),\ family);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_delete_object_response}{ServerDeleteObjectResponse}}\ res\ =\ sceneController.deleteObject\ (request);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}())\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ OK:}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getTableView().getItems().remove(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}xoa\ thanh\ cong"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_ab4934f7ef32edae71549ba17f8b91f30}{showFailedWindow}}\ (res);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a68baaa04188acc0fac72c482c22aa970}{getResponseMessage}}());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (hb);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cell;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00158}00158\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ TableColumn<Family,\ String>\ familyIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ familyIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}familyId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ TableColumn<Family,\ String>\ personIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Person\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ personIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}personId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ TableColumn<Family,\ String>\ houseNumberCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}House\ Number"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ houseNumberCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}houseNumber"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tableView.setEditable\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00171}00171\ \ \ \ \ \ \ \ \ tableView.getColumns().addAll\ (actionCol,\ familyIdCol,\ personIdCol,\ houseNumberCol);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00173}00173\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (18,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}FILTER"{}}),}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ filters,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ searchBtn,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ tableView}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00178}00178\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00180}00180\ \ \ \ \ \ \ \ \ searchBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().findFamilyHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00183}00183\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00185}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a560add017e1d6c4c6607e9df2c57ffaa}{00185}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a560add017e1d6c4c6607e9df2c57ffaa}{createPersonUpdateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family}{Family}}\ family)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00186}00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_family_model}{UpdateFamilyModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdateFamilyModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00188}00188\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00190}00190\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00191}00191\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00194}00194\ \ \ \ \ \ \ \ \ Text\ familyId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00195}00195\ \ \ \ \ \ \ \ \ gridPane.add\ (familyId,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00197}00197\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00198}00198\ \ \ \ \ \ \ \ \ familyIdTextField.setDisable\ (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00199}00199\ \ \ \ \ \ \ \ \ gridPane.add\ (familyIdTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00201}00201\ \ \ \ \ \ \ \ \ Text\ personId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Person\ Id\ (Chủ\ nhà):"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00202}00202\ \ \ \ \ \ \ \ \ gridPane.add\ (personId,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00204}00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ personIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00205}00205\ \ \ \ \ \ \ \ \ gridPane.add\ (personIdTextField,\ 2,\ 1,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00207}00207\ \ \ \ \ \ \ \ \ Text\ houseNumber\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Số\ nhà:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00208}00208\ \ \ \ \ \ \ \ \ gridPane.add\ (houseNumber,\ 0,\ 2,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00210}00210\ \ \ \ \ \ \ \ \ TextField\ houseNumberTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00211}00211\ \ \ \ \ \ \ \ \ gridPane.add\ (houseNumberTextField,\ 2,\ 2,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00213}00213\ \ \ \ \ \ \ \ \ Button\ updateBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00214}00214\ \ \ \ \ \ \ \ \ updateBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00215}00215\ \ \ \ \ \ \ \ \ updateBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updateFamilyHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00217}00217\ \ \ \ \ \ \ \ \ Button\ updateAndCloseBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật\ và\ đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00218}00218\ \ \ \ \ \ \ \ \ updateAndCloseBtn.getStyleClass().addAll\ (Styles.SUCCESS,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00219}00219\ \ \ \ \ \ \ \ \ updateAndCloseBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updateAndCloseFamilyHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00221}00221\ \ \ \ \ \ \ \ \ Button\ closeBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00222}00222\ \ \ \ \ \ \ \ \ closeBtn.getStyleClass().addAll\ (Styles.DANGER,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00223}00223\ \ \ \ \ \ \ \ \ closeBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().closeFamilyUpdateHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00225}00225\ \ \ \ \ \ \ \ \ familyIdTextField.setText\ (String.valueOf(family.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a04a088163e92981658b84bbc130d9d3d}{getFamilyId}}\ ()));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00226}00226\ \ \ \ \ \ \ \ \ personIdTextField.setText\ (String.valueOf(family.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a3190f6c02282cdb0a6edaddce24b8fae}{getPersonId}}\ ()));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00227}00227\ \ \ \ \ \ \ \ \ houseNumberTextField.setText\ (family.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_family_a0a256ac1f668445f64169837f63865b4}{getHouseNumber}}());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00229}00229\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.personIdProperty().bind\ (personIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00230}00230\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.familyIdProperty().bind\ (familyIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00231}00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.houseNumberProperty().bind\ (houseNumberTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00232}00232\ \ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00233}00233\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ HBox\ (18,\ updateBtn,\ updateAndCloseBtn,\ closeBtn)}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00236}00236\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00237}00237\ \ \ \ \ \ \ \ \ vb.setPadding\ (\textcolor{keyword}{new}\ Insets\ (16));}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00239}00239\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00241}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a3ee6980a999c4ba55635a875c65ecc02}{00241}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a3ee6980a999c4ba55635a875c65ecc02}{createFamilyCreateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00243}00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_create_family_model}{CreateFamilyModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getCreateFamilyModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00245}00245\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00247}00247\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00248}00248\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00251}00251\ \ \ \ \ \ \ \ \ Text\ personId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Person\ Id\ (Chủ\ nhà):"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00252}00252\ \ \ \ \ \ \ \ \ gridPane.add\ (personId,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00254}00254\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ personIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00255}00255\ \ \ \ \ \ \ \ \ gridPane.add\ (personIdTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00257}00257\ \ \ \ \ \ \ \ \ Text\ houseNumber\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Số\ nhà:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00258}00258\ \ \ \ \ \ \ \ \ gridPane.add\ (houseNumber,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00260}00260\ \ \ \ \ \ \ \ \ TextField\ houseNumberTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00261}00261\ \ \ \ \ \ \ \ \ gridPane.add\ (houseNumberTextField,\ 2,\ 1,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00263}00263\ \ \ \ \ \ \ \ \ Button\ submitBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Tạo\ mới"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00264}00264\ \ \ \ \ \ \ \ \ submitBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00265}00265\ \ \ \ \ \ \ \ \ submitBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().createFamilyHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bindings}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00268}00268\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.personIdProperty().bind\ (personIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00269}00269\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.houseNumberProperty().bind\ (houseNumberTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00270}00270\ \ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00271}00271\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ submitBtn}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00274}00274\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00276}00276\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00278}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a3c64fd6ba25e5880d9b5d0bc8338fead}{00278}}\ \ \ \ \ \textcolor{keyword}{private}\ List\ <String>\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page_a3c64fd6ba25e5880d9b5d0bc8338fead}{getAllNation}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00279}00279\ \ \ \ \ \ \ \ \ List<String>\ list\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00280}00280\ \ \ \ \ \ \ \ \ list.add\ (\textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation}{Nation}}\ nation\ :\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation}{Nation}}.values())\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ list.add\ (nation.toString());}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00283}00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00285}00285\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_family_manage_page_8java_source_l00286}00286\ \}\ }
+
+\end{DoxyCode}

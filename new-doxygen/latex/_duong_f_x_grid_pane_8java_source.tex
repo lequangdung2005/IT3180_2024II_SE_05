@@ -1,0 +1,29 @@
+\doxysection{Duong\+FXGrid\+Pane.\+java}
+\hypertarget{_duong_f_x_grid_pane_8java_source}{}\label{_duong_f_x_grid_pane_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/DuongFXGridPane.java@{src/main/java/com/hust/ittnk68/cnpm/view/DuongFXGridPane.java}}
+\mbox{\hyperlink{_duong_f_x_grid_pane_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00003}00003\ \textcolor{keyword}{import}\ javafx.scene.layout.ColumnConstraints;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00004}00004\ \textcolor{keyword}{import}\ javafx.scene.layout.GridPane;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00005}00005\ \textcolor{keyword}{import}\ javafx.scene.layout.RowConstraints;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00007}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_grid_pane}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_grid_pane_a08841d8da8653edf3fa4648e1c8c0c82}{DuongFXGridPane}}\ \textcolor{keyword}{extends}\ GridPane\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00009}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_grid_pane_a08841d8da8653edf3fa4648e1c8c0c82}{00009}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_grid_pane_a08841d8da8653edf3fa4648e1c8c0c82}{DuongFXGridPane}}\ (\textcolor{keywordtype}{int}\ numCols,\ \textcolor{keywordtype}{int}\ numRows)\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00010}00010\ \ \ \ \ super\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numCols;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00012}00012\ \ \ \ \ \ \ \ \ ColumnConstraints\ colConst\ =\ \textcolor{keyword}{new}\ ColumnConstraints\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ colConst.setPercentWidth\ (100.0\ /\ numCols);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ this.getColumnConstraints().add(colConst);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numRows;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00017}00017\ \ \ \ \ \ \ \ \ RowConstraints\ rowConst\ =\ \textcolor{keyword}{new}\ RowConstraints\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ rowConst.setPercentHeight\ (100.0\ /\ numRows);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ this.getRowConstraints().add(rowConst);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_grid_pane_8java_source_l00023}00023\ \}}
+
+\end{DoxyCode}

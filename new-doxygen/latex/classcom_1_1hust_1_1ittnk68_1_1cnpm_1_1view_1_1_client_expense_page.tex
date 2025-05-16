@@ -1,0 +1,293 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+
+
+Inheritance diagram for com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_adcb3870609d37dc62edc10fade2e3431}{Client\+Expense\+Page}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a6293b8d40855dce4b23891048daf4e5d}{scene\+Controller}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_tab_pane}{com.\+hust.\+ittnk68.\+cnpm.\+view.\+Duong\+FXTab\+Pane}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_tab_pane_ad0f6f3078f06261cde3b0551bb2880d0}{Duong\+FXTab\+Pane}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a304a19fbac036a7a0374590d060408bd}{load\+Page}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ad9472993b0664e426a943da7f18e9428}{delete\+All}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5eae977f6438c8d39874213a64dac07}{fetch\+Data}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a6293b8d40855dce4b23891048daf4e5d}{scene\+Controller}}, \mbox{\hyperlink{interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1_update_message_interface}{Update\+Message\+Interface}} caller)
+\item 
+Tab \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ac7d534bee9388ab38ce39f6cbfd861bd}{create\+Tab}} (String tab\+Name, List$<$ Node $>$ tile\+List)
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5cc8bda0b9ea9453bfdb551e3087908}{qr\+Code\+Generate}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}} payment\+Status, int amount)
+\item 
+Card \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_aff7197a53edf7d401b769b1aa71b9d0d}{qr\+Code\+Payment\+Box}} (Stage stage, Image\+View qr\+Code, int amount, String token)
+\item 
+VBox \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a47a150820ca49d77b6415feeba823ef5}{create\+Expense\+Tile}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}} ex, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}} ps, boolean not\+Payed)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final List$<$ Node $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a3416cd03b84232ca1f20e9832a258123}{not\+Payed\+Tile}} = new Array\+List$<$$>$ ()
+\item 
+final List$<$ Node $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ab60475c7b6efc419d7e621199447161f}{payed\+Tile}} = new Array\+List$<$$>$ ()
+\item 
+final \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a6293b8d40855dce4b23891048daf4e5d}{scene\+Controller}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00058}{58}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_adcb3870609d37dc62edc10fade2e3431}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!ClientExpensePage@{ClientExpensePage}}
+\index{ClientExpensePage@{ClientExpensePage}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{ClientExpensePage()}{ClientExpensePage()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_adcb3870609d37dc62edc10fade2e3431} 
+com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+Client\+Expense\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}}}]{scene\+Controller}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00065}{65}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_adcb3870609d37dc62edc10fade2e3431_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a47a150820ca49d77b6415feeba823ef5}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!createExpenseTile@{createExpenseTile}}
+\index{createExpenseTile@{createExpenseTile}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{createExpenseTile()}{createExpenseTile()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a47a150820ca49d77b6415feeba823ef5} 
+VBox com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+create\+Expense\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}}}]{ex}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}}}]{ps}{, }\item[{boolean}]{not\+Payed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00285}{285}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a47a150820ca49d77b6415feeba823ef5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a47a150820ca49d77b6415feeba823ef5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ac7d534bee9388ab38ce39f6cbfd861bd}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!createTab@{createTab}}
+\index{createTab@{createTab}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{createTab()}{createTab()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ac7d534bee9388ab38ce39f6cbfd861bd} 
+Tab com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+create\+Tab (\begin{DoxyParamCaption}\item[{String}]{tab\+Name}{, }\item[{List$<$ Node $>$}]{tile\+List}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00160}{160}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ac7d534bee9388ab38ce39f6cbfd861bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ad9472993b0664e426a943da7f18e9428}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!deleteAll@{deleteAll}}
+\index{deleteAll@{deleteAll}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{deleteAll()}{deleteAll()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ad9472993b0664e426a943da7f18e9428} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+delete\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00102}{102}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ad9472993b0664e426a943da7f18e9428_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5eae977f6438c8d39874213a64dac07}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!fetchData@{fetchData}}
+\index{fetchData@{fetchData}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{fetchData()}{fetchData()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5eae977f6438c8d39874213a64dac07} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+fetch\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}}}]{scene\+Controller}{, }\item[{\mbox{\hyperlink{interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1_update_message_interface}{Update\+Message\+Interface}}}]{caller}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00109}{109}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5eae977f6438c8d39874213a64dac07_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5eae977f6438c8d39874213a64dac07_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a304a19fbac036a7a0374590d060408bd}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!loadPage@{loadPage}}
+\index{loadPage@{loadPage}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{loadPage()}{loadPage()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a304a19fbac036a7a0374590d060408bd} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+load\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00071}{71}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a304a19fbac036a7a0374590d060408bd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a304a19fbac036a7a0374590d060408bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5cc8bda0b9ea9453bfdb551e3087908}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!qrCodeGenerate@{qrCodeGenerate}}
+\index{qrCodeGenerate@{qrCodeGenerate}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{qrCodeGenerate()}{qrCodeGenerate()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5cc8bda0b9ea9453bfdb551e3087908} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+qr\+Code\+Generate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}}}]{payment\+Status}{, }\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00186}{186}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5cc8bda0b9ea9453bfdb551e3087908_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_af5cc8bda0b9ea9453bfdb551e3087908_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_aff7197a53edf7d401b769b1aa71b9d0d}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!qrCodePaymentBox@{qrCodePaymentBox}}
+\index{qrCodePaymentBox@{qrCodePaymentBox}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{qrCodePaymentBox()}{qrCodePaymentBox()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_aff7197a53edf7d401b769b1aa71b9d0d} 
+Card com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+qr\+Code\+Payment\+Box (\begin{DoxyParamCaption}\item[{Stage}]{stage}{, }\item[{Image\+View}]{qr\+Code}{, }\item[{int}]{amount}{, }\item[{String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00208}{208}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_aff7197a53edf7d401b769b1aa71b9d0d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_aff7197a53edf7d401b769b1aa71b9d0d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a3416cd03b84232ca1f20e9832a258123}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!notPayedTile@{notPayedTile}}
+\index{notPayedTile@{notPayedTile}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{notPayedTile}{notPayedTile}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a3416cd03b84232ca1f20e9832a258123} 
+final List$<$Node$>$ com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+not\+Payed\+Tile = new Array\+List$<$$>$ ()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00060}{60}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ab60475c7b6efc419d7e621199447161f}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!payedTile@{payedTile}}
+\index{payedTile@{payedTile}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{payedTile}{payedTile}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_ab60475c7b6efc419d7e621199447161f} 
+final List$<$Node$>$ com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+payed\+Tile = new Array\+List$<$$>$ ()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00061}{61}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a6293b8d40855dce4b23891048daf4e5d}\index{com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}!sceneController@{sceneController}}
+\index{sceneController@{sceneController}!com.hust.ittnk68.cnpm.view.ClientExpensePage@{com.hust.ittnk68.cnpm.view.ClientExpensePage}}
+\doxysubsubsection{\texorpdfstring{sceneController}{sceneController}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page_a6293b8d40855dce4b23891048daf4e5d} 
+final \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page.\+scene\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_expense_page_8java_source_l00063}{63}} of file \mbox{\hyperlink{_client_expense_page_8java_source}{Client\+Expense\+Page.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/view/\mbox{\hyperlink{_client_expense_page_8java}{Client\+Expense\+Page.\+java}}\end{DoxyCompactItemize}

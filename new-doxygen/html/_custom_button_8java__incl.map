@@ -1,0 +1,11 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/view/CustomButton.java" name="src/main/java/com/hust/ittnk68/cnpm/view/CustomButton.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,5,508,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,176,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="316,51,174,94,173,89,314,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="200,104,384,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="364,50,318,95,314,91,361,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="408,104,546,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="407,46,455,91,451,95,404,50"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="571,104,751,131"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="450,46,608,96,606,101,448,51"/>
+</map>

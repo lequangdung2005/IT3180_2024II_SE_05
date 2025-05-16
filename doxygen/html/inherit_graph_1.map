@@ -1,9 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classBorderPane.html" title=" " alt="" coords="5,80,95,107"/>
-<area shape="rect" id="Node000001" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeSideBar.html" title=" " alt="" coords="143,5,330,48"/>
-<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="103,72,142,57,173,46,175,51,144,63,105,77"/>
-<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeSideBar.html" title=" " alt="" coords="143,72,330,115"/>
-<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="111,91,142,91,142,96,111,96"/>
-<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoginView.html" title=" " alt="" coords="143,139,330,181"/>
-<area shape="poly" id="edge4_Node000000_Node000003" title=" " alt="" coords="105,110,144,124,175,136,173,141,142,129,103,115"/>
+<area shape="rect" id="Node000000" href="$classAuthentication.html" title=" " alt="" coords="5,13,110,40"/>
+<area shape="rect" id="Node000001" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1TokenAuthentication.html" title=" " alt="" coords="158,5,364,48"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="125,24,157,24,157,29,125,29"/>
 </map>

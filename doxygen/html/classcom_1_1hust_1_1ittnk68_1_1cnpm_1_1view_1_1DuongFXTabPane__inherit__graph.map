@@ -1,17 +1,17 @@
 <map id="com.hust.ittnk68.cnpm.view.DuongFXTabPane" name="com.hust.ittnk68.cnpm.view.DuongFXTabPane">
 <area shape="rect" id="Node000001" title=" " alt="" coords="558,123,734,208"/>
-<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminAccountManagePage.html" title=" " alt="" coords="5,267,198,352"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="543,183,385,212,297,233,211,259,183,269,181,264,209,253,295,228,384,207,542,178"/>
-<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminExpenseManagePage.html" title=" " alt="" coords="222,267,418,352"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="545,211,432,258,408,269,406,264,430,254,543,206"/>
-<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminFamilyManagePage.html" title=" " alt="" coords="443,267,627,352"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="606,221,569,269,565,265,602,218"/>
-<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage.html" title=" " alt="" coords="651,259,865,360"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="690,218,721,257,717,261,686,222"/>
-<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage.html" title=" " alt="" coords="889,267,1075,352"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="749,201,878,254,901,264,899,269,875,258,747,206"/>
-<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage.html" title=" " alt="" coords="1099,256,1276,363"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="749,177,910,205,1000,226,1088,253,1100,258,1098,263,1086,259,999,232,909,210,748,182"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminAccountManagePage.html" title=" " alt="" coords="5,264,198,349"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="543,184,385,213,297,234,211,259,188,267,186,262,209,253,296,228,384,208,542,178"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminExpenseManagePage.html" title=" " alt="" coords="222,264,418,349"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="545,211,432,258,413,267,411,262,430,254,543,206"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminFamilyManagePage.html" title=" " alt="" coords="443,264,627,349"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="605,222,570,266,566,262,601,218"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage.html" title=" " alt="" coords="651,256,865,357"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="691,218,720,255,716,258,687,221"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage.html" title=" " alt="" coords="889,264,1075,349"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="749,202,878,254,896,262,894,267,875,258,747,207"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage.html" title=" " alt="" coords="1099,264,1276,349"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="749,177,910,206,1000,227,1088,253,1109,262,1107,267,1086,259,999,232,909,211,748,182"/>
 <area shape="rect" id="Node000002" href="$classTabPane.html" title=" " alt="" coords="615,5,677,75"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="648,89,648,123,643,123,643,89"/>
 </map>

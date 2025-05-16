@@ -1,0 +1,137 @@
+\doxysection{My\+SQLDatabase.\+java}
+\hypertarget{_my_s_q_l_database_8java_source}{}\label{_my_s_q_l_database_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/database/MySQLDatabase.java@{src/main/java/com/hust/ittnk68/cnpm/database/MySQLDatabase.java}}
+\mbox{\hyperlink{_my_s_q_l_database_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.database;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.io.FileNotFoundException;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.io.IOException;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.sql.Connection;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.sql.Statement;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00008}00008\ \textcolor{keyword}{import}\ java.util.Map;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00009}00009\ \textcolor{keyword}{import}\ java.sql.PreparedStatement;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00010}00010\ \textcolor{keyword}{import}\ java.sql.ResultSet;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00011}00011\ \textcolor{keyword}{import}\ java.sql.SQLException;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.config.ConfigFileLoader;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.config.MySQLDefaultConfig;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.exception.ConfigFileException;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00017}00017\ \textcolor{keyword}{import}\ org.springframework.stereotype.Repository;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00019}00019\ \textcolor{keyword}{import}\ jakarta.annotation.*;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00021}00021\ @Repository}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00022}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{00022}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{MySQLDatabase}}\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00023}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{00023}}\ \ \ \ \ \textcolor{keyword}{private}\ Connection\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}};}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00024}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{00024}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{driver}};}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00025}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{00025}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{url}};}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00026}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{00026}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{username}};}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00027}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{00027}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{password}};}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00029}00029\ \ \ \ \ @PostConstruct}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00030}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a34b7e6904549a8008ad22874a4d9db01}{start}}()\ throws\ FileNotFoundException,\ IOException,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1exception_1_1_config_file_exception}{ConfigFileException}}\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader}{ConfigFileLoader}}\ loader\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader}{ConfigFileLoader}}(\textcolor{stringliteral}{"{}/MySQL.conf"{}},\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_my_s_q_l_default_config}{MySQLDefaultConfig}}());}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{driver}}\ =\ loader.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader_a4e66dd381b5c1ec9f315df6b3cae07f0}{getProperty}}(\textcolor{stringliteral}{"{}driver"{}});\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{url}}\ =\ loader.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader_a4e66dd381b5c1ec9f315df6b3cae07f0}{getProperty}}(\textcolor{stringliteral}{"{}url"{}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{username}}\ =\ loader.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader_a4e66dd381b5c1ec9f315df6b3cae07f0}{getProperty}}(\textcolor{stringliteral}{"{}username"{}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{password}}\ =\ loader.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1_config_file_loader_a4e66dd381b5c1ec9f315df6b3cae07f0}{getProperty}}(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}debug\ "{}}\ +\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{driver}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}debug\ "{}}\ +\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{url}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}debug\ "{}}\ +\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{username}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}debug\ "{}}\ +\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{password}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils}{MySQLDatabaseUtils}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils_aac43aaed2c06e03779c7151db861c85c}{createConnection}}(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a15fa3376e7c859bc734673c8b0a719c3}{driver}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a968ed88e9dbfd4a1e2a83a4750488694}{url}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af71a1356c7472c0226722c7e087fe93c}{username}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ae9ba7672c2e76ea3538a1252db3017cf}{password}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (SQLException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00052}00052\ \ \ \ \ @PreDestroy}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00053}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_adf9ea9f1a6f54c1620e42dc89199f739}{close}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils}{MySQLDatabaseUtils}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils_a21ab001450fff0ed9ca3cce74879ae9f}{close}}(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00056}00056\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00057}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af7054e537f955aebac5b55b7c019a506}{00057}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_af7054e537f955aebac5b55b7c019a506}{create}}(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ g)\ \textcolor{keywordflow}{throws}\ SQLException\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ PreparedStatement\ statement\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}.prepareStatement(}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g.getSQLInsertCommand(),}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Statement.RETURN\_GENERATED\_KEYS}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(statement);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.flush();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ affectedRows\ =\ statement.executeUpdate();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(affectedRows\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SQLException(\textcolor{stringliteral}{"{}Create\ object\ of\ table\ "{}}\ +\ g.getSQLTableName()\ +\ \textcolor{stringliteral}{"{}\ failed,\ no\ rows\ affected"{}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (ResultSet\ generatedKeys\ =\ statement.getGeneratedKeys())\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(generatedKeys.next())\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g.setId(generatedKeys.getInt(1));}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SQLException(\textcolor{stringliteral}{"{}Creating\ object\ of\ table\ "{}}\ +\ g.getSQLTableName()\ +\ \textcolor{stringliteral}{"{},\ no\ ID\ obtained."{}});}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00085}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_abf8675232edb20245061fbe450361bde}{00085}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_abf8675232edb20245061fbe450361bde}{deleteByCondition}}(String\ condition,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ g)\ \textcolor{keywordflow}{throws}\ SQLException\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ PreparedStatement\ statement\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}.prepareStatement(g.getSQLDeleteByConditionCommand(condition));}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(statement);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.flush();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ affectedRows\ =\ statement.executeUpdate();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ affectedRows;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00098}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45}{00098}}\ \ \ \ \ \textcolor{keyword}{public}\ List<\ Map<String,\ Object>\ >\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45}{findByCondition}}(String\ condition,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ g)\ \textcolor{keywordflow}{throws}\ SQLException\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ PreparedStatement\ statement\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}.prepareStatement(g.getSQLFindByConditionCommand(condition));}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(statement);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.flush();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ ResultSet\ rs\ =\ statement.executeQuery();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils}{MySQLDatabaseUtils}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_utils_afccae994cc05a4f73e75399146df765c}{map}}(rs);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00111}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ac1e7c90330e1c1632f047e4fa77f955a}{00111}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_ac1e7c90330e1c1632f047e4fa77f955a}{singleUpdate}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ g)\ \textcolor{keywordflow}{throws}\ SQLException\ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ PreparedStatement\ statement\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_a9e6bf5b884c01ecc8a1b76d90b35efb7}{con}}.prepareStatement(g.getSQLUpdateCommand());}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (statement);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.flush\ ();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ affectedRows\ =\ statement.executeUpdate\ ();}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ affectedRows;}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00124}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f}{00124}}\ \ \ \ \ \textcolor{keyword}{public}\ List<\ Map<String,\ Object>\ >\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aafdb3b3c98b6d5635435621e3e55de1f}{findById}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties}{GetSQLProperties}}\ g)\ \textcolor{keywordflow}{throws}\ SQLException}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00125}00125\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database_aa4110c041945282d12bfc4fb817cdc45}{findByCondition}}\ (String.format(\textcolor{stringliteral}{"{}\%s\_id='\%d'"{}},}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g.getSQLTableName(),}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g.getId()),\ g);}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_my_s_q_l_database_8java_source_l00131}00131\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,23 @@
+<map id="com.hust.ittnk68.cnpm.controller.ClientSceneController.getUsername" name="com.hust.ittnk68.cnpm.controller.ClientSceneController.getUsername">
+<area shape="rect" id="Node000001" title=" " alt="" coords="655,179,884,221"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page.html#a3ca8ca7572b770314cdc16f16a43a88c" title=" " alt="" coords="334,5,604,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="733,170,676,123,606,78,581,67,583,62,608,74,679,119,736,166"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_expense_manage_page.html#abee651998e22386bc88c835e7ba7bed9" title=" " alt="" coords="331,88,607,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="674,177,578,150,579,145,675,171"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page.html#a50c096da6327f93a0f2fe7060e237a43" title=" " alt="" coords="343,171,595,229"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="640,203,595,203,595,197,640,197"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_payment_status_manage_page.html#a59cdf553765fa3eada601d6299b8fd38" title=" " alt="" coords="337,253,601,312"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="675,229,579,255,578,250,674,223"/>
+<area shape="rect" id="Node000010" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#a605d2262e0eb4a14ca874637edd5b061" title=" " alt="" coords="341,336,597,395"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="736,234,679,281,608,326,583,338,581,333,606,322,676,277,733,230"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_account_manage_page.html#a53b662da64506702ab45fabe1d3deb78" title=" " alt="" coords="8,5,280,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="318,37,280,37,280,32,318,32"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_expense_manage_page.html#aa7470783b11ace7ed21f7c6f847bc834" title=" " alt="" coords="5,88,283,147"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="315,120,283,120,283,115,315,115"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_family_manage_page.html#afa18d7a5d8873c2b877b117f4b26d10e" title=" " alt="" coords="17,171,271,229"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="327,203,271,203,271,197,327,197"/>
+<area shape="rect" id="Node000009" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_payment_status_manage_page.html#adad234ed875b6d7bc2aff4de89c2881d" title=" " alt="" coords="11,253,277,312"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="321,285,277,285,277,280,321,280"/>
+<area shape="rect" id="Node000011" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#a7be41c8b97de189474364b06b7f5e834" title=" " alt="" coords="15,336,273,395"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="325,368,273,368,273,363,325,363"/>
+</map>

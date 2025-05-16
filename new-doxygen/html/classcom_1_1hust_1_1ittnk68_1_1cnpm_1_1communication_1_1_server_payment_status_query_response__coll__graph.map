@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse" name="com.hust.ittnk68.cnpm.communication.ServerPaymentStatusQueryResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,545,245,727"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base.html" title=" " alt="" coords="5,325,245,496"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,511,128,545,122,545,122,511"/>
+<area shape="rect" id="Node000003" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status.html" title=" " alt="" coords="26,5,224,261"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,261,128,308,122,308,122,261"/>
+</map>

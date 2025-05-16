@@ -1,0 +1,34 @@
+\doxysection{Duong\+FXInteger\+Field.\+java}
+\hypertarget{_duong_f_x_integer_field_8java_source}{}\label{_duong_f_x_integer_field_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/DuongFXIntegerField.java@{src/main/java/com/hust/ittnk68/cnpm/view/DuongFXIntegerField.java}}
+\mbox{\hyperlink{_duong_f_x_integer_field_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00003}00003\ \textcolor{keyword}{import}\ javafx.beans.value.ChangeListener;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00004}00004\ \textcolor{keyword}{import}\ javafx.beans.value.ObservableValue;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00005}00005\ \textcolor{keyword}{import}\ javafx.scene.control.TextField;}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00007}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a5222a3ea90edf5701b47a9ed4038da2f}{DuongFXIntegerField}}\ \textcolor{keyword}{extends}\ TextField\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00008}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a5222a3ea90edf5701b47a9ed4038da2f}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a5222a3ea90edf5701b47a9ed4038da2f}{DuongFXIntegerField}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00009}00009\ \ \ \ \ super\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a83abc428d5773f154a3e2bbb85922030}{initIntegerRestriction}}\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00011}00011\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00012}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a49827374d0fd6124f07936c0a2f65f55}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a49827374d0fd6124f07936c0a2f65f55}{DuongFXIntegerField}}\ (String\ text)\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00013}00013\ \ \ \ \ super\ (text);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a83abc428d5773f154a3e2bbb85922030}{initIntegerRestriction}}\ ();}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00017}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a83abc428d5773f154a3e2bbb85922030}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a83abc428d5773f154a3e2bbb85922030}{initIntegerRestriction}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field_a5222a3ea90edf5701b47a9ed4038da2f}{DuongFXIntegerField}}\ integerField\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00019}00019\ \ \ \ \ integerField.textProperty().addListener\ (\textcolor{keyword}{new}\ ChangeListener<String>()\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00020}00020\ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ changed\ (ObservableValue<?\ extends\ String>\ observable,\ String\ oldValue,\ String\ newValue)\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!newValue.matches\ (\textcolor{stringliteral}{"{}-\/?\(\backslash\)\(\backslash\)d*"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ integerField.setText(oldValue);}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00026}00026\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duong_f_x_integer_field_8java_source_l00028}00028\ \}}
+
+\end{DoxyCode}

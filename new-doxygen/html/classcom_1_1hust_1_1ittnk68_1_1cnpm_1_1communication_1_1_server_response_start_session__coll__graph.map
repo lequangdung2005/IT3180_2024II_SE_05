@@ -1,0 +1,9 @@
+<map id="com.hust.ittnk68.cnpm.communication.ServerResponseStartSession" name="com.hust.ittnk68.cnpm.communication.ServerResponseStartSession">
+<area shape="rect" id="Node000001" title=" " alt="" coords="179,603,418,773"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base.html" title=" " alt="" coords="5,347,245,517"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,528,243,601,239,604,189,531"/>
+<area shape="rect" id="Node000003" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status.html" title=" " alt="" coords="26,5,224,261"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,261,128,330,122,330,122,261"/>
+<area shape="rect" id="Node000004" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type.html" title=" " alt="" coords="269,325,446,539"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="335,539,324,587,319,586,330,538"/>
+</map>

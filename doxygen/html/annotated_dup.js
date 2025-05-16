@@ -3,12 +3,17 @@ var annotated_dup =
     [ "com", null, [
       [ "hust", null, [
         [ "ittnk68", null, [
-          [ "cnpm", null, [
+          [ "cnpm", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm.html", [
             [ "app", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1app.html", [
-              [ "App", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1App.html", null ],
-              [ "AppTest", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest" ],
-              [ "Client", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1Client.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1Client" ],
-              [ "Server", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1Server.html", null ]
+              [ "AppTest", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest" ]
+            ] ],
+            [ "auth", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth.html", [
+              [ "JwtUtil", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1JwtUtil.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1JwtUtil" ],
+              [ "RsaKeyUtil", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1RsaKeyUtil.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1RsaKeyUtil" ]
+            ] ],
+            [ "callback", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback.html", [
+              [ "QrCodeGeneratorCallback", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1QrCodeGeneratorCallback.html", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1QrCodeGeneratorCallback" ],
+              [ "UpdateMessageInterface", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1UpdateMessageInterface.html", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1UpdateMessageInterface" ]
             ] ],
             [ "communication", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication.html", [
               [ "AdminCreateObject", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminCreateObject.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminCreateObject" ],
@@ -18,16 +23,23 @@ var annotated_dup =
               [ "ApiMapping", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ApiMapping.html", null ],
               [ "ClientMessageBase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageBase.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageBase" ],
               [ "ClientMessageStartSession", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageStartSession.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageStartSession" ],
+              [ "PaymentRequest", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest" ],
+              [ "PaymentResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse" ],
+              [ "ServerCheckBankingResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse" ],
               [ "ServerCreateObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCreateObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCreateObjectResponse" ],
               [ "ServerDeleteObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerDeleteObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerDeleteObjectResponse" ],
               [ "ServerFindObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerFindObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerFindObjectResponse" ],
               [ "ServerObjectByIdQueryResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerObjectByIdQueryResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerObjectByIdQueryResponse" ],
               [ "ServerPaymentStatusQueryResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerPaymentStatusQueryResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerPaymentStatusQueryResponse" ],
+              [ "ServerQrCodeGenerateResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse" ],
+              [ "ServerQueryPersonByFIdResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQueryPersonByFIdResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQueryPersonByFIdResponse" ],
               [ "ServerResponseBase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseBase.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseBase" ],
               [ "ServerResponseStartSession", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseStartSession.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseStartSession" ],
               [ "ServerUpdateObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerUpdateObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerUpdateObjectResponse" ],
+              [ "UserGetPaymentQrCode", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode" ],
               [ "UserQueryObjectById", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryObjectById.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryObjectById" ],
-              [ "UserQueryPaymentStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus" ]
+              [ "UserQueryPaymentStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus" ],
+              [ "UserQueryPersonByFId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPersonByFId.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPersonByFId" ]
             ] ],
             [ "config", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1config.html", [
               [ "ConfigFileLoader", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1ConfigFileLoader.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1config_1_1ConfigFileLoader" ],
@@ -43,7 +55,7 @@ var annotated_dup =
             ] ],
             [ "database", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1database.html", [
               [ "GetSQLProperties", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1GetSQLProperties.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1GetSQLProperties" ],
-              [ "MySQLDatabase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabase.html", null ],
+              [ "MySQLDatabase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabase.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabase" ],
               [ "MySQLDatabaseUtils", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1MySQLDatabaseUtils.html", null ]
             ] ],
             [ "exception", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1exception.html", [
@@ -80,13 +92,22 @@ var annotated_dup =
               [ "UpdatePersonModel", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1UpdatePersonModel.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1UpdatePersonModel" ],
               [ "Vehicle", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Vehicle.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1Vehicle" ]
             ] ],
-            [ "session", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1session.html", [
-              [ "Session", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1session_1_1Session.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1session_1_1Session" ],
-              [ "SessionController", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1session_1_1SessionController.html", null ],
-              [ "Token", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1session_1_1Token.html", null ]
+            [ "security", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1security.html", [
+              [ "filter", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1filter.html", [
+                [ "TokenFilter", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1filter_1_1TokenFilter.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1filter_1_1TokenFilter" ]
+              ] ],
+              [ "AuthorizationService", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1AuthorizationService.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1AuthorizationService" ],
+              [ "FilterConfig", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1FilterConfig.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1FilterConfig" ],
+              [ "SecurityConfig", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1SecurityConfig.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1SecurityConfig" ],
+              [ "Token", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1Token.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1Token" ],
+              [ "TokenAuthentication", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1TokenAuthentication.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1TokenAuthentication" ]
             ] ],
-            [ "sms", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1sms.html", [
-              [ "SmsSender", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1sms_1_1SmsSender.html", null ]
+            [ "service", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1service.html", [
+              [ "ApiController", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1ApiController.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1ApiController" ],
+              [ "AuthController", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1AuthController.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1AuthController" ],
+              [ "BankingTokenRepository", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1BankingTokenRepository.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1BankingTokenRepository" ],
+              [ "PaymentController", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1PaymentController" ],
+              [ "QrCodeService", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1QrCodeService.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1QrCodeService" ]
             ] ],
             [ "type", "namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1type.html", [
               [ "AccountType", "enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1AccountType.html", "enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1AccountType" ],
@@ -106,7 +127,9 @@ var annotated_dup =
               [ "AdminHomeView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView" ],
               [ "AdminPaymentStatusManagePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage" ],
               [ "AdminPersonManagePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage" ],
+              [ "ClientDonationPage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientDonationPage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientDonationPage" ],
               [ "ClientExpensePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage" ],
+              [ "ClientFamilyPage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientFamilyPage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientFamilyPage" ],
               [ "ClientHomePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage" ],
               [ "ClientHomeScreenView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView" ],
               [ "ClientHomeSideBar", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeSideBar.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeSideBar" ],
@@ -120,18 +143,25 @@ var annotated_dup =
               [ "IconButton", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1IconButton.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1IconButton" ],
               [ "LoadingView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoadingView.html", null ],
               [ "LoginView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoginView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoginView" ],
-              [ "updateMessageInterface", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1updateMessageInterface.html", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1updateMessageInterface" ]
-            ] ]
+              [ "PaymentView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1PaymentView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1PaymentView" ],
+              [ "QrImage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1QrImage.html", null ]
+            ] ],
+            [ "Client", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1Client.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1Client" ],
+            [ "Server", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1Server.html", null ]
           ] ]
         ] ]
       ] ]
     ] ],
     [ "Application", "classApplication.html", null ],
+    [ "Authentication", "classAuthentication.html", null ],
     [ "BorderPane", "classBorderPane.html", null ],
     [ "Button", "classButton.html", null ],
+    [ "Card", "classCard.html", null ],
     [ "Exception", "classException.html", null ],
     [ "GridPane", "classGridPane.html", null ],
+    [ "HBox", "classHBox.html", null ],
     [ "InputGroup", "classInputGroup.html", null ],
+    [ "OncePerRequestFilter", "classOncePerRequestFilter.html", null ],
     [ "TabPane", "classTabPane.html", null ],
     [ "TestCase", "classTestCase.html", null ],
     [ "TextField", "classTextField.html", null ],

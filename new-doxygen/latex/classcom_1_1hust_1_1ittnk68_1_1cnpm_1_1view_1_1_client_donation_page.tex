@@ -1,0 +1,268 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+
+
+Inheritance diagram for com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a38adecb0ba1a146180a0aeac57ee5ddb}{Client\+Donation\+Page}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a9efed871b5b7a0de44e646829d12b0d0}{scene\+Controller}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a6803a666cdf3f6ce316b2ee900c5d30e}{load\+Page}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5dd2db22b9472b80e52c8d13534cd7ca}{delete\+All}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_accff4dd0f44f0ef8d1783cf87ea7b691}{fetch\+Data}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a9efed871b5b7a0de44e646829d12b0d0}{scene\+Controller}}, \mbox{\hyperlink{interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1_update_message_interface}{Update\+Message\+Interface}} caller)
+\item 
+void \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a213cec94cece0c48c7ac0c0f65dff92c}{qr\+Code\+Generate}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}} payment\+Status, int amount)
+\item 
+Card \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5b4225e4801975497901e8cb52668f43}{qr\+Code\+Payment\+Box}} (Stage stage, Image\+View qr\+Code, int amount, String token)
+\item 
+VBox \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_abcd6432f08d38fa05c213193a1f3bf5f}{create\+Donation\+Tile}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}} ex, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}} ps)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final List$<$ Node $>$ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a81f2f38d9eaead5ca1bc7e2d9f6b8e94}{donation\+List}} = new Array\+List$<$$>$ ()
+\item 
+final \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a9efed871b5b7a0de44e646829d12b0d0}{scene\+Controller}}
+\item 
+final VBox \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a439f6abeb7a6db425de8007104c6a754}{con}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00058}{58}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a38adecb0ba1a146180a0aeac57ee5ddb}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!ClientDonationPage@{ClientDonationPage}}
+\index{ClientDonationPage@{ClientDonationPage}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{ClientDonationPage()}{ClientDonationPage()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a38adecb0ba1a146180a0aeac57ee5ddb} 
+com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+Client\+Donation\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}}}]{scene\+Controller}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00066}{66}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a38adecb0ba1a146180a0aeac57ee5ddb_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_abcd6432f08d38fa05c213193a1f3bf5f}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!createDonationTile@{createDonationTile}}
+\index{createDonationTile@{createDonationTile}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{createDonationTile()}{createDonationTile()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_abcd6432f08d38fa05c213193a1f3bf5f} 
+VBox com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+create\+Donation\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}}}]{ex}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}}}]{ps}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00269}{269}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_abcd6432f08d38fa05c213193a1f3bf5f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_abcd6432f08d38fa05c213193a1f3bf5f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5dd2db22b9472b80e52c8d13534cd7ca}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!deleteAll@{deleteAll}}
+\index{deleteAll@{deleteAll}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{deleteAll()}{deleteAll()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5dd2db22b9472b80e52c8d13534cd7ca} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+delete\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00117}{117}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5dd2db22b9472b80e52c8d13534cd7ca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_accff4dd0f44f0ef8d1783cf87ea7b691}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!fetchData@{fetchData}}
+\index{fetchData@{fetchData}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{fetchData()}{fetchData()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_accff4dd0f44f0ef8d1783cf87ea7b691} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+fetch\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}}}]{scene\+Controller}{, }\item[{\mbox{\hyperlink{interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1callback_1_1_update_message_interface}{Update\+Message\+Interface}}}]{caller}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00123}{123}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_accff4dd0f44f0ef8d1783cf87ea7b691_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_accff4dd0f44f0ef8d1783cf87ea7b691_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a6803a666cdf3f6ce316b2ee900c5d30e}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!loadPage@{loadPage}}
+\index{loadPage@{loadPage}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{loadPage()}{loadPage()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a6803a666cdf3f6ce316b2ee900c5d30e} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+load\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00088}{88}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a6803a666cdf3f6ce316b2ee900c5d30e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a6803a666cdf3f6ce316b2ee900c5d30e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a213cec94cece0c48c7ac0c0f65dff92c}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!qrCodeGenerate@{qrCodeGenerate}}
+\index{qrCodeGenerate@{qrCodeGenerate}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{qrCodeGenerate()}{qrCodeGenerate()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a213cec94cece0c48c7ac0c0f65dff92c} 
+void com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+qr\+Code\+Generate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}}}]{payment\+Status}{, }\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00170}{170}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a213cec94cece0c48c7ac0c0f65dff92c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a213cec94cece0c48c7ac0c0f65dff92c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5b4225e4801975497901e8cb52668f43}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!qrCodePaymentBox@{qrCodePaymentBox}}
+\index{qrCodePaymentBox@{qrCodePaymentBox}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{qrCodePaymentBox()}{qrCodePaymentBox()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5b4225e4801975497901e8cb52668f43} 
+Card com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+qr\+Code\+Payment\+Box (\begin{DoxyParamCaption}\item[{Stage}]{stage}{, }\item[{Image\+View}]{qr\+Code}{, }\item[{int}]{amount}{, }\item[{String}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00192}{192}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5b4225e4801975497901e8cb52668f43_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a5b4225e4801975497901e8cb52668f43_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a439f6abeb7a6db425de8007104c6a754}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!con@{con}}
+\index{con@{con}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{con}{con}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a439f6abeb7a6db425de8007104c6a754} 
+final VBox com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+con\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00064}{64}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a81f2f38d9eaead5ca1bc7e2d9f6b8e94}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!donationList@{donationList}}
+\index{donationList@{donationList}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{donationList}{donationList}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a81f2f38d9eaead5ca1bc7e2d9f6b8e94} 
+final List$<$Node$>$ com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+donation\+List = new Array\+List$<$$>$ ()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00060}{60}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a9efed871b5b7a0de44e646829d12b0d0}\index{com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}!sceneController@{sceneController}}
+\index{sceneController@{sceneController}!com.hust.ittnk68.cnpm.view.ClientDonationPage@{com.hust.ittnk68.cnpm.view.ClientDonationPage}}
+\doxysubsubsection{\texorpdfstring{sceneController}{sceneController}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_donation_page_a9efed871b5b7a0de44e646829d12b0d0} 
+final \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{Client\+Scene\+Controller}} com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Donation\+Page.\+scene\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_donation_page_8java_source_l00062}{62}} of file \mbox{\hyperlink{_client_donation_page_8java_source}{Client\+Donation\+Page.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/view/\mbox{\hyperlink{_client_donation_page_8java}{Client\+Donation\+Page.\+java}}\end{DoxyCompactItemize}

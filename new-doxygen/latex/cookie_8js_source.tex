@@ -1,0 +1,64 @@
+\doxysection{cookie.\+js}
+\hypertarget{cookie_8js_source}{}\label{cookie_8js_source}\index{doxygen/html/cookie.js@{doxygen/html/cookie.js}}
+\mbox{\hyperlink{cookie_8js}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00001}00001\ /*!}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00002}00002\ \ Cookie\ helper\ functions}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00003}00003\ \ Copyright\ (c)\ 2023\ Dimitri\ van\ Heesch}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00004}00004\ \ Released\ under\ MIT\ license.}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00005}00005\ */}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00006}00006\ let\ Cookie\ =\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00007}00007\ \ \ cookie\_namespace:\ 'doxygen\_',}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00009}00009\ \ \ readSetting(cookie,defVal)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00010}00010\ \ \ \ \ if\ (window.chrome)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00011}00011\ \ \ \ \ \ \ const\ val\ =\ localStorage.getItem(this.cookie\_namespace+cookie)\ ||}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sessionStorage.getItem(this.cookie\_namespace+cookie);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00013}00013\ \ \ \ \ \ \ if\ (val)\ return\ val;}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00014}00014\ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00015}00015\ \ \ \ \ \ \ let\ myCookie\ =\ this.cookie\_namespace+cookie+"{}="{};}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00016}00016\ \ \ \ \ \ \ if\ (document.cookie)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00017}00017\ \ \ \ \ \ \ \ \ const\ index\ =\ document.cookie.indexOf(myCookie);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00018}00018\ \ \ \ \ \ \ \ \ if\ (index\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ const\ valStart\ =\ index\ +\ myCookie.length;}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ let\ valEnd\ =\ document.cookie.indexOf("{};"{},\ valStart);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ if\ (valEnd\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ valEnd\ =\ document.cookie.length;}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ return\ document.cookie.substring(valStart,\ valEnd);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00026}00026\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00028}00028\ \ \ \ \ return\ defVal;}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00029}00029\ \ \ \},}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00031}00031\ \ \ writeSetting(cookie,val,days=10*365)\ \{\ //\ default\ days='forever',\ 0=session\ cookie,\ -\/1=delete}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00032}00032\ \ \ \ \ if\ (window.chrome)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00033}00033\ \ \ \ \ \ \ if\ (days==0)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00034}00034\ \ \ \ \ \ \ \ \ sessionStorage.setItem(this.cookie\_namespace+cookie,val);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00035}00035\ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00036}00036\ \ \ \ \ \ \ \ \ localStorage.setItem(this.cookie\_namespace+cookie,val);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00037}00037\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00038}00038\ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00039}00039\ \ \ \ \ \ \ let\ date\ =\ new\ Date();}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00040}00040\ \ \ \ \ \ \ date.setTime(date.getTime()+(days*24*60*60*1000));}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00041}00041\ \ \ \ \ \ \ const\ expiration\ =\ days!=0\ ?\ "{}expires="{}+date.toGMTString()+"{};"{}\ :\ "{}"{};}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00042}00042\ \ \ \ \ \ \ document.cookie\ =\ this.cookie\_namespace\ +\ cookie\ +\ "{}="{}\ +}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ +\ "{};\ SameSite=Lax;"{}\ +\ expiration\ +\ "{}path=/"{};}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00045}00045\ \ \ \},}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00047}00047\ \ \ eraseSetting(cookie)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00048}00048\ \ \ \ \ if\ (window.chrome)\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00049}00049\ \ \ \ \ \ \ if\ (localStorage.getItem(this.cookie\_namespace+cookie))\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00050}00050\ \ \ \ \ \ \ \ \ localStorage.removeItem(this.cookie\_namespace+cookie);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00051}00051\ \ \ \ \ \ \ \}\ else\ if\ (sessionStorage.getItem(this.cookie\_namespace+cookie))\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00052}00052\ \ \ \ \ \ \ \ \ sessionStorage.removeItem(this.cookie\_namespace+cookie);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00053}00053\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00054}00054\ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00055}00055\ \ \ \ \ \ \ this.writeSetting(cookie,'',-\/1);}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00057}00057\ \ \ \},}
+\DoxyCodeLine{\Hypertarget{cookie_8js_source_l00058}00058\ \}}
+
+\end{DoxyCode}

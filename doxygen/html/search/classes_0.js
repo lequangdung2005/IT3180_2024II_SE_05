@@ -15,8 +15,11 @@ var searchData=
   ['adminpaymentstatusmanagepage_12',['AdminPaymentStatusManagePage',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage.html',1,'com::hust::ittnk68::cnpm::view']]],
   ['adminpersonmanagepage_13',['AdminPersonManagePage',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage.html',1,'com::hust::ittnk68::cnpm::view']]],
   ['adminupdateobject_14',['AdminUpdateObject',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1AdminUpdateObject.html',1,'com::hust::ittnk68::cnpm::communication']]],
-  ['apimapping_15',['ApiMapping',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ApiMapping.html',1,'com::hust::ittnk68::cnpm::communication']]],
-  ['app_16',['App',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1App.html',1,'com::hust::ittnk68::cnpm::app']]],
+  ['apicontroller_15',['ApiController',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1ApiController.html',1,'com::hust::ittnk68::cnpm::service']]],
+  ['apimapping_16',['ApiMapping',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ApiMapping.html',1,'com::hust::ittnk68::cnpm::communication']]],
   ['application_17',['Application',['../classApplication.html',1,'']]],
-  ['apptest_18',['AppTest',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest.html',1,'com::hust::ittnk68::cnpm::app']]]
+  ['apptest_18',['AppTest',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1app_1_1AppTest.html',1,'com::hust::ittnk68::cnpm::app']]],
+  ['authcontroller_19',['AuthController',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1AuthController.html',1,'com::hust::ittnk68::cnpm::service']]],
+  ['authentication_20',['Authentication',['../classAuthentication.html',1,'']]],
+  ['authorizationservice_21',['AuthorizationService',['../classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1AuthorizationService.html',1,'com::hust::ittnk68::cnpm::security']]]
 ];

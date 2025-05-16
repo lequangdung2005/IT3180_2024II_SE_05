@@ -1,0 +1,176 @@
+\doxysection{Payment\+Controller.\+java}
+\hypertarget{_payment_controller_8java_source}{}\label{_payment_controller_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/service/PaymentController.java@{src/main/java/com/hust/ittnk68/cnpm/service/PaymentController.java}}
+\mbox{\hyperlink{_payment_controller_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.service;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.net.URLEncoder;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.sql.SQLException;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.Map;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.fasterxml.jackson.core.type.TypeReference;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.ObjectMapper;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.SerializationFeature;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.auth.JwtUtil;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ApiMapping;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.PaymentRequest;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.PaymentResponse;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerCheckBankingResponse;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerQrCodeGenerateResponse;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00018}00018\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.database.MySQLDatabase;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00019}00019\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Expense;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00020}00020\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.PaymentStatus;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00021}00021\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.security.AuthorizationService;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00022}00022\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.ResponseStatus;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00024}00024\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00025}00025\ \textcolor{keyword}{import}\ org.springframework.security.access.prepost.PreAuthorize;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00026}00026\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.GetMapping;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00027}00027\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RequestBody;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00028}00028\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RequestMapping;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00029}00029\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RequestParam;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00030}00030\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RestController;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00032}00032\ @RestController}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00033}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller}{00033}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller}{PaymentController}}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00036}00036\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00037}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398}{00037}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_banking_token_repository}{BankingTokenRepository}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398}{bankingTokenRepository}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00039}00039\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00040}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a1829f2919ecd4a7efc861d4c1c15f7c4}{00040}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{JwtUtil}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a1829f2919ecd4a7efc861d4c1c15f7c4}{jwtUtil}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00042}00042\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00043}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291}{00043}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{MySQLDatabase}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291}{mysqlDb}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00045}00045\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00046}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae}{00046}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service}{AuthorizationService}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae}{authz}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00048}00048\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00049}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1}{00049}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_qr_code_service}{QrCodeService}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1}{qrCodeService}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00051}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}{00051}}\ \ \ \ \ \textcolor{keyword}{private}\ Map<String,\ Object>\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}{format}}(Map<String,\ Object>\ input)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ input.replaceAll((k,\ v)\ -\/>\ (v\ instanceof\ java.sql.Date)\ ?\ v.toString()\ :\ v);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ ObjectMapper\ objectMapper\ =\ \textcolor{keyword}{new}\ ObjectMapper\ ();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ String\ json\ =\ objectMapper.writeValueAsString(input);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (json);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ objectMapper.readValue(json,\ \textcolor{keyword}{new}\ TypeReference<Map<String,\ Object>>()\ \{\});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace\ ();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}Failed\ to\ format\ map"{}},\ e);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00064}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5}{00064}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a246af1547e3e0c0dbd844f6a789447f5}{pay}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{PaymentRequest}}\ req)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ List<\ Map<String,\ Object>\ >\ res;}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{PaymentStatus}}\ ps\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{PaymentStatus}}\ ();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ ps.setId\ (req.getPaymentStatusId\ ());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ mysqlDb.findById\ (ps);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (res.size\ ()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ab7bb74388f63cbee31e536c0988a527f}{ILLEGAL\_OPERATION}},\ \textcolor{stringliteral}{"{}no\ such\ payment\ status"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (res.size\ ()\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},\ \textcolor{stringliteral}{"{}query\ by\ id\ give\ more\ than\ 1\ ..."{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ ps\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status_a01d9d9c2d0593f1ea4e66beea41089c8}{PaymentStatus.convertFromMap}}\ (\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}{format}}(res.get\ (0))\ );}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}}\ ex\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}}\ ();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ ex.setId\ (ps.getExpenseId\ ());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ mysqlDb.findById\ (ex);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (res.size\ ()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ab7bb74388f63cbee31e536c0988a527f}{ILLEGAL\_OPERATION}},\ \textcolor{stringliteral}{"{}no\ such\ expense\ of\ payment\ status"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (res.size\ ()\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},\ \textcolor{stringliteral}{"{}query\ by\ id\ give\ more\ than\ 1\ ..."{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ ex\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense_a2f4fc379fdcbf0ba509a383c176f8979}{Expense.convertFromMap}}\ (\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a87d5b4d6ebeb46c05a9b5a065ddb67fb}{format}}(res.get\ (0))\ );}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ authorization}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a3c127d762473d724ce3ecdca1af2f5ae}{authz}}.canPay\ (req,\ ps,\ ex))\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_a27695179786e743cc6d5247b13a2af4e}{PERMISSION\_ERROR}},\ \textcolor{stringliteral}{"{}not\ have\ permission"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ps.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status_a8b971b47eb2b67e16df11c80a04a5894}{getTotalPay}}\ ()\ +\ req.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa8cc02bad5e4d65d86b1dc06a92746a4}{getAmount}}\ ()\ >\ ex.getTotalCost\ ())}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ab7bb74388f63cbee31e536c0988a527f}{ILLEGAL\_OPERATION}},\ \textcolor{stringliteral}{"{}total\ payed\ exceed\ total\ cost"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}amount="{}}\ +\ String.valueOf(req.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request_aa8cc02bad5e4d65d86b1dc06a92746a4}{getAmount}}()));}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}debug="{}}\ +\ String.valueOf(ps.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status_a8b971b47eb2b67e16df11c80a04a5894}{getTotalPay}}()));}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ ps.setTotalPay\ (ps.getTotalPay\ ()\ +\ req.getAmount\ ());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}new\ amount="{}}\ +\ String.valueOf\ (ps.getTotalPay\ ()));}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_af797e80a623d97ea0551ceeba52aa291}{mysqlDb}}.singleUpdate\ (ps)\ !=\ 1)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},\ \textcolor{stringliteral}{"{}update\ affected\ row\ not\ equal\ 1!"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_adce8ec14ab135bfaa10546b369c4152f}{OK}},\ \textcolor{stringliteral}{"{}pay\ successfully"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (SQLException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_response}{PaymentResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_a2eea0546d86f9981d3001b2ba4825954}{SQL\_ERROR}},\ e.toString());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00123}00123\ \ \ \ \ @PreAuthorize(\textcolor{stringliteral}{"{}@authz.canGetPaymentQrCode(\#req)"{}})}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00124}00124\ \ \ \ \ @RequestMapping(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping}{ApiMapping}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping_a858fbfac7fb07f4eed953b03e7efdd9c}{QR\_CODE\_GENERATOR}})}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00125}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a}{00125}}\ \ \ \ \ public\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response}{ServerQrCodeGenerateResponse}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac1b6d97443eb53b2f0b65eb10fb5109a}{getPaymentQrCode}}\ (@RequestBody\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code}{UserGetPaymentQrCode}}\ req)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ String\ token\ =\ jwtUtil.generateToken\ (req.getPaymentRequest\ ());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ String\ serverUrl\ =\ req.getServerUrl\ ();}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ String\ text\ =\ serverUrl}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ ApiMapping.BANK\_TRANSFER.substring\ (serverUrl.charAt(serverUrl.length()\ -\/\ 1)\ ==\ \textcolor{charliteral}{'/'}\ ?\ 1\ :\ 0)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}?token="{}}\ +\ URLEncoder.encode(token,\ \textcolor{stringliteral}{"{}UTF-\/8"{}});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ qrCodeData\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a85e39abeb855e746de8d3349a27956e1}{qrCodeService}}.generateQrCodeImage(text,\ req.getWidth\ (),\ req.getHeight\ ());}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.printf\ (\textcolor{stringliteral}{"{}returned\ url\ =\ \%s\(\backslash\)n"{}},\ text);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response}{ServerQrCodeGenerateResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_adce8ec14ab135bfaa10546b369c4152f}{OK}},\ \textcolor{stringliteral}{"{}success"{}},\ token,\ qrCodeData);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_qr_code_generate_response}{ServerQrCodeGenerateResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},\ e.toString\ (),\ \textcolor{keyword}{null},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00146}00146\ \ \ \ \ @GetMapping(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping}{ApiMapping}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping_a58815a525c33042d41a78daa4d3acd89}{BANK\_TRANSFER}})}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00147}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad}{00147}}\ \ \ \ \ public\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a4d9024c3544b56b37f70064db2d9b7ad}{bankTransfer}}\ (@RequestParam(required=true)\ String\ token)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00148}00148\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00149}00149\ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}Bank\ transfered\ with\ token="{}}\ +\ token);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bankingTokenRepository.tokenArrive\ (token)\ ?\ \textcolor{stringliteral}{"{}Success"{}}\ :\ \textcolor{stringliteral}{"{}Already\ transfered"{}};}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00151}00151\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00152}00152\ \ \ \ \ @GetMapping(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping}{ApiMapping}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping_a26ab8c9289efbe8abf9b2989b0a617cd}{CHECK\_BANKING}})}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00153}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323}{00153}}\ \ \ \ \ public\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_check_banking_response}{ServerCheckBankingResponse}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_ac8632c04c21bebfed0845f954e854323}{checkBanking}}\ (@RequestParam(required=true)\ String\ token)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00154}00154\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_payment_controller_a58b34401885720f9f2d2074cf9864398}{bankingTokenRepository}}.resolveToken\ (token))\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ return\ new\ ServerCheckBankingResponse\ (ResponseStatus.OK,\ \textcolor{stringliteral}{"{}Have\ not\ payed\ yet"{}},\ false);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ PaymentRequest\ pr\ =\ jwtUtil.extract\ (token,\ PaymentRequest.class);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ PaymentResponse\ res\ =\ pay\ (pr);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ return\ new\ ServerCheckBankingResponse\ (res.getResponseStatus(),\ res.getResponseMessage(),\ true);}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ catch\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00165}00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_check_banking_response}{ServerCheckBankingResponse}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},\ e.toString\ (),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_payment_controller_8java_source_l00170}00170\ \}}
+
+\end{DoxyCode}

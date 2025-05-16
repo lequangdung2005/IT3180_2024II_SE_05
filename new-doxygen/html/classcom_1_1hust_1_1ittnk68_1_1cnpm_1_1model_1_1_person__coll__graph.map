@@ -1,0 +1,13 @@
+<map id="com.hust.ittnk68.cnpm.model.Person" name="com.hust.ittnk68.cnpm.model.Person">
+<area shape="rect" id="Node000001" title=" " alt="" coords="510,432,697,837"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_get_s_q_l_properties.html" title=" " alt="" coords="5,69,250,304"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,314,264,366,325,424,390,478,512,569,509,573,387,482,322,428,261,370,215,317"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html" title=" " alt="" coords="275,13,480,360"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="467,358,505,434,500,436,462,361"/>
+<area shape="rect" id="Node000004" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_sex.html" title=" " alt="" coords="504,109,704,264"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="606,264,606,415,601,415,601,264"/>
+<area shape="rect" id="Node000005" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation.html" title=" " alt="" coords="728,5,904,368"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="733,369,707,423,702,421,728,367"/>
+<area shape="rect" id="Node000006" href="$enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_residence_status.html" title=" " alt="" coords="929,101,1106,272"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="980,273,952,322,918,370,870,423,817,474,712,560,709,556,813,470,866,419,914,366,947,319,976,270"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="com.hust.ittnk68.cnpm.view.AdminPaymentStatusManagePage.createPersonUpdateForm" name="com.hust.ittnk68.cnpm.view.AdminPaymentStatusManagePage.createPersonUpdateForm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,197,270,256"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_date.html#a0667f731a8ce0b01f5178d290bdbfd36" title=" " alt="" coords="353,5,540,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,195,226,126,269,89,316,58,337,48,340,53,319,62,272,93,229,130,164,199"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#af31aad947222918a919a0ed80296e4f3" title=" " alt="" coords="318,72,576,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,194,245,158,317,124,335,117,337,122,319,129,248,163,186,199"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a40b1e0901b78cfd5063f898a0e25107b" title=" " alt="" coords="348,139,546,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="270,195,333,182,334,187,271,201"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a8b70822532595e123d7c6d71f1844fee" title=" " alt="" coords="348,205,546,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="270,224,332,224,332,229,270,229"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a1a82997152341381a79f41f464df9861" title=" " alt="" coords="330,272,564,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="271,253,330,266,329,271,270,258"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#abc59bb69b2aa8bee9d609bb759086472" title=" " alt="" coords="338,339,556,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="186,254,248,290,319,324,337,331,335,336,317,329,245,295,183,259"/>
+<area shape="rect" id="Node000008" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status.html#a8b971b47eb2b67e16df11c80a04a5894" title=" " alt="" coords="348,405,546,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="164,254,229,323,272,360,319,391,335,399,332,403,316,396,269,364,226,327,160,258"/>
+</map>

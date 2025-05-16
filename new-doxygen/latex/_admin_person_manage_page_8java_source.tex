@@ -1,0 +1,493 @@
+\doxysection{Admin\+Person\+Manage\+Page.\+java}
+\hypertarget{_admin_person_manage_page_8java_source}{}\label{_admin_person_manage_page_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/view/AdminPersonManagePage.java@{src/main/java/com/hust/ittnk68/cnpm/view/AdminPersonManagePage.java}}
+\mbox{\hyperlink{_admin_person_manage_page_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.view;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.time.LocalDate;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.time.ZoneId;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.ArrayList;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.kordamp.ikonli.javafx.FontIcon;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2MZ;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00011}00011\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2OutlinedAL;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.kordamp.ikonli.material2.Material2OutlinedMZ;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.ObjectMapper;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.SerializationFeature;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.AdminDeleteObject;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00018}00018\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00019}00019\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.controller.ClientSceneController;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00020}00020\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.CreatePersonModel;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00021}00021\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Person;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00022}00022\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.UpdatePersonModel;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00023}00023\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.Nation;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00024}00024\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.ResidenceStatus;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00025}00025\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.Sex;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00027}00027\ \textcolor{keyword}{import}\ atlantafx.base.controls.MaskTextField;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00028}00028\ \textcolor{keyword}{import}\ atlantafx.base.theme.Styles;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00029}00029\ \textcolor{keyword}{import}\ javafx.collections.FXCollections;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00030}00030\ \textcolor{keyword}{import}\ javafx.geometry.Insets;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00031}00031\ \textcolor{keyword}{import}\ javafx.scene.control.Button;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00032}00032\ \textcolor{keyword}{import}\ javafx.scene.control.ButtonType;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00033}00033\ \textcolor{keyword}{import}\ javafx.scene.control.ComboBox;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00034}00034\ \textcolor{keyword}{import}\ javafx.scene.control.DatePicker;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00035}00035\ \textcolor{keyword}{import}\ javafx.scene.control.Tab;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00036}00036\ \textcolor{keyword}{import}\ javafx.scene.control.TableCell;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00037}00037\ \textcolor{keyword}{import}\ javafx.scene.control.TableColumn;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00038}00038\ \textcolor{keyword}{import}\ javafx.scene.control.TableView;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00039}00039\ \textcolor{keyword}{import}\ javafx.scene.control.TextField;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00040}00040\ \textcolor{keyword}{import}\ javafx.scene.control.cell.PropertyValueFactory;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00041}00041\ \textcolor{keyword}{import}\ javafx.scene.layout.FlowPane;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00042}00042\ \textcolor{keyword}{import}\ javafx.scene.layout.GridPane;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00043}00043\ \textcolor{keyword}{import}\ javafx.scene.layout.HBox;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00044}00044\ \textcolor{keyword}{import}\ javafx.scene.layout.VBox;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00045}00045\ \textcolor{keyword}{import}\ javafx.scene.text.Text;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00046}00046\ \textcolor{keyword}{import}\ javafx.stage.Stage;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00047}00047\ \textcolor{keyword}{import}\ javafx.util.Callback;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00049}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page}{00049}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a7be41c8b97de189474364b06b7f5e834}{AdminPersonManagePage}}\ \textcolor{keyword}{extends}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_tab_pane_ad0f6f3078f06261cde3b0551bb2880d0}{DuongFXTabPane}}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00051}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a7be41c8b97de189474364b06b7f5e834}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a7be41c8b97de189474364b06b7f5e834}{AdminPersonManagePage}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Khai\ báo\ thêm\ người"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a8a9cd137c33725eec3642ddbb7789b46}{createPersonCreateForm}}(sceneController)));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ this.getTabs().add\ (\textcolor{keyword}{new}\ Tab\ (\textcolor{stringliteral}{"{}Tìm\ kiếm,\ chỉnh\ sửa\ hoặc\ xóa"{}},\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a605d2262e0eb4a14ca874637edd5b061}{createPersonSearchDeleteView}}(sceneController)));\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00056}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a605d2262e0eb4a14ca874637edd5b061}{00056}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a605d2262e0eb4a14ca874637edd5b061}{createPersonSearchDeleteView}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ personIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ personIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Person\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ familyIdTf.setPromptText\ (\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ TextField\ fullnameTf\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ fullnameTf.setPromptText\ (\textcolor{stringliteral}{"{}Full\ name"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_toggle_date_picker}{DuongFXToggleDatePicker}}\ dateOfBirthPicker\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_toggle_date_picker_a03046fbfcd7581c37fb0363ec96b4243}{DuongFXToggleDatePicker.create}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ cidTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ cidTf.setPromptText\ (\textcolor{stringliteral}{"{}CCCD"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ phoneNumberTf\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ phoneNumberTf.setPromptText\ (\textcolor{stringliteral}{"{}SDT"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ ComboBox<String>\ genderChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ genderChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}},\ \textcolor{stringliteral}{"{}Nam"{}},\ \textcolor{stringliteral}{"{}Nữ"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ genderChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ ComboBox<String>\ nationChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ nationChoose.setItems\ (FXCollections.observableArrayList(\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_aab542f6577abd7916b0e3777defc1c70}{getAllNation}}\ ())\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ nationChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ ComboBox<String>\ residenceStatusChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ residenceStatusChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Đang\ cư\ trú"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tạm\ vắng"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ residenceStatusChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_a5c1cb0448fae1c968d60edd05d82c974}{getPersonIdProperty}}().bind\ (personIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_ab2bd9d1f2f44ebf633956c91a8ca422e}{getFamilyIdProperty}}().bind\ (familyIdTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_aab2f93c5c93246b491a246831a1aa72d}{getFullnameProperty}}().bind\ (fullnameTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_a831a679abfdeb516db529f6b86729dad}{getEnableDateOfBirth}}().bind\ (dateOfBirthPicker.enableProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_ad00d20e3e6ac8db18815a04dc66da53e}{getDateOfBirthProperty}}().bind\ (dateOfBirthPicker.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_ab2af4fe148f2f289d6c61b7444609adc}{getCitizenIdProperty}}().bind\ (cidTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_a15a814daa85ff98a1f3548c6d32d0391}{getPhoneNumberProperty}}().bind\ (phoneNumberTf.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_a45030b0dfe264289dea0db12beebb79d}{getSexProperty}}().bind\ (genderChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_afd41c9ed2598cd6a644c2dcf745771b5}{getNationProperty}}().bind\ (nationChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_ab223c3c6fece93c351a4281cdbe7d60d}{getResidenceStatusProperty}}().bind\ (residenceStatusChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ resetFilterBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.REPLAY));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ resetFilterBtn.setOnAction\ (e\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ personIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ familyIdTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ fullnameTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ dateOfBirthPicker.enableProperty().set\ (\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ cidTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ phoneNumberTf.setText\ (\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ genderChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ nationChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ residenceStatusChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ FlowPane\ filters\ =\ \textcolor{keyword}{new}\ FlowPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ filters.setVgap\ (8);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ filters.setHgap\ (4);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ filters.getChildren\ ().addAll\ (}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ personIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ familyIdTf,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ fullnameTf,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ dateOfBirthPicker,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ cidTf,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ phoneNumberTf,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ genderChoose,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ nationChoose,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ residenceStatusChoose,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ resetFilterBtn}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ Button\ searchBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Tìm\ kiếm"{}},\ \textcolor{keyword}{new}\ FontIcon\ (Material2MZ.PERSON\_SEARCH));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00135}00135\ \ \ \ \ \ \ \ \ TableView<Person>\ tableView\ =\ \textcolor{keyword}{new}\ TableView<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00136}00136\ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_aefb7c0b06b82b05349ea5ceea6171ce7}{getFindPersonModel}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_find_person_model_acaf974b51244dd21367e02ad8a080185}{setTableView}}\ (tableView);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ actionCol\ =\ \textcolor{keyword}{new}\ TableColumn<>\ (\textcolor{stringliteral}{"{}Action"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ actionCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}Dummy\ Value"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ actionCol.setCellFactory\ (\textcolor{keyword}{new}\ Callback<TableColumn<Person,\ String>,\ TableCell<Person,\ String>>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ TableCell\ call(\textcolor{keyword}{final}\ TableColumn<Person,\ String>\ param)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ TableCell<Person,\ String>\ cell\ =\ \textcolor{keyword}{new}\ TableCell<>()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ editBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.CREATE));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ deleteBtn\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_icon_button}{IconButton}}\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedAL.DELETE));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{final}\ HBox\ hb\ =\ \textcolor{keyword}{new}\ HBox\ (1,\ editBtn,\ deleteBtn);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ updateItem\ (String\ item,\ \textcolor{keywordtype}{boolean}\ empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ super.updateItem\ (item,\ empty);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setText\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.getStyleClass().addAll(Styles.ACCENT);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.getStyleClass().addAll(Styles.DANGER);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ editBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person}{Person}}\ person\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_person_model}{UpdatePersonModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdatePersonModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.setUpdatePersonWindow\ (\textcolor{keyword}{new}\ Stage\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.openSubStage\ (model.getUpdatePersonWindow\ (),\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_adb6fae678dd7db1081d52ac3bf5cc12a}{createPersonUpdateForm}}\ (sceneController,\ person));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteBtn.setOnAction\ (\textcolor{keyword}{event}\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person}{Person}}\ person\ =\ getTableView().getItems().get(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ObjectMapper\ mapper\ =\ \textcolor{keyword}{new}\ ObjectMapper\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mapper.enable\ (SerializationFeature.INDENT\_OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ json\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json\ =\ mapper.writeValueAsString\ (person);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Optional<ButtonType>\ result\ =\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}()}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_a722bd7be8a41c3a5a9e81cffd6ea7295}{showConfirmationWindow}}(\textcolor{stringliteral}{"{}Xác\ nhận\ xóa\ cư\ dân"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Kiểm\ tra\ lại\ thông\ tin\ cư\ dân\ trước\ khi\ xóa"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (result.get());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.get()\ !=\ ButtonType.OK)}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ request\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{AdminDeleteObject}}\ (sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_a7f1aaad710ec75d35137398f1dc27ad7}{getUsername}}(),\ person);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_delete_object_response}{ServerDeleteObjectResponse}}\ res\ =\ sceneController.deleteObject\ (request);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}())\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ OK:}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getTableView().getItems().remove(getIndex());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (\textcolor{stringliteral}{"{}xoa\ thanh\ cong"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1interactor_1_1_client_interactor_ab4934f7ef32edae71549ba17f8b91f30}{showFailedWindow}}\ (res);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a00b28b53917a741c7537a38b7104c666}{getResponseStatus}}());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println\ (res.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base_a68baaa04188acc0fac72c482c22aa970}{getResponseMessage}}());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setGraphic\ (hb);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cell;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00212}00212\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00214}00214\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ personIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Person\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00215}00215\ \ \ \ \ \ \ \ \ personIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}personId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00217}00217\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ familyIdCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00218}00218\ \ \ \ \ \ \ \ \ familyIdCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>\ (\textcolor{stringliteral}{"{}familyId"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00220}00220\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ fullnameCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Full\ name"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00221}00221\ \ \ \ \ \ \ \ \ fullnameCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}fullname"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00223}00223\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ dateOfBirthCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Date\ Of\ Birth\ (YYYY-\/MM-\/DD)"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00224}00224\ \ \ \ \ \ \ \ \ dateOfBirthCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}dateOfBirth"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00226}00226\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ cidCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}CCCD"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00227}00227\ \ \ \ \ \ \ \ \ cidCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}citizenIdentificationNumber"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00229}00229\ \ \ \ \ \ \ \ \ TableColumn<Person,\ String>\ phoneNumberCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Phone\ Number"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00230}00230\ \ \ \ \ \ \ \ \ phoneNumberCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}phoneNumber"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00232}00232\ \ \ \ \ \ \ \ \ TableColumn<Person,\ Sex>\ sexCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Sex"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00233}00233\ \ \ \ \ \ \ \ \ sexCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}sex"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00235}00235\ \ \ \ \ \ \ \ \ TableColumn<Person,\ Nation>\ nationalityCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Nationality"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00236}00236\ \ \ \ \ \ \ \ \ nationalityCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}nationality"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00238}00238\ \ \ \ \ \ \ \ \ TableColumn<Person,\ ResidenceStatus>\ residenceStatusCol\ =\ \textcolor{keyword}{new}\ TableColumn<>(\textcolor{stringliteral}{"{}Residence\ Status"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00239}00239\ \ \ \ \ \ \ \ \ residenceStatusCol.setCellValueFactory\ (\textcolor{keyword}{new}\ PropertyValueFactory<>(\textcolor{stringliteral}{"{}residenceStatus"{}}));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tableView.setEditable\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00242}00242\ \ \ \ \ \ \ \ \ tableView.getColumns().addAll\ (actionCol,\ personIdCol,\ familyIdCol,\ fullnameCol,\ dateOfBirthCol,\ cidCol,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ phoneNumberCol,\ nationalityCol,\ residenceStatusCol);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00245}00245\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (18,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}FILTER"{}}),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ filters,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ searchBtn,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ tableView}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00250}00250\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00252}00252\ \ \ \ \ \ \ \ \ searchBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().findPersonHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00255}00255\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00257}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a99064e23f91d9001eaa721dc9b5921d0}{00257}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a99064e23f91d9001eaa721dc9b5921d0}{stringToMaskCID}}\ (String\ text)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format\ (\textcolor{stringliteral}{"{}\%s\ -\/\ \%s\ -\/\ \%s"{}},\ text.subSequence\ (0,\ 4),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text.subSequence\ (4,\ 8),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text.subSequence\ (8,\ 12));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00261}00261\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00262}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a0b2ea22eddd4fb6f0e373e2f8e20acfe}{00262}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a0b2ea22eddd4fb6f0e373e2f8e20acfe}{stringToMaskPhoneNumber}}\ (String\ text)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ String.format\ (\textcolor{stringliteral}{"{}\%s\ \%s\ \%s\ \%s"{}},\ text.subSequence\ (0,\ 3),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text.subSequence\ (3,\ 6),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text.subSequence\ (6,\ 8),}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text.subSequence\ (8,\ 10));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00267}00267\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00269}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_adb6fae678dd7db1081d52ac3bf5cc12a}{00269}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_adb6fae678dd7db1081d52ac3bf5cc12a}{createPersonUpdateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController,\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person}{Person}}\ person)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00270}00270\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_update_person_model}{UpdatePersonModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getUpdatePersonModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00272}00272\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00274}00274\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00275}00275\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00278}00278\ \ \ \ \ \ \ \ \ Text\ personId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Person\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00279}00279\ \ \ \ \ \ \ \ \ gridPane.add\ (personId,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00281}00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ personIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00282}00282\ \ \ \ \ \ \ \ \ personIdTextField.setDisable\ (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00283}00283\ \ \ \ \ \ \ \ \ gridPane.add\ (personIdTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00285}00285\ \ \ \ \ \ \ \ \ Text\ familyId\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Family\ Id"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00286}00286\ \ \ \ \ \ \ \ \ gridPane.add\ (familyId,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00288}00288\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ familyIdTextField\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_duong_f_x_integer_field}{DuongFXIntegerField}}\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00289}00289\ \ \ \ \ \ \ \ \ gridPane.add\ (familyIdTextField,\ 2,\ 1,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00291}00291\ \ \ \ \ \ \ \ \ Text\ hoVaTen\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Họ\ và\ tên:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00292}00292\ \ \ \ \ \ \ \ \ gridPane.add\ (hoVaTen,\ 0,\ 2,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00294}00294\ \ \ \ \ \ \ \ \ TextField\ fullNameTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00295}00295\ \ \ \ \ \ \ \ \ gridPane.add\ (fullNameTextField,\ 2,\ 2,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00297}00297\ \ \ \ \ \ \ \ \ Text\ ngaySinh\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Ngày\ sinh:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00298}00298\ \ \ \ \ \ \ \ \ gridPane.add\ (ngaySinh,\ 0,\ 3,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00300}00300\ \ \ \ \ \ \ \ \ LocalDate\ today\ =\ LocalDate.now\ (ZoneId.systemDefault());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00301}00301\ \ \ \ \ \ \ \ \ DatePicker\ dateOfBirthPicker\ =\ \textcolor{keyword}{new}\ DatePicker\ (today);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00302}00302\ \ \ \ \ \ \ \ \ dateOfBirthPicker.setEditable\ (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00303}00303\ \ \ \ \ \ \ \ \ gridPane.add\ (dateOfBirthPicker,\ 2,\ 3);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00305}00305\ \ \ \ \ \ \ \ \ Text\ canCuocCongDan\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Căn\ cước\ công\ dân:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00306}00306\ \ \ \ \ \ \ \ \ gridPane.add\ (canCuocCongDan,\ 0,\ 4,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00308}00308\ \ \ \ \ \ \ \ \ MaskTextField\ CIDTextField\ =\ \textcolor{keyword}{new}\ MaskTextField(\textcolor{stringliteral}{"{}9999\ -\/\ 9999\ -\/\ 9999"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00309}00309\ \ \ \ \ \ \ \ \ CIDTextField.setLeft\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.PAYMENT));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00310}00310\ \ \ \ \ \ \ \ \ gridPane.add\ (CIDTextField,\ 2,\ 4,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00312}00312\ \ \ \ \ \ \ \ \ Text\ soDienThoai\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Số\ điện\ thoại:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00313}00313\ \ \ \ \ \ \ \ \ gridPane.add\ (soDienThoai,\ 0,\ 5,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00315}00315\ \ \ \ \ \ \ \ \ MaskTextField\ phoneNumberTextField\ =\ \textcolor{keyword}{new}\ MaskTextField(\textcolor{stringliteral}{"{}999\ 999\ 99\ 99"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00316}00316\ \ \ \ \ \ \ \ \ phoneNumberTextField.setLeft\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedMZ.PHONE));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00317}00317\ \ \ \ \ \ \ \ \ gridPane.add\ (phoneNumberTextField,\ 2,\ 5,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00319}00319\ \ \ \ \ \ \ \ \ Text\ gioiTinh\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Giới\ tính:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00320}00320\ \ \ \ \ \ \ \ \ gridPane.add\ (gioiTinh,\ 0,\ 6,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00322}00322\ \ \ \ \ \ \ \ \ ComboBox<String>\ genderChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00323}00323\ \ \ \ \ \ \ \ \ genderChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Nam"{}},\ \textcolor{stringliteral}{"{}Nữ"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00325}00325\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00326}00326\ \ \ \ \ \ \ \ \ genderChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00327}00327\ \ \ \ \ \ \ \ \ gridPane.add\ (genderChoose,\ 2,\ 6,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00328}00328\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00329}00329\ \ \ \ \ \ \ \ \ Text\ quocTich\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Quốc\ tịch:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00330}00330\ \ \ \ \ \ \ \ \ gridPane.add\ (quocTich,\ 0,\ 7,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00332}00332\ \ \ \ \ \ \ \ \ ComboBox<String>\ nationChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00333}00333\ \ \ \ \ \ \ \ \ nationChoose.setItems\ (FXCollections.observableArrayList(\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_aab542f6577abd7916b0e3777defc1c70}{getAllNation}}\ ())\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00334}00334\ \ \ \ \ \ \ \ \ nationChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00335}00335\ \ \ \ \ \ \ \ \ gridPane.add\ (nationChoose,\ 2,\ 7,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00337}00337\ \ \ \ \ \ \ \ \ Text\ tinhTrangCuTru\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Tình\ trạng\ cư\ trú:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00338}00338\ \ \ \ \ \ \ \ \ gridPane.add\ (tinhTrangCuTru,\ 0,\ 8,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00340}00340\ \ \ \ \ \ \ \ \ ComboBox<String>\ residenceStatusChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00341}00341\ \ \ \ \ \ \ \ \ residenceStatusChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Đang\ cư\ trú"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tạm\ vắng"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00344}00344\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00345}00345\ \ \ \ \ \ \ \ \ residenceStatusChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00346}00346\ \ \ \ \ \ \ \ \ gridPane.add\ (residenceStatusChoose,\ 2,\ 8,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00348}00348\ \ \ \ \ \ \ \ \ Button\ updateBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00349}00349\ \ \ \ \ \ \ \ \ updateBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00350}00350\ \ \ \ \ \ \ \ \ updateBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updatePersonHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00352}00352\ \ \ \ \ \ \ \ \ Button\ updateAndCloseBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Cập\ nhật\ và\ đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00353}00353\ \ \ \ \ \ \ \ \ updateAndCloseBtn.getStyleClass().addAll\ (Styles.SUCCESS,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00354}00354\ \ \ \ \ \ \ \ \ updateAndCloseBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().updateAndClosePersonHandler\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00355}00355\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00356}00356\ \ \ \ \ \ \ \ \ Button\ closeBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Đóng"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00357}00357\ \ \ \ \ \ \ \ \ closeBtn.getStyleClass().addAll\ (Styles.DANGER,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00358}00358\ \ \ \ \ \ \ \ \ closeBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().closePersonUpdateHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00360}00360\ \ \ \ \ \ \ \ \ personIdTextField.setText\ (String.valueOf(person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_a368be6f07e6b4732269d78906437dab6}{getPersonId}}\ ()));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00361}00361\ \ \ \ \ \ \ \ \ familyIdTextField.setText\ (String.valueOf(person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_a429a79f2ed19a9f57b30c7017bac8c51}{getFamilyId}}\ ()));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00362}00362\ \ \ \ \ \ \ \ \ fullNameTextField.setText\ (person.getFullname\ ());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00363}00363\ \ \ \ \ \ \ \ \ dateOfBirthPicker.setValue\ (person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_ad0916fa55f117a5dba636d3b3fa2b3aa}{getDateOfBirth}}().convertToLocalDate());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00364}00364\ \ \ \ \ \ \ \ \ CIDTextField.setText\ (\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a99064e23f91d9001eaa721dc9b5921d0}{stringToMaskCID}}(person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_a67890d22e59e3700c37303544e484528}{getCitizenIdentificationNumber}}\ ())\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00365}00365\ \ \ \ \ \ \ \ \ phoneNumberTextField.setText\ (\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a0b2ea22eddd4fb6f0e373e2f8e20acfe}{stringToMaskPhoneNumber}}(person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_ae54b2d54dc204f0385159144d897f8cd}{getPhoneNumber}}\ ())\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00366}00366\ \ \ \ \ \ \ \ \ genderChoose.getSelectionModel().select\ (\ person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_a054fafa8cd1a92f29eb35bba9dce3e5d}{getSex}}()\ ==\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_sex}{Sex}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_sex_a59f626b23d9713f2c0bf1ca7f0cdf33f}{MALE}}\ ?\ 0\ :\ 1\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00367}00367\ \ \ \ \ \ \ \ \ nationChoose.getItems().stream()}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter(nation\ -\/>\ nation.equals(person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_a553ec0ed10428f0554fc45ab9d7ec449}{getNationality}}().toString()))}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .findAny()}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ifPresent(nationChoose.getSelectionModel()::select);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00371}00371\ \ \ \ \ \ \ \ \ residenceStatusChoose.getSelectionModel().select\ (\ person.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_person_aeee5f16cb4e29ff531e9252aed322d50}{getResidenceStatus}}()\ ==\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_residence_status}{ResidenceStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_residence_status_a7b79d93d9147e37eb077c7a6884be686}{PRESENT}}\ ?\ 0\ :\ 1\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00373}00373\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getPersonIdProperty().bind\ (personIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00374}00374\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getFamilyIdProperty().bind\ (familyIdTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00375}00375\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getFullnameProperty().bind\ (fullNameTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00376}00376\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getDateOfBirthProperty().bind\ (dateOfBirthPicker.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00377}00377\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getCitizenIdProperty().bind\ (CIDTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00378}00378\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getPhoneNumberProperty().bind\ (phoneNumberTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00379}00379\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getSexProperty().bind\ (genderChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00380}00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getNationProperty().bind\ (nationChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00381}00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getResidenceStatusProperty().bind\ (residenceStatusChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00382}00382\ \ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00383}00383\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ HBox\ (18,\ updateBtn,\ updateAndCloseBtn,\ closeBtn)}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00386}00386\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00387}00387\ \ \ \ \ \ \ \ \ vb.setPadding\ (\textcolor{keyword}{new}\ Insets\ (16));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00389}00389\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00391}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a8a9cd137c33725eec3642ddbb7789b46}{00391}}\ \ \ \ \ \textcolor{keyword}{private}\ VBox\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_a8a9cd137c33725eec3642ddbb7789b46}{createPersonCreateForm}}\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller}{ClientSceneController}}\ sceneController)\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00392}00392\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00393}00393\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_create_person_model}{CreatePersonModel}}\ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}\ =\ sceneController.getCreatePersonModel\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00395}00395\ \ \ \ \ \ \ \ \ GridPane\ gridPane\ =\ \textcolor{keyword}{new}\ GridPane\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00397}00397\ \ \ \ \ \ \ \ \ gridPane.setVgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00398}00398\ \ \ \ \ \ \ \ \ gridPane.setHgap\ (10);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gridPane.setGridLinesVisible\ (true);}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00400}00400\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00401}00401\ \ \ \ \ \ \ \ \ Text\ hoVaTen\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Họ\ và\ tên:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00402}00402\ \ \ \ \ \ \ \ \ gridPane.add\ (hoVaTen,\ 0,\ 0,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00403}00403\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00404}00404\ \ \ \ \ \ \ \ \ TextField\ fullNameTextField\ =\ \textcolor{keyword}{new}\ TextField\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00405}00405\ \ \ \ \ \ \ \ \ gridPane.add\ (fullNameTextField,\ 2,\ 0,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00407}00407\ \ \ \ \ \ \ \ \ Text\ ngaySinh\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Ngày\ sinh:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00408}00408\ \ \ \ \ \ \ \ \ gridPane.add\ (ngaySinh,\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00410}00410\ \ \ \ \ \ \ \ \ LocalDate\ today\ =\ LocalDate.now\ (ZoneId.systemDefault());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00411}00411\ \ \ \ \ \ \ \ \ DatePicker\ dateOfBirthPicker\ =\ \textcolor{keyword}{new}\ DatePicker\ (today);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00412}00412\ \ \ \ \ \ \ \ \ dateOfBirthPicker.setEditable\ (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00413}00413\ \ \ \ \ \ \ \ \ gridPane.add\ (dateOfBirthPicker,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00414}00414\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00415}00415\ \ \ \ \ \ \ \ \ Text\ canCuocCongDan\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Căn\ cước\ công\ dân:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00416}00416\ \ \ \ \ \ \ \ \ gridPane.add\ (canCuocCongDan,\ 0,\ 2,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00418}00418\ \ \ \ \ \ \ \ \ MaskTextField\ CIDTextField\ =\ \textcolor{keyword}{new}\ MaskTextField(\textcolor{stringliteral}{"{}9999\ -\/\ 9999\ -\/\ 9999"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00419}00419\ \ \ \ \ \ \ \ \ CIDTextField.setLeft\ (\textcolor{keyword}{new}\ FontIcon\ (Material2MZ.PAYMENT));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00420}00420\ \ \ \ \ \ \ \ \ gridPane.add\ (CIDTextField,\ 2,\ 2,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00422}00422\ \ \ \ \ \ \ \ \ Text\ soDienThoai\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Số\ điện\ thoại:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00423}00423\ \ \ \ \ \ \ \ \ gridPane.add\ (soDienThoai,\ 0,\ 3,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00425}00425\ \ \ \ \ \ \ \ \ MaskTextField\ phoneNumberTextField\ =\ \textcolor{keyword}{new}\ MaskTextField(\textcolor{stringliteral}{"{}999\ 999\ 99\ 99"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00426}00426\ \ \ \ \ \ \ \ \ phoneNumberTextField.setLeft\ (\textcolor{keyword}{new}\ FontIcon\ (Material2OutlinedMZ.PHONE));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00427}00427\ \ \ \ \ \ \ \ \ gridPane.add\ (phoneNumberTextField,\ 2,\ 3,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00429}00429\ \ \ \ \ \ \ \ \ Text\ gioiTinh\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Giới\ tính:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00430}00430\ \ \ \ \ \ \ \ \ gridPane.add\ (gioiTinh,\ 0,\ 4,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00432}00432\ \ \ \ \ \ \ \ \ ComboBox<String>\ genderChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00433}00433\ \ \ \ \ \ \ \ \ genderChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}},\ \textcolor{stringliteral}{"{}Nam"{}},\ \textcolor{stringliteral}{"{}Nữ"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00435}00435\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00436}00436\ \ \ \ \ \ \ \ \ genderChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00437}00437\ \ \ \ \ \ \ \ \ gridPane.add\ (genderChoose,\ 2,\ 4,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00439}00439\ \ \ \ \ \ \ \ \ Text\ quocTich\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Quốc\ tịch:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00440}00440\ \ \ \ \ \ \ \ \ gridPane.add\ (quocTich,\ 0,\ 5,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00442}00442\ \ \ \ \ \ \ \ \ ComboBox<String>\ nationChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00443}00443\ \ \ \ \ \ \ \ \ nationChoose.setItems\ (FXCollections.observableArrayList(\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_aab542f6577abd7916b0e3777defc1c70}{getAllNation}}\ ())\ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00444}00444\ \ \ \ \ \ \ \ \ nationChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00445}00445\ \ \ \ \ \ \ \ \ gridPane.add\ (nationChoose,\ 2,\ 5,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00446}00446\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00447}00447\ \ \ \ \ \ \ \ \ Text\ tinhTrangCuTru\ =\ \textcolor{keyword}{new}\ Text\ (\textcolor{stringliteral}{"{}Tình\ trạng\ cư\ trú:"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00448}00448\ \ \ \ \ \ \ \ \ gridPane.add\ (tinhTrangCuTru,\ 0,\ 6,\ 2,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00449}00449\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00450}00450\ \ \ \ \ \ \ \ \ ComboBox<String>\ residenceStatusChoose\ =\ \textcolor{keyword}{new}\ ComboBox<>\ ();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00451}00451\ \ \ \ \ \ \ \ \ residenceStatusChoose.setItems\ (FXCollections.observableArrayList(}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Đang\ cư\ trú"{}},}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tạm\ vắng"{}}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00455}00455\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00456}00456\ \ \ \ \ \ \ \ \ residenceStatusChoose.getSelectionModel().selectFirst();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00457}00457\ \ \ \ \ \ \ \ \ gridPane.add\ (residenceStatusChoose,\ 2,\ 6,\ 3,\ 1);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00459}00459\ \ \ \ \ \ \ \ \ Button\ submitBtn\ =\ \textcolor{keyword}{new}\ Button\ (\textcolor{stringliteral}{"{}Khai\ báo"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00460}00460\ \ \ \ \ \ \ \ \ submitBtn.getStyleClass().addAll(Styles.ACCENT,\ Styles.BUTTON\_OUTLINED,\ Styles.ROUNDED);}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00461}00461\ \ \ \ \ \ \ \ \ submitBtn.setOnAction\ (e\ -\/>\ sceneController.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller_af31aad947222918a919a0ed80296e4f3}{getClientInteractor}}().createPersonHandler());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bindings}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00464}00464\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getFullnameProperty().bind\ (fullNameTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00465}00465\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getDateOfBirthProperty().bind\ (dateOfBirthPicker.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00466}00466\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getCitizenIdProperty().bind\ (CIDTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00467}00467\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getPhoneNumberProperty().bind\ (phoneNumberTextField.textProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00468}00468\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getSexProperty().bind\ (genderChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00469}00469\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getNationProperty().bind\ (nationChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00470}00470\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1model}{model}}.getResidenceStatusProperty().bind\ (residenceStatusChoose.valueProperty());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00471}00471\ \ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00472}00472\ \ \ \ \ \ \ \ \ VBox\ vb\ =\ \textcolor{keyword}{new}\ VBox\ (\ 18,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ gridPane,}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ submitBtn}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00475}00475\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00476}00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vb;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00477}00477\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00478}00478\ }
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00479}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_aab542f6577abd7916b0e3777defc1c70}{00479}}\ \ \ \ \ \textcolor{keyword}{private}\ List\ <String>\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page_aab542f6577abd7916b0e3777defc1c70}{getAllNation}}\ ()\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00480}00480\ \ \ \ \ \ \ \ \ List<String>\ list\ =\ \textcolor{keyword}{new}\ ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00481}00481\ \ \ \ \ \ \ \ \ list.add\ (\textcolor{stringliteral}{"{}-\/-\/\ Chọn\ -\/-\/"{}});}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00482}00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation}{Nation}}\ nation\ :\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_nation}{Nation}}.values())\ \{}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ list.add\ (nation.toString());}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00484}00484\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00485}00485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00486}00486\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_admin_person_manage_page_8java_source_l00487}00487\ \}\ }
+
+\end{DoxyCode}

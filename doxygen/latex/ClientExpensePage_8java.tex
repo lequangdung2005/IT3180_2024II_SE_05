@@ -3,11 +3,14 @@
 {\ttfamily import java.\+util.\+Array\+List;}\newline
 {\ttfamily import java.\+util.\+List;}\newline
 {\ttfamily import java.\+util.\+Map;}\newline
-{\ttfamily import org.\+kordamp.\+ikonli.\+javafx.\+Font\+Icon;}\newline
-{\ttfamily import org.\+kordamp.\+ikonli.\+material2.\+Material2\+MZ;}\newline
-{\ttfamily import org.\+kordamp.\+ikonli.\+material2.\+Material2\+Outlined\+AL;}\newline
+{\ttfamily import java.\+util.\+concurrent.\+atomic.\+Atomic\+Reference;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+callback.\+Update\+Message\+Interface;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Payment\+Request;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Check\+Banking\+Response;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Object\+By\+Id\+Query\+Response;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Payment\+Status\+Query\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+Server\+Qr\+Code\+Generate\+Response;}\newline
+{\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+User\+Get\+Payment\+Qr\+Code;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+User\+Query\+Object\+By\+Id;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+communication.\+User\+Query\+Payment\+Status;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+controller.\+Client\+Scene\+Controller;}\newline
@@ -15,17 +18,41 @@
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+model.\+Payment\+Status;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+type.\+Expense\+Type;}\newline
 {\ttfamily import com.\+hust.\+ittnk68.\+cnpm.\+type.\+Response\+Status;}\newline
+{\ttfamily import org.\+kordamp.\+ikonli.\+javafx.\+Font\+Icon;}\newline
+{\ttfamily import org.\+kordamp.\+ikonli.\+material2.\+Material2\+MZ;}\newline
+{\ttfamily import org.\+kordamp.\+ikonli.\+material2.\+Material2\+Outlined\+AL;}\newline
+{\ttfamily import atlantafx.\+base.\+controls.\+Card;}\newline
 {\ttfamily import atlantafx.\+base.\+controls.\+Tile;}\newline
 {\ttfamily import atlantafx.\+base.\+theme.\+Styles;}\newline
+{\ttfamily import javafx.\+animation.\+Animation;}\newline
+{\ttfamily import javafx.\+animation.\+Key\+Frame;}\newline
+{\ttfamily import javafx.\+animation.\+Rotate\+Transition;}\newline
+{\ttfamily import javafx.\+animation.\+Timeline;}\newline
+{\ttfamily import javafx.\+application.\+Platform;}\newline
 {\ttfamily import javafx.\+concurrent.\+Task;}\newline
 {\ttfamily import javafx.\+geometry.\+Insets;}\newline
+{\ttfamily import javafx.\+geometry.\+Pos;}\newline
 {\ttfamily import javafx.\+scene.\+Node;}\newline
+{\ttfamily import javafx.\+scene.\+control.\+Button;}\newline
+{\ttfamily import javafx.\+scene.\+control.\+Label;}\newline
 {\ttfamily import javafx.\+scene.\+control.\+Scroll\+Pane;}\newline
 {\ttfamily import javafx.\+scene.\+control.\+Tab;}\newline
+{\ttfamily import javafx.\+scene.\+image.\+Image\+View;}\newline
 {\ttfamily import javafx.\+scene.\+layout.\+Anchor\+Pane;}\newline
+{\ttfamily import javafx.\+scene.\+layout.\+HBox;}\newline
+{\ttfamily import javafx.\+scene.\+layout.\+Priority;}\newline
+{\ttfamily import javafx.\+scene.\+layout.\+Region;}\newline
 {\ttfamily import javafx.\+scene.\+layout.\+VBox;}\newline
+{\ttfamily import javafx.\+scene.\+paint.\+Color;}\newline
+{\ttfamily import javafx.\+scene.\+shape.\+Circle;}\newline
+{\ttfamily import javafx.\+scene.\+shape.\+Stroke\+Line\+Cap;}\newline
+{\ttfamily import javafx.\+scene.\+text.\+Font;}\newline
+{\ttfamily import javafx.\+scene.\+text.\+Text;}\newline
+{\ttfamily import javafx.\+scene.\+text.\+Text\+Flow;}\newline
 {\ttfamily import javafx.\+stage.\+Stage;}\newline
-Include dependency graph for Client\+Expense\+Page.\+java\+:\nopagebreak
+{\ttfamily import javafx.\+util.\+Duration;}\newline
+Include dependency graph for Client\+Expense\+Page.\+java\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,8 +61,6 @@ Include dependency graph for Client\+Expense\+Page.\+java\+:\nopagebreak
 \end{figure}
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
-\item 
-interface \mbox{\hyperlink{interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1updateMessageInterface}{com.\+hust.\+ittnk68.\+cnpm.\+view.\+update\+Message\+Interface}}
 \item 
 class \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage}{com.\+hust.\+ittnk68.\+cnpm.\+view.\+Client\+Expense\+Page}}
 \end{DoxyCompactItemize}

@@ -7,14 +7,21 @@ var namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication =
     [ "ApiMapping", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ApiMapping.html", null ],
     [ "ClientMessageBase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageBase.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageBase" ],
     [ "ClientMessageStartSession", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageStartSession.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ClientMessageStartSession" ],
+    [ "PaymentRequest", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentRequest" ],
+    [ "PaymentResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1PaymentResponse" ],
+    [ "ServerCheckBankingResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCheckBankingResponse" ],
     [ "ServerCreateObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCreateObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerCreateObjectResponse" ],
     [ "ServerDeleteObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerDeleteObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerDeleteObjectResponse" ],
     [ "ServerFindObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerFindObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerFindObjectResponse" ],
     [ "ServerObjectByIdQueryResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerObjectByIdQueryResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerObjectByIdQueryResponse" ],
     [ "ServerPaymentStatusQueryResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerPaymentStatusQueryResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerPaymentStatusQueryResponse" ],
+    [ "ServerQrCodeGenerateResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQrCodeGenerateResponse" ],
+    [ "ServerQueryPersonByFIdResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQueryPersonByFIdResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerQueryPersonByFIdResponse" ],
     [ "ServerResponseBase", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseBase.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseBase" ],
     [ "ServerResponseStartSession", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseStartSession.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerResponseStartSession" ],
     [ "ServerUpdateObjectResponse", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerUpdateObjectResponse.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1ServerUpdateObjectResponse" ],
+    [ "UserGetPaymentQrCode", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserGetPaymentQrCode" ],
     [ "UserQueryObjectById", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryObjectById.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryObjectById" ],
-    [ "UserQueryPaymentStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus" ]
+    [ "UserQueryPaymentStatus", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPaymentStatus" ],
+    [ "UserQueryPersonByFId", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPersonByFId.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1UserQueryPersonByFId" ]
 ];

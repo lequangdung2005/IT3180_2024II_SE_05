@@ -44,9 +44,9 @@
 <text text-anchor="start" x="46" y="-170.5" font-family="Helvetica,sans-Serif" font-size="10.00">ClientMessageBase</text>
 <text text-anchor="start" x="88.38" y="-154.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 <text text-anchor="start" x="21" y="-138.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="48" y="-138.5" font-family="Helvetica,sans-Serif" font-size="10.00">getToken()</text>
+<text text-anchor="start" x="48" y="-138.5" font-family="Helvetica,sans-Serif" font-size="10.00">getUsername()</text>
 <text text-anchor="start" x="21" y="-122.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="48" y="-122.5" font-family="Helvetica,sans-Serif" font-size="10.00">setToken()</text>
+<text text-anchor="start" x="48" y="-122.5" font-family="Helvetica,sans-Serif" font-size="10.00">setUsername()</text>
 <text text-anchor="start" x="21" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">~</text>
 <text text-anchor="start" x="48" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">ClientMessageBase()</text>
 <polygon fill="#666666" stroke="#666666" points="0,-166 0,-166 179.75,-166 179.75,-166 0,-166"/>

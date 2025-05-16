@@ -1,0 +1,16 @@
+<map id="com.hust.ittnk68.cnpm.view.ClientExpensePage.deleteAll" name="com.hust.ittnk68.cnpm.view.ClientExpensePage.deleteAll">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1681,35,1872,77"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#aff7197a53edf7d401b769b1aa71b9d0d" title=" " alt="" coords="1376,35,1633,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1666,59,1634,59,1634,53,1666,53"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#af5cc8bda0b9ea9453bfdb551e3087908" title=" " alt="" coords="1093,5,1328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1360,44,1328,41,1329,36,1361,39"/>
+<area shape="rect" id="Node000004" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#a47a150820ca49d77b6415feeba823ef5" title=" " alt="" coords="796,5,1045,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1077,29,1045,29,1045,24,1077,24"/>
+<area shape="rect" id="Node000005" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#af5eae977f6438c8d39874213a64dac07" title=" " alt="" coords="551,5,748,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="781,29,749,29,749,24,781,24"/>
+<area shape="rect" id="Node000006" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#a304a19fbac036a7a0374590d060408bd" title=" " alt="" coords="309,35,503,77"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="536,43,504,47,503,42,535,38"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="519,57,551,57,939,61,1328,57,1375,57,1376,62,1328,63,939,66,551,63,519,62"/>
+<area shape="rect" id="Node000007" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_client_expense_page.html#adcb3870609d37dc62edc10fade2e3431" title=" " alt="" coords="5,35,261,77"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="293,59,261,59,261,53,293,53"/>
+</map>

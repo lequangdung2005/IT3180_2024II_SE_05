@@ -1,0 +1,19 @@
+<map id="src/main/java/com/hust/ittnk68/cnpm/service/QrCodeService.java" name="src/main/java/com/hust/ittnk68/cnpm/service/QrCodeService.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="733,5,890,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,120,208,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="733,47,502,75,219,115,189,119,188,114,218,109,502,70,733,42"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="231,120,360,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="733,50,567,77,372,115,356,118,355,113,371,109,566,72,732,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="384,112,560,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="733,61,560,110,559,105,732,56"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="584,120,808,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="779,66,724,112,721,108,776,62"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="831,112,1027,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="848,62,894,100,891,104,845,66"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1051,112,1242,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="892,56,1061,105,1059,110,890,61"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1265,112,1446,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="891,46,1250,109,1249,114,890,52"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1470,112,1679,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="891,41,1139,68,1456,109,1455,114,1138,74,891,47"/>
+</map>

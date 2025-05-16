@@ -1,0 +1,110 @@
+\doxysection{Auth\+Controller.\+java}
+\hypertarget{_auth_controller_8java_source}{}\label{_auth_controller_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/service/AuthController.java@{src/main/java/com/hust/ittnk68/cnpm/service/AuthController.java}}
+\mbox{\hyperlink{_auth_controller_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.service;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.Map;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.security.access.prepost.PreAuthorize;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.auth.JwtUtil;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ApiMapping;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ClientMessageStartSession;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.communication.ServerResponseStartSession;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.database.MySQLDatabase;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Account;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.AccountType;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.type.ResponseStatus;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00019}00019\ @RestController}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00020}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller}{00020}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller}{AuthController}}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00022}00022\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00023}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a0f94f4dbaa60b2c4b950c426a6ce3c08}{00023}}\ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1database_1_1_my_s_q_l_database}{MySQLDatabase}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a0f94f4dbaa60b2c4b950c426a6ce3c08}{mysqlDb}};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00025}00025\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a335e951c4a9e9cb1fb5cce405804e076}{00026}}\ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{JwtUtil}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a335e951c4a9e9cb1fb5cce405804e076}{jwtUtil}};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00028}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_aee64336a55d2f3abe47b8ad6ed334f1f}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_aee64336a55d2f3abe47b8ad6ed334f1f}{getAccountByUsername}}\ (String\ username)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ List<\ Map<String,\ Object>\ >\ res\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a0f94f4dbaa60b2c4b950c426a6ce3c08}{mysqlDb}}.findByCondition(}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String.format(\textcolor{stringliteral}{"{}(username='\%s')"{}},\ username),}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}()}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ );\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(res);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(res.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(res.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ exceptions\ ?}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ assert\ res.size()\ ==\ 1;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ Map<String,\ Object>\ m\ =\ res.get(0);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type}{AccountType}}\ accountType\ =\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type}{AccountType}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type_a168d665b5bfb0594a3017c59e97e76d7}{matchByString}}((String)m.get(\textcolor{stringliteral}{"{}account\_type"{}})).get();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ acc\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}((\textcolor{keywordtype}{int})m.get(\textcolor{stringliteral}{"{}family\_id"{}}),\ (String)m.get(\textcolor{stringliteral}{"{}username"{}}),\ \textcolor{keyword}{null},\ (String)m.get(\textcolor{stringliteral}{"{}digest\_password"{}}),\ accountType\ );}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_ab61ef567b7c6a38884f4bbd1d5c15733}{setId}}((\textcolor{keywordtype}{int})m.get(\textcolor{stringliteral}{"{}account\_id"{}}));}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ acc;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00060}00060\ \ \ \ \ @PreAuthorize\ (\textcolor{stringliteral}{"{}@authz.canTest()"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00061}00061\ \ \ \ \ @RequestMapping(\textcolor{stringliteral}{"{}/test"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00062}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_aff569d8b11b60e772af31a073e697026}{00062}}\ \ \ \ \ public\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_aff569d8b11b60e772af31a073e697026}{test}}\ ()\ throws\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.jwtUtil.generateToken\ (\textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ ()).toString\ ();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00066}00066\ \ \ \ \ @RequestMapping(\textcolor{stringliteral}{"{}/"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00067}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_ae0302ec664ec464a12c81b34570b037e}{00067}}\ \ \ \ \ public\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_ae0302ec664ec464a12c81b34570b037e}{welcome}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Hello,\ World!"{}};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00071}00071\ \ \ \ \ @PreAuthorize\ (\textcolor{stringliteral}{"{}@authz.canStartSession(\#message)"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00072}00072\ \ \ \ \ @PostMapping(\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping}{ApiMapping}}.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_api_mapping_a9013c4954d29961d4b8d574448b89d62}{START\_SESSION}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00073}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a290b80dd1b7a43f2a069a8fffbeb401f}{00073}}\ \ \ \ \ public\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_start_session}{ServerResponseStartSession}}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_a290b80dd1b7a43f2a069a8fffbeb401f}{startSession}}(@RequestBody\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_start_session}{ClientMessageStartSession}}\ message)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ String\ username\ =\ message.getUsername\ ();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ String\ digestPassword\ =\ message.getDigestPassword\ ();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account}{Account}}\ acc\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller_aee64336a55d2f3abe47b8ad6ed334f1f}{getAccountByUsername}}(username);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ password\ not\ match}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\ acc.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_adabd7caa37802e8737f9919fbe3bdb0f}{getDigestPassword}}\ ().equals\ (digestPassword))\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ acc\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ String\ token\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(acc\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(username\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +\ digestPassword);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(acc.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_a4ed041150907e39bb59242673ebe43a8}{getAccountType}}());}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ token\ =\ jwtUtil.generateToken\ (acc);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace\ ();}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_start_session}{ServerResponseStartSession}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_ad10213f75422db8ceb9337ca0d412a47}{INTERNAL\_ERROR}},}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}can\ not\ generate\ token"{}},}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{null},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_start_session}{ServerResponseStartSession}}\ (\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status}{ResponseStatus}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_response_status_adce8ec14ab135bfaa10546b369c4152f}{OK}},}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\ message"{}},}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ token,}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((acc\ ==\ \textcolor{keyword}{null})\ ?\ \mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type}{AccountType}}.\mbox{\hyperlink{enumcom_1_1hust_1_1ittnk68_1_1cnpm_1_1type_1_1_account_type_af0bce8855610e7ae21f37086b8ab3790}{UNVALID}}\ :\ acc.\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_account_a4ed041150907e39bb59242673ebe43a8}{getAccountType}}())\ );}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00103}00103\ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00104}00104\ }
+
+\end{DoxyCode}

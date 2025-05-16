@@ -1,0 +1,100 @@
+\doxysection{Jwt\+Util.\+java}
+\hypertarget{_jwt_util_8java_source}{}\label{_jwt_util_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/auth/JwtUtil.java@{src/main/java/com/hust/ittnk68/cnpm/auth/JwtUtil.java}}
+\mbox{\hyperlink{_jwt_util_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth}{00001}}\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.auth;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.security.*;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00004}00004\ \textcolor{keyword}{import}\ io.jsonwebtoken.*;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.stereotype.Component;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00007}00007\ \textcolor{comment}{//\ import\ org.springframework.beans.factory.annotation.Autowired;}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.fasterxml.jackson.databind.ObjectMapper;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.fasterxml.jackson.core.JsonProcessingException;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00012}00012\ \textcolor{keyword}{import}\ java.io.IOException;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.hust.ittnk68.cnpm.model.Account;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00016}00016\ \textcolor{comment}{//\ import\ jakarta.annotation.*;}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00018}00018\ @Component}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00019}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{00019}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_ab7fbd282ee5ce031afaf0ae6845aff2e}{JwtUtil}}\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00021}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3389379c3ccb1b192faf7bd33b5ca15c}{00021}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ KeyPair\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3389379c3ccb1b192faf7bd33b5ca15c}{keyPair}};}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00022}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a56532626d9c8ad4a37f8043325d6e8fd}{00022}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ObjectMapper\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a56532626d9c8ad4a37f8043325d6e8fd}{objectMapper}};}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ @PostConstruct}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ public\ void\ init\ ()\ \{}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ System.out.println\ ("{}JwtUtil\ borned!"{});}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00029}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_ab7fbd282ee5ce031afaf0ae6845aff2e}{00029}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_ab7fbd282ee5ce031afaf0ae6845aff2e}{JwtUtil}}\ ()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3389379c3ccb1b192faf7bd33b5ca15c}{keyPair}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_rsa_key_util}{RsaKeyUtil}}\ ().\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_rsa_key_util_a74faa1450f70c34e99fb373ddcc26d63}{generateKeyPair}}\ ();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a56532626d9c8ad4a37f8043325d6e8fd}{objectMapper}}\ =\ \textcolor{keyword}{new}\ ObjectMapper\ ();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00035}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a9cbae5a22ad34b09a0f686629549e475}{00035}}\ \ \ \ \ public\ <T>\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a9cbae5a22ad34b09a0f686629549e475}{generateToken}}\ (T\ \textcolor{keywordtype}{object})\ \textcolor{keywordflow}{throws}\ Exception}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ String\ jsonString\ =\ objectMapper.writeValueAsString\ (object);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ convert\ to\ json}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.printf\ (\textcolor{stringliteral}{"{}debug:\ \%s\(\backslash\)n"{}},\ jsonString);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Jwts.builder()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setSubject\ (jsonString)\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setIssuedAt\ (\textcolor{keyword}{new}\ Date\ ())}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setExpiration\ (\textcolor{keyword}{new}\ Date\ (System.currentTimeMillis\ ()\ +\ 1000*60*60))}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .signWith\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a1e565842d0cfe82117377a078290bc2c}{getPrivateKey}}\ (),\ SignatureAlgorithm.RS256)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .compact\ ();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (JsonProcessingException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}Error\ serializing\ object"{}},\ e);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00052}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a066792169d706f588804896705d6ad21}{00052}}\ \ \ \ \ public\ <T>\ T\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a066792169d706f588804896705d6ad21}{extract}}\ (String\ token,\ Class<T>\ clazz)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00053}00053\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ String\ jsonString\ =\ Jwts.parserBuilder\ ()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setSigningKey\ (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3b6ab954b6f16e4cc25e985475ba6adb}{getPublicKey}}\ ())}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .build\ ()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .parseClaimsJws\ (token)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getBody\ ()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSubject\ ();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ objectMapper.readValue\ (jsonString,\ clazz);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (ExpiredJwtException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ IllegalArgumentException\ (\textcolor{stringliteral}{"{}Token\ has\ expired"{}});}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (JwtException\ |\ IllegalArgumentException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ IllegalArgumentException\ (\textcolor{stringliteral}{"{}Invalid\ token"{}});}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (IOException\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}Error\ deserializing\ object"{}},\ e);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00074}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a2eb00a449fc09ece36a28aa4eb26643d}{00074}}\ \ \ \ \ public\ <T>\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a2eb00a449fc09ece36a28aa4eb26643d}{isTokenValid}}\ (String\ token,\ Class<T>\ clazz)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00075}00075\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a066792169d706f588804896705d6ad21}{extract}}\ (token,\ clazz);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00086}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a1e565842d0cfe82117377a078290bc2c}{00086}}\ \ \ \ \ \textcolor{keyword}{public}\ PrivateKey\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a1e565842d0cfe82117377a078290bc2c}{getPrivateKey}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3389379c3ccb1b192faf7bd33b5ca15c}{keyPair}}.getPrivate();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00090}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3b6ab954b6f16e4cc25e985475ba6adb}{00090}}\ \ \ \ \ \textcolor{keyword}{public}\ PublicKey\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3b6ab954b6f16e4cc25e985475ba6adb}{getPublicKey}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util_a3389379c3ccb1b192faf7bd33b5ca15c}{keyPair}}.getPublic();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00094}00094\ \}\ }
+
+\end{DoxyCode}

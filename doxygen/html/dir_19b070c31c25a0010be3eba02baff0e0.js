@@ -7,7 +7,9 @@ var dir_19b070c31c25a0010be3eba02baff0e0 =
     [ "AdminHomeView.java", "AdminHomeView_8java.html", "AdminHomeView_8java" ],
     [ "AdminPaymentStatusManagePage.java", "AdminPaymentStatusManagePage_8java.html", "AdminPaymentStatusManagePage_8java" ],
     [ "AdminPersonManagePage.java", "AdminPersonManagePage_8java.html", "AdminPersonManagePage_8java" ],
+    [ "ClientDonationPage.java", "ClientDonationPage_8java.html", "ClientDonationPage_8java" ],
     [ "ClientExpensePage.java", "ClientExpensePage_8java.html", "ClientExpensePage_8java" ],
+    [ "ClientFamilyPage.java", "ClientFamilyPage_8java.html", "ClientFamilyPage_8java" ],
     [ "ClientHomePage.java", "ClientHomePage_8java.html", "ClientHomePage_8java" ],
     [ "ClientHomeScreenView.java", "ClientHomeScreenView_8java.html", "ClientHomeScreenView_8java" ],
     [ "ClientHomeSideBar.java", "ClientHomeSideBar_8java.html", "ClientHomeSideBar_8java" ],
@@ -20,5 +22,7 @@ var dir_19b070c31c25a0010be3eba02baff0e0 =
     [ "DuongFXToggleDatePicker.java", "DuongFXToggleDatePicker_8java.html", "DuongFXToggleDatePicker_8java" ],
     [ "IconButton.java", "IconButton_8java.html", "IconButton_8java" ],
     [ "LoadingView.java", "LoadingView_8java.html", "LoadingView_8java" ],
-    [ "LoginView.java", "LoginView_8java.html", "LoginView_8java" ]
+    [ "LoginView.java", "LoginView_8java.html", "LoginView_8java" ],
+    [ "PaymentView.java", "PaymentView_8java.html", "PaymentView_8java" ],
+    [ "QrImage.java", "QrImage_8java.html", "QrImage_8java" ]
 ];

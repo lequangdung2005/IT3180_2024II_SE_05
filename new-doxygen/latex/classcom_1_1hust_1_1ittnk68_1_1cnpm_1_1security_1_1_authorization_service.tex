@@ -1,0 +1,311 @@
+\doxysection{com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service Class Reference}
+\hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service}{}\label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+
+
+Collaboration diagram for com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a59d731365cde067163d9cd3ee05f486e}{can\+Start\+Session}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_start_session}{Client\+Message\+Start\+Session}} message)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a58d6d8d90e7c02fbb0545115d475ad46}{can\+Test}} ()
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ae702de08ab089d19f0df3ea4529c470b}{can\+Create\+Object}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_create_object}{Admin\+Create\+Object}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a73bf72654269d4ee2509a716a3985321}{can\+Find\+Object}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_find_object}{Admin\+Find\+Object}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a37792117267b210e029f5ba248bc2362}{can\+Delete\+Object}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{Admin\+Delete\+Object}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a8a3e91e6f8d64c202c4b8dab49933ee8}{can\+Update\+Object}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_update_object}{Admin\+Update\+Object}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a4f64d8f2af82ace27b41bd90ad409f0b}{can\+Query\+Object\+By\+Id}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_object_by_id}{User\+Query\+Object\+By\+Id}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_adca49c9882124ba602b7bdc26bd75320}{can\+Query\+Payment\+Status}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_payment_status}{User\+Query\+Payment\+Status}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f2fe0840de7569bc0c55f839815daf1}{can\+Pay}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{Payment\+Request}} req, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}} ps, \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}} ex)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a21641e9313e7187ba402f76d29241b64}{can\+Get\+Payment\+Qr\+Code}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code}{User\+Get\+Payment\+Qr\+Code}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a3a15b9a3a2d92c460488d2f49e06bf96}{can\+Query\+Person\+By\+Family\+Id}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_person_by_f_id}{User\+Query\+Person\+By\+FId}} req)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f35bab55fd687cb728d974066a69632}{check\+Token}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base}{Client\+Message\+Base}} req)
+\item 
+boolean \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_aa9b171f80eb18a3d5323d083b9fc443f}{check\+Admin\+Privilege}} (\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base}{Client\+Message\+Base}} req)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller}{Auth\+Controller}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a44d2f1d8ab1da1b2e630b3486757d182}{auth\+Controller}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{Jwt\+Util}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ad9cd5b070a08886ef3918713d8295d2f}{jwt\+Util}}
+\item 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token}{Token}} \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_abe7f024f6e17c0568b5e11f20cf75f61}{token\+Getter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00025}{25}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ae702de08ab089d19f0df3ea4529c470b}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canCreateObject@{canCreateObject}}
+\index{canCreateObject@{canCreateObject}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canCreateObject()}{canCreateObject()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ae702de08ab089d19f0df3ea4529c470b} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Create\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_create_object}{Admin\+Create\+Object}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00061}{61}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ae702de08ab089d19f0df3ea4529c470b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a37792117267b210e029f5ba248bc2362}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canDeleteObject@{canDeleteObject}}
+\index{canDeleteObject@{canDeleteObject}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canDeleteObject()}{canDeleteObject()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a37792117267b210e029f5ba248bc2362} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Delete\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_delete_object}{Admin\+Delete\+Object}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00069}{69}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a37792117267b210e029f5ba248bc2362_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a73bf72654269d4ee2509a716a3985321}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canFindObject@{canFindObject}}
+\index{canFindObject@{canFindObject}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canFindObject()}{canFindObject()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a73bf72654269d4ee2509a716a3985321} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Find\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_find_object}{Admin\+Find\+Object}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00065}{65}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a73bf72654269d4ee2509a716a3985321_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a21641e9313e7187ba402f76d29241b64}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canGetPaymentQrCode@{canGetPaymentQrCode}}
+\index{canGetPaymentQrCode@{canGetPaymentQrCode}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canGetPaymentQrCode()}{canGetPaymentQrCode()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a21641e9313e7187ba402f76d29241b64} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Get\+Payment\+Qr\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_get_payment_qr_code}{User\+Get\+Payment\+Qr\+Code}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00093}{93}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f2fe0840de7569bc0c55f839815daf1}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canPay@{canPay}}
+\index{canPay@{canPay}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canPay()}{canPay()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f2fe0840de7569bc0c55f839815daf1} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Pay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request}{Payment\+Request}}}]{req}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_payment_status}{Payment\+Status}}}]{ps}{, }\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1model_1_1_expense}{Expense}}}]{ex}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00088}{88}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a4f64d8f2af82ace27b41bd90ad409f0b}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canQueryObjectById@{canQueryObjectById}}
+\index{canQueryObjectById@{canQueryObjectById}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canQueryObjectById()}{canQueryObjectById()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a4f64d8f2af82ace27b41bd90ad409f0b} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Query\+Object\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_object_by_id}{User\+Query\+Object\+By\+Id}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00078}{78}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a4f64d8f2af82ace27b41bd90ad409f0b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_adca49c9882124ba602b7bdc26bd75320}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canQueryPaymentStatus@{canQueryPaymentStatus}}
+\index{canQueryPaymentStatus@{canQueryPaymentStatus}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canQueryPaymentStatus()}{canQueryPaymentStatus()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_adca49c9882124ba602b7bdc26bd75320} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Query\+Payment\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_payment_status}{User\+Query\+Payment\+Status}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00083}{83}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_adca49c9882124ba602b7bdc26bd75320_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a3a15b9a3a2d92c460488d2f49e06bf96}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canQueryPersonByFamilyId@{canQueryPersonByFamilyId}}
+\index{canQueryPersonByFamilyId@{canQueryPersonByFamilyId}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canQueryPersonByFamilyId()}{canQueryPersonByFamilyId()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a3a15b9a3a2d92c460488d2f49e06bf96} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Query\+Person\+By\+Family\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_user_query_person_by_f_id}{User\+Query\+Person\+By\+FId}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00098}{98}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a59d731365cde067163d9cd3ee05f486e}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canStartSession@{canStartSession}}
+\index{canStartSession@{canStartSession}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canStartSession()}{canStartSession()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a59d731365cde067163d9cd3ee05f486e} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Start\+Session (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_start_session}{Client\+Message\+Start\+Session}}}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00051}{51}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a58d6d8d90e7c02fbb0545115d475ad46}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canTest@{canTest}}
+\index{canTest@{canTest}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canTest()}{canTest()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a58d6d8d90e7c02fbb0545115d475ad46} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Test (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00056}{56}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a8a3e91e6f8d64c202c4b8dab49933ee8}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!canUpdateObject@{canUpdateObject}}
+\index{canUpdateObject@{canUpdateObject}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{canUpdateObject()}{canUpdateObject()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a8a3e91e6f8d64c202c4b8dab49933ee8} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+can\+Update\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_admin_update_object}{Admin\+Update\+Object}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00073}{73}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a8a3e91e6f8d64c202c4b8dab49933ee8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_aa9b171f80eb18a3d5323d083b9fc443f}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!checkAdminPrivilege@{checkAdminPrivilege}}
+\index{checkAdminPrivilege@{checkAdminPrivilege}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{checkAdminPrivilege()}{checkAdminPrivilege()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_aa9b171f80eb18a3d5323d083b9fc443f} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+check\+Admin\+Privilege (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base}{Client\+Message\+Base}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00044}{44}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_aa9b171f80eb18a3d5323d083b9fc443f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_aa9b171f80eb18a3d5323d083b9fc443f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f35bab55fd687cb728d974066a69632}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!checkToken@{checkToken}}
+\index{checkToken@{checkToken}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{checkToken()}{checkToken()}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f35bab55fd687cb728d974066a69632} 
+boolean com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+check\+Token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base}{Client\+Message\+Base}}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00036}{36}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f35bab55fd687cb728d974066a69632_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a2f35bab55fd687cb728d974066a69632_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a44d2f1d8ab1da1b2e630b3486757d182}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!authController@{authController}}
+\index{authController@{authController}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{authController}{authController}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_a44d2f1d8ab1da1b2e630b3486757d182} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1service_1_1_auth_controller}{Auth\+Controller}} com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+auth\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00028}{28}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ad9cd5b070a08886ef3918713d8295d2f}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!jwtUtil@{jwtUtil}}
+\index{jwtUtil@{jwtUtil}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{jwtUtil}{jwtUtil}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_ad9cd5b070a08886ef3918713d8295d2f} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1auth_1_1_jwt_util}{Jwt\+Util}} com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+jwt\+Util\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00031}{31}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_abe7f024f6e17c0568b5e11f20cf75f61}\index{com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}!tokenGetter@{tokenGetter}}
+\index{tokenGetter@{tokenGetter}!com.hust.ittnk68.cnpm.security.AuthorizationService@{com.hust.ittnk68.cnpm.security.AuthorizationService}}
+\doxysubsubsection{\texorpdfstring{tokenGetter}{tokenGetter}}
+{\footnotesize\ttfamily \label{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_authorization_service_abe7f024f6e17c0568b5e11f20cf75f61} 
+\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token}{Token}} com.\+hust.\+ittnk68.\+cnpm.\+security.\+Authorization\+Service.\+token\+Getter\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_authorization_service_8java_source_l00034}{34}} of file \mbox{\hyperlink{_authorization_service_8java_source}{Authorization\+Service.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/hust/ittnk68/cnpm/security/\mbox{\hyperlink{_authorization_service_8java}{Authorization\+Service.\+java}}\end{DoxyCompactItemize}

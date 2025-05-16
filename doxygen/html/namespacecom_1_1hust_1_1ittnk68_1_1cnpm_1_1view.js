@@ -7,7 +7,9 @@ var namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view =
     [ "AdminHomeView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminHomeView" ],
     [ "AdminPaymentStatusManagePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPaymentStatusManagePage" ],
     [ "AdminPersonManagePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1AdminPersonManagePage" ],
+    [ "ClientDonationPage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientDonationPage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientDonationPage" ],
     [ "ClientExpensePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientExpensePage" ],
+    [ "ClientFamilyPage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientFamilyPage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientFamilyPage" ],
     [ "ClientHomePage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomePage" ],
     [ "ClientHomeScreenView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeScreenView" ],
     [ "ClientHomeSideBar", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeSideBar.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientHomeSideBar" ],
@@ -21,5 +23,6 @@ var namespacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view =
     [ "IconButton", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1IconButton.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1IconButton" ],
     [ "LoadingView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoadingView.html", null ],
     [ "LoginView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoginView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1LoginView" ],
-    [ "updateMessageInterface", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1updateMessageInterface.html", "interfacecom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1updateMessageInterface" ]
+    [ "PaymentView", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1PaymentView.html", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1PaymentView" ],
+    [ "QrImage", "classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1QrImage.html", null ]
 ];

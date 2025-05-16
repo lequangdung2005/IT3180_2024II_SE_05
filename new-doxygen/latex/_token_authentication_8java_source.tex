@@ -1,0 +1,57 @@
+\doxysection{Token\+Authentication.\+java}
+\hypertarget{_token_authentication_8java_source}{}\label{_token_authentication_8java_source}\index{src/main/java/com/hust/ittnk68/cnpm/security/TokenAuthentication.java@{src/main/java/com/hust/ittnk68/cnpm/security/TokenAuthentication.java}}
+\mbox{\hyperlink{_token_authentication_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.hust.ittnk68.cnpm.security;}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.springframework.security.core.Authentication;}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.springframework.security.core.GrantedAuthority;}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.Collection;}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00008}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication}{00008}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_aac3b5f885457ae8edbc9fa12aec61085}{TokenAuthentication}}\ \textcolor{keyword}{implements}\ Authentication\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00010}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}};}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00011}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a1c7629837552e1a6a1d1915b84432dbb}{00011}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a1c7629837552e1a6a1d1915b84432dbb}{authenticated}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00013}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_aac3b5f885457ae8edbc9fa12aec61085}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_aac3b5f885457ae8edbc9fa12aec61085}{TokenAuthentication}}(String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}})\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00014}00014\ \ \ \ \ \ \ \ \ this.token\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}};}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00017}00017\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00018}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a3bf1d956494982cb197f54da7864bc21}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ Collection<?\ extends\ GrantedAuthority>\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a3bf1d956494982cb197f54da7864bc21}{getAuthorities}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ Return\ authorities\ if\ needed,\ or\ null\ if\ not\ used}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00022}00022\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00023}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a1d1f5a84034fe0d8cded687aaf3da3d0}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ Object\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a1d1f5a84034fe0d8cded687aaf3da3d0}{getCredentials}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}};\ \textcolor{comment}{//\ Return\ the\ token\ as\ credentials}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00027}00027\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00028}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_abe048a31b59498e5146b98cc117dcfa3}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ Object\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_abe048a31b59498e5146b98cc117dcfa3}{getDetails}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ Return\ additional\ details\ if\ necessary}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00032}00032\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00033}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a4c956af60f97314d9452bd1dc2a78f7f}{00033}}\ \ \ \ \ \textcolor{keyword}{public}\ Object\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a4c956af60f97314d9452bd1dc2a78f7f}{getPrincipal}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}};\ \textcolor{comment}{//\ Return\ token\ as\ principal,\ or\ return\ user\ information\ if\ you\ have\ it}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00037}00037\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00038}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_ad07df4ff5d9a5a4201248e4f80ca6fb8}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_ad07df4ff5d9a5a4201248e4f80ca6fb8}{isAuthenticated}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a1c7629837552e1a6a1d1915b84432dbb}{authenticated}};}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00042}00042\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00043}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a15bf0dca068a29e37300b3bb5c15f167}{00043}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_a15bf0dca068a29e37300b3bb5c15f167}{setAuthenticated}}(\textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_ad07df4ff5d9a5a4201248e4f80ca6fb8}{isAuthenticated}})\ \textcolor{keywordflow}{throws}\ IllegalArgumentException\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ this.authenticated\ =\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_ad07df4ff5d9a5a4201248e4f80ca6fb8}{isAuthenticated}};}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00047}00047\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00048}\mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_aca0eaaf5098513d13d61067b3083abec}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_aca0eaaf5098513d13d61067b3083abec}{getName}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1security_1_1_token_authentication_af89c7cf6586a8c221d5b35c3c23ae3f7}{token}};\ \textcolor{comment}{//\ Or\ return\ the\ username\ if\ you\ have\ one}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_token_authentication_8java_source_l00051}00051\ \}}
+
+\end{DoxyCode}

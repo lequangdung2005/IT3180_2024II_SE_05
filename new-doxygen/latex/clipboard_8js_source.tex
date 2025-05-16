@@ -1,0 +1,67 @@
+\doxysection{clipboard.\+js}
+\hypertarget{clipboard_8js_source}{}\label{clipboard_8js_source}\index{doxygen/html/clipboard.js@{doxygen/html/clipboard.js}}
+\mbox{\hyperlink{clipboard_8js}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00001}00001\ /**}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00003}00003\ The\ code\ below\ is\ based\ on\ the\ Doxygen\ Awesome\ project,\ see}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00004}00004\ https://github.com/jothepro/doxygen-\/awesome-\/css}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00006}00006\ MIT\ License}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00008}00008\ Copyright\ (c)\ 2021\ -\/\ 2022\ jothepro}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00010}00010\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00011}00011\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00012}00012\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00013}00013\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00014}00014\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00015}00015\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00017}00017\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00018}00018\ copies\ or\ substantial\ portions\ of\ the\ Software.}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00020}00020\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00021}00021\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00022}00022\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00023}00023\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00024}00024\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00025}00025\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00026}00026\ SOFTWARE.}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00028}00028\ */}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00030}00030\ let\ clipboard\_title\ =\ "{}Copy\ to\ clipboard"{}}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00031}00031\ let\ clipboard\_icon\ =\ \`{}<svg\ xmlns="{}http://www.w3.org/2000/svg"{}\ viewBox="{}0\ 0\ 24\ 24"{}\ width="{}24"{}\ height="{}24"{}><path\ fill="{}\#888"{}\ d="{}M16\ 1H4c-\/1.1\ 0-\/2\ .9-\/2\ 2v14h2V3h12V1zm3\ 4H8c-\/1.1\ 0-\/2\ .9-\/2\ 2v14c0\ 1.1.9\ 2\ 2\ 2h11c1.1\ 0\ 2-\/.9\ 2-\/2V7c0-\/1.1-\/.9-\/2-\/2-\/2zm0\ 16H8V7h11v14z"{}/></svg>`}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00032}00032\ let\ clipboard\_successIcon\ =\ \`{}<svg\ xmlns="{}http://www.w3.org/2000/svg"{}\ viewBox="{}0\ 0\ 24\ 24"{}\ width="{}24"{}\ height="{}24"{}><path\ d="{}M9\ 16.17L4.83\ 12l-\/1.42\ 1.41L9\ 19\ 21\ 7l-\/1.41-\/1.41L9\ 16.17z"{}/></svg>`}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00033}00033\ let\ clipboard\_successDuration\ =\ 1000}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00035}00035\ \$(function()\ \{}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00036}00036\ \ \ if(navigator.clipboard)\ \{}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00037}00037\ \ \ \ \ const\ fragments\ =\ document.getElementsByClassName("{}fragment"{})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00038}00038\ \ \ \ \ for(const\ fragment\ of\ fragments)\ \{}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00039}00039\ \ \ \ \ \ \ const\ clipboard\_div\ =\ document.createElement("{}div"{})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00040}00040\ \ \ \ \ \ \ clipboard\_div.classList.add("{}clipboard"{})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00041}00041\ \ \ \ \ \ \ clipboard\_div.innerHTML\ =\ clipboard\_icon}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00042}00042\ \ \ \ \ \ \ clipboard\_div.title\ =\ clipboard\_title}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00043}00043\ \ \ \ \ \ \ \$(clipboard\_div).click(function()\ \{}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00044}00044\ \ \ \ \ \ \ \ \ const\ content\ =\ this.parentNode.cloneNode(true)}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00045}00045\ \ \ \ \ \ \ \ \ //\ filter\ out\ line\ number\ and\ folded\ fragments\ from\ file\ listings}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00046}00046\ \ \ \ \ \ \ \ \ content.querySelectorAll("{}.lineno,\ .ttc,\ .foldclosed"{}).forEach((node)\ =>\ \{\ node.remove()\ \})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00047}00047\ \ \ \ \ \ \ \ \ let\ text\ =\ content.textContent}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00048}00048\ \ \ \ \ \ \ \ \ //\ remove\ trailing\ newlines\ and\ trailing\ spaces\ from\ empty\ lines}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00049}00049\ \ \ \ \ \ \ \ \ text\ =\ text.replace(/\string^\(\backslash\)s*\(\backslash\)n/gm,'\(\backslash\)n').replace(/\(\backslash\)n*\$/,'')}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00050}00050\ \ \ \ \ \ \ \ \ navigator.clipboard.writeText(text);}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00051}00051\ \ \ \ \ \ \ \ \ this.classList.add("{}success"{})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00052}00052\ \ \ \ \ \ \ \ \ this.innerHTML\ =\ clipboard\_successIcon}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00053}00053\ \ \ \ \ \ \ \ \ window.setTimeout(()\ =>\ \{\ //\ switch\ back\ to\ normal\ icon\ after\ timeout}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ this.classList.remove("{}success"{})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ this.innerHTML\ =\ clipboard\_icon}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00056}00056\ \ \ \ \ \ \ \ \ \},\ clipboard\_successDuration);}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00057}00057\ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00058}00058\ \ \ \ \ \ \ fragment.insertBefore(clipboard\_div,\ fragment.firstChild)}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00060}00060\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clipboard_8js_source_l00061}00061\ \})}
+
+\end{DoxyCode}

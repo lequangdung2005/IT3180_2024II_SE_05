@@ -1,0 +1,7 @@
+<map id="HBox" name="HBox">
+<area shape="rect" id="Node000001" title=" " alt="" coords="172,5,216,75"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientDonationPage.html" title=" " alt="" coords="5,123,182,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,81,129,125,125,121,160,78"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1ClientFamilyPage.html" title=" " alt="" coords="207,123,383,208"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="227,77,263,121,259,125,223,81"/>
+</map>

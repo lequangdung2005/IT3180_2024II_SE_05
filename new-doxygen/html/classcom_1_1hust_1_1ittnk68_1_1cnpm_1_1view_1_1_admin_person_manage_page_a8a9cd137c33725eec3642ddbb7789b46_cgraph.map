@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.view.AdminPersonManagePage.createPersonCreateForm" name="com.hust.ittnk68.cnpm.view.AdminPersonManagePage.createPersonCreateForm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,262,89"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1view_1_1_admin_person_manage_page.html#aab542f6577abd7916b0e3777defc1c70" title=" " alt="" coords="314,5,564,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="262,43,298,39,298,45,263,49"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1controller_1_1_client_scene_controller.html#af31aad947222918a919a0ed80296e4f3" title=" " alt="" coords="310,72,568,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,71,294,75,294,80,262,77"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode" name="com.hust.ittnk68.cnpm.communication.UserGetPaymentQrCode">
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,439,250,737"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_client_message_base.html" title=" " alt="" coords="5,5,245,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,148,132,439,126,439,123,148"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_payment_request.html" title=" " alt="" coords="147,183,386,375"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="179,144,204,181,200,184,174,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="227,376,205,425,200,422,222,373"/>
+</map>

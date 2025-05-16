@@ -1,0 +1,7 @@
+<map id="com.hust.ittnk68.cnpm.interactor.ClientInteractor.showFailedWindow" name="com.hust.ittnk68.cnpm.interactor.ClientInteractor.showFailedWindow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,232,81"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base.html#a68baaa04188acc0fac72c482c22aa970" title=" " alt="" coords="280,5,562,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,45,264,41,264,47,233,50"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1hust_1_1ittnk68_1_1cnpm_1_1communication_1_1_server_response_base.html#a00b28b53917a741c7537a38b7104c666" title=" " alt="" coords="287,72,554,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="233,70,272,74,271,80,232,75"/>
+</map>

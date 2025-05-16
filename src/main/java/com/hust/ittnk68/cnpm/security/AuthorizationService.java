@@ -134,7 +134,7 @@ public class AuthorizationService {
 
     public boolean canGetParkingFee(String username)
     {
-        return checkToken (new ClientMessageBase (username));
+        return true;
     }
 
 	public boolean canGetVehicleStatistics(String username)

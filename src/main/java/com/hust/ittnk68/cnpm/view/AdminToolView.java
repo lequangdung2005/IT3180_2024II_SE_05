@@ -127,7 +127,7 @@ public class AdminToolView extends DuongFXTabPane {
                 @Override
                 public ServerResponseFile call () {
                     updateMessage ("Loading donation statistics ...");
-                    return sceneController.getVehicleCsv ();
+                    return sceneController.getDonationStatistics();
                 }
             };
 

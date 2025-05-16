@@ -29,23 +29,7 @@ import com.hust.ittnk68.cnpm.communication.UserQueryObjectById;
 import com.hust.ittnk68.cnpm.communication.UserQueryPaymentStatus;
 import com.hust.ittnk68.cnpm.communication.UserQueryPersonByFId;
 import com.hust.ittnk68.cnpm.interactor.ClientInteractor;
-import com.hust.ittnk68.cnpm.model.ClientModel;
-import com.hust.ittnk68.cnpm.model.CreateAccountModel;
-import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
-import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
-import com.hust.ittnk68.cnpm.model.CreatePaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.CreatePersonModel;
-import com.hust.ittnk68.cnpm.model.FindAccountModel;
-import com.hust.ittnk68.cnpm.model.FindExpenseModel;
-import com.hust.ittnk68.cnpm.model.FindFamilyModel;
-import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.FindPersonModel;
-import com.hust.ittnk68.cnpm.model.TemporaryStayAbsentRequest;
-import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
-import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
-import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
-import com.hust.ittnk68.cnpm.model.UpdatePaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
+import com.hust.ittnk68.cnpm.model.*;
 import com.hust.ittnk68.cnpm.type.AccountType;
 import com.hust.ittnk68.cnpm.type.ResponseStatus;
 
@@ -101,6 +85,10 @@ public class ClientSceneController {
     private FindPaymentStatusModel findPaymentStatusModel;
     private UpdatePaymentStatusModel updatePaymentStatusModel;
 
+    private CreateVehicleModel createVehicleModel;
+    private FindVehicleModel findVehicleModel;
+    private UpdateVehicleModel updateVehicleModel;
+
     private ClientModel clientModel;
 
     private ClientInteractor clientInteractor;
@@ -129,6 +117,10 @@ public class ClientSceneController {
         createPaymentStatusModel = new CreatePaymentStatusModel ();
         findPaymentStatusModel = new FindPaymentStatusModel ();
         updatePaymentStatusModel = new UpdatePaymentStatusModel ();
+
+        createVehicleModel = new CreateVehicleModel();
+        findVehicleModel = new FindVehicleModel();
+        updateVehicleModel = new UpdateVehicleModel();
     }
 
     public void start(Stage stage, String title, double width, double height) {
@@ -633,6 +625,16 @@ public class ClientSceneController {
     }
     public UpdatePaymentStatusModel getUpdatePaymentStatusModel () {
         return updatePaymentStatusModel;
+    }
+
+    public CreateVehicleModel getCreateVehicleModel() {
+        return createVehicleModel;
+    }
+    public FindVehicleModel getFindVehicleModel() {
+        return findVehicleModel;
+    }
+    public UpdateVehicleModel getUpdateVehicleModel () {
+        return updateVehicleModel;
     }
 
     public Scene getScene () {

@@ -42,7 +42,8 @@ public class AdminHomeSideBar extends BorderPane {
 	btn5.setOnAction (e -> interactor.setRoot (adminPaymentStatusPage));
 
 	IconButton btn8 = new IconButton (new FontIcon (Material2AL.DIRECTIONS_CAR));
-	// btn8.setOnAction (e -> interactor.setRoot (new <D->);)
+	AdminVehicleManagePage adminVehicleManagePage = new AdminVehicleManagePage(sceneController);
+	btn8.setOnAction (e -> interactor.setRoot (adminVehicleManagePage));
 
 	IconButton btn6 = new IconButton (new FontIcon (Material2OutlinedAL.CONTACT_PAGE));
 	btn6.setOnAction (e -> interactor.setRoot (new AdminTemporaryStayAbsentView (sceneController)));
@@ -50,9 +51,9 @@ public class AdminHomeSideBar extends BorderPane {
 	IconButton btn7 = new IconButton (new FontIcon (Material2OutlinedAL.AUTORENEW));
 	btn7.setOnAction (e -> interactor.setRoot (new AdminToolView(sceneController)));
 
-	new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6, btn7);
+	new AccentToggleGroup (btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8);
 
-	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5);
+	VBox groupWrapper = new VBox (btn1, btn2, btn3, btn4, btn5, btn8);
 	groupWrapper.setAlignment (Pos.CENTER);
 	groupWrapper.getStyleClass().addAll("graywrapper", "updownpadding");
 

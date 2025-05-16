@@ -26,34 +26,8 @@ import com.hust.ittnk68.cnpm.controller.ClientHomeScreenController;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
 import com.hust.ittnk68.cnpm.controller.LoginController;
 import com.hust.ittnk68.cnpm.database.GetSQLProperties;
-import com.hust.ittnk68.cnpm.model.Account;
-import com.hust.ittnk68.cnpm.model.ClientModel;
-import com.hust.ittnk68.cnpm.model.CreateAccountModel;
-import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
-import com.hust.ittnk68.cnpm.model.CreateFamilyModel;
-import com.hust.ittnk68.cnpm.model.CreatePaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.CreatePersonModel;
-import com.hust.ittnk68.cnpm.model.Expense;
-import com.hust.ittnk68.cnpm.model.Family;
-import com.hust.ittnk68.cnpm.model.FindAccountModel;
-import com.hust.ittnk68.cnpm.model.FindExpenseModel;
-import com.hust.ittnk68.cnpm.model.FindFamilyModel;
-import com.hust.ittnk68.cnpm.model.FindPaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.FindPersonModel;
-import com.hust.ittnk68.cnpm.model.PaymentStatus;
-import com.hust.ittnk68.cnpm.model.Person;
-import com.hust.ittnk68.cnpm.model.UpdateAccountModel;
-import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
-import com.hust.ittnk68.cnpm.model.UpdateFamilyModel;
-import com.hust.ittnk68.cnpm.model.UpdatePaymentStatusModel;
-import com.hust.ittnk68.cnpm.model.UpdatePersonModel;
-import com.hust.ittnk68.cnpm.type.AccountType;
-import com.hust.ittnk68.cnpm.type.Date;
-import com.hust.ittnk68.cnpm.type.ExpenseType;
-import com.hust.ittnk68.cnpm.type.Nation;
-import com.hust.ittnk68.cnpm.type.ResidenceStatus;
-import com.hust.ittnk68.cnpm.type.ResponseStatus;
-import com.hust.ittnk68.cnpm.type.Sex;
+import com.hust.ittnk68.cnpm.model.*;
+import com.hust.ittnk68.cnpm.type.*;
 import com.hust.ittnk68.cnpm.view.LoadingView;
 
 import javafx.collections.FXCollections;
@@ -1326,6 +1300,231 @@ public class ClientInteractor {
     public void updateAndClosePaymentStatusHandler () {
         updatePaymentStatusHandler();
         closePaymentStatusUpdateHandler ();
+    }
+
+    public void findVehicleHandler () {
+        FindVehicleModel model = sceneController.getFindVehicleModel();
+
+        String familyIdString = model.getFamilyId().get();
+        String vehicleTypeString = model.getVehicleType().get();
+        VehicleType vehicleType = null;
+        if (vehicleTypeString.equals ("Xe hơi")) {
+            vehicleType = VehicleType.CAR;
+        }
+        else if (vehicleTypeString.equals ("Xe đạp")) {
+            vehicleType = VehicleType.BICYCLE;
+        }
+        else if (vehicleTypeString.equals ("Xe máy")) {
+            vehicleType = VehicleType.MOTORCYCLE;
+        }
+        else if (vehicleTypeString.equals ("Xe đạp điện")) {
+            vehicleType = VehicleType.ELECTRIC_BICYCLE;
+        }
+
+        String plateId = model.getPlateId().get();
+        plateId = plateId.trim ();
+        plateId = plateId.replaceAll ("^ +| +$|( )+", "$1");
+
+        StringBuilder conditionBuilder = new StringBuilder ("(1=1)");
+        if (!familyIdString.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (family_id='%s')", familyIdString));
+        }
+        if (vehicleType != null) {
+            conditionBuilder.append (String.format (" AND (vehicle_type='%s')", vehicleType));
+        }
+        if (!plateId.isEmpty()) {
+            conditionBuilder.append (String.format (" AND (plate_id='%s')", plateId));
+        }
+
+        String condition = conditionBuilder.toString ();
+
+        AdminFindObject request = new AdminFindObject (sceneController.getUsername (),
+                                        condition, new Vehicle());
+
+        Task<List<Map<String, Object>> > findVehicleTask = new Task<>() {
+            @Override
+            public List<Map<String, Object>>  call () {
+                updateMessage ("Executing find vehicle query ...");
+                return sceneController.findObject (request).getRequestResult ();
+            }
+        };
+
+        LoadingView root = new LoadingView (findVehicleTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        findVehicleTask.setOnSucceeded (e -> {
+            stage.close();
+
+            List<Map<String, Object>>  res = findVehicleTask.getValue ();
+            List<Vehicle> data = new ArrayList<>();
+            for (Map<String, Object> map : res) {
+                data.add (Vehicle.convertFromMap (map));
+            }
+            TableView<Vehicle> tableView = model.getTableView ();
+            tableView.setItems (FXCollections.observableList (data));
+        });
+
+        new Thread (findVehicleTask).start ();
+    }
+
+    public void createVehicleHandler () {
+        CreateVehicleModel model = sceneController.getCreateVehicleModel ();
+
+        String familyIdString = model.getFamilyId().get();
+        String vehicleTypeString = model.getVehicleType().get();
+        VehicleType vehicleType;
+        if (vehicleTypeString.equals ("Xe hơi")) {
+            vehicleType = VehicleType.CAR;
+        }
+        else if (vehicleTypeString.equals ("Xe đạp")) {
+            vehicleType = VehicleType.BICYCLE;
+        }
+        else if (vehicleTypeString.equals ("Xe máy")) {
+            vehicleType = VehicleType.MOTORCYCLE;
+        }
+        else {
+            vehicleType = VehicleType.ELECTRIC_BICYCLE;
+        }
+        String plateId = model.getPlateId().get();
+        plateId = plateId.trim ();
+        plateId = plateId.replaceAll ("^ +| +$|( )+", "$1");
+
+        if (familyIdString.isEmpty ()) {
+            notificate ("Thất bại", "Chưa điền family id");
+            return ;
+        }
+        if (plateId.isEmpty ()) {
+            notificate ("Thất bại", "Chưa điền plate id");
+            return ;
+        }
+
+        Vehicle vehicle = new Vehicle(vehicleType, Integer.parseInt(familyIdString), plateId);
+
+        AdminCreateObject req = new AdminCreateObject (sceneController.getUsername(), vehicle);
+
+        ObjectMapper mapper = new ObjectMapper ();
+        try {
+            String a = mapper.writeValueAsString (req.getObject ());
+            System.out.println (a);
+        }
+        catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+        Task<ServerCreateObjectResponse> createPersonTask = new Task<>() {
+            @Override
+            public ServerCreateObjectResponse call () {
+                updateMessage ("Create vehicle...");
+                return sceneController.createObject (req);
+            }
+        };
+
+        LoadingView root = new LoadingView (createPersonTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        createPersonTask.setOnSucceeded (e -> {
+            stage.close ();
+
+            ServerCreateObjectResponse res = createPersonTask.getValue ();
+            System.out.println (res.getResponseStatus());
+            System.out.println (res.getResponseMessage());
+            System.out.println (res.getObjectId());
+            if (res.getResponseStatus() == ResponseStatus.OK) {
+                notificateUpdateSuccessfully ();
+            }
+            else {
+                showFailedWindow (res);
+            }
+        });
+
+        new Thread (createPersonTask).start ();
+    }
+
+    public void updateVehicleHandler () {
+        UpdateVehicleModel model = sceneController.getUpdateVehicleModel ();
+
+        String vehicleId = model.getVehicleId().get ();
+        String familyIdString = model.getFamilyId().get();
+        String vehicleTypeString = model.getVehicleType().get();
+        VehicleType vehicleType;
+        if (vehicleTypeString.equals ("Xe hơi")) {
+            vehicleType = VehicleType.CAR;
+        }
+        else if (vehicleTypeString.equals ("Xe đạp")) {
+            vehicleType = VehicleType.BICYCLE;
+        }
+        else if (vehicleTypeString.equals ("Xe máy")) {
+            vehicleType = VehicleType.MOTORCYCLE;
+        }
+        else {
+            vehicleType = VehicleType.ELECTRIC_BICYCLE;
+        }
+        String plateId = model.getPlateId().get();
+        plateId = plateId.trim ();
+        plateId = plateId.replaceAll ("^ +| +$|( )+", "$1");
+
+        if (familyIdString.isEmpty ()) {
+            notificate ("Thất bại", "Chưa điền family id");
+            return ;
+        }
+        if (plateId.isEmpty ()) {
+            notificate ("Thất bại", "Chưa điền plate id");
+            return ;
+        }
+
+        Vehicle object = new Vehicle(vehicleType, Integer.valueOf(familyIdString), plateId);
+        object.setId(Integer.parseInt(vehicleId));
+
+        Task<ServerUpdateObjectResponse> updatePersonTask = new Task<>() {
+            @Override
+            public ServerUpdateObjectResponse call () {
+                updateMessage ("Update vehicle query ...");
+                AdminUpdateObject request = new AdminUpdateObject (sceneController.getUsername(), object);
+                return sceneController.updateObject (request);
+            }
+        };
+
+        LoadingView root = new LoadingView (updatePersonTask);
+        Stage stage = new Stage ();
+        sceneController.openSubStage (stage, root);
+
+        updatePersonTask.setOnSucceeded (e -> {
+            stage.close();
+
+            ServerUpdateObjectResponse res = updatePersonTask.getValue ();
+            switch (res.getResponseStatus ()) {
+                case OK:
+                    TableView<Vehicle> tableView = sceneController.getFindVehicleModel().getTableView();
+                    for(int i = 0; i < tableView.getItems().size(); ++i) {
+                        if (tableView.getItems().get(i).getVehicleId() == object.getId()) {
+                            tableView.getItems().set(i, (Vehicle) object);
+                            break;
+                        }
+                    }
+
+                    notificateUpdateSuccessfully ();
+                    break;
+
+                default:
+                    showFailedWindow (res);
+                    break;
+            }
+        });
+
+        new Thread (updatePersonTask).start ();
+    }
+
+    public void closeVehicleUpdateHandler () {
+        sceneController.getUpdateVehicleModel()
+                        .getUpdateVehicleWindow()
+                        .close();
+    }
+
+    public void updateAndCloseVehicleHandler () {
+        updateVehicleHandler ();
+        closeVehicleUpdateHandler ();
     }
 
 }

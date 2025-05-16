@@ -2,6 +2,7 @@ package com.hust.ittnk68.cnpm.view;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,9 +10,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.hust.ittnk68.cnpm.communication.AdminDeleteObject;
 import com.hust.ittnk68.cnpm.communication.ServerDeleteObjectResponse;
 import com.hust.ittnk68.cnpm.controller.ClientSceneController;
-import com.hust.ittnk68.cnpm.model.CreateExpenseModel;
-import com.hust.ittnk68.cnpm.model.Expense;
-import com.hust.ittnk68.cnpm.model.UpdateExpenseModel;
+import com.hust.ittnk68.cnpm.model.CreateVehicleModel;
+import com.hust.ittnk68.cnpm.model.UpdateVehicleModel;
+import com.hust.ittnk68.cnpm.model.FindVehicleModel;
+import com.hust.ittnk68.cnpm.model.Vehicle;
+import com.hust.ittnk68.cnpm.type.VehicleType;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.material2.Material2MZ;
@@ -49,89 +52,55 @@ import javafx.util.Callback;
 public class AdminVehicleManagePage extends DuongFXTabPane {
 
     public AdminVehicleManagePage (ClientSceneController sceneController) {
-        this.getTabs().add (new Tab ("Tạo khoản thu", createExpenseCreateForm(sceneController)));
-        this.getTabs().add (new Tab ("Tìm kiếm, chỉnh sửa hoặc xóa", createExpenseSearchDeleteView(sceneController))); 
+        this.getTabs().add (new Tab ("Thêm phương tiện", createVehicleCreateForm (sceneController)));
+        this.getTabs().add (new Tab ("Tìm kiếm, chỉnh sửa hoặc xóa", createVehicleSearchDeleteView(sceneController))); 
     }
 
-    private VBox createExpenseSearchDeleteView (ClientSceneController sceneController) {
+    private VBox createVehicleSearchDeleteView(ClientSceneController sceneController) {
 
-	CheckBox enableDayFilter = new CheckBox ();
+	DuongFXIntegerField familyId = new DuongFXIntegerField ();
+	familyId.setPromptText ("Family ID");
 
-        LocalDate today = LocalDate.now (ZoneId.systemDefault());
-	DatePicker beginDatePicker = new DatePicker (today);
-        beginDatePicker.setEditable (true);
-	DatePicker endDatePicker = new DatePicker (today);
-        endDatePicker.setEditable (true);
+        final ComboBox<String> vehicleTypeChoose = new ComboBox<>( FXCollections.observableList(Arrays.asList("-- Tất cả --", "Xe hơi", "Xe đạp", "Xe máy", "Xe đạp điện")) );
+	vehicleTypeChoose.getSelectionModel().selectFirst ();
 
-	beginDatePicker.getEditor().setDisable (true);
-	endDatePicker.getEditor().setDisable (true);
-	enableDayFilter.selectedProperty().addListener (new ChangeListener<Boolean>() {
-	    @Override
-	    public void changed (ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-		beginDatePicker.getEditor().setDisable (!newValue);
-		endDatePicker.getEditor().setDisable (!newValue);
-	    }
-	});
+        TextField plateId = new TextField();
+        plateId.setPromptText("Plate Id");
 
-	DuongFXIntegerField beginTotalCostIntField = new DuongFXIntegerField ();
-	beginTotalCostIntField.setPromptText ("Min total cost");
-	DuongFXIntegerField endTotalCostIntField = new DuongFXIntegerField ();
-	endTotalCostIntField.setPromptText ("Max total cost");
-
-        ComboBox<String> expenseTypeChoose = new ComboBox<>();
-        expenseTypeChoose.setItems (FXCollections.observableArrayList(
-	    "-- Tất cả --", "service", "electric", "water", "parking", "donation"
-        ));
-        expenseTypeChoose.getSelectionModel().selectFirst();
-
-	ToggleSwitch requiredSwitch = new ToggleSwitch ();
-	requiredSwitch.setSelected (false);
-
-        sceneController.getFindExpenseModel().enableDayFilterProperty().bind (enableDayFilter.selectedProperty());
-        sceneController.getFindExpenseModel().beginPublishedDateProperty().bind (beginDatePicker.valueProperty());
-        sceneController.getFindExpenseModel().endPublishedDateProperty().bind (endDatePicker.valueProperty());
-        sceneController.getFindExpenseModel().minTotalCostProperty().bind (beginTotalCostIntField.textProperty());
-        sceneController.getFindExpenseModel().maxTotalCostProperty().bind (endTotalCostIntField.textProperty());
-        sceneController.getFindExpenseModel().expenseTypeProperty().bind (expenseTypeChoose.valueProperty());
-        sceneController.getFindExpenseModel().requiredProperty().bind (requiredSwitch.selectedProperty());
+        sceneController.getFindVehicleModel().getFamilyId().bind (familyId.textProperty());
+        sceneController.getFindVehicleModel().getVehicleType().bind (vehicleTypeChoose.valueProperty());
+        sceneController.getFindVehicleModel().getPlateId().bind (plateId.textProperty());
 
         IconButton resetFilterBtn = new IconButton (new FontIcon (Material2MZ.REPLAY));
         resetFilterBtn.setOnAction (e -> {
-	    enableDayFilter.setSelected (false);
-	    beginDatePicker.valueProperty().set (today);
-	    endDatePicker.valueProperty().set (today);
-	    beginTotalCostIntField.setText ("");
-	    endTotalCostIntField.setText ("");
-	    expenseTypeChoose.getSelectionModel().selectFirst();
-	    requiredSwitch.setSelected (false);
+	    familyId.setText ("");
+            vehicleTypeChoose.getSelectionModel().selectFirst ();
+	    plateId.setText ("");
         });
 
         FlowPane filters = new FlowPane ();
         filters.setVgap (8);
         filters.setHgap (4);
         filters.getChildren ().addAll (
-	    new InputGroup (new Label("", enableDayFilter), beginDatePicker, new Label ("", new FontIcon (Material2OutlinedAL.KEYBOARD_ARROW_RIGHT)), endDatePicker),
-	    new InputGroup (beginTotalCostIntField, new Label ("", new FontIcon (Material2OutlinedAL.KEYBOARD_ARROW_RIGHT)), endTotalCostIntField),
-	    new InputGroup (new Label("expense type"), expenseTypeChoose),
-
-            new InputGroup (new Label("required", requiredSwitch), new Spacer (5)),
-
+            familyId,
+            vehicleTypeChoose,
+            plateId,
 	    resetFilterBtn
         );
 
         Button searchBtn = new Button ("Tìm kiếm", new FontIcon (Material2MZ.PERSON_SEARCH));
-        searchBtn.setOnAction (e -> sceneController.getClientInteractor().findExpenseHandler());
+        searchBtn.setOnAction (e -> sceneController.getClientInteractor().findVehicleHandler ());
 
-        TableView<Expense> tableView = new TableView<>();
-        sceneController.getFindExpenseModel().setTableView (tableView);
+        TableView<Vehicle> tableView = new TableView<>();
+        sceneController.getFindVehicleModel().setTableView (tableView);
 
-        TableColumn<Expense, String> actionCol = new TableColumn<> ("Action");
+        TableColumn<Vehicle, String> actionCol = new TableColumn<> ("Action");
         actionCol.setCellValueFactory (new PropertyValueFactory<> ("Dummy Value"));
-        actionCol.setCellFactory (new Callback<TableColumn<Expense, String>, TableCell<Expense, String>>() {
+        actionCol.setCellFactory (new Callback<TableColumn<Vehicle, String>, TableCell<Vehicle, String>>() {
             
             @Override
-            public TableCell call(final TableColumn<Expense, String> param) {
-                final TableCell<Expense, String> cell = new TableCell<>() {
+            public TableCell call(final TableColumn<Vehicle, String> param) {
+                final TableCell<Vehicle, String> cell = new TableCell<>() {
 
                     final IconButton editBtn = new IconButton (new FontIcon (Material2OutlinedAL.CREATE));
                     final IconButton deleteBtn = new IconButton (new FontIcon (Material2OutlinedAL.DELETE));
@@ -150,19 +119,19 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
                             deleteBtn.getStyleClass().addAll(Styles.DANGER);
 
                             editBtn.setOnAction (event -> {
-                                Expense expense = getTableView().getItems().get(getIndex());
-                                UpdateExpenseModel model = sceneController.getUpdateExpenseModel ();
-                                model.setUpdateExpenseWindow (new Stage ());
-                                sceneController.openSubStage (model.getUpdateExpenseWindow (), createExpenseUpdateForm (sceneController, expense));
+                                Vehicle vehicle = getTableView().getItems().get(getIndex());
+                                UpdateVehicleModel model = sceneController.getUpdateVehicleModel();
+                                model.setUpdateVehicleWindow (new Stage ());
+                                sceneController.openSubStage (model.getUpdateVehicleWindow (), createVehicleUpdateForm (sceneController, vehicle));
                             });
                             deleteBtn.setOnAction (event -> {
-                                Expense expense = getTableView().getItems().get(getIndex());
+                                Vehicle vehicle = getTableView().getItems().get(getIndex());
 
                                 ObjectMapper mapper = new ObjectMapper ();
                                 mapper.enable (SerializationFeature.INDENT_OUTPUT);
                                 String json = null;
                                 try {
-                                    json = mapper.writeValueAsString (expense);
+                                    json = mapper.writeValueAsString (vehicle);
                                 }
                                 catch (Exception e) {
                                     e.printStackTrace ();
@@ -177,7 +146,7 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
                                 if (result.get() != ButtonType.OK)
                                     return;
 
-                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getUsername(), expense);
+                                AdminDeleteObject request = new AdminDeleteObject (sceneController.getUsername(), vehicle);
                                 ServerDeleteObjectResponse res = sceneController.deleteObject (request);
                                 switch (res.getResponseStatus()) {
                                     case OK:
@@ -201,29 +170,19 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
 
         });
 
-        TableColumn<Expense, String> expenseIdCol = new TableColumn<>("Expense Id");
-        expenseIdCol.setCellValueFactory (new PropertyValueFactory<> ("expenseId"));
+        TableColumn<Vehicle, String> vehicleIdCol = new TableColumn<>("Vehicle Id");
+        vehicleIdCol.setCellValueFactory (new PropertyValueFactory<> ("vehicleId"));
 
-        TableColumn<Expense, String> expenseTitleCol = new TableColumn<>("Expense Title");
-        expenseTitleCol.setCellValueFactory (new PropertyValueFactory<> ("expenseTitle"));
+        TableColumn<Vehicle, String> vehicleTypeCol = new TableColumn<>("Vehicle Type");
+        vehicleTypeCol.setCellValueFactory (new PropertyValueFactory<> ("vehicleType"));
 
-        TableColumn<Expense, String> expenseDescriptionCol = new TableColumn<>("Expense description");
-        expenseDescriptionCol.setCellValueFactory (new PropertyValueFactory<>("expenseDescription"));
+        TableColumn<Vehicle, String> familyIdCol = new TableColumn<>("Family Id");
+        familyIdCol.setCellValueFactory (new PropertyValueFactory<> ("familyId"));
 
-        TableColumn<Expense, String> publishedDateCol = new TableColumn<>("Published date");
-        publishedDateCol.setCellValueFactory (new PropertyValueFactory<>("publishedDate"));
+        TableColumn<Vehicle, String> plateIdCol = new TableColumn<>("Plate Id");
+        plateIdCol.setCellValueFactory (new PropertyValueFactory<> ("plateId"));
 
-        TableColumn<Expense, String> totalCostCol = new TableColumn<>("Total cost");
-        totalCostCol.setCellValueFactory (new PropertyValueFactory<>("totalCost"));
-
-        TableColumn<Expense, String> expenseTypeCol = new TableColumn<>("Expense type");
-        expenseTypeCol.setCellValueFactory (new PropertyValueFactory<>("expenseType"));
-
-        TableColumn<Expense, String> requiredCol = new TableColumn<>("Required?");
-        requiredCol.setCellValueFactory (new PropertyValueFactory<>("required"));
-
-        tableView.getColumns().addAll (actionCol, expenseIdCol, expenseTitleCol,
-						expenseDescriptionCol, publishedDateCol, totalCostCol, expenseTypeCol, requiredCol);
+        tableView.getColumns().addAll (actionCol, vehicleIdCol, vehicleTypeCol, familyIdCol, plateIdCol);
 
         VBox vb = new VBox (18,
             new Text ("FILTER"),
@@ -235,92 +194,64 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
         return vb;
     }
 
-    private VBox createExpenseUpdateForm (ClientSceneController sceneController, Expense expense) {
-        UpdateExpenseModel model = sceneController.getUpdateExpenseModel ();
-
+    private VBox createVehicleUpdateForm (ClientSceneController sceneController, Vehicle vehicle) {
         GridPane gridPane = new GridPane ();
 
         gridPane.setVgap (10);
         gridPane.setHgap (10);
         // gridPane.setGridLinesVisible (true);
 
-	Text expenseId = new Text ("Expense id:");
-	gridPane.add (expenseId, 0, 0, 2, 1);
+        Text vehicleId = new Text ("Vehicle ID:");
+        gridPane.add (vehicleId, 0, 0, 2, 1);
+        DuongFXIntegerField vehicleIdTf = new DuongFXIntegerField();
+        vehicleIdTf.setEditable(false);
+        gridPane.add (vehicleIdTf, 2, 0, 3, 1);
 
-	TextField expenseIdTextField = new TextField ();
-	expenseIdTextField.setDisable (true);
-	gridPane.add (expenseIdTextField, 2, 0, 3, 1);
-	
-        Text expenseTitle = new Text ("Expense Title:");
-        gridPane.add (expenseTitle, 0, 1, 2, 1);
+        Text familyId = new Text ("Family ID:");
+        gridPane.add (familyId, 0, 1, 2, 1);
 
-        TextField expenseTitleTextField = new TextField ();
-        gridPane.add (expenseTitleTextField, 2, 1, 3, 1);
+        DuongFXIntegerField familyIdTf = new DuongFXIntegerField();
+        gridPane.add (familyIdTf, 2, 1, 3, 1);
 
-        Text expenseDescription = new Text ("Expense description:");
+        Text expenseDescription = new Text ("Vehicle Type:");
         gridPane.add (expenseDescription, 0, 2, 2, 1);
 
-        TextArea expenseDescriptionTextArea = new TextArea ();
-        gridPane.add (expenseDescriptionTextArea, 2, 2, 3, 1);
+        // ComboBox<String> vehicleTypeChoose = new ComboBox<>( FXCollections.observableList(Arrays.asList("Xe hơi", "Xe đạp", "Xe máy", "Xe đạp điện")) );
+        ComboBox<String> vehicleTypeChoose = new ComboBox<>();
+        vehicleTypeChoose.setItems(FXCollections.observableList(   Arrays.asList (VehicleType.values()).stream().map (a -> a.toString()).toList()   ));
+	vehicleTypeChoose.getSelectionModel().selectFirst ();
+        gridPane.add (vehicleTypeChoose, 2, 2, 3, 1);
 
-        Text publishedDate = new Text ("Published date:");
+        Text publishedDate = new Text ("Plate ID:");
         gridPane.add (publishedDate, 0, 3, 2, 1);
 
-        LocalDate today = LocalDate.now (ZoneId.systemDefault());
-        DatePicker publishedDatePicker = new DatePicker (today);
-        publishedDatePicker.setEditable (true);
-	gridPane.add (publishedDatePicker, 2, 3, 3, 1);
-
-        Text totalCost = new Text ("Total Cost:");
-        gridPane.add (totalCost, 0, 4, 2, 1);
-
-	DuongFXIntegerField totalCostIntField = new DuongFXIntegerField ();
-	gridPane.add (totalCostIntField, 2, 4, 3, 1);
-
-	Text expenseType = new Text ("Expense type:");
-        gridPane.add (expenseType, 0, 5, 2, 1);
-
-        ComboBox<String> expenseTypeChoose = new ComboBox<>();
-        expenseTypeChoose.setItems (FXCollections.observableArrayList(
-	    "service", "electric", "water", "parking", "donation"
-        ));
-	expenseTypeChoose.getSelectionModel().selectFirst ();
-	gridPane.add (expenseTypeChoose, 2, 5, 3, 1);
-
-	Text required = new Text ("Required:");
-	gridPane.add (required, 0, 6, 2, 1);
-
-	ToggleSwitch requiredSwitch = new ToggleSwitch ();
-	requiredSwitch.setSelected (false);
-	gridPane.add (requiredSwitch, 2, 6, 3, 1);
-
+        TextField plateIdTf = new TextField();
+	gridPane.add (plateIdTf, 2, 3, 3, 1);
 
         Button updateBtn = new Button ("Cập nhật");
         updateBtn.getStyleClass().addAll(Styles.ACCENT, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
-        updateBtn.setOnAction (e -> sceneController.getClientInteractor().updateExpenseHandler ());
+        updateBtn.setOnAction (e -> sceneController.getClientInteractor().updateVehicleHandler());
 
         Button updateAndCloseBtn = new Button ("Cập nhật và đóng");
         updateAndCloseBtn.getStyleClass().addAll (Styles.SUCCESS, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
-        updateAndCloseBtn.setOnAction (e -> sceneController.getClientInteractor().updateAndCloseExpenseHandler ());
+        updateAndCloseBtn.setOnAction (e -> sceneController.getClientInteractor().updateAndCloseVehicleHandler ());
 
         Button closeBtn = new Button ("Đóng");
         closeBtn.getStyleClass().addAll (Styles.DANGER, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
-        closeBtn.setOnAction (e -> sceneController.getClientInteractor().closeExpenseUpdateHandler());
+        closeBtn.setOnAction (e -> sceneController.getClientInteractor().closeVehicleUpdateHandler());
 
-	expenseIdTextField.setText (String.valueOf (expense.getExpenseId ()));
-	expenseTitleTextField.setText (String.valueOf (expense.getExpenseTitle ()));
-	expenseDescriptionTextArea.setText (String.valueOf (expense.getExpenseDescription ()));
-	publishedDatePicker.setValue ( expense.getPublishedDate ().convertToLocalDate() );
-	totalCostIntField.setText ( String.valueOf (expense.getTotalCost()) );
-	requiredSwitch.setSelected ( expense.getRequired() );
+        vehicleIdTf.setText (String.valueOf(vehicle.getVehicleId ()));
+        familyIdTf.setText (String.valueOf(vehicle.getFamilyId()));
+	vehicleTypeChoose.getItems().stream()
+				    .filter(string -> string.equals(vehicle.getVehicleType().toString()))
+				    .findAny()
+				    .ifPresent(vehicleTypeChoose.getSelectionModel()::select);
+        plateIdTf.setText (vehicle.getPlateId());
 
-	model.expenseIdProperty().bind(expenseIdTextField.textProperty());
-	model.expenseTitleProperty().bind(expenseTitleTextField.textProperty());
-	model.expenseDescriptionProperty().bind(expenseDescriptionTextArea.textProperty());
-	model.publishedDateProperty().bind(publishedDatePicker.valueProperty());
-	model.totalCostProperty().bind(totalCostIntField.textProperty());
-	model.expenseTypeProperty().bind(expenseTypeChoose.valueProperty());
-	model.requiredProperty().bind(requiredSwitch.selectedProperty());
+        sceneController.getUpdateVehicleModel().getVehicleId().bind (vehicleIdTf.textProperty());
+        sceneController.getUpdateVehicleModel().getFamilyId().bind (familyIdTf.textProperty());
+        sceneController.getUpdateVehicleModel().getVehicleType().bind (vehicleTypeChoose.valueProperty());
+        sceneController.getUpdateVehicleModel().getPlateId().bind (plateIdTf.textProperty());
 
         VBox vb = new VBox ( 18,
             gridPane,
@@ -330,9 +261,10 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
         return vb;
     }
 
-    private VBox createExpenseCreateForm (ClientSceneController sceneController) {
 
-        CreateExpenseModel model = sceneController.getCreateExpenseModel ();
+    private VBox createVehicleCreateForm (ClientSceneController sceneController) {
+
+        CreateVehicleModel model = sceneController.getCreateVehicleModel ();
 
         GridPane gridPane = new GridPane ();
 
@@ -340,60 +272,33 @@ public class AdminVehicleManagePage extends DuongFXTabPane {
         gridPane.setHgap (10);
         // gridPane.setGridLinesVisible (true);
 
-        Text expenseTitle = new Text ("Expense Title:");
-        gridPane.add (expenseTitle, 0, 0, 2, 1);
+        Text familyId = new Text ("Family ID:");
+        gridPane.add (familyId, 0, 0, 2, 1);
 
-        TextField expenseTitleTextField = new TextField ();
-        gridPane.add (expenseTitleTextField, 2, 0, 3, 1);
+        DuongFXIntegerField familyIdTf = new DuongFXIntegerField();
+        gridPane.add (familyIdTf, 2, 0, 3, 1);
 
-        Text expenseDescription = new Text ("Expense description:");
+        Text expenseDescription = new Text ("Vehicle Type:");
         gridPane.add (expenseDescription, 0, 1, 2, 1);
 
-        TextArea expenseDescriptionTextArea = new TextArea ();
-        gridPane.add (expenseDescriptionTextArea, 2, 1, 3, 1);
+        ComboBox<String> vehicleTypeChoose = new ComboBox<>();
+        vehicleTypeChoose = new ComboBox<>( FXCollections.observableList(Arrays.asList("Xe hơi", "Xe đạp", "Xe máy", "Xe đạp điện")) );
+	vehicleTypeChoose.getSelectionModel().selectFirst ();
+        gridPane.add (vehicleTypeChoose, 2, 1, 3, 1);
 
-        Text publishedDate = new Text ("Published date:");
+        Text publishedDate = new Text ("Plate ID:");
         gridPane.add (publishedDate, 0, 2, 2, 1);
 
-        LocalDate today = LocalDate.now (ZoneId.systemDefault());
-        DatePicker publishedDatePicker = new DatePicker (today);
-        publishedDatePicker.setEditable (true);
-	gridPane.add (publishedDatePicker, 2, 2, 3, 1);
+        TextField plateIdTf = new TextField();
+	gridPane.add (plateIdTf, 2, 2, 3, 1);
 
-        Text totalCost = new Text ("Total Cost:");
-        gridPane.add (totalCost, 0, 3, 2, 1);
-
-	DuongFXIntegerField totalCostIntField = new DuongFXIntegerField ();
-	gridPane.add (totalCostIntField, 2, 3, 3, 1);
-
-	Text expenseType = new Text ("Expense type:");
-        gridPane.add (expenseType, 0, 4, 2, 1);
-
-        ComboBox<String> expenseTypeChoose = new ComboBox<>();
-        expenseTypeChoose.setItems (FXCollections.observableArrayList(
-	    "-- Chọn --", "service", "electric", "water", "parking", "donation"
-        ));
-	expenseTypeChoose.getSelectionModel().selectFirst ();
-	gridPane.add (expenseTypeChoose, 2, 4, 3, 1);
-
-	Text required = new Text ("Required:");
-	gridPane.add (required, 0, 5, 2, 1);
-
-	ToggleSwitch requiredSwitch = new ToggleSwitch ();
-	requiredSwitch.setSelected (false);
-	gridPane.add (requiredSwitch, 2, 5, 3, 1);
-
-        Button submitBtn = new Button ("Tạo khoản thu");
+        Button submitBtn = new Button ("Thêm phương tiện");
         submitBtn.getStyleClass().addAll(Styles.ACCENT, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
-        submitBtn.setOnAction (e -> sceneController.getClientInteractor().createExpenseHandler());
+        submitBtn.setOnAction (e -> sceneController.getClientInteractor().createVehicleHandler ());
 
-        // bindings
-        model.expenseTitleProperty().bind (expenseTitleTextField.textProperty());
-        model.expenseDescriptionProperty().bind (expenseDescriptionTextArea.textProperty());
-        model.publishedDateProperty().bind (publishedDatePicker.valueProperty());
-        model.totalCostProperty().bind (totalCostIntField.textProperty());
-        model.expenseTypeProperty().bind (expenseTypeChoose.valueProperty());
-	model.requiredProperty().bind (requiredSwitch.selectedProperty ());
+        model.getFamilyId().bind (familyIdTf.textProperty ());
+        model.getVehicleType().bind (vehicleTypeChoose.valueProperty());
+        model.getPlateId().bind (plateIdTf.textProperty());
 
         VBox vb = new VBox ( 18,
             gridPane,

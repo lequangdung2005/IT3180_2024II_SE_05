@@ -8,6 +8,7 @@ import java.security.*;
 
 import io.jsonwebtoken.*;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.context.annotation.*;
 
 import com.hust.ittnk68.cnpm.model.*;
@@ -54,6 +55,12 @@ public class AppTest extends TestCase
         assertTrue (tmp.getUsername().equals("anbatocom"));
         assertTrue (tmp.getDigestPassword().equals("dfjsdl39fjs???jdlfjslfloewjlkjlf"));
         assertTrue (tmp.getAccountType().equals(AccountType.USER));
+    }
+
+    public void testDigestPassword ()
+    {
+        String str = "root";
+        System.out.println ("digest: " + DigestUtils.sha256Hex(str));
     }
 
 }

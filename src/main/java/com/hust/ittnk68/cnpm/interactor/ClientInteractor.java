@@ -182,6 +182,8 @@ public class ClientInteractor {
         fullname = fullname.trim ();
         fullname = fullname.replaceAll ("^ +| +$|( )+", "$1");
 
+        String familyId = model.getFamilyIdProperty().get();
+
         Date dateOfBirth = Date.convertFromLocalDate( model.getDateOfBirthProperty().get() );
 
         String citizenId = model.getCitizenIdProperty().get();
@@ -197,6 +199,11 @@ public class ClientInteractor {
 
         if (fullname.isEmpty()) {
             System.out.println ("Chua nhap ten");
+            return;
+        }
+
+        if (familyId.isEmpty()) {
+            System.out.println ("Chua nhap family id");
             return;
         }
 
@@ -236,8 +243,7 @@ public class ClientInteractor {
             return;
         }
 
-
-        Person object = new Person (-1, fullname,
+        Person object = new Person (Integer.parseInt(familyId), fullname,
                                         dateOfBirth, citizenId,
                                         phoneNumber, sex,
                                         nation, residenceStatus);

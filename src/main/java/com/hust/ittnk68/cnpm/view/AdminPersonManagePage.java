@@ -456,6 +456,11 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         residenceStatusChoose.getSelectionModel().selectFirst();
         gridPane.add (residenceStatusChoose, 2, 6, 3, 1);
 
+        Text familyIdText = new Text ("Family Id:");
+        gridPane.add (familyIdText, 0, 7, 2, 1);
+        DuongFXIntegerField familyIdTf = new DuongFXIntegerField();
+        gridPane.add (familyIdTf, 2, 7, 3, 1);
+
         Button submitBtn = new Button ("Khai báo");
         submitBtn.getStyleClass().addAll(Styles.ACCENT, Styles.BUTTON_OUTLINED, Styles.ROUNDED);
         submitBtn.setOnAction (e -> sceneController.getClientInteractor().createPersonHandler());
@@ -468,6 +473,7 @@ public class AdminPersonManagePage extends DuongFXTabPane {
         model.getSexProperty().bind (genderChoose.valueProperty());
         model.getNationProperty().bind (nationChoose.valueProperty());
         model.getResidenceStatusProperty().bind (residenceStatusChoose.valueProperty());
+        model.getFamilyIdProperty().bind (familyIdTf.textProperty());
  
         VBox vb = new VBox ( 18,
             gridPane,

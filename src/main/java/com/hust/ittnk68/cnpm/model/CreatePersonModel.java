@@ -16,6 +16,7 @@ public class CreatePersonModel {
     private final StringProperty sex;
     private final StringProperty nation;
     private final StringProperty residenceStatus;
+    private final StringProperty familyId;
 
     public CreatePersonModel () {
         fullname = new SimpleStringProperty ();
@@ -25,6 +26,7 @@ public class CreatePersonModel {
         sex = new SimpleStringProperty ();
         nation = new SimpleStringProperty ();
         residenceStatus = new SimpleStringProperty ();
+        familyId = new SimpleStringProperty();
     }
 
     public StringProperty getFullnameProperty() {
@@ -47,6 +49,9 @@ public class CreatePersonModel {
     }
     public StringProperty getResidenceStatusProperty () {
         return residenceStatus;
+    }
+    public StringProperty getFamilyIdProperty() {
+        return familyId;
     }
 
 }
